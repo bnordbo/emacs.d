@@ -13,5 +13,6 @@
 (require 'init-ido)
 (require 'init-java)
 (require 'init-keys)
+(require 'init-git)
 (require 'init-melpa)
 (require 'init-theme)

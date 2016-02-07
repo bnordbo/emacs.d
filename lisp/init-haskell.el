@@ -1,6 +1,9 @@
-(add-hook 'haskell-mode-hook 'subword-mode)
-(add-hook 'haskell-mode-hook 'electric-pair-mode)
-(add-hook 'haskell-mode-hook 'interactive-haskell-mode)
-(add-hook 'haskell-mode-hook 'haskell-doc-mode)
+(add-hook 'haskell-mode-hook
+          (lambda ()
+            (subword-mode)
+            (electric-pair-mode)
+            (interactive-haskell-mode)
+            (haskell-doc-mode)
+            (subword-mode))
 
 (provide 'init-haskell)
