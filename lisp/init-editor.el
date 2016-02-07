@@ -7,6 +7,7 @@
 (tool-bar-mode -1)
 (setq visible-bell t)
 (column-number-mode t)
+(ido-yes-or-no-mode t)
 
 ;; Hooks
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
