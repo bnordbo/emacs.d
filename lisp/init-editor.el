@@ -4,8 +4,6 @@
 (setq-default indent-tabs-mode nil)
 
 ;; Modes
-(tool-bar-mode -1)
-(setq visible-bell t)
 (column-number-mode t)
 (ido-yes-or-no-mode t)
 

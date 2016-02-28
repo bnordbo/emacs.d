@@ -8,6 +8,7 @@
 
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 
+(require 'init-visual)
 (require 'init-editor)
 (require 'init-haskell)
 (require 'init-ido)

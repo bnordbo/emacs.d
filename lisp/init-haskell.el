@@ -4,6 +4,6 @@
             (electric-pair-mode)
             (interactive-haskell-mode)
             (haskell-doc-mode)
-            (subword-mode))
+            (subword-mode)))
 
 (provide 'init-haskell)
