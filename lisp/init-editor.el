@@ -2,6 +2,7 @@
 (setq mac-command-modifier 'meta)
 (setq ring-bell-function 'ignore)
 (setq-default indent-tabs-mode nil)
+(setq backup-inhibited t)
 
 ;; Modes
 (column-number-mode t)
