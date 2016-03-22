@@ -5,8 +5,11 @@
 (package-initialize)
 
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
+(add-to-list 'load-path (expand-file-name "~/src/elisp"))
 
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+
+(load-library 'keywiz)
 
 (require 'init-visual)
 (require 'init-editor)
