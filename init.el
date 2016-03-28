@@ -7,9 +7,11 @@
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 (add-to-list 'load-path (expand-file-name "~/src/elisp"))
 
+(add-to-list 'exec-path "/usr/local/bin")
+
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 
-(load-library 'keywiz)
+(load-library "keywiz")
 
 (require 'init-visual)
 (require 'init-editor)
