@@ -21,4 +21,5 @@
 (require 'init-keys)
 (require 'init-git)
 (require 'init-melpa)
+(require 'init-rust)
 (require 'init-theme)
