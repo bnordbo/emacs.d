@@ -4,6 +4,9 @@
 ;; You may delete these explanatory comments.
 (package-initialize)
 
+(let ((default-directory "/usr/local/share/emacs/site-lisp/"))
+  (normal-top-level-add-subdirs-to-load-path))
+
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 (add-to-list 'load-path (expand-file-name "~/src/elisp"))
 
@@ -13,6 +16,7 @@
 
 (load-library "keywiz")
 
+(require 'init-melpa)
 (require 'init-visual)
 (require 'init-editor)
 (require 'init-haskell)
@@ -20,6 +24,5 @@
 (require 'init-java)
 (require 'init-keys)
 (require 'init-git)
-(require 'init-melpa)
 (require 'init-rust)
 (require 'init-theme)
