@@ -1,3 +1,6 @@
+;; General key setup
+(setq mac-option-modifier nil)
+
 ;; Globally useless keybindings
 (global-unset-key (kbd "C-x m"))  ; No sending mail from Emacs
 

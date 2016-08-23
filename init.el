@@ -11,6 +11,7 @@
 (add-to-list 'load-path (expand-file-name "~/src/elisp"))
 
 (add-to-list 'exec-path "/usr/local/bin")
+(add-to-list 'exec-path "~/bin")
 
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 
