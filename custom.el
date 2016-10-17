@@ -3,12 +3,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-safe-themes
+ '(package-selected-packages
    (quote
-    ("b1c89c4c74bc7cfc1e417bfd4dcdcabbc3d81c83701e1c3bf1e0876bd19d54e6" default)))
- '(racer-cmd "/Users/bg/.cargo/bin/racer")
- '(racer-rust-src-path "/Users/bg/src/thirdparty/rust/src")
- '(rust-indent-where-clause t))
+    (elm-mode toml-mode todotxt-mode rainbow-mode rainbow-delimiters racer move-dup magit-filenotify ido-yes-or-no idle-highlight-mode hyai hcl-mode hc-zenburn-theme ghc-imported-from ghc danneskjold-theme cargo))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
