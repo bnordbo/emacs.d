@@ -12,6 +12,8 @@
 (global-set-key (kbd "C-<tab>")   'other-window)
 (global-set-key (kbd "C-S-<tab>") 'other-window-back)
 
+(global-set-key (kbd "S-<tab>") 'idomenu)
+
 ;; General editing
 (global-set-key (kbd "C-x \\")	  'align-regexp)
 (global-set-key (kbd "M-<down>")  'md/move-lines-down)
