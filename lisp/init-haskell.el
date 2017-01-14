@@ -2,9 +2,8 @@
           (lambda ()
             (subword-mode)
             (electric-pair-mode)
-            (interactive-haskell-mode)
             (haskell-doc-mode)
             (subword-mode)
-            (hyai-mode)))
+            (intero-mode)))
 
 (provide 'init-haskell)
