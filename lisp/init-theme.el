@@ -1,3 +1,3 @@
-(load-theme 'tango t)
+(load-theme 'tango-dark t)
 
 (provide 'init-theme)
