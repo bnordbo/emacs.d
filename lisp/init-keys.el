@@ -9,8 +9,8 @@
   (interactive)
   (other-window -1))
 
-(global-set-key (kbd "C-<tab>")   'other-window)
-(global-set-key (kbd "C-S-<tab>") 'other-window-back)
+(global-set-key (kbd "C-<tab>")   'other-window-back)
+(global-set-key (kbd "C-S-<tab>") 'other-window)
 
 (global-set-key (kbd "S-<tab>") 'idomenu)
 
