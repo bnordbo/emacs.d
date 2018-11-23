@@ -6,7 +6,7 @@
 (add-hook 'rust-mode-hook
           (lambda ()
             (cargo-minor-mode 1)
-            (electric-pair-mode 1)
+            (electric-pair-local-mode 1)
             (racer-mode 1)))
 
 (add-hook 'racer-mode-hook

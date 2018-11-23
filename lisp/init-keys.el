@@ -20,6 +20,7 @@
 (global-set-key (kbd "M-<up>")    'md/move-lines-up)
 (global-set-key (kbd "C-M-<SPC>") 'just-one-space)
 (global-set-key (kbd "C-M-<return>") 'bn/smart-semicolon)
+(global-set-key (kbd "C-x C-d") 'md/duplicate-down)
 
 ;; Corral
 (global-set-key (kbd "M-9") 'corral-parentheses-backward)
