@@ -1,3 +1,3 @@
-(load-theme 'hc-zenburn t)
+(load-theme 'tango-dark t)
 
 (provide 'init-theme)

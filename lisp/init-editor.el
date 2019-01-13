@@ -6,8 +6,8 @@
 
 ;; Modes
 (column-number-mode t)
-(ido-yes-or-no-mode t)
 (show-paren-mode t)
+(electric-pair-mode t)
 
 ;; Hooks
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
