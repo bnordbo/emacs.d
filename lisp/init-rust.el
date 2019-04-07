@@ -14,4 +14,6 @@
             (eldoc-mode 1)
             (company-mode 1)))
 
+(setq company-tooltip-align-annotations t)
+
 (provide 'init-rust)

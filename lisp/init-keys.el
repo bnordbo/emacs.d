@@ -9,8 +9,8 @@
   (interactive)
   (other-window -1))
 
-(global-set-key (kbd "C-<tab>")   'other-window-back)
-(global-set-key (kbd "C-S-<tab>") 'other-window)
+(global-set-key (kbd "C-<tab>")   'other-window)
+(global-set-key (kbd "C-S-<tab>") 'other-window-back)
 
 (global-set-key (kbd "S-<tab>") 'idomenu)
 
@@ -30,6 +30,10 @@
 (global-set-key (kbd "M-{") 'corral-braces-backward)
 (global-set-key (kbd "M-}") 'corral-braces-forward)
 (global-set-key (kbd "M-\"") 'corral-double-quotes-backward)
+
+;; Visual regexp
+(define-key global-map (kbd "C-c r") 'vr/replace)
+(define-key global-map (kbd "C-c q") 'vr/query-replace)
 
 ;; Magit
 (global-set-key (kbd "C-x m s") 'magit-status)
