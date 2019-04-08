@@ -22,7 +22,8 @@
 
 (require 'init-editor)
 (require 'init-git)
-(require 'init-ido)
+;(require 'init-ido)
+(require 'init-helm)
 (require 'init-ispell)
 (require 'init-keys)
 (require 'init-melpa)

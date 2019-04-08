@@ -13,6 +13,9 @@
 
 (setq org-agenda-files (directory-files-recursively "~/src/org" "org$"))
 
+(setq org-refile-targets (quote ((nil :maxlevel . 10)
+                                 (org-agenda-files :maxlevel . 10))))
+
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c l") 'org-store-link)
 (global-set-key (kbd "C-c c") 'org-capture)
