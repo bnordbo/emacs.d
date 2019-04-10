@@ -20,13 +20,14 @@
 
 (require 'init-bn)
 
+(require 'init-melpa)
+
 (require 'init-editor)
 (require 'init-git)
 ;(require 'init-ido)
 (require 'init-helm)
 (require 'init-ispell)
 (require 'init-keys)
-(require 'init-melpa)
 (require 'init-org)
 (require 'init-theme)
 (require 'init-visual)
