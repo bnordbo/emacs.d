@@ -21,6 +21,7 @@
 (require 'init-bn)
 
 (require 'init-melpa)
+(require 'init-env)
 
 (require 'init-editor)
 (require 'init-git)
