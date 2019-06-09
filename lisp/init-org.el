@@ -27,7 +27,9 @@
       org-agenda-restore-windows-after-quit t
       org-log-done t)
 
-(setq org-agenda-files (directory-files-recursively "~/src/org" "org$"))
+(setq org-agenda-files `(,(o-file "inbox")
+                         ,(o-file "gtd")
+                         ,(o-file "tickler")))
 
 (setq org-refile-targets `((,(o-file "gtd") :maxlevel . 3)
                            (,(o-file "someday") :level . 1)
