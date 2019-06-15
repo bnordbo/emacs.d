@@ -29,6 +29,10 @@
 (global-set-key (kbd "M-}") 'corral-braces-forward)
 (global-set-key (kbd "M-\"") 'corral-double-quotes-backward)
 
+;; Auto-highlighting
+(define-key auto-highlight-symbol-mode-map (kbd "M-p") 'ahs-backward)
+(define-key auto-highlight-symbol-mode-map (kbd "M-n") 'ahs-forward)
+
 ;; Visual regexp
 (define-key global-map (kbd "C-c r") 'vr/replace)
 (define-key global-map (kbd "C-c q") 'vr/query-replace)

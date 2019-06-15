@@ -25,6 +25,7 @@
 (setq org-directory "~/src/org"
       org-default-notes-file (o-file "inbox")
       org-agenda-restore-windows-after-quit t
+      org-agenda-window-setup 'current-window
       org-log-done t)
 
 (setq org-agenda-files `(,(o-file "inbox")
@@ -43,21 +44,27 @@
 (setq org-todo-keywords '((sequence "TODO(t)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(c)")))
 
 (setq org-agenda-custom-commands
-      '(("o" "At the Oslo office" tags-todo "@oslo"
+      `(("o" "At the Oslo office" tags-todo "@oslo"
          ((org-agenda-overriding-header "Oslo office")
           (org-agenda-skip-function #'my-org-agenda-skip-all-siblings-but-first)))
-        ("h" "At the home office" tags-todo "@home"
-         ((org-agenda-overriding-header "Home office")
+        ("A" "At any office" tags-todo "@office"
+         ((org-agenda-overriding-header "Any office")
           (org-agenda-skip-function #'my-org-agenda-skip-all-siblings-but-first)))
         ("x" "Offline tasks" tags-todo "@offline"
          ((org-agenda-overriding-header "Offline")
-          (org-agenda-skip-function #'my-org-agenda-skip-all-siblings-but-first)))))
+          (org-agenda-skip-function #'my-org-agenda-skip-all-siblings-but-first)))
+        ("W" "Weekly review"
+         ((agenda "" ((org-agenda-span 7)))
+          (stuck "")
+          (todo "WAITING")
+          ; Doesn't work.
+          (org-agenda-files ,(o-file "someday"))))))
 
 (setq org-capture-templates
       `(("t" "TODO" entry (file+headline org-default-notes-file "Tasks")
          "* TODO %i%?")
         ("T" "Tickler" entry (file+headline ,(o-file "tickler") "Tickler")
-         "*  %i%? \n %U")
+         "* TODO %i%? \n %U")
         ("n" "Note" entry (file org-default-notes-file)
          "* %? :NOTE:\n%U\n%a\n" :clock-in t :clock-resume t)
         ("d" "Diary" entry (file+datetree ,(o-file "diary"))

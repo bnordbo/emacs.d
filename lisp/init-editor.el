@@ -12,6 +12,25 @@
 ;; Hooks
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
+;; Misc
+
+;;; Make align-regexp always use spaces
+(defadvice align-regexp (around align-regexp-with-spaces activate)
+  (let ((indent-tabs-mode nil))
+    ad-do-it))
+
+;;; Extra modes
+(add-to-list 'auto-mode-alist '("BUILD\\'" . bazel-mode))
+
+;;; Auto-highlighing settings
+(setq ahs-idle-interval 1.0
+      ahs-default-range 'ahs-range-whole-buffer
+      ahs-inhibit-face-list '(font-lock-comment-delimiter-face
+                              font-lock-comment-face
+                              font-lock-doc-face
+                              font-lock-doc-string-face
+                              font-lock-string-face))
+
 ;; Emacs server
 (server-start)
 

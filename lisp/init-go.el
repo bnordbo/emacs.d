@@ -4,6 +4,7 @@
           (lambda ()
             (electric-pair-local-mode 1)
             (subword-mode 1)
+            (auto-highlight-symbol-mode 1)
             (setq tab-width 4)))
 
 (provide 'init-go)
