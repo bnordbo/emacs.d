@@ -30,6 +30,7 @@
 (global-set-key (kbd "M-\"") 'corral-double-quotes-backward)
 
 ;; Auto-highlighting
+(load-library "auto-highlight-symbol")
 (define-key auto-highlight-symbol-mode-map (kbd "M-p") 'ahs-backward)
 (define-key auto-highlight-symbol-mode-map (kbd "M-n") 'ahs-forward)
 
