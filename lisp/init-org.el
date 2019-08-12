@@ -20,7 +20,11 @@
 (add-hook 'org-mode-hook
           (lambda ()
             (electric-pair-local-mode -1)
-            (local-unset-key (kbd "C-<tab>"))))
+            (local-unset-key (kbd "C-<tab>"))
+            (local-set-key (kbd "M-S-<up>") 'org-move-subtree-up)
+            (local-set-key (kbd "M-S-<down>") 'org-move-subtree-down)))
+
+(add-hook 'auto-save-hook 'org-save-all-org-buffers)
 
 (setq org-directory "~/src/org"
       org-default-notes-file (o-file "inbox")
@@ -34,7 +38,8 @@
 
 (setq org-refile-targets `((,(o-file "gtd") :maxlevel . 3)
                            (,(o-file "someday") :level . 1)
-                           (,(o-file "tickler") :maxlevel . 2)))
+                           (,(o-file "tickler") :maxlevel . 2)
+                           (,(o-file "meetings") :level . 1)))
 
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c l") 'org-store-link)
