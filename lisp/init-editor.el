@@ -8,6 +8,8 @@
 (column-number-mode t)
 (show-paren-mode t)
 (electric-pair-mode t)
+(global-move-dup-mode t)
+(auto-save-visited-mode t)
 
 ;; Hooks
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
