@@ -11,20 +11,19 @@
 (global-move-dup-mode t)
 (auto-save-visited-mode t)
 
-;; Hooks
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
+;; Whitespace management
+(add-hook 'find-file-hook #'ws-butler-global-mode)
+(setq require-final-newline t)
 
-;; Misc
-
-;;; Make align-regexp always use spaces
+;; Make align-regexp always use spaces
 (defadvice align-regexp (around align-regexp-with-spaces activate)
   (let ((indent-tabs-mode nil))
     ad-do-it))
 
-;;; Extra modes
+;; Extra modes
 (add-to-list 'auto-mode-alist '("BUILD\\'" . bazel-mode))
 
-;;; Auto-highlighing settings
+;; Auto-highlighing settings
 (setq ahs-idle-interval 1.0
       ahs-default-range 'ahs-range-whole-buffer
       ahs-inhibit-face-list '(font-lock-comment-delimiter-face
