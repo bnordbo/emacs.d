@@ -32,6 +32,11 @@
       org-agenda-window-setup 'current-window
       org-log-done t)
 
+;; Allows refiling to top-level of files.  A bit messy, but works well.
+(setq org-refile-use-outline-path 'file
+      org-outline-path-complete-in-steps nil
+      org-refile-allow-creating-parent-nodes 'confirm)
+
 (setq org-agenda-files `(,(o-file "inbox")
                          ,(o-file "gtd")
                          ,(o-file "tickler")))
