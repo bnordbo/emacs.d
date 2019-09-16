@@ -41,9 +41,6 @@
 ;; Magit
 (global-set-key (kbd "C-x m s") 'magit-status)
 
-;; Smex
-(global-set-key (kbd "M-x") 'smex)
-
 ;; Keyboard macros
 (fset 'to-two-buffers "\C-x0\C-x+")
 (fset 'to-three-buffers "\C-x3\C-x+")
