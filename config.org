@@ -1,0 +1,469 @@
+* Initialisation
+
+Configure package.el to include melpa and extra org mode packages.
+
+#+begin_src emacs-lisp
+(add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/") t)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
+(package-initialize)
+#+end_src
+
+* Look and feel
+
+While I find dark themes more aesthetically pleasing, bright ones are
+more ergonomic.
+
+#+begin_src emacs-lisp
+(load-theme 'tsdh-light t)
+#+end_src
+
+Conserve space and reduce clutter.
+
+#+begin_src emacs-lisp
+(tool-bar-mode -1)
+(menu-bar-mode -1)
+;(scroll-bar-mode -1
+#+end_src
+
+Run in full screen mode.  On Mac this no longer creates a new desktop,
+but rather an undecorated, maximised frame.  It's a bit funky, but I
+have not had time to look into it yet.
+
+#+begin_src emacs-lisp
+(toggle-frame-fullscreen)
+#+end_src
+
+I find transparency neat for about ten minutes...
+
+#+begin_src emacs-lisp
+(add-to-list 'default-frame-alist '(alpha . (100 . 100)))
+#+end_src
+
+I'm quite happy with IncosolataGo, despite it lacking some useful
+glyphs like dash.
+
+** TODO Consider setting up a variable width font too
+
+#+begin_src emacs-lisp
+(set-face-attribute 'default nil :family "InconsolataGo" :height 145)
+#+end_src
+
+Prevent horizontal splits for big windows.
+
+#+begin_src emacs-lisp
+(setq split-height-threshold nil)
+#+end_src
+
+Zoom mode allows me to continue using a three-way split when I
+disconnect the monitor.  It mostly works great.
+
+#+begin_src emacs-lisp
+(zoom-mode 1)
+(setq zoom-size '(100 .  40))
+#+end_src
+
+No ugly line wrapping.
+
+#+begin_src emacs-lisp
+(set-default 'truncate-lines t)
+#+end_src
+
+I've never missed the bell, visible or otherwise.
+
+#+begin_src emacs-lisp
+(setq ring-bell-function 'ignore)
+#+end_src
+
+* General editing setup
+
+As a rule, I don't want to indent with tabs.  Spaces are more
+predicable, and I anyway leave it to Emacs most of the time.
+
+#+begin_src emacs-lisp
+(setq-default indent-tabs-mode nil)
+#+end_src
+
+This eliminates all the tilde suffixed files.  I've got TimeMachine
+for backups.
+
+#+begin_src emacs-lisp
+(setq backup-inhibited t)
+#+end_src
+
+Auto-save all visited files.  This is mostly fine and makes Emacs more
+in sync with what's on the file system.  Running it more frequently
+can be a bit annoying as auto-save hooks remove trailing newlines and
+so on.
+
+#+begin_src emacs-lisp
+(auto-save-visited-mode t)
+(setq auto-save-visited-interval 45)
+#+end_src
+
+Some like having the lines numbered, but I find just showing it in the
+modeline will usually suffice.
+
+#+begin_src emacs-lisp
+(column-number-mode t)
+#+end_src
+
+Improve parenthesis handling by showing matches and automatically
+inserting closing ones.
+
+#+begin_src emacs-lisp
+(show-paren-mode t)
+(electric-pair-mode t)
+#+end_src
+
+Try to keep the whitespace under control.  The whitespace butler seems
+to work pretty well.
+
+#+begin_src emacs-lisp
+(add-hook 'find-file-hook #'ws-butler-global-mode)
+(setq require-final-newline t)
+#+end_src
+
+Make regular expession alignment always use spaces and not tabs.
+
+#+begin_src emacs-lisp
+(defadvice align-regexp (around align-regexp-with-spaces activate)
+  (let ((indent-tabs-mode nil))
+    ad-do-it))
+#+end_src
+
+Getting the environment set correctly is/was a struggle on macOS.
+I've been using this for a while, and it seems to work.
+
+#+begin_src emacs-lisp
+(exec-path-from-shell-initialize)
+#+end_src
+
+I just use ispell for now, but should look into a way of supporting
+multiple dictionaries.
+
+#+begin_src emacs-lisp
+(setq ispell-program-name "/usr/local/bin/ispell")
+#+end_src
+
+Open a new line below the current one and indent.  I missed this
+function for ten years.  It took me two minutes to whip together this
+one.
+
+#+begin_src emacs-lisp
+(defun bn-next-line-and-indent ()
+  (interactive)
+  (end-of-line)
+  (default-indent-new-line))
+(global-set-key (kbd "C-<return>") 'bn-next-line-and-indent)
+#+end_src
+
+Why not?
+
+#+begin_src emacs-lisp
+(global-prettify-symbols-mode t)
+#+end_src
+
+Auto-highlighting the current symbol can be quite useful, not only
+when programming.
+
+#+begin_src emacs-lisp
+(setq ahs-idle-interval 1.0
+      ahs-default-range 'ahs-range-whole-buffer
+      ahs-inhibit-face-list '(font-lock-comment-delimiter-face
+                              font-lock-comment-face
+                              font-lock-doc-face
+                              font-lock-doc-string-face
+                              font-lock-string-face))
+#+end_src
+
+Start emacs-server for integrating neatly with the shell.
+
+#+begin_src emacs-lisp
+(server-start)
+#+end_src
+
+* Programming language support
+** Go
+
+This sets up Go mode with some basic support.  The jump to definition
+support is extremely limited, unfortunately.
+
+#+begin_src emacs-lisp
+(exec-path-from-shell-copy-env "GOPATH")(exec-path-from-shell-copy-env "GOPATH")
+
+(add-hook 'go-mode-hook
+          (lambda ()
+            (go-eldoc-setup)
+            (add-hook 'before-save-hook 'gofmt-before-save)
+            (local-set-key (kbd "M-.") 'godef-jump)
+            (auto-highlight-symbol-mode 1)
+            (electric-pair-local-mode 1)
+            (subword-mode 1)
+            (yas-minor-mode 1)
+            (setq tab-width 4
+                  go-eldoc-gocode "/Users/bn/go/bin/gocode")))
+#+end_src
+
+** Haskell
+
+#+begin_src emacs-lisp
+(add-hook 'haskell-mode-hook
+          (lambda ()
+            (subword-mode 1)
+            (electric-pair-local-mode 1)
+            (haskell-doc-mode 1)))
+#+end_src
+
+** Rust
+
+#+begin_src emacs-lisp
+(setq racer-cmd "~/bin/racer"
+      racer-rust-src-path "~/src/thirdparty/rust/src"
+      company-tooltip-align-annotations t)
+
+(add-hook 'rust-mode-hook
+          (lambda ()
+            (cargo-minor-mode 1)
+            (electric-pair-local-mode 1)
+            (racer-mode 1)))
+
+(add-hook 'racer-mode-hook
+          (lambda ()
+            (eldoc-mode 1)
+            (company-mode 1)))
+#+end_src
+
+** Markdown
+
+#+begin_src emacs-lisp
+(setq markdown-open-command "~/bin/mark")
+
+(add-hook 'markdown-mode-hook
+          (lambda ()
+            (visual-line-mode 1)))
+#+end_src
+
+** Bazel
+
+#+begin_src emacs-lisp
+(add-to-list 'auto-mode-alist '("BUILD\\'" . bazel-mode))
+#+end_src
+
+* Helm
+
+#+begin_src emacs-lisp
+(require 'helm-config)
+
+(helm-mode t)
+
+(global-set-key (kbd "M-x") 'helm-M-x)
+(global-set-key (kbd "C-x r b") 'helm-filtered-bookmarks)
+(global-set-key (kbd "C-x C-f") 'helm-find-files)
+(global-set-key (kbd "C-x 4 f") 'find-file-other-window)
+#+end_src
+
+* General key bindings
+
+On Mac, map the command key to meta and keep the normal behaviour of
+option.
+
+#+begin_src emacs-lisp
+(setq mac-command-modifier 'meta
+      mac-option-modifier nil)
+#+end_src
+
+I picked up C-TAB switcing from Eclipse way back.  The reverse one is
+perhaps overdoing it since I usually have no more than three buffers.
+
+#+begin_src emacs-lisp
+(defun other-window-back ()
+  (interactive)
+  (other-window -1))
+
+(global-set-key (kbd "C-<tab>")   'other-window)
+(global-set-key (kbd "C-S-<tab>") 'other-window-back)
+#+end_src
+
+Bind a few useful functions.
+
+#+begin_src emacs-lisp
+(global-set-key (kbd "C-x \\")	    'align-regexp)
+(global-set-key (kbd "C-x C-<SPC>") 'just-one-space)
+#+end_src
+
+Some stuff I missed after making an attempt at TextMate a while back.
+
+#+begin_src emacs-lisp
+(global-move-dup-mode t)
+(global-set-key (kbd "C-x C-d") 'md-duplicate-down)
+(global-unset-key (kbd "C-M-<up>"))
+(global-unset-key (kbd "C-M-<down>"))
+#+end_src
+
+This allows quickly jumping to words in a buffer.  Awsum!
+
+#+begin_src emacs-lisp
+(global-set-key (kbd "C-M-j") 'ace-jump-mode)
+#+end_src
+
+I still consider this a bit of an experiment...
+
+#+begin_src emacs-lisp
+(global-set-key (kbd "C-?") 'help-command)
+; Find another key for this.
+;(global-set-key (kbd "M-?") 'mark-paragraph)
+(global-set-key (kbd "C-h") 'delete-backward-char)
+(global-set-key (kbd "M-h") 'backward-kill-word)
+#+end_src
+
+This is a neat way of adding stuff around other stuff, that I tend to
+forget to use.  A candidate for removal.
+
+#+begin_src emacs-lisp
+(global-set-key (kbd "M-9")  'corral-parentheses-backward)
+(global-set-key (kbd "M-0")  'corral-parentheses-forward)
+(global-set-key (kbd "M-[")  'corral-brackets-backward)
+(global-set-key (kbd "M-]")  'corral-brackets-forward)
+(global-set-key (kbd "M-{")  'corral-braces-backward)
+(global-set-key (kbd "M-}")  'corral-braces-forward)
+(global-set-key (kbd "M-\"") 'corral-double-quotes-backward)
+#+end_src
+
+The ability  to move to the next/prev occurence of the current symbol
+is something I missed after using IntelliJ for a while.
+
+#+begin_src emacs-lisp
+(load-library "auto-highlight-symbol")
+(define-key auto-highlight-symbol-mode-map (kbd "M-p") 'ahs-backward)
+(define-key auto-highlight-symbol-mode-map (kbd "M-n") 'ahs-forward)
+#+end_src
+
+Interactive regular expressions because I find it tricky to remember
+the Emacs syntax for these.
+
+#+begin_src emacs-lisp
+(define-key global-map (kbd "C-c r") 'vr/replace)
+(define-key global-map (kbd "C-c q") 'vr/query-replace)
+#+end_src
+
+I tend to think snippets are kind of silly (why would you keep typing
+the same thing?), but with Go it becomes useful...
+
+#+begin_src emacs-lisp
+(global-set-key (kbd "C-c y") 'helm-yas-complete)
+#+end_src
+
+* Org mode
+
+Load the mode and clean up some keybindings that gets in the way.
+Also switch on auto-fill-mode for better prose.
+
+#+begin_src emacs-lisp
+(add-hook 'org-mode-hook
+          (lambda ()
+            (electric-pair-local-mode -1)
+            (auto-fill-mode t)
+            (local-unset-key (kbd "C-<tab>"))
+            (local-unset-key (kbd "M-h"))
+            (local-set-key (kbd "M-S-<up>") 'org-move-subtree-up)
+            (local-set-key (kbd "M-S-<down>") 'org-move-subtree-down)))
+#+end_src
+
+Maybe everything should always auto-save all the time..?
+
+#+begin_src emacs-lisp
+(add-hook 'auto-save-hook 'org-save-all-org-buffers)
+#+end_src
+
+** Support functions
+
+#+begin_src emacs-lisp
+(defun o-file (n)
+  (format "%s/%s.org" org-directory n))
+#+end_src
+
+** Some basic settings.
+
+** TODO Consider moving org-directory to ~/Contexts
+
+#+begin_src emacs-lisp
+(setq org-directory "~/src/org"
+      org-default-notes-file (o-file "inbox")
+      org-agenda-restore-windows-after-quit t
+      org-agenda-window-setup 'current-window
+      org-log-done t)
+
+(setq org-todo-keywords '((sequence "TODO(t)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(c)")))
+#+end_src
+
+** Key bindings
+
+#+begin_src emacs-lisp
+(global-set-key (kbd "C-c a") 'org-agenda)
+(global-set-key (kbd "C-c l") 'org-store-link)
+(global-set-key (kbd "C-c c") 'org-capture)
+(global-set-key (kbd "C-c b") 'org-switchb)
+#+end_src
+
+** Agenda setup
+
+#+begin_src emacs-lisp
+(setq org-agenda-files `(,(o-file "inbox")
+                         ,(o-file "gtd")
+                         ,(o-file "tickler")))
+
+(setq org-agenda-custom-commands
+      '(("r" "Review"
+         ((agenda)
+          (stuck "")
+          (tags-todo "@office")
+          (tags-todo "@reading")
+          (tags-todo "@home")
+          (tags-todo "@project")))
+        ("D" "Daily action list"
+         ((agenda "" ((org-agenda-ndays 1)
+                      (org-agenda-sorting-strategy
+                       (quote ((agenda time-up priority-down tag-up) )))
+                      (org-deadline-warning-days 0)))))))
+#+end_src
+
+** Capture and refile
+
+Capture templates.  So far I've mostly only used TODO and sometimes
+Diary.  Consider starting to use the remaining ones, or remove them.
+
+#+begin_src emacs-lisp
+(setq org-capture-templates
+      `(("t" "TODO" entry (file+headline org-default-notes-file "Tasks")
+         "* TODO %i%?")
+        ("T" "Tickler" entry (file+headline ,(o-file "tickler") "Tickler")
+         "* TODO %i%? \n %U")
+        ("n" "Note" entry (file org-default-notes-file)
+         "* %? :NOTE:\n%U\n%a\n" :clock-in t :clock-resume t)
+        ("d" "Diary" entry (file+datetree ,(o-file "diary"))
+         "* %?\n%U\n" :clock-in t :clock-resume t)
+        ("m" "Meeting" entry (file org-default-notes-file)
+         "* MEETING on %? :MEETING:\n%U" :clock-in t :clock-resume t)))
+#+end_src
+
+I mostly only use ~gtd~ but that does not necessarily mean the others
+are useless, just unused.  Hmm.
+
+#+begin_src emacs-lisp
+(setq org-refile-targets `((,(o-file "gtd") :maxlevel . 3)
+                           (,(o-file "someday") :level . 1)
+                           (,(o-file "tickler") :maxlevel . 2)
+                           (,(o-file "meetings") :level . 1)))
+#+end_src
+
+* Magit mode
+
+We need C-<tab> for changing buffers.
+
+#+begin_src emacs-lisp
+(add-hook 'magit-mode-hook
+          (lambda ()
+            (local-unset-key (kbd "C-<tab>"))))
+#+end_src
+
