@@ -1,12 +1,20 @@
-* Initialisation
+* Configure package installation
 
-Configure package.el to include melpa and extra org mode packages.
+Automatically ensure packages are installed if they are not already
+there.
 
 #+begin_src emacs-lisp
-(add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/") t)
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
-(package-initialize)
+(require 'use-package-ensure)
+(setq use-package-always-ensure t)
+#+end_src
+
+Ensure packages are always compiled, and that we use the latest
+version available.
+
+#+begin_src emacs-lisp
+(use-package auto-compile
+  :config (auto-compile-on-load-mode))
+(setq load-prefer-newer t)
 #+end_src
 
 * Look and feel
@@ -180,7 +188,9 @@ when programming.
 Start emacs-server for integrating neatly with the shell.
 
 #+begin_src emacs-lisp
-(server-start)
+(use-package server)
+(if (not (server-running-p))
+  (server-start))
 #+end_src
 
 * Programming language support
@@ -190,7 +200,14 @@ This sets up Go mode with some basic support.  The jump to definition
 support is extremely limited, unfortunately.
 
 #+begin_src emacs-lisp
-(exec-path-from-shell-copy-env "GOPATH")(exec-path-from-shell-copy-env "GOPATH")
+(exec-path-from-shell-copy-env "GOPATH")
+(exec-path-from-shell-copy-env "GOPATH")
+
+(use-package go-mode)
+(use-package go-eldoc)
+(use-package go-add-tags)
+(use-package go-fill-struct)
+(use-package go-playground)
 
 (add-hook 'go-mode-hook
           (lambda ()
@@ -208,6 +225,8 @@ support is extremely limited, unfortunately.
 ** Haskell
 
 #+begin_src emacs-lisp
+(use-package haskell-mode)
+
 (add-hook 'haskell-mode-hook
           (lambda ()
             (subword-mode 1)
@@ -218,6 +237,8 @@ support is extremely limited, unfortunately.
 ** Rust
 
 #+begin_src emacs-lisp
+(use-package rust-mode)
+
 (setq racer-cmd "~/bin/racer"
       racer-rust-src-path "~/src/thirdparty/rust/src"
       company-tooltip-align-annotations t)
