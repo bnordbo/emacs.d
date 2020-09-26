@@ -13,20 +13,29 @@
 (global-set-key (kbd "C-S-<tab>") 'other-window-back)
 
 ;; General editing
-(global-set-key (kbd "C-x \\")	  'align-regexp)
-(global-set-key (kbd "M-<down>")  'md/move-lines-down)
-(global-set-key (kbd "M-<up>")    'md/move-lines-up)
-(global-set-key (kbd "C-M-<SPC>") 'just-one-space)
+(global-set-key (kbd "C-x \\")	     'align-regexp)
+(global-set-key (kbd "M-<down>")     'md/move-lines-down)
+(global-set-key (kbd "M-<up>")       'md/move-lines-up)
+(global-set-key (kbd "C-M-<SPC>")    'just-one-space)
 (global-set-key (kbd "C-M-<return>") 'bn/smart-semicolon)
-(global-set-key (kbd "C-x C-d") 'md/duplicate-down)
+(global-set-key (kbd "C-x C-d")      'md/duplicate-down)
+
+;; Navigating
+(global-set-key (kbd "C-M-j") 'ace-jump-mode)
+
+;; Fix the backward delete mess
+(global-set-key (kbd "C-?") 'help-command)
+(global-set-key (kbd "M-?") 'mark-paragraph)
+(global-set-key (kbd "C-h") 'delete-backward-char)
+(global-set-key (kbd "M-h") 'backward-kill-word)
 
 ;; Corral
-(global-set-key (kbd "M-9") 'corral-parentheses-backward)
-(global-set-key (kbd "M-0") 'corral-parentheses-forward)
-(global-set-key (kbd "M-[") 'corral-brackets-backward)
-(global-set-key (kbd "M-]") 'corral-brackets-forward)
-(global-set-key (kbd "M-{") 'corral-braces-backward)
-(global-set-key (kbd "M-}") 'corral-braces-forward)
+(global-set-key (kbd "M-9")  'corral-parentheses-backward)
+(global-set-key (kbd "M-0")  'corral-parentheses-forward)
+(global-set-key (kbd "M-[")  'corral-brackets-backward)
+(global-set-key (kbd "M-]")  'corral-brackets-forward)
+(global-set-key (kbd "M-{")  'corral-braces-backward)
+(global-set-key (kbd "M-}")  'corral-braces-forward)
 (global-set-key (kbd "M-\"") 'corral-double-quotes-backward)
 
 ;; Auto-highlighting
@@ -40,6 +49,9 @@
 
 ;; Magit
 (global-set-key (kbd "C-x m s") 'magit-status)
+
+;; Snippets
+(global-set-key (kbd "C-c y") 'helm-yas-complete)
 
 ;; Keyboard macros
 (fset 'to-two-buffers "\C-x0\C-x+")

@@ -3,6 +3,7 @@
 (setq ring-bell-function 'ignore)
 (setq-default indent-tabs-mode nil)
 (setq backup-inhibited t)
+(setq auto-save-visited-interval 45)
 
 ;; Modes
 (column-number-mode t)
@@ -31,6 +32,16 @@
                               font-lock-doc-face
                               font-lock-doc-string-face
                               font-lock-string-face))
+
+;; Commands
+(setq markdown-open-command "~/bin/mark")
+
+;; Open a new line below the current one and indent
+(defun bn-next-line-and-indent ()
+  (interactive)
+  (end-of-line)
+  (default-indent-new-line))
+(global-set-key (kbd "C-<return>") 'bn-next-line-and-indent)
 
 ;; Emacs server
 (server-start)

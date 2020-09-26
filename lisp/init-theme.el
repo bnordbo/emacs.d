@@ -1,3 +1,3 @@
-(load-theme 'dichromacy t)
+(load-theme 'tsdh-light t)
 
 (provide 'init-theme)
