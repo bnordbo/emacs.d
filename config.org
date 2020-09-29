@@ -1,4 +1,6 @@
-* Configure package installation
+* Basic initialisation
+
+** Configure package installation
 
 Automatically ensure packages are installed if they are not already
 there.
@@ -17,13 +19,109 @@ available is used.
 (setq load-prefer-newer t)
 #+end_src
 
+Who wouldn't want sensible defaults?
+
+#+begin_src emacs-lisp
+(load-file "~/.emacs.d/sensible-defaults.el")
+(sensible-defaults/use-all-settings)
+#+end_src
+
+** Integrations
+
+Start emacs-server for integrating neatly with the shell.
+
+#+begin_src emacs-lisp
+(use-package server)
+(if (not (server-running-p))
+  (server-start))
+#+end_src
+
+* Extra functions
+
+Open a new line below the current one and indent.  I missed this
+function for ten years.  It took me two minutes to whip together this
+one.
+
+#+begin_src emacs-lisp
+(defun bn-next-line-and-indent ()
+  (interactive)
+  (end-of-line)
+  (default-indent-new-line))
+(global-set-key (kbd "C-<return>") 'bn-next-line-and-indent)
+#+end_src
+
+Support for adding/removing org-roam tags, borrowed from [[https://gist.github.com/d12frosted/4a55f3d072a813159c1d7b31c21bac9a#file-org-roam-tags-el-L21][d12frosted]].
+I find it very odd that this is not already part of org-roam...
+
+#+begin_src emacs-lisp
+(defun +org-notes-tags-read ()
+  "Return list of tags as set in the buffer."
+  (org-roam--extract-tags-prop (buffer-file-name (buffer-base-buffer))))
+
+(defun +org-notes-tags-delete ()
+  "Delete a tag from current note."
+  (interactive)
+  (unless (+org-notes-buffer-p)
+    (user-error "Current buffer is not a note"))
+  (let* ((tags (+org-notes-tags-read))
+         (tag (completing-read "Tag: " tags nil 'require-match)))
+    (+org-buffer-prop-set
+     "ROAM_TAGS"
+     (combine-and-quote-strings (delete tag tags)))
+    (org-roam-db--update-tags)))
+
+(defun +org-notes-tags-add ()
+  "Add a tag to current note."
+  (interactive)
+  (unless (+org-notes-buffer-p)
+    (user-error "Current buffer is not a note"))
+  (let* ((tags (seq-uniq
+                (+seq-flatten
+                 (+seq-flatten
+                  (org-roam-db-query [:select tags :from tags])))))
+         (tag (completing-read "Tag: " tags)))
+    (when (string-empty-p tag)
+      (user-error "Tag can't be empty"))
+    (+org-buffer-prop-set
+     "roam_tags"
+     (combine-and-quote-strings (seq-uniq (cons tag (+org-notes-tags-read)))))
+    (org-roam-db--update-tags)))
+
+(defun +org-notes-buffer-p ()
+  "Return non-nil if the currently visited buffer is a note."
+  (and buffer-file-name
+       (string-equal (expand-file-name (file-name-as-directory org-roam-directory))
+                     (file-name-directory buffer-file-name))))
+
+(defun +seq-flatten (list-of-lists)
+  "Flatten LIST-OF-LISTS."
+  (apply #'append list-of-lists))
+
+(defun +org-buffer-prop-set (name value)
+  "Set a buffer property called NAME to VALUE."
+  (save-excursion
+    (widen)
+    (goto-char (point-min))
+    (if (re-search-forward (concat "^#\\+" name ": \\(.*\\)") (point-max) t)
+        (replace-match (concat "#+" name ": " value))
+      ;; find the first line that doesn't begin with ':' or '#'
+      (let ((found))
+        (while (not (or found (eobp)))
+          (beginning-of-line)
+          (if (or (looking-at "^#")
+                  (looking-at "^:"))
+              (line-move 1 t)
+            (setq found t)))
+        (insert "#+" name ": " value "\n")))))
+#+end_src
+
 * Look and feel
 
 While I find dark themes more aesthetically pleasing, bright ones are
 more ergonomic.
 
 #+begin_src emacs-lisp
-(load-theme 'tsdh-light t)
+;(load-theme tsdh-light t)
 #+end_src
 
 Conserve space and reduce clutter.
@@ -48,14 +146,38 @@ I find transparency neat for about ten minutes...
 (add-to-list 'default-frame-alist '(alpha . (100 . 100)))
 #+end_src
 
+Why not?
+
+#+begin_src emacs-lisp
+(global-prettify-symbols-mode t)
+#+end_src
+
+Auto-highlighting the current symbol can be quite useful, not only
+when programming.
+
+#+begin_src emacs-lisp
+(setq ahs-idle-interval 1.0
+      ahs-default-range 'ahs-range-whole-buffer
+      ahs-inhibit-face-list '(font-lock-comment-delimiter-face
+                              font-lock-comment-face
+                              font-lock-doc-face
+                              font-lock-doc-string-face
+                              font-lock-string-face))
+#+end_src
+
+
 I'm quite happy with IncosolataGo, despite it lacking some useful
 glyphs like dash.
 
-** TODO Consider setting up a variable width font too
-
 #+begin_src emacs-lisp
-(set-face-attribute 'default nil :family "InconsolataGo" :height 145)
+(custom-theme-set-faces
+ 'user
+ '(fixed-pitch ((t (:family ("Inconsolata LGC Markup" :height 145))))))
+
+;(set-face-attribute 'default nil :family "InconsolataGo" :height 145)
 #+end_src
+
+** TODO Consider setting up a variable width font too
 
 Prevent horizontal splits for big windows.
 
@@ -105,8 +227,8 @@ can be a bit annoying as auto-save hooks remove trailing newlines and
 so on.
 
 #+begin_src emacs-lisp
-(auto-save-visited-mode t)
-(setq auto-save-visited-interval 45)
+;(auto-save-visited-mode t)
+;(setq auto-save-visited-interval 45)
 #+end_src
 
 Some like having the lines numbered, but I find just showing it in the
@@ -152,45 +274,6 @@ multiple dictionaries.
 
 #+begin_src emacs-lisp
 (setq ispell-program-name "/usr/local/bin/ispell")
-#+end_src
-
-Open a new line below the current one and indent.  I missed this
-function for ten years.  It took me two minutes to whip together this
-one.
-
-#+begin_src emacs-lisp
-(defun bn-next-line-and-indent ()
-  (interactive)
-  (end-of-line)
-  (default-indent-new-line))
-(global-set-key (kbd "C-<return>") 'bn-next-line-and-indent)
-#+end_src
-
-Why not?
-
-#+begin_src emacs-lisp
-(global-prettify-symbols-mode t)
-#+end_src
-
-Auto-highlighting the current symbol can be quite useful, not only
-when programming.
-
-#+begin_src emacs-lisp
-(setq ahs-idle-interval 1.0
-      ahs-default-range 'ahs-range-whole-buffer
-      ahs-inhibit-face-list '(font-lock-comment-delimiter-face
-                              font-lock-comment-face
-                              font-lock-doc-face
-                              font-lock-doc-string-face
-                              font-lock-string-face))
-#+end_src
-
-Start emacs-server for integrating neatly with the shell.
-
-#+begin_src emacs-lisp
-(use-package server)
-(if (not (server-running-p))
-  (server-start))
 #+end_src
 
 * Programming language support
@@ -379,20 +462,24 @@ Load the mode and clean up some keybindings that gets in the way.
 Also switch on auto-fill-mode for better prose.
 
 #+begin_src emacs-lisp
-(add-hook 'org-mode-hook
-          (lambda ()
-            (electric-pair-local-mode -1)
-            (auto-fill-mode t)
-            (local-unset-key (kbd "C-<tab>"))
-            (local-unset-key (kbd "M-h"))
-            (local-set-key (kbd "M-S-<up>") 'org-move-subtree-up)
-            (local-set-key (kbd "M-S-<down>") 'org-move-subtree-down)))
+(use-package org
+  :ensure org-plus-contrib
+  :bind (:map org-mode-map
+          ("C-<tab>" . nil)
+          ("M-h" . nil)
+          ("M-S-<up>" . 'org-move-subtree-up)
+          ("M-S-<down>" . 'org-move-subtree-down))
+  :init
+  (add-hook 'org-mode-hook #'auto-fill-mode 1)
+  :config
+  (setq org-edit-src-content-indentation 0))
 #+end_src
 
 Maybe everything should always auto-save all the time..?
 
 #+begin_src emacs-lisp
-(add-hook 'auto-save-hook 'org-save-all-org-buffers)
+; Temporarily disable due to annoying whitespace-at-end-of-file-removal
+;(add-hook 'auto-save-hook 'org-save-all-org-buffers)
 #+end_src
 
 ** Support functions
@@ -404,10 +491,14 @@ Maybe everything should always auto-save all the time..?
 
 ** Some basic settings.
 
-** TODO Consider moving org-directory to ~/Contexts
+
+I use org-mode in three ways: For GTD task management, for roam style
+notes, and for very project specific notes.  The latter is scattered
+in various contexts, while GTD and roam has their own directories, the
+former being the default org directory.
 
 #+begin_src emacs-lisp
-(setq org-directory "~/src/org"
+(setq org-directory "~/Repository/GTD"
       org-default-notes-file (o-file "inbox")
       org-agenda-restore-windows-after-quit t
       org-agenda-window-setup 'current-window
@@ -463,7 +554,13 @@ Diary.  Consider starting to use the remaining ones, or remove them.
         ("d" "Diary" entry (file+datetree ,(o-file "diary"))
          "* %?\n%U\n" :clock-in t :clock-resume t)
         ("m" "Meeting" entry (file org-default-notes-file)
-         "* MEETING on %? :MEETING:\n%U" :clock-in t :clock-resume t)))
+         "* MEETING on %? :MEETING:\n%U" :clock-in t :clock-resume t)
+        ("c" "Contacts" entry (file "~/Repository/People/Contacts.org")
+         "* %(org-contacts-template-name)
+          :PROPERTIES:
+          :EMAIL: %(org-contacts-template-email)
+          :PHONE:
+          :END:")))
 #+end_src
 
 I mostly only use ~gtd~ but that does not necessarily mean the others
@@ -475,53 +572,56 @@ are useless, just unused.  Hmm.
                            (,(o-file "tickler") :maxlevel . 2)
                            (,(o-file "meetings") :level . 1)))
 #+end_src
+
 ** Roam
 
-Let's try to use the new Repository structure for org-roam.  An
-alternative would have been to store it as a Context, but it's
-probably more of a cross context thing.
+ Let's try to use the new Repository structure for org-roam.  An
+ alternative would have been to store it as a Context, but it's
+ probably more of a cross context thing.
 
-#+begin_src emacs-lisp
-(setq org-roam-directory "~/Repository/Roam")
-#+end_src
+ #+begin_src emacs-lisp
+ (setq org-roam-directory "~/Repository/Roam")
+ #+end_src
 
-Start org
+ Start org
 
-#+begin_src emacs-lisp
+ #+begin_src emacs-lisp
 (use-package org-roam
-  :bind (:map org-roam-mode-map
-          (("C-c n l" . org-roam)
-           ("C-c n f" . org-roam-find-file)
-           ("C-c n g" . org-roam-graph))
-         :map org-mode-map
-           (("C-c n i" . org-roam-insert)
-            ("C-c n I" . org-roam-insert-immediate)))
-  :hook after-init
-  :init
-  (make-directory org-roam-directory t))
-#+end_src
+     :ensure t
+     :bind (("C-c n f" . org-roam-find-file)
+            :map org-roam-mode-map
+             (("C-c n l" . org-roam)
+              ("C-c n g" . org-roam-graph)
+              ("C-c n t a" . +org-notes-tags-add)
+              ("C-c n t d" . +org-notes-tags-delete))
+            :map org-mode-map
+              (("C-c n i" . org-roam-insert)
+               ("C-c n I" . org-roam-insert-immediate)))
+     :hook (after-init . org-roam-mode)
+     :init (make-directory org-roam-directory t))
+ #+end_src
 
-Also set up org-journal with org-roam for fleeting notes, i.e. notes
-that are not connected to a particular project.
+ Also set up org-journal with org-roam for fleeting notes, i.e. notes
+ that are not connected to a particular project.
 
-#+begin_src emacs-lisp
+ #+begin_src emacs-lisp
 (use-package org-journal
-  :bind
-  ("C-c n j" . org-journal-new-entry)
-  :custom
-  (org-journal-date-prefix "#+title: ")
-  (org-journal-file-format "%Y-%m-%d.org")
-  (org-journal-dir org-roam-directory)
-  (org-journal-date-format "%A, %d %B %Y"))
-#+end_src
+   :bind
+   ("C-c n j" . org-journal-new-entry)
+   :custom
+   (org-journal-date-prefix "#+title: ")
+   (org-journal-file-format "%Y-%m-%d.org")
+   (org-journal-dir org-roam-directory)
+   (org-journal-date-format "%A, %d %B %Y"))
+ #+end_src
 
 * Magit mode
 
 I need C-<tab> for changing buffers.
 
 #+begin_src emacs-lisp
-(add-hook 'magit-mode-hook
-          (lambda ()
-            (local-unset-key (kbd "C-<tab>"))))
+(use-package magit
+  :bind (("C-x g" . magit)
+         :map magit-mode-map
+         ("C-<tab>" . nil)))
 #+end_src
-
