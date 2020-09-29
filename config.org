@@ -122,6 +122,7 @@ more ergonomic.
 
 #+begin_src emacs-lisp
 ;(load-theme tsdh-light t)
+(use-package leuven-theme)
 #+end_src
 
 Conserve space and reduce clutter.
@@ -172,12 +173,9 @@ glyphs like dash.
 #+begin_src emacs-lisp
 (custom-theme-set-faces
  'user
- '(fixed-pitch ((t (:family ("Inconsolata LGC Markup" :height 145))))))
-
-;(set-face-attribute 'default nil :family "InconsolataGo" :height 145)
+ '(fixed-pitch ((t (:family ("Inconsolata LGC Markup" :height 145)))))
+ '(variable-pitch ((t (:family "Libre Baskerville" :height 130)))))
 #+end_src
-
-** TODO Consider setting up a variable width font too
 
 Prevent horizontal splits for big windows.
 
