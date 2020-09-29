@@ -1,5 +1,4 @@
 * Basic initialisation
-
 ** Configure package installation
 
 Automatically ensure packages are installed if they are not already
@@ -121,7 +120,6 @@ While I find dark themes more aesthetically pleasing, bright ones are
 more ergonomic.
 
 #+begin_src emacs-lisp
-;(load-theme tsdh-light t)
 (use-package leuven-theme)
 #+end_src
 
@@ -130,7 +128,7 @@ Conserve space and reduce clutter.
 #+begin_src emacs-lisp
 (tool-bar-mode -1)
 (menu-bar-mode -1)
-;(scroll-bar-mode -1
+(scroll-bar-mode -1)
 #+end_src
 
 Run in full screen mode.  On Mac this no longer creates a new desktop,
@@ -147,34 +145,37 @@ I find transparency neat for about ten minutes...
 (add-to-list 'default-frame-alist '(alpha . (100 . 100)))
 #+end_src
 
-Why not?
-
-#+begin_src emacs-lisp
-(global-prettify-symbols-mode t)
-#+end_src
-
-Auto-highlighting the current symbol can be quite useful, not only
-when programming.
-
-#+begin_src emacs-lisp
-(setq ahs-idle-interval 1.0
-      ahs-default-range 'ahs-range-whole-buffer
-      ahs-inhibit-face-list '(font-lock-comment-delimiter-face
-                              font-lock-comment-face
-                              font-lock-doc-face
-                              font-lock-doc-string-face
-                              font-lock-string-face))
-#+end_src
-
-
-I'm quite happy with IncosolataGo, despite it lacking some useful
-glyphs like dash.
+Incosolata LGC Markup as it has more glyphs (like em dash) than InconsolataGo.
+Libre Baskerville is as nice as Baskerville, but easier to read on the screen.
 
 #+begin_src emacs-lisp
 (custom-theme-set-faces
  'user
  '(fixed-pitch ((t (:family ("Inconsolata LGC Markup" :height 145)))))
  '(variable-pitch ((t (:family "Libre Baskerville" :height 130)))))
+#+end_src
+
+Why not?
+
+#+begin_src emacs-lisp
+(global-prettify-symbols-mode t)
+#+end_src
+
+Define modes and related hooks used for writing prose.
+
+#+begin_src emacs-lisp
+(defvar prose-modes '(text-mode git-commit-mode markdown-mode))
+(defvar prose-mode-hooks
+  (mapcar (lambda (n) (intern (format "%s-hook" n)))
+          prose-modes))
+#+end_src
+
+Set up prose modes with a variable pitch font.  I'm still not sure about this,
+but variable pitch fonts /are/ easier to read.
+
+#+begin_src emacs-lisp
+(dolist (h prose-mode-hooks)
+  (add-hook h (lambda () (variable-pitch-mode 1))))
 #+end_src
 
 Prevent horizontal splits for big windows.
@@ -201,6 +202,19 @@ I've never missed the bell, visible or otherwise.
 
 #+begin_src emacs-lisp
 (setq ring-bell-function 'ignore)
+#+end_src
+
+Auto-highlighting the current symbol can be quite useful, not only
+when programming.
+
+#+begin_src emacs-lisp
+(setq ahs-idle-interval 1.0
+      ahs-default-range 'ahs-range-whole-buffer
+      ahs-inhibit-face-list '(font-lock-comment-delimiter-face
+                              font-lock-comment-face
+                              font-lock-doc-face
+                              font-lock-doc-string-face
+                              font-lock-string-face))
 #+end_src
 
 * General editing setup
