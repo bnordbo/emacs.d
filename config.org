@@ -173,6 +173,8 @@ Define modes and related hooks used for writing prose.
 Set up prose modes with a variable pitch font.  I'm still not sure about this,
 but variable pitch fonts /are/ easier to read.
 
+** TODO Make code blocks in org-mode monospace                        :emacs:
+
 #+begin_src emacs-lisp
 (dolist (h prose-mode-hooks)
   (add-hook h (lambda () (variable-pitch-mode 1))))
@@ -296,6 +298,7 @@ multiple dictionaries.
 #+end_src
 
 * Programming language support
+
 ** Go
 
 This sets up Go mode with some basic support.  The jump to definition
@@ -321,6 +324,11 @@ support is extremely limited, unfortunately.
 (use-package go-fill-struct)
 (use-package go-playground)
 #+end_src
+
+** TODO Add customisation for elisp-mode
+*** TODO paredit-mode
+*** TODO rainbow-delimiters
+*** TODO eldoc-mode
 
 ** Haskell
 
