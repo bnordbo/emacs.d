@@ -538,9 +538,10 @@ former being the default org directory.
 ** Agenda setup
 
 #+begin_src emacs-lisp
-(setq org-agenda-files `(,(o-file "inbox")
-                         ,(o-file "gtd")
-                         ,(o-file "tickler")))
+(setq org-agenda-files
+      '("~/Repository/GTD"
+        "~/Repository/Roam"
+        "~/.emacs.d/config.org"))
 
 (setq org-agenda-custom-commands
       '(("r" "Review"
