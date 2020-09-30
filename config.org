@@ -233,10 +233,17 @@ for backups.
 (setq backup-inhibited t)
 #+end_src
 
-Auto-save all visited files.  This is mostly fine and makes Emacs more
-in sync with what's on the file system.  Running it more frequently
-can be a bit annoying as auto-save hooks remove trailing newlines and
-so on.
+Unconditionally auto-save all visited files every time Emacs loses focus.
+
+#+begin_src emacs-lisp
+(add-hook 'focus-out-hook
+          (lambda ()
+            (interactive)
+            (save-some-buffers t)))
+#+end_src
+
+Automatically saving files is useful, but this had some side effects I can't
+quite recall. Experiment more.
 
 #+begin_src emacs-lisp
 ;(auto-save-visited-mode t)
