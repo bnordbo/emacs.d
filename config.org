@@ -151,8 +151,8 @@ Libre Baskerville is as nice as Baskerville, but easier to read on the screen.
 #+begin_src emacs-lisp
 (custom-theme-set-faces
  'user
- '(fixed-pitch ((t (:family ("Inconsolata LGC Markup" :height 145)))))
- '(variable-pitch ((t (:family "Libre Baskerville" :height 130)))))
+ '(variable-pitch ((t (:family "Libre Baskerville" :height 130))))
+ '(fixed-pitch ((t (:family "Inconsolata LGC Markup" :height 130)))))
 #+end_src
 
 Why not?
@@ -173,11 +173,22 @@ Define modes and related hooks used for writing prose.
 Set up prose modes with a variable pitch font.  I'm still not sure about this,
 but variable pitch fonts /are/ easier to read.
 
-** TODO Make code blocks in org-mode monospace                        :emacs:
+** DONE Make code blocks in org-mode monospace                        :emacs:
+   CLOSED: [2020-10-01 Thu 17:38]
+   :LOGBOOK:
+   CLOCK: [2020-10-01 Thu 17:20]
+   :END:
 
 #+begin_src emacs-lisp
 (dolist (h prose-mode-hooks)
   (add-hook h (lambda () (variable-pitch-mode 1))))
+#+end_src
+
+Tables and blocks should still be in monospace.
+
+#+begin_src emacs-lisp
+(set-face-attribute 'org-block  nil :inherit 'fixed-pitch)
+(set-face-attribute 'org-table nil :inherit 'fixed-pitch)
 #+end_src
 
 Prevent horizontal splits for big windows.
