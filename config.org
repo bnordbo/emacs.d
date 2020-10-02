@@ -132,6 +132,17 @@ Conserve space and reduce clutter.
 (scroll-bar-mode -1)
 #+end_src
 
+I don't think I've ever had any  use of seeing the minor modes in the mode line.
+This saves a lot of space that I can surely find some other use  for.
+
+#+begin_src emacs-lisp
+(use-package minions
+  :config
+  (setq minions-mode-line-lighter ""
+        minions-mode-line-delimiters '("" . ""))
+  (minions-mode 1))
+#+end_src
+
 Run in full screen mode.  On Mac this no longer creates a new desktop,
 but rather an undecorated, maximised frame.  It's a bit funky, but I
 have not had time to look into it yet.
