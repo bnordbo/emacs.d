@@ -630,7 +630,7 @@ Diary.  Consider starting to use the remaining ones, or remove them.
          "* TODO %i%? \n %U")
         ("n" "Note" entry (file org-default-notes-file)
          "* %? :NOTE:\n%U\n%a\n" :clock-in t :clock-resume t)
-        ("d" "Diary" entry (file+datetree ,(o-file "diary"))
+        ("d" "Diary" entry (file+datetree "~/Repository/Timeline/Diary.org")
          "* %?\n%U\n" :clock-in t :clock-resume t)
         ("m" "Meeting" entry (file org-default-notes-file)
          "* MEETING on %? :MEETING:\n%U" :clock-in t :clock-resume t)
