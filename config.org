@@ -36,6 +36,14 @@ Start emacs-server for integrating neatly with the shell.
 #+end_src
 
 ** TODO Move elisp functions to a separate file                       :emacs:
+* Experiments
+
+This section is for testing out new configurations.
+
+#+begin_src emacs-lisp
+(global-hl-line-mode 1)
+#+end_src
+
 * Extra functions
 
 Open a new line below the current one and indent.  I missed this
