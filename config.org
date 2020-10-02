@@ -392,6 +392,15 @@ support is extremely limited, unfortunately.
  '((emacs-lisp . t)))
 #+end_src
 
+** Shell
+
+#+begin_src emacs-lisp
+(add-hook 'sh-mode-hook
+          (lambda ()
+            (setq sh-basic-offset 2
+                  sh-indentation 2)))
+#+end_src
+
 ** Haskell
 
 #+begin_src emacs-lisp
@@ -748,9 +757,10 @@ spin out of control, but I could build a list of targets based on some criteria.
      doesn't capture journal entries – at least I haven't found a way yet.
      Also it seems to be everything and the kitchen sink.
 ** TODO Make a template for backlog issues                :integrators:emacs:
-* Magit mode
+* Version control
 
-I need C-<tab> for changing buffers.
+Bind magit to ~C-x g~, and unbind ~C-<tab>~ since it's used for switching
+buffers.
 
 #+begin_src emacs-lisp
 (use-package magit
