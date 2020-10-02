@@ -158,7 +158,7 @@ I find transparency neat for about ten minutes...
 #+end_src
 
 Incosolata LGC Markup as it has more glyphs (like em dash) than InconsolataGo.
-Libre Baskerville is as nice as Baskerville, but easier to read on the screen.
+Libre Baskerville is as nice as Baskerville, and easier to read on the screen.
 
 #+begin_src emacs-lisp
 (custom-theme-set-faces
