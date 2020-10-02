@@ -542,12 +542,13 @@ Also switch on auto-fill-mode for better prose.
   :init
   (add-hook 'org-mode-hook #'auto-fill-mode 1)
   :config
+  (electric-indent-mode -1)
   (setq org-edit-src-content-indentation 0
-        org-tag-alist '(
-                        ("integrators" . ?i)
+        org-tag-alist '(("integrators" . ?i)
                         ("emacs" . ?e)
                         ("mdg" . ?m)
                         ("read" . ?r)
+                        (:newline)
                         ("@office" . ?O)
                         ("@jessica" . ?J))))
 #+end_src
