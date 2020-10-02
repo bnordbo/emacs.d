@@ -117,6 +117,8 @@ I find it very odd that this is not already part of org-roam...
 
 * Look and feel
 
+** TODO Look into [[https://github.com/kunalb/poet][poet theme]]                                          :emacs:
+
 While I find dark themes more aesthetically pleasing, bright ones are
 more ergonomic.
 
