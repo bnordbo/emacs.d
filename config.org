@@ -642,21 +642,25 @@ Diary.  Consider starting to use the remaining ones, or remove them.
           :END:")))
 #+end_src
 
-I mostly only use ~gtd~ but that does not necessarily mean the others
-are useless, just unused.  Hmm.
+I usually refile from my inbox. Previously ~gtd~ was practically the only
+target, but lately I've started refiling into ~config.org~ too. The way I've
+used ~gtd~ is basically just as a task list, but with agenda mode I get more
+flexibility. Maybe I could refile into the roam folder? That might eventually
+spin out of control, but I could build a list of targets based on some criteria.
 
 #+begin_src emacs-lisp
-(setq org-refile-targets `((,(o-file "gtd") :maxlevel . 3)
+(setq org-refile-targets `((,(o-file "gtd") :maxlevel . 2)
                            (,(o-file "someday") :level . 1)
                            (,(o-file "tickler") :maxlevel . 2)
-                           (,(o-file "meetings") :level . 1)))
+                           ("~/.emacs.d/config.org" :level . 1)
+                           (roam-files :level . 1)))
 #+end_src
 
 ** Roam
 
- Let's try to use the new Repository structure for org-roam.  An
- alternative would have been to store it as a Context, but it's
- probably more of a cross context thing.
+ Let's try to use the new Repository structure for org-roam. An alternative
+ would have been to store it as a Context, but it's probably more of a cross
+ context thing.
 
  #+begin_src emacs-lisp
  (setq org-roam-directory "~/Repository/Roam")
