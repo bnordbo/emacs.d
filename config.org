@@ -271,12 +271,10 @@ modeline will usually suffice.
 (column-number-mode t)
 #+end_src
 
-Improve parenthesis handling by showing matches and automatically
-inserting closing ones.
+Improve parenthesis handling by highlighting matching ones.
 
 #+begin_src emacs-lisp
 (show-paren-mode t)
-(electric-pair-mode t)
 #+end_src
 
 Try to keep the whitespace under control.  The whitespace butler seems
@@ -499,6 +497,7 @@ forget to use.  A candidate for removal.
 (global-set-key (kbd "M-]")  'corral-brackets-forward)
 (global-set-key (kbd "M-{")  'corral-braces-backward)
 (global-set-key (kbd "M-}")  'corral-braces-forward)
+
 (global-set-key (kbd "M-\"") 'corral-double-quotes-backward)
 #+end_src
 
