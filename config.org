@@ -35,6 +35,7 @@ Start emacs-server for integrating neatly with the shell.
   (server-start))
 #+end_src
 
+** TODO Move elisp functions to a separate file                       :emacs:
 * Extra functions
 
 Open a new line below the current one and indent.  I missed this
@@ -308,6 +309,11 @@ multiple dictionaries.
 (setq ispell-program-name "/usr/local/bin/ispell")
 #+end_src
 
+** TODO Auto-save strips whitespace from current line                 :emacs:
+   - Note taken on [2020-10-01 Thu 19:21] \\
+     When exiting Emacs triggers an auto-save, any trailing whitespace from the
+     current line is stripped. This is annoying – whitespace should never be stripped
+     from the line where the cursor is.
 * Programming language support
 
 ** Go
@@ -336,10 +342,36 @@ support is extremely limited, unfortunately.
 (use-package go-playground)
 #+end_src
 
-** TODO Add customisation for elisp-mode
-*** TODO paredit-mode
+** TODO Add customisation for elisp-mode                              :emacs:
+*** DONE paredit-mode
+    CLOSED: [2020-10-01 Thu 20:57]
 *** TODO rainbow-delimiters
-*** TODO eldoc-mode
+*** DONE eldoc-mode
+    CLOSED: [2020-10-01 Thu 20:57]
+    :LOGBOOK:
+    CLOCK: [2020-10-01 Thu 19:52]--[2020-10-01 Thu 20:57] =>  1:05
+    :END:
+
+** Elisp
+
+#+begin_src emacs-lisp
+(use-package paredit
+  :hook emacs-lisp-mode-hook)
+
+(use-package rainbow-delimiters
+  :hook emacs-lisp-mode-hook)
+
+(use-package eldoc
+  :hook emacs-lisp-mode-hook
+  :config
+  (eldoc-add-command
+     'paredit-backward-delete
+     'paredit-close-round))
+
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((emacs-lisp . t)))
+#+end_src
 
 ** Haskell
 
@@ -661,6 +693,36 @@ are useless, just unused.  Hmm.
    (org-journal-date-format "%A, %d %B %Y"))
  #+end_src
 
+** TODO Figure out how to refile stuff now                            :emacs:
+   - Note taken on [2020-10-02 Fri 09:47] \\
+     Refiling to the Emacs config works fine, and with a small helper function I can
+     also refile to the roam directory. There are a few annoyances though:
+
+     1. It refiles below the body; I think it would make more sense (maybe) to refile
+        between the heading and the body.
+     2. There's no space after the refiled item when it's collapsed. This is not a
+        refiling issue though, and can probably be controlled somewhere. All in all
+        the vertical whitespace story in org is a bit messed up right  now.
+     3. It can refile to any heading in the roam file. Of course. But this is a bit
+        excessive. An option would be to have a special heading (e.g. "Tasks") that
+        are considered for refiling, or only headings with certain tags (e.g.
+        ~tasks~). Both should be supported by the refiling function.
+   :LOGBOOK:
+   CLOCK: [2020-10-02 Fri 09:09]--[2020-10-02 Fri 09:52] =>  0:43
+   :END:
+   - Note taken on [2020-10-01 Thu 12:56] \\
+     Refiling used to be easy (headings in gtd.org), but what do I do now? One option
+     it to keep gtd.org as a thing that I go through every Monday (perhaps rename to
+     weekly.org), and let the TODOs in other documents be handled manually (i.e. they
+     are added directly, not refiled). Another is to add a "Tasks" heading or similar
+     in the various document and somehow make that heading a refile target. This
+     sounds kind of neat actually.
+** TODO Look into dailies as a replacement for org-journal            :emacs:
+   - Note taken on [2020-09-27 Sun 20:53] \\
+     I guess the main thing I don't like about org-journal is that it
+     doesn't capture journal entries – at least I haven't found a way yet.
+     Also it seems to be everything and the kitchen sink.
+** TODO Make a template for backlog issues                :integrators:emacs:
 * Magit mode
 
 I need C-<tab> for changing buffers.
