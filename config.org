@@ -333,6 +333,16 @@ multiple dictionaries.
      When exiting Emacs triggers an auto-save, any trailing whitespace from the
      current line is stripped. This is annoying – whitespace should never be stripped
      from the line where the cursor is.
+
+* Integrations (or "project support"?)
+
+I often switch from Emacs to searh  for stuff.  Let's put an end to that!
+
+#+begin_src emacs-lisp
+(use-package rg
+  :config (rg-enable-default-bindings))
+#+end_src
+
 * Programming language support
 
 ** Go
