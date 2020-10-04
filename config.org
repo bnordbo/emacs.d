@@ -623,6 +623,20 @@ former being the default org directory.
 (global-set-key (kbd "C-c b") 'org-switchb)
 #+end_src
 
+** Contacts
+
+It's easy to just stuff contacts into some random address book (GMail, your
+phone, ...), but let's take a step back: Contacts are /people/ that you deal
+with. Many of them you will deal with for years or decades. They should not just
+be thrown into an address book as an afterthought.
+
+#+begin_src emacs-lisp
+(use-package org-contacts
+   :ensure nil
+   :after org
+   :custom (org-contacts-files '("~/Repository/People/Contacts.org")))
+#+end_src
+
 ** Agenda setup
 
 #+begin_src emacs-lisp
@@ -663,11 +677,11 @@ Diary.  Consider starting to use the remaining ones, or remove them.
          "* %?\n%U\n" :clock-in t :clock-resume t)
         ("m" "Meeting" entry (file org-default-notes-file)
          "* MEETING on %? :MEETING:\n%U" :clock-in t :clock-resume t)
-        ("c" "Contacts" entry (file "~/Repository/People/Contacts.org")
+        ("c" "Contacts" entry (file ,(car (org-contacts-files)))
          "* %(org-contacts-template-name)
           :PROPERTIES:
           :EMAIL: %(org-contacts-template-email)
-          :PHONE:
+          :PHONE: %^{47 00000000}
           :END:")))
 #+end_src
 
