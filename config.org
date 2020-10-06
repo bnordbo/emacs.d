@@ -343,6 +343,13 @@ I often switch from Emacs to searh  for stuff.  Let's put an end to that!
   :config (rg-enable-default-bindings))
 #+end_src
 
+Use projectile.
+
+#+begin_src emacs-lisp
+(use-package projectile
+  :bind (("C-c p" . projectile-command-map)))
+#+end_src
+
 * Programming language support
 
 ** Go
