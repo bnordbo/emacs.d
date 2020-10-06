@@ -649,7 +649,10 @@ be thrown into an address book as an afterthought.
         "~/.emacs.d/config.org"))
 
 (setq org-agenda-custom-commands
-      '(("r" "Review"
+      '(("i" "Inbox"
+         ((todo "TODO"
+                ((org-agenda-files (list (o-file "inbox")))))))
+        ("r" "Review"
          ((agenda)
           (stuck "")
           (tags-todo "@office")
