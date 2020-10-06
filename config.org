@@ -195,12 +195,6 @@ Define modes and related hooks used for writing prose.
 Set up prose modes with a variable pitch font.  I'm still not sure about this,
 but variable pitch fonts /are/ easier to read.
 
-** DONE Make code blocks in org-mode monospace                        :emacs:
-   CLOSED: [2020-10-01 Thu 17:38]
-   :LOGBOOK:
-   CLOCK: [2020-10-01 Thu 17:20]
-   :END:
-
 #+begin_src emacs-lisp
 (dolist (h prose-mode-hooks)
   (add-hook h (lambda () (variable-pitch-mode 1))))
@@ -377,16 +371,6 @@ support is extremely limited, unfortunately.
 (use-package go-fill-struct)
 (use-package go-playground)
 #+end_src
-
-** TODO Add customisation for elisp-mode                              :emacs:
-*** DONE paredit-mode
-    CLOSED: [2020-10-01 Thu 20:57]
-*** TODO rainbow-delimiters
-*** DONE eldoc-mode
-    CLOSED: [2020-10-01 Thu 20:57]
-    :LOGBOOK:
-    CLOCK: [2020-10-01 Thu 19:52]--[2020-10-01 Thu 20:57] =>  1:05
-    :END:
 
 ** Elisp
 
@@ -799,3 +783,14 @@ buffers.
          :map magit-mode-map
          ("C-<tab>" . nil)))
 #+end_src
+
+* Tasks
+** TODO Maybe move global keys to a separate section                  :emacs:
+** TODO Test [[https://github.com/joaotavora/eglot][eglot]] for Go programing                                  :emacs:
+** TODO Look into [[https://github.com/bbatsov/projectile][projectile]]                                          :emacs:
+** TODO Test the GitHub integration                                   :emacs:
+   - Note taken on [2020-10-02 Fri 17:22] \\
+     #+begin_src emacs-lisp
+     (use-package ghub)
+     (use-package forge)
+     #+end_src
