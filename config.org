@@ -716,7 +716,10 @@ Diary.  Consider starting to use the remaining ones, or remove them.
           :PROPERTIES:
           :EMAIL: %(org-contacts-template-email)
           :PHONE: %^{47 00000000}
-          :END:")))
+          :END:")
+        ("s" "Standup" item
+         (file+datetree "~/Repository/Roam/20201007152101-integrators_standups.org")
+         "%?\n" :clock-in t :clock-resume t)))
 #+end_src
 
 I usually refile from my inbox. Previously ~gtd~ was practically the only
