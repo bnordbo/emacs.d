@@ -828,5 +828,6 @@ buffers.
    - Note taken on [2020-10-02 Fri 17:22] \\
      #+begin_src emacs-lisp
      (use-package ghub)
-     (use-package forge)
+     (use-package forge
+       :after magit)
      #+end_src
