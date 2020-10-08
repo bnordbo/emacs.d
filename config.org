@@ -333,15 +333,34 @@ multiple dictionaries.
 I often switch from Emacs to searh  for stuff.  Let's put an end to that!
 
 #+begin_src emacs-lisp
+(use-package ripgrep)
+
 (use-package rg
   :config (rg-enable-default-bindings))
 #+end_src
 
-Use projectile.
+Use projectile. This is quite neat in normal projects, but it's struggling in
+big monorepos. Hmm.
 
 #+begin_src emacs-lisp
 (use-package projectile
   :bind (("C-c p" . projectile-command-map)))
+#+end_src
+
+It seems I'm practically living inside Emacs these days, so I might as well use
+it as an entry-point for various web searches.
+
+#+begin_src emacs-lisp
+(use-package engine-mode)
+(engine-mode 1)
+
+(defengine qwant
+  "https://www.qwant.com/?q=%s"
+  :keybinding "q")
+
+(defengine github-issue-loltel
+  "https://github.com/omnicate/loltel/issues?q=is%%3Aissue+is%%3Aopen+%s"
+  :keybinding "i")
 #+end_src
 
 * Programming language support
