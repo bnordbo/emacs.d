@@ -460,11 +460,18 @@ support is extremely limited, unfortunately.
 ** Markdown
 
 #+begin_src emacs-lisp
-(setq markdown-open-command "~/bin/mark")
+(use-package markdown-mode
+  :config
+  (setq markdown-open-command "~/bin/mark")
+  (add-hook 'markdown-mode (lambda () (visual-line-mode 1))))
+#+end_src
 
-(add-hook 'markdown-mode-hook
-          (lambda ()
-            (visual-line-mode 1)))
+** Yaml
+
+#+begin_src emacs-lisp
+(use-package yaml-mode
+  :config
+  (add-hook 'yaml-mode-hook (lambda () (variable-pitch-mode -1))))
 #+end_src
 
 ** Bazel
