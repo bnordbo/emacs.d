@@ -560,8 +560,6 @@ forget to use.  A candidate for removal.
 (global-set-key (kbd "M-]")  'corral-brackets-forward)
 (global-set-key (kbd "M-{")  'corral-braces-backward)
 (global-set-key (kbd "M-}")  'corral-braces-forward)
-
-(global-set-key (kbd "M-\"") 'corral-double-quotes-backward)
 #+end_src
 
 The ability  to move to the next/prev occurence of the current symbol
