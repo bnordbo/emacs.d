@@ -1,22 +1,33 @@
 * Basic initialisation
+** Load extra files
+
+Load various add-on functionality.
+
+#+begin_src emacs-lisp
+(load-file "elisp/bn.el")
+(load-file "elisp/org-tags.el")
+(global-set-key (kbd "C-c m") 'bn/next-line-and-indent)
+#+end_src
+
 ** Configure package installation
 
-Automatically ensure packages are installed if they are not already
-there.
+Automatically ensure packages are installed if they are not already there.
 
 #+begin_src emacs-lisp
 (require 'use-package-ensure)
 (setq use-package-always-ensure t)
 #+end_src
 
-Ensure packages are always compiled, and that the latest version
-available is used.
+Ensure packages are always compiled, and that the latest version available is
+used.
 
 #+begin_src emacs-lisp
 (use-package auto-compile
   :config (auto-compile-on-load-mode))
 (setq load-prefer-newer t)
 #+end_src
+
+** General defaults
 
 Who wouldn't want sensible defaults?
 
@@ -25,7 +36,7 @@ Who wouldn't want sensible defaults?
 (sensible-defaults/use-all-settings)
 #+end_src
 
-** Integrations
+** Servers
 
 Start emacs-server for integrating neatly with the shell.
 
@@ -35,93 +46,19 @@ Start emacs-server for integrating neatly with the shell.
   (server-start))
 #+end_src
 
-** TODO Move elisp functions to a separate file                       :emacs:
 * Experiments
 
 This section is for testing out new configurations.
 
 #+begin_src emacs-lisp
 (global-hl-line-mode 1)
+;(setq org-src-fontify-natively t)
+(setq org-src-window-setup 'current-window)
+;(setq org-adapt-indentation nil)
+; "Breaks" if projectile is not loaded
+;(setq frame-title-format '((:eval (projectile-project-name))))
 #+end_src
 
-* Extra functions
-
-Open a new line below the current one and indent.  I missed this
-function for ten years.  It took me two minutes to whip together this
-one.
-
-#+begin_src emacs-lisp
-(defun bn-next-line-and-indent ()
-  (interactive)
-  (end-of-line)
-  (default-indent-new-line))
-(global-set-key (kbd "C-<return>") 'bn-next-line-and-indent)
-#+end_src
-
-Support for adding/removing org-roam tags, borrowed from [[https://gist.github.com/d12frosted/4a55f3d072a813159c1d7b31c21bac9a#file-org-roam-tags-el-L21][d12frosted]].
-I find it very odd that this is not already part of org-roam...
-
-#+begin_src emacs-lisp
-(defun +org-notes-tags-read ()
-  "Return list of tags as set in the buffer."
-  (org-roam--extract-tags-prop (buffer-file-name (buffer-base-buffer))))
-
-(defun +org-notes-tags-delete ()
-  "Delete a tag from current note."
-  (interactive)
-  (unless (+org-notes-buffer-p)
-    (user-error "Current buffer is not a note"))
-  (let* ((tags (+org-notes-tags-read))
-         (tag (completing-read "Tag: " tags nil 'require-match)))
-    (+org-buffer-prop-set
-     "ROAM_TAGS"
-     (combine-and-quote-strings (delete tag tags)))
-    (org-roam-db--update-tags)))
-
-(defun +org-notes-tags-add ()
-  "Add a tag to current note."
-  (interactive)
-  (unless (+org-notes-buffer-p)
-    (user-error "Current buffer is not a note"))
-  (let* ((tags (seq-uniq
-                (+seq-flatten
-                 (+seq-flatten
-                  (org-roam-db-query [:select tags :from tags])))))
-         (tag (completing-read "Tag: " tags)))
-    (when (string-empty-p tag)
-      (user-error "Tag can't be empty"))
-    (+org-buffer-prop-set
-     "roam_tags"
-     (combine-and-quote-strings (seq-uniq (cons tag (+org-notes-tags-read)))))
-    (org-roam-db--update-tags)))
-
-(defun +org-notes-buffer-p ()
-  "Return non-nil if the currently visited buffer is a note."
-  (and buffer-file-name
-       (string-equal (expand-file-name (file-name-as-directory org-roam-directory))
-                     (file-name-directory buffer-file-name))))
-
-(defun +seq-flatten (list-of-lists)
-  "Flatten LIST-OF-LISTS."
-  (apply #'append list-of-lists))
-
-(defun +org-buffer-prop-set (name value)
-  "Set a buffer property called NAME to VALUE."
-  (save-excursion
-    (widen)
-    (goto-char (point-min))
-    (if (re-search-forward (concat "^#\\+" name ": \\(.*\\)") (point-max) t)
-        (replace-match (concat "#+" name ": " value))
-      ;; find the first line that doesn't begin with ':' or '#'
-      (let ((found))
-        (while (not (or found (eobp)))
-          (beginning-of-line)
-          (if (or (looking-at "^#")
-                  (looking-at "^:"))
-              (line-move 1 t)
-            (setq found t)))
-        (insert "#+" name ": " value "\n")))))
-#+end_src
 
 * Look and feel
 
@@ -630,7 +567,6 @@ Maybe everything should always auto-save all the time..?
 
 ** Some basic settings.
 
-
 I use org-mode in three ways: For GTD task management, for roam style
 notes, and for very project specific notes.  The latter is scattered
 in various contexts, while GTD and roam has their own directories, the
@@ -644,6 +580,14 @@ former being the default org directory.
       org-log-done t)
 
 (setq org-todo-keywords '((sequence "TODO(t)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(c)")))
+#+end_src
+
+Emacs Lisp is a popular source language, so give it  its own key. As both "e"
+and "E" are taken, it will have to live under "m".
+
+#+begin_src emacs-lisp
+(add-to-list 'org-structure-template-alist
+             '("m" . "src emacs-lisp"))
 #+end_src
 
 ** Key bindings
@@ -734,7 +678,7 @@ spin out of control, but I could build a list of targets based on some criteria.
                            (,(o-file "someday") :level . 1)
                            (,(o-file "tickler") :maxlevel . 2)
                            ("~/.emacs.d/config.org" :level . 1)
-                           (roam-files :level . 1)))
+                           (bn/roam-files :level . 1)))
 #+end_src
 
 ** Roam
@@ -779,6 +723,31 @@ spin out of control, but I could build a list of targets based on some criteria.
    (org-journal-date-format "%A, %d %B %Y"))
  #+end_src
 
+* Version control
+
+Bind magit to ~C-x g~, and unbind ~C-<tab>~ since it's used for switching
+buffers.
+
+#+begin_src emacs-lisp
+(use-package magit
+  :bind (("C-x g" . magit)
+         :map magit-mode-map
+         ("C-<tab>" . nil)))
+#+end_src
+
+* Tasks
+** TODO Move elisp functions to a separate file                       :emacs:
+** TODO Maybe move global keys to a separate section                  :emacs:
+** TODO Test [[https://github.com/joaotavora/eglot][eglot]] for Go programing                                  :emacs:
+** TODO Look into [[https://github.com/bbatsov/projectile][projectile]]                                          :emacs:
+** TODO Test the GitHub integration                                   :emacs:
+   - Note taken on [2020-10-02 Fri 17:22] \\
+     #+begin_src emacs-lisp
+     (use-package ghub)
+     (use-package forge
+       :after magit)
+     #+end_src
+** TODO Test out [[https://github.com/manateelazycat/aweshell][aweshell]]                                             :emacs:
 ** TODO Figure out how to refile stuff now                            :emacs:
    - Note taken on [2020-10-02 Fri 09:47] \\
      Refiling to the Emacs config works fine, and with a small helper function I can
@@ -794,7 +763,8 @@ spin out of control, but I could build a list of targets based on some criteria.
         are considered for refiling, or only headings with certain tags (e.g.
         ~tasks~). Both should be supported by the refiling function.
    :LOGBOOK:
-   CLOCK: [2020-10-02 Fri 09:09]--[2020-10-02 Fri 09:52] =>  0:43
+   CLOCK: [2020-10-02 Fri 09:09]--[2020-10-02 Fri 09:52] =>
+   0:43
    :END:
    - Note taken on [2020-10-01 Thu 12:56] \\
      Refiling used to be easy (headings in gtd.org), but what do I do now? One option
@@ -809,26 +779,3 @@ spin out of control, but I could build a list of targets based on some criteria.
      doesn't capture journal entries – at least I haven't found a way yet.
      Also it seems to be everything and the kitchen sink.
 ** TODO Make a template for backlog issues                :integrators:emacs:
-* Version control
-
-Bind magit to ~C-x g~, and unbind ~C-<tab>~ since it's used for switching
-buffers.
-
-#+begin_src emacs-lisp
-(use-package magit
-  :bind (("C-x g" . magit)
-         :map magit-mode-map
-         ("C-<tab>" . nil)))
-#+end_src
-
-* Tasks
-** TODO Maybe move global keys to a separate section                  :emacs:
-** TODO Test [[https://github.com/joaotavora/eglot][eglot]] for Go programing                                  :emacs:
-** TODO Look into [[https://github.com/bbatsov/projectile][projectile]]                                          :emacs:
-** TODO Test the GitHub integration                                   :emacs:
-   - Note taken on [2020-10-02 Fri 17:22] \\
-     #+begin_src emacs-lisp
-     (use-package ghub)
-     (use-package forge
-       :after magit)
-     #+end_src
