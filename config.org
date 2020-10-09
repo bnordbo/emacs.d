@@ -471,7 +471,10 @@ support is extremely limited, unfortunately.
 #+begin_src emacs-lisp
 (use-package yaml-mode
   :config
-  (add-hook 'yaml-mode-hook (lambda () (variable-pitch-mode -1))))
+  (add-hook 'yaml-mode-hook
+            (lambda ()
+              (variable-pitch-mode -1)
+              (electric-indent-mode 1))))
 #+end_src
 
 ** Bazel
