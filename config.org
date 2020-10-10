@@ -394,6 +394,7 @@ support is extremely limited, unfortunately.
 (use-package markdown-mode
   :config
   (setq markdown-open-command "~/bin/mark")
+  (set-face-attribute 'markdown-table-face nil :inherit 'fixed-pitch)
   (add-hook 'markdown-mode (lambda () (visual-line-mode 1))))
 #+end_src
 
