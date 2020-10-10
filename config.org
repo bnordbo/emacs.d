@@ -4,8 +4,8 @@
 Load various add-on functionality.
 
 #+begin_src emacs-lisp
-(load-file "elisp/bn.el")
-(load-file "elisp/org-tags.el")
+(load-file "~/.emacs.d/elisp/bn.el")
+(load-file "~/.emacs.d/elisp/org-tags.el")
 (global-set-key (kbd "C-c m") 'bn/next-line-and-indent)
 #+end_src
 
@@ -252,12 +252,6 @@ dictionaries.
 #+begin_src emacs-lisp
 (setq ispell-program-name "/usr/local/bin/ispell")
 #+end_src
-
-** TODO Auto-save strips whitespace from current line                 :emacs:
-   - Note taken on [2020-10-01 Thu 19:21] \\
-     When exiting Emacs triggers an auto-save, any trailing whitespace from the
-     current line is stripped. This is annoying – whitespace should never be stripped
-     from the line where the cursor is.
 
 * Integrations (or "project support"?)
 
