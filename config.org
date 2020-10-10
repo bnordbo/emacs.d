@@ -536,23 +536,31 @@ Load the almighty org-mode and do basic configuration:
   :init
   (add-hook 'org-mode-hook #'auto-fill-mode 1)
   :config
-  (setq org-edit-src-content-indentation 0
-        org-tag-alist '(("integrators" . ?i)
-                        ("emacs" . ?e)
-                        ("mdg" . ?m)
-                        ("read" . ?r)
-                        (:newline)
-                        ("@office" . ?O)
-                        ("@jessica" . ?J)
-                        ("@standup" . ?S)
-                        ("@tlf" . ?T))))
+  (setq org-edit-src-content-indentation 0)
+  (set-face-attribute 'org-block  nil :inherit 'fixed-pitch)
+  (set-face-attribute 'org-table nil :inherit 'fixed-pitch))
+#+end_src
+
+Set  up fast selection for tags. Lots of them! Lowercase characters are for
+categories, uppercase for contexts, including people. I could perhaps switch to
+digits for contexts if clashes become a problem..
+
+#+begin_src emacs-lisp
+(setq org-tag-alist '(("integrators" . ?i)
+                      ("emacs" . ?e)
+                      ("mdg" . ?m)
+                      ("read" . ?r)
+                      (:newline)
+                      ("@office" . ?O)
+                      ("@jessica" . ?J)
+                      ("@standup" . ?S)
+                      ("@tlf" . ?T)))
 #+end_src
 
 Maybe everything should always auto-save all the time..?
 
 #+begin_src emacs-lisp
-; Temporarily disable due to annoying whitespace-at-end-of-file-removal
-;(add-hook 'auto-save-hook 'org-save-all-org-buffers)
+(add-hook 'auto-save-hook 'org-save-all-org-buffers)
 #+end_src
 
 ** Support functions
