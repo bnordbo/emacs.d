@@ -674,6 +674,9 @@ use for recording the outcome of these, and for tracking the time spent.
           :END:")
         ("s" "Standup" item
          (file+datetree "~/Repository/Roam/20201007152101-integrators_standups.org")
+         "%?\n" :clock-in t :clock-resume t)
+        ("l" "Tech lead sync" item
+         (file+datetree "~/Repository/Roam/20201007100233-tech_lead_sync.org")
          "%?\n" :clock-in t :clock-resume t)))
 #+end_src
 
