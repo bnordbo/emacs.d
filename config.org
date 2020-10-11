@@ -528,12 +528,12 @@ Load the almighty org-mode and do basic configuration:
           ("M-h" . nil)
           ("M-S-<up>" . 'org-move-subtree-up)
           ("M-S-<down>" . 'org-move-subtree-down))
-  :init
-  (add-hook 'org-mode-hook #'auto-fill-mode 1)
   :config
   (setq org-edit-src-content-indentation 0)
   (set-face-attribute 'org-block  nil :inherit 'fixed-pitch)
-  (set-face-attribute 'org-table nil :inherit 'fixed-pitch))
+  (set-face-attribute 'org-table nil :inherit 'fixed-pitch)
+  (add-hook 'org-mode-hook #'auto-fill-mode 1)
+  (add-hook 'org-mode-hook #'electric-indent-mode -1))
 #+end_src
 
 Set  up fast selection for tags. Lots of them! Lowercase characters are for
