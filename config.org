@@ -476,18 +476,6 @@ I still consider this a bit of an experiment...
 (global-set-key (kbd "M-h") 'backward-kill-word)
 #+end_src
 
-This is a neat way of adding stuff around other stuff, that I tend to
-forget to use.  A candidate for removal.
-
-#+begin_src emacs-lisp
-(global-set-key (kbd "M-9")  'corral-parentheses-backward)
-(global-set-key (kbd "M-0")  'corral-parentheses-forward)
-(global-set-key (kbd "M-[")  'corral-brackets-backward)
-(global-set-key (kbd "M-]")  'corral-brackets-forward)
-(global-set-key (kbd "M-{")  'corral-braces-backward)
-(global-set-key (kbd "M-}")  'corral-braces-forward)
-#+end_src
-
 The ability  to move to the next/prev occurence of the current symbol
 is something I missed after using IntelliJ for a while.
 
