@@ -62,7 +62,7 @@ This section is for testing out new configurations.
 
 * Look and feel
 
-** TODO Look into [[https://github.com/kunalb/poet][poet theme]]                                          :emacs:
+** SOMEDAY Look into [[https://github.com/kunalb/poet][poet theme]]                                       :emacs:
 
 While I find dark themes more aesthetically pleasing, bright ones are more
 ergonomic.
@@ -717,6 +717,18 @@ spin out of control, but I could build a list of targets based on some criteria.
    (org-journal-date-format "%A, %d %B %Y"))
  #+end_src
 
+** SOMEDAY Filter for displaying agenda buffers                       :emacs:
+   - Note taken on [2020-10-12 Mon 10:17] \\
+     This is a [[https://orgmode.org/worg/org-tutorials/org-custom-agenda-commands.html][pretty good tutorial]] it seems.
+   - Note taken on [2020-10-10 Sat 10:32] \\
+     The roam file names are way too long because of the timestamp. Perhaps filter
+     that out and replace it with e.g. ~R:~ or ~#~ or something..? Also make the file
+     name display a bit wider as the roam files are still quite long.
+** SOMEDAY Map C-c C-c to the same as RET in fast tag selection       :emacs:
+** SOMEDAY Associate reMarkable notes with org-roam                   :emacs:
+** SOMEDAY Find projects that are stuck                               :emacs:
+   - Note taken on [2020-10-12 Mon 09:55] \\
+     This would be ~PROJ~ tasks with no sub-tasks with the  ~NEXT~ state.
 * Version control
 
 Bind magit to ~C-x g~, and unbind ~C-<tab>~ since it's used for switching
@@ -730,46 +742,28 @@ buffers.
 #+end_src
 
 * Tasks
-** TODO Move elisp functions to a separate file                       :emacs:
-** TODO Maybe move global keys to a separate section                  :emacs:
-** TODO Test [[https://github.com/joaotavora/eglot][eglot]] for Go programing                                  :emacs:
-** TODO Look into [[https://github.com/bbatsov/projectile][projectile]]                                          :emacs:
-** TODO Test the GitHub integration                                   :emacs:
+** DONE Move elisp functions to a separate file                       :emacs:
+   CLOSED: [2020-10-12 Mon 12:14]
+** NEXT Maybe move global keys to a separate section                  :emacs:
+** NEXT Test [[https://github.com/joaotavora/eglot][eglot]] for Go programing                                  :emacs:
+** SOMEDAY Look into [[https://github.com/bbatsov/projectile][projectile]]                                       :emacs:
+** NEXT Test the GitHub integration                                   :emacs:
+   - Note taken on [2020-10-12 Mon 10:16] \\
+     To use forge, I need to [[https://magit.vc/manual/ghub/Storing-a-Token.html#Storing-a-Token][set up a GitHub token]] in ~.netrc~ or similar.
    - Note taken on [2020-10-02 Fri 17:22] \\
      #+begin_src emacs-lisp
      (use-package ghub)
      (use-package forge
        :after magit)
      #+end_src
-** TODO Test out [[https://github.com/manateelazycat/aweshell][aweshell]]                                             :emacs:
-** TODO Figure out how to refile stuff now                            :emacs:
-   - Note taken on [2020-10-02 Fri 09:47] \\
-     Refiling to the Emacs config works fine, and with a small helper function I can
-     also refile to the roam directory. There are a few annoyances though:
-
-     1. It refiles below the body; I think it would make more sense (maybe) to refile
-        between the heading and the body.
-     2. There's no space after the refiled item when it's collapsed. This is not a
-        refiling issue though, and can probably be controlled somewhere. All in all
-        the vertical whitespace story in org is a bit messed up right  now.
-     3. It can refile to any heading in the roam file. Of course. But this is a bit
-        excessive. An option would be to have a special heading (e.g. "Tasks") that
-        are considered for refiling, or only headings with certain tags (e.g.
-        ~tasks~). Both should be supported by the refiling function.
-   :LOGBOOK:
-   CLOCK: [2020-10-02 Fri 09:09]--[2020-10-02 Fri 09:52] =>
-   0:43
-   :END:
-   - Note taken on [2020-10-01 Thu 12:56] \\
-     Refiling used to be easy (headings in gtd.org), but what do I do now? One option
-     it to keep gtd.org as a thing that I go through every Monday (perhaps rename to
-     weekly.org), and let the TODOs in other documents be handled manually (i.e. they
-     are added directly, not refiled). Another is to add a "Tasks" heading or similar
-     in the various document and somehow make that heading a refile target. This
-     sounds kind of neat actually.
-** TODO Look into dailies as a replacement for org-journal            :emacs:
+** SOMEDAY Test out [[https://github.com/manateelazycat/aweshell][aweshell]]                                          :emacs:
+** SOMEDAY Look into dailies as a replacement for org-journal         :emacs:
    - Note taken on [2020-09-27 Sun 20:53] \\
      I guess the main thing I don't like about org-journal is that it
      doesn't capture journal entries – at least I haven't found a way yet.
      Also it seems to be everything and the kitchen sink.
 ** TODO Make a template for backlog issues                :integrators:emacs:
+   - Note taken on [2020-10-12 Mon 12:15] \\
+     What did I mean with this?
+** DONE Maybe record meetings to a separate file?                     :emacs:
+   CLOSED: [2020-10-12 Mon 12:16]
