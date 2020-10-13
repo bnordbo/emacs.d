@@ -414,14 +414,22 @@ support is extremely limited, unfortunately.
 (use-package helm
   :bind (("C-h" . nil)
          ("M-x" . helm-M-x)
+         ("C-x b" . helm-buffers-list)
+         ("C-x M-b" . helm-recentf)
          ("C-x r b" . helm-filtered-bookmarks)
          ("C-x C-f" . helm-find-files)
          ("C-x 4 f" . find-file-other-window)))
 #+end_src
 
+#+begin_src emacs-lisp
+(use-package helm-projectile
+  :bind (("C-c p h" . helm-projectile)))
+#+end_src
+
 ** DONE Unbind C-h in helm-mode                                       :emacs:
    CLOSED: [2020-10-12 Mon 20:30]
-* General key bindings
+
+* Key bindings
 
 On Mac, map the command key to meta and keep the normal behaviour of
 option.
@@ -500,20 +508,20 @@ the same thing?), but with Go it becomes useful...
 
 Load the almighty org-mode and do basic configuration:
 
-- Clean up some keybindings that gets in the way, and bind subtree moving.
+- Set up global keybindings.
+- Clear some local keybindings that gets in the way.
 - Also switch on auto-fill-mode in order to make prose easier to write.
 - Ensure tables and blocks are still in monospace.
 
 #+begin_src emacs-lisp
 (use-package org
   :ensure org-plus-contrib
-  :bind (:map org-mode-map
-          ("C-<tab>" . nil)
-          ("M-h" . nil)
-          ("C-c a" . org-agenda)
-          ("C-c l" . org-store-link)
-          ("C-c c" . org-capture)
-          ("C-c b" . org-switchb))
+  :bind (("C-c a" . org-agenda)
+         ("C-c l" . org-store-link)
+         ("C-c c" . org-capture)
+         :map org-mode-map
+         ("C-<tab>" . nil)
+         ("M-h" . nil))
   :config
   (setq org-edit-src-content-indentation 0)
   (set-face-attribute 'org-block  nil :inherit 'fixed-pitch)
@@ -740,7 +748,8 @@ buffers.
 * Tasks
 ** DONE Move elisp functions to a separate file                       :emacs:
    CLOSED: [2020-10-12 Mon 12:14]
-** NEXT Maybe move global keys to a separate section                  :emacs:
+** DONE Maybe move global keys to a separate section                  :emacs:
+   CLOSED: [2020-10-12 Mon 23:02]
 ** NEXT Test [[https://github.com/joaotavora/eglot][eglot]] for Go programing                                  :emacs:
 ** SOMEDAY Look into [[https://github.com/bbatsov/projectile][projectile]]                                       :emacs:
 ** NEXT Test the GitHub integration                                   :emacs:
