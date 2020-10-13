@@ -6,7 +6,6 @@ Load various add-on functionality.
 #+begin_src emacs-lisp
 (load-file "~/.emacs.d/elisp/bn.el")
 (load-file "~/.emacs.d/elisp/org-tags.el")
-(global-set-key (kbd "C-c m") 'bn/next-line-and-indent)
 #+end_src
 
 ** Configure package installation
@@ -436,12 +435,9 @@ I picked up C-TAB switcing from Eclipse way back.  The reverse one is
 perhaps overdoing it since I usually have no more than three buffers.
 
 #+begin_src emacs-lisp
-(defun other-window-back ()
-  (interactive)
-  (other-window -1))
-
 (global-set-key (kbd "C-<tab>")   'other-window)
 (global-set-key (kbd "C-S-<tab>") 'other-window-back)
+(global-set-key (kbd "C-c m") 'bn/next-line-and-indent)
 #+end_src
 
 Bind a few useful functions.
