@@ -425,7 +425,11 @@ support is extremely limited, unfortunately.
          ("C-x M-b" . helm-recentf)
          ("C-x r b" . helm-filtered-bookmarks)
          ("C-x C-f" . helm-find-files)
-         ("C-x 4 f" . find-file-other-window)))
+         ("C-x 4 f" . find-file-other-window)
+         ("C-c C-w" . org-refile)))
+; I really don't get why this is needed. If it's not there, some targets, such
+; as org-refile, does not seem to cause helm to be loaded/used.
+(helm-mode 1)
 #+end_src
 
 #+begin_src emacs-lisp
