@@ -715,8 +715,8 @@ spin out of control, but I could build a list of targets based on some criteria.
            :map org-roam-mode-map
            (("C-c n l" . org-roam)
             ("C-c n g" . org-roam-graph)
-            ("C-c n t a" . +org-notes-tags-add)
-            ("C-c n t d" . +org-notes-tags-delete))
+            ("C-c n t a" . org-roam-tag-add)
+            ("C-c n t d" . org-roam-tag-delete))
            :map org-mode-map
            (("C-c n i" . org-roam-insert)
             ("C-c n I" . org-roam-insert-immediate)))
