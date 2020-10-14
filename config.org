@@ -558,7 +558,7 @@ digits for contexts if clashes become a problem..
 Maybe everything should always auto-save all the time..?
 
 #+begin_src emacs-lisp
-(add-hook 'auto-save-hook 'org-save-all-org-buffers)
+;(add-hook 'auto-save-hook 'org-save-all-org-buffers)
 #+end_src
 
 ** Support functions
