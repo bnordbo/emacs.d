@@ -595,6 +595,14 @@ and "E" are taken, it will have to live under "m".
              '("m" . "src emacs-lisp"))
 #+end_src
 
+Exporting to Slack allows me to edit the message in e.g. an org-mode note.
+
+#+begin_src emacs-lisp
+(use-package ox-slack)
+#+end_src
+
+*** NEXT Make C-c C-x C-j work globally                               :emacs:
+
 ** Contacts
 
 It's easy to just stuff contacts into some random address book (GMail, your
