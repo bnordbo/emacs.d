@@ -348,6 +348,13 @@ support is extremely limited, unfortunately.
                   sh-indentation 2)))
 #+end_src
 
+** Graphviz
+
+#+begin_src emacs-lisp
+(use-package graphviz-dot-mode
+  :init (setq graphviz-dot-view-command "xdot %s"))
+#+end_src
+
 ** Haskell
 
 #+begin_src emacs-lisp
