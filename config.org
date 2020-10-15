@@ -446,9 +446,6 @@ bind "C-c" first.
   :bind ("C-c p h" . helm-projectile))
 #+end_src
 
-** DONE Unbind C-h in helm-mode                                       :emacs:
-   CLOSED: [2020-10-12 Mon 20:30]
-
 * Key bindings
 
 On Mac, map the command key to meta and keep the normal behaviour of
@@ -613,12 +610,6 @@ Exporting to Slack allows me to edit the message in e.g. an org-mode note.
 (use-package ox-slack)
 #+end_src
 
-*** DONE Make C-c C-x C-j work globally                               :emacs:
-    CLOSED: [2020-10-14 Wed 19:18]
-    :LOGBOOK:
-    CLOCK: [2020-10-14 Wed 19:16]--[2020-10-14 Wed 19:18] =>  0:02
-    :END:
-
 ** Contacts
 
 It's easy to just stuff contacts into some random address book (GMail, your
@@ -780,10 +771,6 @@ buffers.
 #+end_src
 
 * Tasks
-** DONE Move elisp functions to a separate file                       :emacs:
-   CLOSED: [2020-10-12 Mon 12:14]
-** DONE Maybe move global keys to a separate section                  :emacs:
-   CLOSED: [2020-10-12 Mon 23:02]
 ** NEXT Test [[https://github.com/joaotavora/eglot][eglot]] for Go programing                                  :emacs:
 ** SOMEDAY Look into [[https://github.com/bbatsov/projectile][projectile]]                                       :emacs:
 ** NEXT Test the GitHub integration                                   :emacs:
@@ -805,5 +792,3 @@ buffers.
    CLOSED: [2020-10-14 Wed 19:15]
    - Note taken on [2020-10-12 Mon 12:15] \\
      What did I mean with this?
-** DONE Maybe record meetings to a separate file?                     :emacs:
-   CLOSED: [2020-10-12 Mon 12:16]
