@@ -570,13 +570,6 @@ Maybe everything should always auto-save all the time..?
 ;(add-hook 'auto-save-hook 'org-save-all-org-buffers)
 #+end_src
 
-** Support functions
-
-#+begin_src emacs-lisp
-(defun o-file (n)
-  (format "%s/%s.org" org-directory n))
-#+end_src
-
 ** Some basic settings.
 
 I use org-mode in three ways: For GTD task management, for roam style
@@ -586,7 +579,7 @@ former being the default org directory.
 
 #+begin_src emacs-lisp
 (setq org-directory "~/Repository/GTD"
-      org-default-notes-file (o-file "inbox")
+      org-default-notes-file (format "%s/%s.org" org-directory "inbox")
       org-agenda-restore-windows-after-quit t
       org-agenda-window-setup 'current-window
       org-log-done t)
