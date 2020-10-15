@@ -639,13 +639,13 @@ be thrown into an address book as an afterthought.
 (setq org-agenda-files
       '("~/Repository/GTD"
         "~/Repository/Roam"
-        "~/Repository/Timeline/Meetings.org"
+        "~/Contexts/WG2/Meetings.org"
         "~/.emacs.d/config.org"))
 
 (setq org-agenda-custom-commands
       '(("i" "Inbox"
          ((todo "TODO"
-                ((org-agenda-files (list (o-file "inbox")))))))
+                ((org-agenda-files (list (format "%s/%s.org" org-directory "inbox")))))))
         ("n" "Next actions" todo "NEXT")
         ("p" "Projects" todo "PROJ")
         ("r" "Review"
@@ -683,8 +683,8 @@ use for recording the outcome of these, and for tracking the time spent.
          "* TODO %i%?")
         ("p" "PROJ" entry (file+headline org-default-notes-file "Tasks")
          "* PROJ %i%?")
-        ("m" "Meeting" entry (file+datetree "~/Repository/Timeline/Meetings.org")
-         "* MEETING on %? :MEETING:\n%U" :clock-in t :clock-resume t)
+        ("m" "Meeting" entry (file+datetree "~/Contexts/WG2/Meetings.org")
+         "* NEXT %? :meeting:\n%U" :clock-in t :clock-resume t)
         ("d" "Diary" entry (file+datetree "~/Repository/Timeline/Diary.org")
          "* %?\n%U\n" :clock-in t :clock-resume t)
         ("c" "Contacts" entry (file ,(car (org-contacts-files)))
