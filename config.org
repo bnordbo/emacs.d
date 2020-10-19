@@ -633,7 +633,7 @@ be thrown into an address book as an afterthought.
 (setq org-agenda-custom-commands
       '(("i" "Inbox"
          ((todo "TODO"
-                ((org-agenda-files (list (format "%s/%s.org" org-directory "inbox")))))))
+                ((org-agenda-files (list "~/Repository/Inbox.org"))))))
         ("n" "Next actions" todo "NEXT")
         ("p" "Projects" todo "PROJ")
         ("r" "Review"
