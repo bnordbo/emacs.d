@@ -555,13 +555,15 @@ categories, uppercase for contexts, including people. I could perhaps switch to
 digits for contexts if clashes become a problem..
 
 #+begin_src emacs-lisp
-(setq org-tag-alist '(("integrators" . ?i)
+(setq org-tag-alist '(("admin" . ?a)
                       ("emacs" . ?e)
+                      ("integrators" . ?i)
                       ("mdg" . ?m)
+                      ("org" . ?o)
                       ("read" . ?r)
                       (:newline)
+                      ("@home" . ?H)
                       ("@office" . ?O)
-                      ("@jessica" . ?J)
                       ("@standup" . ?S)
                       ("@tlf" . ?T)))
 #+end_src
