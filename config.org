@@ -736,14 +736,35 @@ spin out of control, but I could build a list of targets based on some criteria.
 (use-package org-journal
   :bind
   ("C-c n j" . org-journal-new-entry)
-  :custom
-  (org-journal-date-prefix "#+title: ")
-  (org-journal-file-format "%Y-%m-%d.org")
-  (org-journal-dir org-roam-directory)
-  (org-journal-date-format "%A, %d %B %Y"))
+  :init
+  (setq org-journal-file-type 'weekly
+        org-journal-dir org-roam-directory
+        org-journal-date-prefix "* "
+        org-journal-file-header "#+title: %Y journal, week %V\n"
+        org-journal-file-format "%Y-%V.org"
+        org-journal-date-format "%A, %d %B %Y"
+        org-journal-carryover-items ""))
  #+end_src
 
-** SOMEDAY Filter for displaying agenda buffers                       :emacs:
+*** NEXT Make the roam links appear in existing buffer                :emacs:
+    - Note taken on [2020-10-17 Sat 10:36] \\
+      Right now it always opens a new buffer to the right, but most often I have a
+      perfectly good buffer that that it could use.
+*** DONE Make journal record weeks instead of days                      :org:
+    CLOSED: [2020-10-19 Mon 09:34]
+    :LOGBOOK:
+    CLOCK: [2020-10-19 Mon 09:16]--[2020-10-19 Mon 09:34] =>  0:18
+    :END:
+** INACTIVE Filter for displaying agenda buffers                      :emacs:
+   - Note taken on [2020-10-17 Sat 18:28] \\
+     [[file:../Repository/Roam/20201017180724-boris_buliga.org][Boris Buliga]] has a nice solution for this in [[file:../Repository/Roam/20200928231429-task_management_with_org_roam.org][vol. 2 of his org-roam series]]. But I'm quite
+     happy with the categories so far.
+   - Note taken on [2020-10-14 Wed 20:53] \\
+     Seems there may not be a hook for this, so it could be harder than I though. But
+     FWIW [[file:elpa/org-plus-contrib-20201012/org-agenda.el::(defun org-agenda-format-item (extra txt &optional level category tags dotime][this is the function]] displaying each entry.
+   :LOGBOOK:
+   CLOCK: [2020-10-14 Wed 19:22]--[2020-10-14 Wed 20:54] =>  1:32
+   :END:
    - Note taken on [2020-10-12 Mon 10:17] \\
      This is a [[https://orgmode.org/worg/org-tutorials/org-custom-agenda-commands.html][pretty good tutorial]] it seems.
    - Note taken on [2020-10-10 Sat 10:32] \\
