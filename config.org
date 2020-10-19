@@ -279,9 +279,32 @@ it as an entry-point for various web searches.
   "https://www.qwant.com/?q=%s"
   :keybinding "q")
 
-(defengine github-issue-loltel
-  "https://github.com/omnicate/loltel/issues?q=is%%3Aissue+is%%3Aopen+%s"
+(defengine github-loltel-issue-lookup
+  "https://github.com/omnicate/loltel/issues/%s"
   :keybinding "i")
+
+(defengine github-loltel-issue-search
+  "https://github.com/omnicate/loltel/issues?q=is%%3Aissue+is%%3Aopen+%s"
+  :keybinding "s")
+#+end_src
+
+Elfeed seems to be the best choice for RSS feeds today, and also supports
+defining the feeds in org! I could probably point it to the roam directory and
+have it pick up all the feeds based on tags, but that seems a bit extreme...
+
+Getting warning:
+
+In end of data:
+elfeed-org.el:385:1:Warning: the following functions are not known to be
+    defined: org-element-map, org-element-parse-buffer, org-element-property,
+    org-element-put-property
+
+#+begin_src emacs-lisp
+(use-package elfeed-org
+  :init
+  (setq rmh-elfeed-org-files (list "~/.emacs.d/elfeed.org"))
+  :config
+  (elfeed-org))
 #+end_src
 
 * Programming language support
