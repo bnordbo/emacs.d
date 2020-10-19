@@ -252,15 +252,12 @@ dictionaries.
 (setq ispell-program-name "/usr/local/bin/ispell")
 #+end_src
 
-* Integrations (or "project support"?)
+* Integrations
 
 I often switch from Emacs to searh  for stuff.  Let's put an end to that!
 
 #+begin_src emacs-lisp
 (use-package ripgrep)
-
-(use-package rg
-  :config (rg-enable-default-bindings))
 #+end_src
 
 Use projectile. This is quite neat in normal projects, but it's struggling in
@@ -321,9 +318,6 @@ support is extremely limited, unfortunately.
 ** Elisp
 
 #+begin_src emacs-lisp
-(use-package paredit
-  :hook emacs-lisp-mode-hook)
-
 (use-package rainbow-delimiters
   :hook emacs-lisp-mode-hook)
 
