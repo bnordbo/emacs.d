@@ -252,6 +252,16 @@ dictionaries.
 (setq ispell-program-name "/usr/local/bin/ispell")
 #+end_src
 
+In some cases, like YAML, indentation guides is a must.
+
+#+begin_src emacs-lisp
+  (use-package highlight-indent-guides
+    :hook yaml-mode
+    :init
+    (setq highlight-indent-guides-method 'bitmap
+          highlight-indent-guides-bitmap-function 'highlight-indent-guides--bitmap-line))
+#+end_src
+
 * Integrations
 
 I often switch from Emacs to searh  for stuff.  Let's put an end to that!
