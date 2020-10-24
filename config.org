@@ -717,10 +717,10 @@ use for recording the outcome of these, and for tracking the time spent.
          "* %?\n%U\n" :clock-in t :clock-resume t)
         ("c" "Contacts" entry (file ,(car (org-contacts-files)))
          "* %(org-contacts-template-name)
-          :PROPERTIES:
-          :EMAIL: %(org-contacts-template-email)
-          :PHONE: %^{47 00000000}
-          :END:")
+  :PROPERTIES:
+  :EMAIL: %^{Email| }
+  :PHONE: %^{Phone| }
+  :END:\n** %u %?")
         ("s" "Standup" item
          (file+datetree "~/Repository/Roam/20201007152101-integrators_standups.org")
          "%?\n" :clock-in t :clock-resume t)
