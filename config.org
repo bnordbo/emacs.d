@@ -58,7 +58,6 @@ This section is for testing out new configurations.
 ;(setq frame-title-format '((:eval (projectile-project-name))))
 #+end_src
 
-
 * Look and feel
 
 ** SOMEDAY Look into [[https://github.com/kunalb/poet][poet theme]]                                       :emacs:
@@ -562,12 +561,12 @@ the same thing?), but with Go it becomes useful...
 
 * Org mode
 
-Load the almighty org-mode and do basic configuration:
+  Load the almighty org-mode and do basic configuration:
 
-- Set up global keybindings.
-- Clear some local keybindings that gets in the way.
-- Also switch on auto-fill-mode in order to make prose easier to write.
-- Ensure tables and blocks are still in monospace.
+  - Set up global keybindings.
+  - Clear some local keybindings that gets in the way.
+  - Also switch on auto-fill-mode in order to make prose easier to write.
+  - Ensure tables and blocks are still in monospace.
 
 #+begin_src emacs-lisp
 (use-package org
@@ -605,7 +604,7 @@ digits for contexts if clashes become a problem..
                       ("@tlf" . ?T)))
 #+end_src
 
-Maybe everything should always auto-save all the time..?
+  Maybe everything should always auto-save all the time..?
 
 #+begin_src emacs-lisp
 ;(add-hook 'auto-save-hook 'org-save-all-org-buffers)
@@ -613,10 +612,8 @@ Maybe everything should always auto-save all the time..?
 
 ** Some basic settings.
 
-I use org-mode in three ways: For GTD task management, for roam style
-notes, and for very project specific notes.  The latter is scattered
-in various contexts, while GTD and roam has their own directories, the
-former being the default org directory.
+   I keep most of the stuff in my stuff repository. For now fleeting notes are
+   recorded in an Inbox, which is a relic from an older GTD structure.
 
 #+begin_src emacs-lisp
 (setq org-directory "~/Repository"
