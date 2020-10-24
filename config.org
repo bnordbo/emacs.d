@@ -668,10 +668,10 @@ be thrown into an address book as an afterthought.
 
 #+begin_src emacs-lisp
 (setq org-agenda-files
-      '("~/Repository/GTD"
-        "~/Repository/Roam"
+      '("~/Repository/Roam"
         "~/Contexts/WG2/Meetings.org"
-        "~/.emacs.d/config.org"))
+        "~/.emacs.d/config.org"
+        "~/.emacs.d/calendars"))
 
 (setq org-agenda-custom-commands
       '(("i" "Inbox"
