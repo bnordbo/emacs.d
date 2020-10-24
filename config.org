@@ -627,7 +627,7 @@ former being the default org directory.
 
 (setq org-todo-keywords '((sequence "NEXT(n)" "TODO(t)" "WAITING(w@)"
                                     "PROJ(p)" "INACTIVE(i)" "SOMEDAY(s)"
-                                    "|" "DONE(d)" "CANCELLED(c)")))
+                                    "|" "DONE(d)" "CANCELLED(c@)")))
 #+end_src
 
 Emacs Lisp is a popular source language, so give it  its own key. As both "e"
