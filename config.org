@@ -350,20 +350,25 @@ support is extremely limited, unfortunately.
 
 ** Elisp
 
+   From what I hear paredit is passé, and Lispy is the new kid on the block.
+
 #+begin_src emacs-lisp
-(use-package rainbow-delimiters
-  :hook emacs-lisp-mode-hook)
+  (use-package lispy)
+#+end_src
 
-(use-package eldoc
-  :hook emacs-lisp-mode-hook
-  :config
-  (eldoc-add-command
-     'paredit-backward-delete
-     'paredit-close-round))
+#+begin_src emacs-lisp
+  (use-package rainbow-delimiters)
+  (use-package eldoc)
 
-(org-babel-do-load-languages
- 'org-babel-load-languages
- '((emacs-lisp . t)))
+  (add-hook 'emacs-lisp-mode-hook
+            (lambda ()
+              (lispy-mode 1)
+              (rainbow-delimiters-mode 1)
+              (eldoc-mode 1)))
+
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((emacs-lisp . t)))
 #+end_src
 
 ** Shell
@@ -411,7 +416,6 @@ support is extremely limited, unfortunately.
 
 (add-hook 'racer-mode-hook
           (lambda ()
-            (eldoc-mode 1)
             (company-mode 1)))
 #+end_src
 
@@ -488,7 +492,7 @@ option.
 #+begin_src emacs-lisp
 (use-package which-key
   :config
-  (which-key-mode 1)
+  (which-key-mode 1))
 #+end_src
 
 I picked up C-TAB switcing from Eclipse way back.  The reverse one is
