@@ -790,36 +790,6 @@ spin out of control, but I could build a list of targets based on some criteria.
         org-journal-carryover-items ""))
  #+end_src
 
-*** NEXT Make the roam links appear in existing buffer                :emacs:
-    - Note taken on [2020-10-17 Sat 10:36] \\
-      Right now it always opens a new buffer to the right, but most often I have a
-      perfectly good buffer that that it could use.
-*** DONE Make journal record weeks instead of days                      :org:
-    CLOSED: [2020-10-19 Mon 09:34]
-    :LOGBOOK:
-    CLOCK: [2020-10-19 Mon 09:16]--[2020-10-19 Mon 09:34] =>  0:18
-    :END:
-** INACTIVE Filter for displaying agenda buffers                      :emacs:
-   - Note taken on [2020-10-17 Sat 18:28] \\
-     [[file:../Repository/Roam/20201017180724-boris_buliga.org][Boris Buliga]] has a nice solution for this in [[file:../Repository/Roam/20200928231429-task_management_with_org_roam.org][vol. 2 of his org-roam series]]. But I'm quite
-     happy with the categories so far.
-   - Note taken on [2020-10-14 Wed 20:53] \\
-     Seems there may not be a hook for this, so it could be harder than I though. But
-     FWIW [[file:elpa/org-plus-contrib-20201012/org-agenda.el::(defun org-agenda-format-item (extra txt &optional level category tags dotime][this is the function]] displaying each entry.
-   :LOGBOOK:
-   CLOCK: [2020-10-14 Wed 19:22]--[2020-10-14 Wed 20:54] =>  1:32
-   :END:
-   - Note taken on [2020-10-12 Mon 10:17] \\
-     This is a [[https://orgmode.org/worg/org-tutorials/org-custom-agenda-commands.html][pretty good tutorial]] it seems.
-   - Note taken on [2020-10-10 Sat 10:32] \\
-     The roam file names are way too long because of the timestamp. Perhaps filter
-     that out and replace it with e.g. ~R:~ or ~#~ or something..? Also make the file
-     name display a bit wider as the roam files are still quite long.
-** SOMEDAY Map C-c C-c to the same as RET in fast tag selection       :emacs:
-** SOMEDAY Associate reMarkable notes with org-roam                   :emacs:
-** SOMEDAY Find projects that are stuck                               :emacs:
-   - Note taken on [2020-10-12 Mon 09:55] \\
-     This would be ~PROJ~ tasks with no sub-tasks with the  ~NEXT~ state.
 * Version control
 
 Bind magit to ~C-x g~, and unbind ~C-<tab>~ since it's used for switching
@@ -831,26 +801,3 @@ buffers.
          :map magit-mode-map
          ("C-<tab>" . nil)))
 #+end_src
-
-* Tasks
-** NEXT Test [[https://github.com/joaotavora/eglot][eglot]] for Go programing                                  :emacs:
-** SOMEDAY Look into [[https://github.com/bbatsov/projectile][projectile]]                                       :emacs:
-** NEXT Test the GitHub integration                                   :emacs:
-   - Note taken on [2020-10-12 Mon 10:16] \\
-     To use forge, I need to [[https://magit.vc/manual/ghub/Storing-a-Token.html#Storing-a-Token][set up a GitHub token]] in ~.netrc~ or similar.
-   - Note taken on [2020-10-02 Fri 17:22] \\
-     #+begin_src emacs-lisp
-     (use-package ghub)
-     (use-package forge
-       :after magit)
-     #+end_src
-** SOMEDAY Test out [[https://github.com/manateelazycat/aweshell][aweshell]]                                          :emacs:
-** SOMEDAY Look into dailies as a replacement for org-journal         :emacs:
-   - Note taken on [2020-09-27 Sun 20:53] \\
-     I guess the main thing I don't like about org-journal is that it
-     doesn't capture journal entries – at least I haven't found a way yet.
-     Also it seems to be everything and the kitchen sink.
-** CANCELLED Make a template for backlog issues           :integrators:emacs:
-   CLOSED: [2020-10-14 Wed 19:15]
-   - Note taken on [2020-10-12 Mon 12:15] \\
-     What did I mean with this?
