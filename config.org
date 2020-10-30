@@ -666,6 +666,8 @@ be thrown into an address book as an afterthought.
 #+begin_src emacs-lisp
 (setq org-agenda-files
       '("~/Repository/Roam"
+        "~/Repository/Projects"
+        "~/Roles"
         "~/Contexts/WG2/Meetings.org"
         "~/.emacs.d/config.org"
         "~/.emacs.d/calendars"))
@@ -722,10 +724,10 @@ use for recording the outcome of these, and for tracking the time spent.
   :PHONE: %^{Phone| }
   :END:\n** %u %?")
         ("s" "Standup" item
-         (file+datetree "~/Repository/Roam/20201007152101-integrators_standups.org")
+         (file+olp+datetree "~/Roles/TechLeadIntegrators.org" "Standups")
          "%?\n" :clock-in t :clock-resume t)
         ("l" "Tech lead sync" item
-         (file+datetree "~/Repository/Roam/20201007100233-tech_lead_sync.org")
+         (file+olp+datetree "~/Roles/TechLeadIntegrators.org" "Tech lead syncs")
          "%?\n" :clock-in t :clock-resume t)))
 #+end_src
 
