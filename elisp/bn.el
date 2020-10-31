@@ -10,6 +10,6 @@
 (defun bn/roam-files ()
   (directory-files "~/Repository/Roam" t ".*org$"))
 
-(defun other-window-back ()
+(defun bn/other-window-back ()
   (interactive)
   (other-window -1))
