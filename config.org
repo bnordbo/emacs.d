@@ -657,16 +657,25 @@ be thrown into an address book as an afterthought.
    :custom (org-contacts-files '("~/Repository/People/Contacts.org")))
 #+end_src
 
+** Bookmarks
+
+#+begin_src emacs-lisp
+(use-package org-cliplink
+  :bind (:map org-mode-map
+              ("C-c L" . org-cliplink)))
+#+end_src
+
 ** Agenda setup
 
 #+begin_src emacs-lisp
 (setq org-agenda-files
-      '("~/Repository/Roam"
-        "~/Repository/Projects"
-        "~/Roles"
-        "~/Contexts/WG2/Meetings.org"
+      '("~/.emacs.d/calendars"
         "~/.emacs.d/config.org"
-        "~/.emacs.d/calendars"))
+        "~/Contexts/WG2/Meetings.org"
+        "~/Interests"
+        "~/Repository/Projects"
+        "~/Repository/Roam"
+        "~/Roles"))
 
 (setq org-agenda-custom-commands
       '(("i" "Inbox"
@@ -724,18 +733,16 @@ use for recording the outcome of these, and for tracking the time spent.
          "%?\n" :clock-in t :clock-resume t)
         ("l" "Tech lead sync" item
          (file+olp+datetree "~/Roles/TechLeadIntegrators.org" "Tech lead syncs")
-         "%?\n" :clock-in t :clock-resume t)))
+         "%?\n" :clock-in t :clock-resume t)
+        ("b" "Bookmark" entry (file "~/Bookmarks.org")
+         "* %(org-cliplink-capture)\n%?" :empty-lines 1)))
 #+end_src
 
-I usually refile from my inbox. Previously ~gtd~ was practically the only
-target, but lately I've started refiling into ~config.org~ too. The way I've
-used ~gtd~ is basically just as a task list, but with agenda mode I get more
-flexibility. Maybe I could refile into the roam folder? That might eventually
-spin out of control, but I could build a list of targets based on some criteria.
+I've dumbed down the refiling targets to just consider all the agenda files at
+level one.
 
 #+begin_src emacs-lisp
-(setq org-refile-targets `(("~/.emacs.d/config.org" :level . 2)
-                           (bn/roam-files :level . 1)))
+(setq org-refile-targets '((org-agenda-files :level . 1)))
 #+end_src
 
 ** Roam
