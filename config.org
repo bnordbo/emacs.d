@@ -219,11 +219,10 @@ Improve parenthesis handling by highlighting matching ones.
 #+end_src
 
 Try to keep the whitespace under control. The whitespace butler seems to work
-pretty well.
+pretty well, but it needs an extra hook for org-capture for some reason.
 
 #+begin_src emacs-lisp
-;(add-hook 'find-file-hook #'ws-butler-global-mode)
-(ws-butler-global-mode 1)
+(add-hook 'org-capture-mode-hook (lambda () (ws-butler-mode -1)))
 (setq require-final-newline t)
 #+end_src
 
