@@ -667,15 +667,20 @@ be thrown into an address book as an afterthought.
 
 ** Agenda setup
 
+This is has been changing a lot, but the current idea is that I want to fetch
+tasks from:
+
+- Calendars, to show in the weekly agenda view.
+- My projects repository, which is kind of legacy.
+- Everything inside the interests and roles contexts.
+   
 #+begin_src emacs-lisp
 (setq org-agenda-files
-      '("~/.emacs.d/calendars"
-        "~/.emacs.d/config.org"
-        "~/Contexts/WG2/Meetings.org"
-        "~/Interests"
-        "~/Repository/Projects"
-        "~/Repository/Roam"
-        "~/Roles"))
+      (append
+       '("~/.emacs.d/calendars"
+         "~/Repository/Projects")
+       (directory-files-recursively "~/Interests" "\.org$")
+       (directory-files-recursively "~/Roles" "\.org$")))
 
 (setq org-agenda-custom-commands
       '(("i" "Inbox"
