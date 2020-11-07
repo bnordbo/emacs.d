@@ -349,10 +349,11 @@ support is extremely limited, unfortunately.
 
 ** Elisp
 
-   From what I hear paredit is passé, and Lispy is the new kid on the block.
+   From what I hear paredit is passé, and Lispy is the new kid on the block, but
+   I gave up and reverted  to paredit.
 
 #+begin_src emacs-lisp
-  (use-package lispy)
+  (use-package paredit)
 #+end_src
 
 #+begin_src emacs-lisp
@@ -361,7 +362,7 @@ support is extremely limited, unfortunately.
 
   (add-hook 'emacs-lisp-mode-hook
             (lambda ()
-              (lispy-mode 1)
+              (paredit-mode 1)
               (rainbow-delimiters-mode 1)
               (eldoc-mode 1)))
 
