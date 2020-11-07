@@ -687,10 +687,10 @@ tasks from:
 #+begin_src emacs-lisp
 (setq org-agenda-files
       (append
-       '("~/.emacs.d/calendars"
-         "~/Repository/Projects")
-       (directory-files-recursively "~/Interests" "\.org$")
-       (directory-files-recursively "~/Roles" "\.org$")))
+       `("~/.emacs.d/calendars"
+         "~/Repository/Inbox.org"
+         ,@(bn/agenda-files-recursively "~/Interests")
+         ,@(bn/agenda-files-recursively "~/Roles"))))
 
 (setq org-agenda-custom-commands
       '(("i" "Inbox"
