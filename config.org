@@ -197,14 +197,6 @@ Unconditionally auto-save all visited files every time Emacs loses focus.
             (save-some-buffers t)))
 #+end_src
 
-Automatically saving files is useful, but this had some side effects I can't
-quite recall. Experiment more.
-
-#+begin_src emacs-lisp
-;(auto-save-visited-mode t)
-;(setq auto-save-visited-interval 45)
-#+end_src
-
 Some like having the lines numbered, but I find just showing it in the modeline
 will usually suffice.
 
