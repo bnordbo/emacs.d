@@ -733,7 +733,7 @@ use for recording the outcome of these, and for tracking the time spent.
          "* TODO %i%?")
         ("p" "PROJ" entry (file+headline org-default-notes-file "Tasks")
          "* PROJ %i%?")
-        ("m" "Meeting" entry (file+datetree "~/Contexts/WG2/Meetings.org")
+        ("mw" "Meeting" entry (file+datetree "~/Roles/TechLeadWG2/Meetings.org")
          "* NEXT %? :meeting:\n%U" :clock-in t :clock-resume t)
         ("d" "Diary" entry (file+datetree "~/Repository/Timeline/Diary.org")
          "* %?\n%U\n" :clock-in t :clock-resume t)
