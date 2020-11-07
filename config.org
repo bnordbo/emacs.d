@@ -641,6 +641,12 @@ Exporting to Slack allows me to edit the message in e.g. an org-mode note.
 (use-package ox-slack)
 #+end_src
 
+#+begin_src emacs-lisp
+(use-package org-bullets
+  :init
+  (add-hook 'org-mode-hook 'org-bullets-mode))
+#+end_src
+
 ** Pomodoro
 
 #+begin_src emacs-lisp
