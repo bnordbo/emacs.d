@@ -316,6 +316,12 @@ elfeed-org.el:385:1:Warning: the following functions are not known to be
   (elfeed-org))
 #+end_src
 
+Pick up authentication info.
+
+#+begin_src emacs-lisp
+(setq auth-sources '("~/.authinfo"))
+#+end_src
+
 * Programming language support
 
 ** Go
@@ -818,4 +824,7 @@ buffers.
   :bind (("C-x g" . magit)
          :map magit-mode-map
          ("C-<tab>" . nil)))
+
+(use-package forge
+  :after magit)
 #+end_src
