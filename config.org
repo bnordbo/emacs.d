@@ -623,6 +623,7 @@ digits for contexts if clashes become a problem..
 
 #+begin_src emacs-lisp
 (setq org-directory "~/Repository"
+      org-archive-location "Archive/closed.org_archive::datetree/"
       org-default-notes-file "~/Repository/Inbox.org"
       org-agenda-restore-windows-after-quit t
       org-agenda-window-setup 'current-window
