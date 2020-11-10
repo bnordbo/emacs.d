@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t -*-
+
 ;; Open a new line below the current one and indent.  I missed this
 ;; function for ten years.  It took me two minutes to whip together this
 ;; one.
