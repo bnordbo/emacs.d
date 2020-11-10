@@ -763,7 +763,7 @@ I've dumbed down the refiling targets to just consider all the agenda files at
 level one.
 
 #+begin_src emacs-lisp
-(setq org-refile-targets '((org-agenda-files :level . 1)))
+(setq org-refile-targets '((org-agenda-files :maxlevel . 2)))
 #+end_src
 
 ** Roam
