@@ -301,13 +301,6 @@ Elfeed seems to be the best choice for RSS feeds today, and also supports
 defining the feeds in org! I could probably point it to the roam directory and
 have it pick up all the feeds based on tags, but that seems a bit extreme...
 
-Getting warning:
-
-In end of data:
-elfeed-org.el:385:1:Warning: the following functions are not known to be
-    defined: org-element-map, org-element-parse-buffer, org-element-property,
-    org-element-put-property
-
 #+begin_src emacs-lisp
 (use-package elfeed-org
   :init
