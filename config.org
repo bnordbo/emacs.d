@@ -337,12 +337,13 @@ support is extremely limited, unfortunately.
   (exec-path-from-shell-copy-env "GOPATH")
   (setq go-eldoc-gocode "/Users/bn/go/bin/gocode")
   :config
-  (setq tab-width 4)
-  (auto-highlight-symbol-mode 1)
-  (electric-pair-mode 1)
-  (electric-indent-mode 1)
-  (subword-mode 1)
-  (yas-minor-mode 1))
+  (add-hook 'go-mode-hook (lambda ()
+                            (setq tab-width 4)
+                            (auto-highlight-symbol-mode 1)
+                            (electric-pair-mode 1)
+                            (electric-indent-mode 1)
+                            (subword-mode 1)
+                            (yas-minor-mode 1))))
 
 (use-package go-eldoc
   :config
