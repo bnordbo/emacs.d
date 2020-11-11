@@ -619,12 +619,13 @@ digits for contexts if clashes become a problem..
 ** Some basic settings.
 
    I keep most of the stuff in my stuff repository. For now fleeting notes are
-   recorded in an Inbox, which is a relic from an older GTD structure.
+   recorded in an Inbox, which is a relic from an older GTD structure. Items are
+   archived in datetrees in the Archive directory.
 
 #+begin_src emacs-lisp
 (setq org-directory "~/Repository"
-      org-archive-location "Archive/closed.org_archive::datetree/"
       org-default-notes-file "~/Repository/Inbox.org"
+      org-archive-location "Archive/closed.org_archive::datetree/"
       org-agenda-restore-windows-after-quit t
       org-agenda-window-setup 'current-window
       org-log-done t)
@@ -825,7 +826,13 @@ buffers.
   :bind (("C-x g" . magit)
          :map magit-mode-map
          ("C-<tab>" . nil)))
+#+end_src
 
+Forge hooks into magit and provides access to GitHub. It even works on our
+gargutuan monorepo, though the first pull took around 15 minutes and produced a
+30 MB SQlite file.
+
+#+begin_src emacs-lisp
 (use-package forge
   :after magit)
 #+end_src
