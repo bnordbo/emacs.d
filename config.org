@@ -652,7 +652,8 @@ Exporting to Slack allows me to edit the message in e.g. an org-mode note.
 ** Pomodoro
 
 #+begin_src emacs-lisp
-(use-package org-pomodoro)
+(use-package org-pomodoro
+  :init (setq org-pomodoro-length 20))
 #+end_src
 
 ** Contacts
