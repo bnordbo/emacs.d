@@ -730,13 +730,13 @@ use for recording the outcome of these, and for tracking the time spent.
 
 #+begin_src emacs-lisp
 (setq org-capture-templates
-      `(("n" "NEXT" entry (file+headline org-default-notes-file "Tasks")
+      `(("n" "NEXT" entry (file org-default-notes-file)
          "* NEXT %i%?")
-        ("t" "TODO" entry (file+headline org-default-notes-file "Tasks")
+        ("t" "TODO" entry (file org-default-notes-file)
          "* TODO %i%?")
-        ("p" "PROJ" entry (file+headline org-default-notes-file "Tasks")
+        ("p" "PROJ" entry (file org-default-notes-file)
          "* PROJ %i%?")
-        ("mw" "Meeting" entry (file+datetree "~/Roles/TechLeadWG2/Meetings.org")
+        ("m" "Meeting" entry (file+datetree "~/Roles/TechLeadWG2/Meetings.org")
          "* NEXT %? :meeting:\n%U" :clock-in t :clock-resume t)
         ("d" "Diary" entry (file+datetree "~/Repository/Timeline/Diary.org")
          "* %?\n%U\n" :clock-in t :clock-resume t)
