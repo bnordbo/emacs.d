@@ -694,25 +694,24 @@ tasks from:
          "~/Repository/Inbox.org"
          ,@(bn/agenda-files-recursively "~/Interests")
          ,@(bn/agenda-files-recursively "~/Roles"))))
+#+end_src
 
+The agenda has views for the inbox, all my next actions, and all my projects.
+But I'm planning to incorporate all of this information in one view, currently
+dubbed "review".
+
+#+begin_src emacs-lisp
 (setq org-agenda-custom-commands
-      '(("i" "Inbox"
+      `(("i" "Inbox"
          ((todo "NEXT"
                 ((org-agenda-files (list "~/Repository/Inbox.org"))))))
         ("n" "Next actions" todo "NEXT")
         ("p" "Projects" todo "PROJ")
         ("r" "Review"
          ((agenda)
-          (stuck "")
-          (tags-todo "@office")
-          (tags-todo "@reading")
-          (tags-todo "@home")
-          (tags-todo "@project")))
-        ("D" "Daily action list"
-         ((agenda "" ((org-agenda-ndays 1)
-                      (org-agenda-sorting-strategy
-                       (quote ((agenda time-up priority-down tag-up) )))
-                      (org-deadline-warning-days 0)))))))
+          (todo "PROJ"
+                ((org-agenda-overriding-header "Active projects:")))
+          ,bn/org-agenda--active-projects))))
 #+end_src
 
 ** Capture and refile
