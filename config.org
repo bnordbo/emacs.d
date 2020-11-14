@@ -604,10 +604,10 @@ digits for contexts if clashes become a problem..
                       ("@tlf" . ?T)))
 #+end_src
 
-  Maybe everything should always auto-save all the time..?
+
 
 #+begin_src emacs-lisp
-;(add-hook 'auto-save-hook 'org-save-all-org-buffers)
+(use-package helm-org-rifle)
 #+end_src
 
 ** Some basic settings.
