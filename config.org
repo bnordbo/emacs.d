@@ -571,14 +571,19 @@ Load the almighty org-mode and do basic configuration:
 (use-package org
   :ensure org-plus-contrib
   :bind (("C-c a" . org-agenda)
-         ("C-c l" . org-store-link)
          ("C-c c" . org-capture)
+         ("C-c l" . org-store-link)
          ("C-c C-x C-j" . org-clock-goto)
          :map org-mode-map
+         ("C-c t" . org-todo)
          ("C-<tab>" . nil)
          ("M-h" . nil))
   :config
-  (setq org-edit-src-content-indentation 0)
+  (setq org-edit-src-content-indentation 0
+        org-src-fontify-natively t
+        org-src-tab-acts-natively t
+        org-src-window-setup 'current-window
+        org-modules '(ol-w3m ol-bibtex ol-docview ol-info ol-mhe ol-habits))
   (set-face-attribute 'org-block  nil :inherit 'fixed-pitch)
   (set-face-attribute 'org-table nil :inherit 'fixed-pitch)
   (add-hook 'org-mode-hook #'auto-fill-mode 1))
