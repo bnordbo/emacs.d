@@ -607,10 +607,13 @@ digits for contexts if clashes become a problem..
                       ("@tlf" . ?T)))
 #+end_src
 
-
+This allows me to quickly rifle through org files. The only issue I have with it
+is that I want /more/, but it's rather slow on big directory trees.
 
 #+begin_src emacs-lisp
-(use-package helm-org-rifle)
+(use-package helm-org-rifle
+  :bind (("C-c r" . helm-org-rifle)
+         ("C-c R" . helm-org-rifle-agenda-files)))
 #+end_src
 
 ** Some basic settings.
