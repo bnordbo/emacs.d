@@ -820,14 +820,17 @@ buffers.
 (use-package magit
   :bind (("C-x g" . magit)
          :map magit-mode-map
-         ("C-<tab>" . nil)))
+         ("C-<tab>" . nil))
+  :init (setq magit-git-executable "/usr/local/bin/git"))
 #+end_src
 
-Forge hooks into magit and provides access to GitHub. It even works on our
-gargutuan monorepo, though the first pull took around 15 minutes and produced a
-30 MB SQlite file.
+
+Forge hooks into magit and provides access to GitHub. It's quite slow on our
+huge monorepo at work, but reducing the topic list limit seems to help.
 
 #+begin_src emacs-lisp
 (use-package forge
-  :after magit)
+  :after magit
+  :init
+  (setq forge-topic-list-limit '(30 .  3)))
 #+end_src
