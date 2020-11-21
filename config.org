@@ -832,7 +832,6 @@ buffers.
   :init (setq magit-git-executable "/usr/local/bin/git"))
 #+end_src
 
-
 Forge hooks into magit and provides access to GitHub. It's quite slow on our
 huge monorepo at work, but reducing the topic list limit seems to help.
 
@@ -841,4 +840,14 @@ huge monorepo at work, but reducing the topic list limit seems to help.
   :after magit
   :init
   (setq forge-topic-list-limit '(30 .  3)))
+#+end_src
+
+It is neat if not terribly useful to see the changes since last commit in the
+buffer margin.
+
+#+begin_src emacs-lisp
+(use-package diff-hl
+  :config
+  (add-hook 'prog-mode-hook 'turn-on-diff-hl-mode)
+  (add-hook 'vc-dir-mode-hook 'turn-on-diff-hl-mode))
 #+end_src
