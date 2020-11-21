@@ -698,9 +698,10 @@ tasks from:
 (setq org-agenda-files
       (append
        `("~/.emacs.d/calendars"
-         "~/Repository/Inbox.org"
+         "~/Repository"
          ,@(bn/agenda-files-recursively "~/Interests")
          ,@(bn/agenda-files-recursively "~/Roles"))))
+
 #+end_src
 
 The agenda has views for the inbox, all my next actions, and all my projects.
