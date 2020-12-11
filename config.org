@@ -70,10 +70,11 @@ ergonomic.
 Conserve space and reduce clutter.
 
 #+begin_src emacs-lisp
-(tool-bar-mode -1)
 (menu-bar-mode -1)
-(when (window-system)
-  (scroll-bar-mode -1))
+(if (fboundp 'tool-bar-mode)
+    (tool-bar-mode -1))
+(if (fboundp 'scroll-bar-mode)
+    (scroll-bar-mode -1))
 #+end_src
 
 I don't think I've ever had any use of seeing the minor modes in the mode line.
