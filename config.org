@@ -50,7 +50,9 @@ Start emacs-server for integrating neatly with the shell.
 This section is for testing out new configurations.
 
 #+begin_src emacs-lisp
-(global-hl-line-mode -1)
+(delete-selection-mode t)
+(use-package swiper)
+(use-package kubel)
 ;(setq org-adapt-indentation nil)
 ; "Breaks" if projectile is not loaded
 ;(setq frame-title-format '((:eval (projectile-project-name))))
