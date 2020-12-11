@@ -823,6 +823,86 @@ level one.
         org-journal-date-format "%A, %d %B %Y"
         org-journal-carryover-items ""))
  #+end_src
+ 
+This is an attempt to set up org-roam-bibtex and friends in a way I understand.
+The goal is to be able to insert cite-links using helm completion, both in
+org-roam notes and elsewhere. The cited documents should be kept on disk
+possibly managed by Zotero. The bibtex itself is less important.
+
+Separates bibliograpgical notes from other notes, and provides
+~orb-find-non-ref-file~ as an alternative to ~org-roam-find-file~ that ignores
+bibliograpgical notes.
+
+The setup was originally  based on Ian Jones' [[https://www.ianjones.us/org-roam-bibtex][Org Roam Bibtex]], and then
+rewritten based on the guide  by [[https://rgoswami.me/posts/org-note-workflow/][rgoswami]]. It kinda works, but I still can't
+make notes in epub documents.
+
+#+begin_src emacs-lisp
+(setq zot-bib "~/Repository/Bibliography/Master.bib")
+
+(use-package helm-bibtex
+  :init
+  (setq bibtex-completion-bibliography zot-bib
+        bibtex-completion-library-path "~/Repository/Bibliography/bibtex-pdfs"
+        bibtex-completion-notes-path org-roam-directory
+        bibtex-completion-pdf-field "file"
+        bibtex-completion-pdf-open-function
+        (lambda (path)
+          (start-process "open" "*open*" "open" path))))
+
+(use-package org-ref
+  :init
+  (setq org-ref-default-bibliography (list zot-bib)
+        org-ref-pdf-directory "~/Repository/Bibliography/bibtex-pdfs/"
+        org-ref-get-pdf-filename-function 'org-ref-get-pdf-filename-helm-bibtex
+        org-ref-notes-directory org-roam-directory
+        org-ref-notes-function 'orb-edit-notes))
+
+;(setq orb-preformat-keywords '("citekey" "date" "type" "pdf?" "note?" "author" "editor" "langid" "file" "author-abbrev" "editor-abbrev" "author-or-editor-abbrev" "title" "shorttitle"))
+
+(use-package org-roam-bibtex
+  :after org-roam
+  :hook (org-roam-mode . org-roam-bibtex-mode)
+  :init
+  (setq orb-note-actions-frontend 'helm
+        orb-templates
+        '(("r" "reference" plain (function org-roam-capture--get-point)
+           (file "~/.emacs.d/templates/orb-note.txt")
+           :file-name "${citekey}"
+           :head "#+TITLE: ${title}\n"
+           :unnarrowed t)))
+  :bind (:map org-mode-map
+         (("C-c n a" . orb-note-actions))))
+
+(use-package org-noter
+  :after (org pdf-view nov)
+  :bind (:map org-noter-doc-mode-map
+         (("M-i" . zp/org-noter-insert-precise-note-dwim)))
+  :init
+  (setq org-noter-always-create-frame nil
+        org-noter-notes-search-path (list org-roam-directory)
+        org-noter-notes-window-location 'horizontal-split
+        org-noter-doc-split-percentage '(0.7 . 0.3)))
+
+;; Move these to a separate "Media" section
+(use-package pdf-tools
+  :mode ("\\.pdf\\'" . pdf-view-mode)
+  :demand
+  :config
+  (pdf-tools-install :no-query))
+
+(use-package org-pdftools
+  :hook (org-load . org-pdftools-setup-link))
+
+(use-package nov
+  :mode ("\\.\\(epub\\|mobi\\)\\'" . nov-mode))
+
+(use-package org-noter-pdftools
+  :after org-noter
+  :config
+  (with-eval-after-load 'pdf-annot
+    (add-hook 'pdf-annot-activate-handler-functions #'org-noter-pdftools-jump-to-note)))
+#+end_src
 
 * Version control
 
