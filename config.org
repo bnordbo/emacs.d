@@ -837,9 +837,16 @@ The setup was originally  based on Ian Jones' [[https://www.ianjones.us/org-roam
 rewritten based on the guide  by [[https://rgoswami.me/posts/org-note-workflow/][rgoswami]]. It kinda works, but I still can't
 make notes in epub documents.
 
+This is the bibliography in BibTeX format, maintained using Zotero.
+
 #+begin_src emacs-lisp
 (setq zot-bib "~/Repository/Bibliography/Master.bib")
+#+end_src
 
+I use helm-bibtex to navigate the bibliograpgy in order to add citations, edit
+notes and so on.
+
+#+begin_src emacs-lisp
 (use-package helm-bibtex
   :init
   (setq bibtex-completion-bibliography zot-bib
@@ -849,7 +856,12 @@ make notes in epub documents.
         bibtex-completion-pdf-open-function
         (lambda (path)
           (start-process "open" "*open*" "open" path))))
+#+end_src
 
+Hmm.. I'm sure org-ref is super-important, but in my setup it's kind of hidden
+behind helm-bibtex and org-roam-bibtex.
+
+#+begin_src emacs-lisp
 (use-package org-ref
   :init
   (setq org-ref-default-bibliography (list zot-bib)
@@ -857,9 +869,13 @@ make notes in epub documents.
         org-ref-get-pdf-filename-function 'org-ref-get-pdf-filename-helm-bibtex
         org-ref-notes-directory org-roam-directory
         org-ref-notes-function 'orb-edit-notes))
+#+end_src
 
+This stitches together helm-bibtex, org-ref, and org-roam, enabling literature
+notes in the org-roam directory.
+
+#+begin_src emacs-lisp
 ;(setq orb-preformat-keywords '("citekey" "date" "type" "pdf?" "note?" "author" "editor" "langid" "file" "author-abbrev" "editor-abbrev" "author-or-editor-abbrev" "title" "shorttitle"))
-
 (use-package org-roam-bibtex
   :after org-roam
   :hook (org-roam-mode . org-roam-bibtex-mode)
@@ -869,7 +885,7 @@ make notes in epub documents.
         '(("r" "reference" plain (function org-roam-capture--get-point)
            (file "~/.emacs.d/templates/orb-note.txt")
            :file-name "${citekey}"
-           :head "#+TITLE: ${title}\n"
+           :head "#+TITLE: ${shorttitle}\n"
            :unnarrowed t)))
   :bind (:map org-mode-map
          (("C-c n a" . orb-note-actions))))
