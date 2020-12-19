@@ -193,10 +193,12 @@ anyway leave it to Emacs most of the time.
 (setq-default indent-tabs-mode nil)
 #+end_src
 
-This eliminates all the tilde suffixed files. I've got TimeMachine for backups.
+Don't create backup or lock files. I've got TimeMachine for backups, and I'm
+hopefully the sole user of my system.
 
 #+begin_src emacs-lisp
-(setq backup-inhibited t)
+(setq make-backup-files nil
+      create-lockfiles nil)
 #+end_src
 
 Unconditionally auto-save all visited files every time Emacs loses focus.
