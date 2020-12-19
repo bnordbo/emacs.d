@@ -26,13 +26,23 @@ used.
 (setq load-prefer-newer t)
 #+end_src
 
-** General defaults
+** General setup
 
 Who wouldn't want sensible defaults?
 
 #+begin_src emacs-lisp
 (load-file "~/.emacs.d/sensible-defaults.el")
 (sensible-defaults/use-all-settings)
+#+end_src
+
+Set location and time format for sunrise/sunset.
+
+#+begin_src emacs-lisp
+(setq calendar-latitude 59.41
+      calendar-longitude 9.03
+      calendar-time-display-form
+      '(24-hours ":" minutes
+                 (if time-zone " (") time-zone (if time-zone ")")))
 #+end_src
 
 ** Servers
