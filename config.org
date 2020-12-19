@@ -648,7 +648,7 @@ is that I want /more/, but it's rather slow on big directory trees.
       org-agenda-window-setup 'current-window
       org-log-done t)
 
-(setq org-todo-keywords '((sequence "NEXT(n)" "TODO(t)" "WAITING(w@)"
+(setq org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "WAITING(w@)"
                                     "PROJ(p)" "INACTIVE(i)" "SOMEDAY(s)"
                                     "|" "DONE(d)" "CANCELLED(c@)")))
 #+end_src
@@ -718,7 +718,6 @@ tasks from:
          "~/Repository"
          ,@(bn/agenda-files-recursively "~/Interests")
          ,@(bn/agenda-files-recursively "~/Roles"))))
-
 #+end_src
 
 The agenda has views for the inbox, all my next actions, and all my projects.
