@@ -648,8 +648,8 @@ is that I want /more/, but it's rather slow on big directory trees.
       org-agenda-window-setup 'current-window
       org-log-done t)
 
-(setq org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "WAITING(w@)"
-                                    "PROJ(p)" "INACTIVE(i)" "SOMEDAY(s)"
+(setq org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "PROJ(p)" "INACTIVE(i)"
+                                    "SOMEDAY(s)" "WAITING(w@)"
                                     "|" "DONE(d)" "CANCELLED(c@)")))
 #+end_src
 
