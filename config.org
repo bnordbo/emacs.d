@@ -886,12 +886,14 @@ This stitches together helm-bibtex, org-ref, and org-roam, enabling literature
 notes in the org-roam directory.
 
 #+begin_src emacs-lisp
-;(setq orb-preformat-keywords '("citekey" "date" "type" "pdf?" "note?" "author" "editor" "langid" "file" "author-abbrev" "editor-abbrev" "author-or-editor-abbrev" "title" "shorttitle"))
 (use-package org-roam-bibtex
   :after org-roam
   :hook (org-roam-mode . org-roam-bibtex-mode)
   :init
   (setq orb-note-actions-frontend 'helm
+        orb-preformat-keywords '("citekey" "date" "type" "pdf?" "note?" "author"
+                                 "langid" "file" "author-or-editor-abbrev"
+                                 "title" "shorttitle")
         orb-templates
         '(("r" "reference" plain (function org-roam-capture--get-point)
            (file "~/.emacs.d/templates/orb-note.txt")
