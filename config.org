@@ -577,7 +577,7 @@ the same thing?), but with Go it becomes useful...
 
 * Org mode
 
-Load the almighty org-mode and do basic configuration:
+Load the org-mode and do basic configuration:
 
 - Set up global keybindings.
 - Clear some local keybindings that gets in the way.
@@ -593,6 +593,8 @@ Load the almighty org-mode and do basic configuration:
          ("C-c C-x C-j" . org-clock-goto)
          :map org-mode-map
          ("C-c t" . org-todo)
+         ("C-c M-p" . org-move-subtree-up)
+         ("C-c M-n" . org-move-subtree-down)
          ("C-<tab>" . nil)
          ("M-h" . nil))
   :config
