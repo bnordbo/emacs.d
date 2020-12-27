@@ -620,10 +620,27 @@ digits for contexts if clashes become a problem..
                       ("org" . ?o)
                       ("read" . ?r)
                       (:newline)
+                      ("easy" . ?z)
+                      ("hard" . ?h)
+                      (:newline)
                       ("@home" . ?H)
                       ("@office" . ?O)
                       ("@standup" . ?S)
                       ("@tlf" . ?T)))
+#+end_src
+
+Properties that should be set across the board.
+
+#+begin_src emacs-lisp
+(setq org-global-properties
+      '(("Effort_ALL" . "0:10 0:30 1:00 2:00 4:00 7:00")))
+#+end_src
+
+For the column view, I'd like to see the basics as compact as possible.
+
+#+begin_src emacs-lisp
+(setq org-columns-default-format
+      "%40ITEM(Task) %9TODO(State) %6Effort(Effort){:} %6CLOCKSUM(Sum) %ALLTAGS(Tags)")
 #+end_src
 
 This allows me to quickly rifle through org files. The only issue I have with it
