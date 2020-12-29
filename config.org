@@ -667,8 +667,13 @@ is that I want /more/, but it's rather slow on big directory trees.
       org-agenda-restore-windows-after-quit t
       org-agenda-window-setup 'current-window
       org-log-done t)
+#+end_src
 
-(setq org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "PROJ(p)" "INACTIVE(i)"
+Basic GTD-like keywords. I like recording notes, so prompt for an explanation
+when changing to WAITING or CANCELLED. This is also used for sort order.
+
+#+begin_src emacs-lisp
+(setq org-todo-keywords '((sequence "NEXT(n)" "TODO(t)" "PROJ(p)" "INACTIVE(i)"
                                     "SOMEDAY(s)" "WAITING(w@)"
                                     "|" "DONE(d)" "CANCELLED(c@)")))
 #+end_src
