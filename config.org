@@ -603,6 +603,10 @@ Load the org-mode and do basic configuration:
         org-src-tab-acts-natively t
         org-src-window-setup 'current-window
         org-clock-idle-time 10
+        org-clock-in-switch-to-state "NEXT"
+        org-clock-out-remove-zero-time-clocks t
+        org-clock-out-when-done t
+        org-pretty-entities t
         org-modules '(ol-w3m ol-bibtex ol-docview ol-info ol-mhe ol-habits))
   (set-face-attribute 'org-block  nil :inherit 'fixed-pitch)
   (set-face-attribute 'org-table nil :inherit 'fixed-pitch)
