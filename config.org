@@ -614,7 +614,8 @@ Load the org-mode and do basic configuration:
         org-clock-out-remove-zero-time-clocks t
         org-clock-out-when-done t
         org-pretty-entities t
-        org-modules '(ol-w3m ol-bibtex ol-docview ol-info ol-mhe ol-habits))
+        org-modules '(ol-w3m ol-bibtex ol-docview ol-info ol-mhe ol-habits)
+        org-use-sub-superscript "{}")
   (set-face-attribute 'org-block  nil :inherit 'fixed-pitch)
   (set-face-attribute 'org-table nil :inherit 'fixed-pitch)
   (add-hook 'org-mode-hook #'auto-fill-mode 1))
