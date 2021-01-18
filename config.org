@@ -60,7 +60,7 @@ Start emacs-server for integrating neatly with the shell.
 This section is for testing out new configurations.
 
 #+begin_src emacs-lisp
-(delete-selection-mode t)
+(use-package 0xc)
 (use-package swiper)
 (use-package kubel)
 ;(setq org-adapt-indentation nil)
@@ -191,6 +191,13 @@ anyway leave it to Emacs most of the time.
 
 #+begin_src emacs-lisp
 (setq-default indent-tabs-mode nil)
+#+end_src
+
+This permits replacing the contents of a selection by yanking text on top of it,
+i.e. the normal behaviour since about 1990. Very useful.
+
+#+begin_src emacs-lisp
+(delete-selection-mode t)
 #+end_src
 
 Don't create backup or lock files. I've got TimeMachine for backups, and I'm
