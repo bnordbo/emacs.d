@@ -1,0 +1,12 @@
+#+roam_key: ${ref}
+#+roam_tags: %^{tags}
+
+- tags ::
+
+* ${title}
+:PROPERTIES:
+:Custom_ID: %^{citekey}
+:AUTHOR: %^{author}
+:NOTER_DOCUMENT: %(orb-process-file-field "%^{citekey}")
+:NOTER_PAGE:
+:END:

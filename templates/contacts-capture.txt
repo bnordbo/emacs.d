@@ -1,0 +1,5 @@
+* %(org-contacts-template-name)
+ :PROPERTIES:
+ :EMAIL: %^{Email| }
+ :PHONE: %^{Phone| }
+ :END:\n** %u %?

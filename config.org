@@ -795,17 +795,13 @@ use for recording the outcome of these, and for tracking the time spent.
         ("t" "TODO" entry (file org-default-notes-file)
          "* TODO %i%?")
         ("p" "PROJ" entry (file org-default-notes-file)
-         "* PROJ %i%?")
+         (file "~/.emacs.d/templates/project-capture.txt"))
         ("m" "Meeting" entry (file+datetree "~/Roles/TechLeadWG2/Meetings.org")
          "* NEXT %? :meeting:\n%U" :clock-in t :clock-resume t)
         ("d" "Diary" entry (file+datetree "~/Repository/Timeline/Diary.org")
          "* %?\n%U\n" :clock-in t :clock-resume t)
         ("c" "Contacts" entry (file ,(car (org-contacts-files)))
-         "* %(org-contacts-template-name)
-  :PROPERTIES:
-  :EMAIL: %^{Email| }
-  :PHONE: %^{Phone| }
-  :END:\n** %u %?")
+         (file "~/.emacs.d/templates/contacts-capture.txt"))
         ("s" "Standup" item
          (file+olp+datetree "~/Roles/TechLeadWG2/Recurring.org" "Standups")
          "%?\n" :clock-in t :clock-resume t)
