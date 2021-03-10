@@ -316,17 +316,21 @@ it as an entry-point for various web searches.
 (use-package engine-mode)
 (engine-mode 1)
 
-(defengine qwant
-  "https://www.qwant.com/?q=%s"
-  :keybinding "q")
+(defengine duckduckgo
+  "https://www.duckduckgo.com/?q=%s"
+  :keybinding "d")
 
 (defengine github-loltel-issue-lookup
   "https://github.com/omnicate/loltel/issues/%s"
   :keybinding "i")
 
 (defengine github-loltel-issue-search
-  "https://github.com/omnicate/loltel/issues?q=is%%3Aissue+is%%3Aopen+%s"
+  "https://github.com/omnicate/loltel/issues?q=is:issue+is:open+%s"
   :keybinding "s")
+
+(defengine github-loltel-issue-label
+  "https://github.com/omnicate/loltel/issues?q=is:issue+is:open+label:%s"
+  :keybinding "l")
 #+end_src
 
 Elfeed seems to be the best choice for RSS feeds today, and also supports
