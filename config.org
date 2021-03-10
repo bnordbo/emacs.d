@@ -651,7 +651,8 @@ digits for contexts if clashes become a problem..
                       ("hard" . ?h)
                       (:newline)
                       ("@home" . ?H)
-                      ("@office" . ?O)
+                      ("@jessica" . ?J)
+                      ("@planning" . ?P)
                       ("@standup" . ?S)
                       ("@tlf" . ?T)))
 #+end_src
