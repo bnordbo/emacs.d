@@ -406,6 +406,13 @@ support is extremely limited, unfortunately.
    '((emacs-lisp . t)))
 #+end_src
 
+** Clojure
+
+#+begin_src emacs-lisp
+(use-package cider
+  :ensure t)
+#+end_src
+
 ** Shell
 
 #+begin_src emacs-lisp
