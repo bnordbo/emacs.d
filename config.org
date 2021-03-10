@@ -693,7 +693,10 @@ is that I want /more/, but it's rather slow on big directory trees.
       org-stuck-projects '("/+PROJ" ("NEXT" "TODO") ("@buy") "")
       org-agenda-restore-windows-after-quit t
       org-agenda-window-setup 'current-window
-      org-log-done t)
+      org-log-done 'time
+      org-log-redeadline nil
+      org-log-reschedule nil
+      org-read-date-prefer-future 'time)
 #+end_src
 
 Basic GTD-like keywords. I like recording notes, so prompt for an explanation
