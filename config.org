@@ -555,15 +555,6 @@ Bind a few useful functions.
 (global-set-key (kbd "C-x C-<SPC>") 'just-one-space)
 #+end_src
 
-Some stuff I missed after making an attempt at TextMate a while back.
-
-#+begin_src emacs-lisp
-(global-move-dup-mode t)
-(global-set-key (kbd "C-x C-d") 'md-duplicate-down)
-(global-unset-key (kbd "C-M-<up>"))
-(global-unset-key (kbd "C-M-<down>"))
-#+end_src
-
 This allows quickly jumping to words in a buffer.  Awsum!
 
 #+begin_src emacs-lisp
