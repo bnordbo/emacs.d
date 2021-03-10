@@ -359,6 +359,8 @@ This sets up Go mode with some basic support.  The jump to definition
 support is extremely limited, unfortunately.
 
 #+begin_src emacs-lisp
+(use-package go-eldoc)
+
 (use-package go-mode
   :bind (("M-." . godef-jump))
   :hook (before-save . gofmt-before-save)
@@ -372,11 +374,8 @@ support is extremely limited, unfortunately.
                             (electric-pair-mode 1)
                             (electric-indent-mode 1)
                             (subword-mode 1)
-                            (yas-minor-mode 1))))
-
-(use-package go-eldoc
-  :config
-  (go-eldoc-setup))
+                            (yas-minor-mode 1)
+                            (go-eldoc-setup))))
 
 (use-package go-add-tags)
 (use-package go-fill-struct)
