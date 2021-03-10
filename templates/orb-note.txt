@@ -7,6 +7,6 @@
 :PROPERTIES:
 :Custom_ID: %^{citekey}
 :AUTHOR: %^{author}
-:NOTER_DOCUMENT: %(orb-process-file-field "%^{citekey}")
+:NOTER_DOCUMENT: ${file}
 :NOTER_PAGE:
 :END:
