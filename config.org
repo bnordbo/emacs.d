@@ -68,6 +68,18 @@ This section is for testing out new configurations.
 ;(setq frame-title-format '((:eval (projectile-project-name))))
 #+end_src
 
+* Crux setup
+
+This adds a lot of nify utilities that I've been missing.
+
+#+begin_src emacs-lisp
+(use-package crux
+  :bind (("C-o" . crux-smart-open-line-above)
+         ("C-D" . crux-delete-file-and-buffer)
+         ("C-c d" . crux-duplicate-current-line-or-region)
+         ("C-c M-d" . crux-duplicate-and-comment-current-line-or-region)))
+#+end_src
+
 * Look and feel
 
 While I find dark themes more aesthetically pleasing, bright ones are more
