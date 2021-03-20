@@ -400,22 +400,22 @@ support is extremely limited, unfortunately.
    I gave up and reverted  to paredit.
 
 #+begin_src emacs-lisp
-  (use-package paredit)
+(use-package paredit)
 #+end_src
 
 #+begin_src emacs-lisp
-  (use-package rainbow-delimiters)
-  (use-package eldoc)
+(use-package rainbow-delimiters)
+(use-package eldoc)
 
-  (add-hook 'emacs-lisp-mode-hook
-            (lambda ()
-              (paredit-mode 1)
-              (rainbow-delimiters-mode 1)
-              (eldoc-mode 1)))
+(add-hook 'emacs-lisp-mode-hook
+          (lambda ()
+            (paredit-mode 1)
+            (rainbow-delimiters-mode 1)
+            (eldoc-mode 1)))
 
-  (org-babel-do-load-languages
-   'org-babel-load-languages
-   '((emacs-lisp . t)))
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((emacs-lisp . t)))
 #+end_src
 
 ** Clojure
@@ -688,8 +688,8 @@ is that I want /more/, but it's rather slow on big directory trees.
 
 #+begin_src emacs-lisp
 (use-package helm-org-rifle
-  :bind (("C-c r" . helm-org-rifle)
-         ("C-c R" . helm-org-rifle-agenda-files)))
+  :bind (("C-c r" . helm-org-rifle-agenda-files)
+         ("C-c R" . helm-org-rifle-org-directory)))
 #+end_src
 
 ** Some basic settings.
