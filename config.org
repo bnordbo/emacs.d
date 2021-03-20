@@ -75,18 +75,30 @@ This adds a lot of nify utilities that I've been missing.
 #+begin_src emacs-lisp
 (use-package crux
   :bind (("C-o" . crux-smart-open-line-above)
-         ("C-D" . crux-delete-file-and-buffer)
+         ("C-c C-D" . crux-delete-file-and-buffer)
          ("C-c d" . crux-duplicate-current-line-or-region)
          ("C-c M-d" . crux-duplicate-and-comment-current-line-or-region)))
 #+end_src
 
 * Look and feel
 
-While I find dark themes more aesthetically pleasing, bright ones are more
-ergonomic.
+Set up the themes to use, and make it switch automatically to the system
+appearence.
 
 #+begin_src emacs-lisp
 (use-package leuven-theme)
+
+(defvar default-light-theme 'leuven)
+(defvar default-dark-theme 'leuven-dark)
+
+(defun bn/apply-theme (appearance)
+  "Load theme, taking current system APPEARANCE into consideration."
+  (mapc #'disable-theme custom-enabled-themes)
+  (pcase appearance
+    ('light (load-theme default-light-theme t))
+    ('dark (load-theme default-dark-theme t))))
+
+(add-hook 'ns-system-appearance-change-functions #'bn/apply-theme)
 #+end_src
 
 Conserve space and reduce clutter.
@@ -629,7 +641,7 @@ Load the org-mode and do basic configuration:
         org-pretty-entities t
         org-modules '(ol-w3m ol-bibtex ol-docview ol-info ol-mhe)
         org-use-sub-superscript "{}")
-  (set-face-attribute 'org-code nil :inherit 'fixed-pitch))
+  (set-face-attribute 'org-code nil :inherit 'fixed-pitch)
   (set-face-attribute 'org-block  nil :inherit 'fixed-pitch)
   (set-face-attribute 'org-table nil :inherit 'fixed-pitch)
   (add-hook 'org-mode-hook #'auto-fill-mode 1))
