@@ -651,7 +651,11 @@ Load the org-mode and do basic configuration:
   (set-face-attribute 'org-code nil :inherit 'fixed-pitch)
   (set-face-attribute 'org-block  nil :inherit 'fixed-pitch)
   (set-face-attribute 'org-table nil :inherit 'fixed-pitch)
-  (add-hook 'org-mode-hook #'auto-fill-mode 1))
+  (add-hook 'org-mode-hook #'auto-fill-mode 1)
+  (add-hook 'org-mode-hook #'org-indent-mode 1)
+  (add-hook 'org-mode-hook #'electric-indent-local-mode -1)
+  (diminish 'buffer-face-mode)
+  (diminish 'org-indent-mode))
 #+end_src
 
 Set up fast selection for tags. Lots of them! Lowercase characters are for
