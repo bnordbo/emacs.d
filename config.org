@@ -115,11 +115,11 @@ I don't think I've ever had any use of seeing the minor modes in the mode line.
 This saves a lot of space that I can surely find some other use for.
 
 #+begin_src emacs-lisp
-(use-package minions
-  :config
-  (setq minions-mode-line-lighter ""
-        minions-mode-line-delimiters '("" . ""))
-  (minions-mode 1))
+;; (use-package minions
+;;   :config
+;;   (setq minions-mode-line-lighter ""
+;;         minions-mode-line-delimiters '("" . ""))
+;;   (minions-mode 1))
 #+end_src
 
 Run in full screen mode. On Mac this no longer creates a new desktop, but rather
@@ -179,8 +179,11 @@ Zoom mode allows me to continue using a three-way split when I disconnect the
 monitor. It mostly works great.
 
 #+begin_src emacs-lisp
-(zoom-mode 1)
-(setq zoom-size '(100 .  40))
+(use-package zoom
+  :diminish
+  :init (setq zoom-size '(100 .  40))
+  :config (zoom-mode 1))
+
 #+end_src
 
 No ugly line wrapping.
@@ -258,6 +261,7 @@ I want to treat CamelCase as separate words more often than not. Perhaps always.
 
 #+begin_src emacs-lisp
 (use-package subword
+  :diminish
   :config (global-subword-mode 1))
 #+end_src
 
@@ -384,7 +388,7 @@ support is extremely limited, unfortunately.
                             (setq tab-width 4)
                             (auto-highlight-symbol-mode 1)
                             (electric-pair-mode 1)
-                            (electric-indent-mode 1)
+                            (electric-indent-local-mode 1)
                             (subword-mode 1)
                             (yas-minor-mode 1)
                             (go-eldoc-setup))))
@@ -400,12 +404,14 @@ support is extremely limited, unfortunately.
    I gave up and reverted  to paredit.
 
 #+begin_src emacs-lisp
-(use-package paredit)
+(use-package paredit
+  :diminish)
 #+end_src
 
 #+begin_src emacs-lisp
 (use-package rainbow-delimiters)
-(use-package eldoc)
+(use-package eldoc
+  :diminish)
 
 (add-hook 'emacs-lisp-mode-hook
           (lambda ()
@@ -493,19 +499,20 @@ support is extremely limited, unfortunately.
   (add-hook 'yaml-mode-hook
             (lambda ()
               (variable-pitch-mode -1)
-              (electric-indent-mode 1))))
+              (electric-indent-local-mode 1))))
 #+end_src
 
 ** Bazel
 
 #+begin_src emacs-lisp
-(add-to-list 'auto-mode-alist '("BUILD\\'" . bazel-mode))
+(add-to-list 'auto-mode-alist '("BUILD\\'" . bazel-build-mode))
 #+end_src
 
 * Helm
 
 #+begin_src emacs-lisp
 (use-package helm
+  :diminish
   :bind (("C-h" . nil)
          ("M-x" . helm-M-x)
          ("C-x b" . helm-buffers-list)
@@ -547,6 +554,7 @@ option.
 
 #+begin_src emacs-lisp
 (use-package which-key
+  :diminish
   :config
   (which-key-mode 1))
 #+end_src
@@ -950,6 +958,7 @@ notes in the org-roam directory.
 
 #+begin_src emacs-lisp
 (use-package org-roam-bibtex
+  :diminish
   :after org-roam
   :hook (org-roam-mode . org-roam-bibtex-mode)
   :init
