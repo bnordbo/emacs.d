@@ -105,6 +105,7 @@ Conserve space and reduce clutter.
 
 #+begin_src emacs-lisp
 (menu-bar-mode -1)
+(global-unset-key (kbd "M-`"))
 (if (fboundp 'tool-bar-mode)
     (tool-bar-mode -1))
 (if (fboundp 'scroll-bar-mode)
