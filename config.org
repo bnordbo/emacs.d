@@ -60,6 +60,15 @@ Start emacs-server for integrating neatly with the shell.
 This section is for testing out new configurations.
 
 #+begin_src emacs-lisp
+(global-hl-line-mode 1)
+(use-package boon
+  :config (require 'boon-colemak))
+(use-package diminish
+  :config
+  (diminish 'auto-fill-mode)
+  (diminish 'auto-fill-function))
+(use-package powerline
+  :config (powerline-default-theme))
 (use-package 0xc)
 (use-package swiper)
 (use-package kubel)
