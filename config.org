@@ -825,6 +825,15 @@ dubbed "review".
           ,bn/org-agenda--active-projects))))
 #+end_src
 
+While org-ql is really powerful and pleasant to use, I'm not sure how it fits
+into my workflow yet, except for one-off searches. Maybe I could/should use it
+to build the nice and useful agenda view I've been dreaming off lately..?
+
+#+begin_src emacs-lisp
+(use-package org-ql
+  :after helm-org)
+#+end_src
+
 ** Capture and refile
 
 Capture templates. NEXT is used for tasks I can start working on right away,
