@@ -72,9 +72,6 @@ This section is for testing out new configurations.
 (use-package 0xc)
 (use-package swiper)
 (use-package kubel)
-;(setq org-adapt-indentation nil)
-; "Breaks" if projectile is not loaded
-;(setq frame-title-format '((:eval (projectile-project-name))))
 #+end_src
 
 * Crux setup
