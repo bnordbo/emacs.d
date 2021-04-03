@@ -645,13 +645,15 @@ Load the org-mode and do basic configuration:
          ("C-c c" . org-capture)
          ("C-c l" . org-store-link)
          ("C-c C-x C-j" . org-clock-goto)
+         ("C-. o j" . org-clock-goto)
+         ("C-. o o" . org-clock-out)
          :map org-mode-map
          ("C-c t" . org-todo)
          ("C-c M-p" . org-move-subtree-up)
          ("C-c M-n" . org-move-subtree-down)
          ("C-<tab>" . nil)
          ("M-h" . nil))
-  :config
+  :init
   (setq org-edit-src-content-indentation 0
         org-src-fontify-natively t
         org-src-tab-acts-natively t
