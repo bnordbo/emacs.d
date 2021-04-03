@@ -589,12 +589,6 @@ Bind a few useful functions.
 (global-set-key (kbd "C-x C-<SPC>") 'just-one-space)
 #+end_src
 
-This allows quickly jumping to words in a buffer.  Awsum!
-
-#+begin_src emacs-lisp
-(global-set-key (kbd "C-M-j") 'ace-jump-mode)
-#+end_src
-
 I still consider this a bit of an experiment...
 
 #+begin_src emacs-lisp
@@ -664,13 +658,14 @@ Load the org-mode and do basic configuration:
         org-clock-out-when-done t
         org-pretty-entities t
         org-modules '(ol-w3m ol-bibtex ol-docview ol-info ol-mhe)
-        org-use-sub-superscript "{}")
+        org-use-sub-superscripts "{}")
   (set-face-attribute 'org-code nil :inherit 'fixed-pitch)
   (set-face-attribute 'org-block  nil :inherit 'fixed-pitch)
   (set-face-attribute 'org-table nil :inherit 'fixed-pitch)
   (add-hook 'org-mode-hook #'auto-fill-mode 1)
   (add-hook 'org-mode-hook #'org-indent-mode 1)
   (add-hook 'org-mode-hook #'electric-indent-local-mode -1)
+  :config
   (diminish 'buffer-face-mode)
   (diminish 'org-indent-mode))
 #+end_src
@@ -766,6 +761,17 @@ Exporting to Slack allows me to edit the message in e.g. an org-mode note.
 (use-package org-superstar
   :init
   (add-hook 'org-mode-hook 'org-superstar-mode))
+#+end_src
+
+** Extras
+
+Support for pasting and dropping images. Setting ~org-image-actual-width~ to
+~nil~ allows specifying e.g. ~#+org_attr: :width 600~ to limit the width of the
+image, otherwise they sometimes appear very wide.
+
+#+begin_src emacs-lisp
+(use-package org-download
+  :init  (setq org-image-actual-width nil))
 #+end_src
 
 ** Pomodoro
