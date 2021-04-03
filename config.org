@@ -316,6 +316,15 @@ In some cases, like YAML, indentation guides is a must.
         highlight-indent-guides-bitmap-function 'highlight-indent-guides--bitmap-line))
 #+end_src
 
+I used to use ace, but it would sometimes be very slow. In general I wonder if
+maybe isearch is actually a better approach. Simpler, more flexible, and mostly
+as quick.
+
+#+begin_src emacs-lisp
+(use-package avy
+  :bind ("C-M-j" . 'avy-goto-char))
+#+end_src
+
 * Integrations
 
 I often switch from Emacs to searh  for stuff.  Let's put an end to that!
