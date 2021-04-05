@@ -720,12 +720,12 @@ is that I want /more/, but it's rather slow on big directory trees.
 
    I keep most of the stuff in my stuff repository. For now fleeting notes are
    recorded in an Inbox, which is a relic from an older GTD structure. Items are
-   archived in datetrees in the Archive directory.
+   archived in datetrees per file to retain context..
 
 #+begin_src emacs-lisp
-(setq org-directory "~/Repository"
-      org-default-notes-file "~/Repository/Inbox.org"
-      org-archive-location "Archive/closed.org_archive::datetree/"
+(setq org-directory "~/Repository/Org"
+      org-default-notes-file "~/Repository/Org/Inbox.org"
+      org-archive-location "%s_archive::datetree/"
       org-stuck-projects '("/+PROJ" ("NEXT" "TODO") ("@buy") "")
       org-agenda-restore-windows-after-quit t
       org-agenda-window-setup 'current-window
@@ -793,7 +793,7 @@ be thrown into an address book as an afterthought.
 (use-package org-contacts
    :ensure nil
    :after org
-   :custom (org-contacts-files '("~/Repository/People/Contacts.org")))
+   :custom (org-contacts-files '("~/Repository/Org/People.org")))
 #+end_src
 
 ** Bookmarks
@@ -815,11 +815,8 @@ tasks from:
    
 #+begin_src emacs-lisp
 (setq org-agenda-files
-      (append
-       `("~/.emacs.d/calendars"
-         "~/Repository"
-         "~/Interests"
-         ,@(bn/agenda-files-recursively "~/Roles"))))
+      (append`("~/Repository/Org"
+               "~/.emacs.d/calendars")))
 #+end_src
 
 The agenda has views for the inbox, all my next actions, and all my projects.
@@ -830,14 +827,21 @@ dubbed "review".
 (setq org-agenda-custom-commands
       `(("i" "Inbox"
          ((todo "NEXT"
-                ((org-agenda-files (list "~/Repository/Inbox.org"))))))
+                ((org-agenda-files (list "~/Repository/Org/Inbox.org"))))))
         ("n" "Next actions" todo "NEXT")
-        ("p" "Projects" todo "PROJ")
-        ("r" "Review"
+        ("pa" "Projects" todo "PROJ")
+        ("pw" "Projects/WG2" tags-todo "+TODO=\"PROJ\"+wg2")
+         ("r" "Review"
          ((agenda)
           (todo "PROJ"
                 ((org-agenda-overriding-header "Active projects:")))
           ,bn/org-agenda--active-projects))))
+#+end_src
+
+Start agenda on the current day rather than the first day of the week.
+
+#+begin_src emacs-lisp
+(setq org-agenda-start-on-weekday nil)
 #+end_src
 
 While org-ql is really powerful and pleasant to use, I'm not sure how it fits
