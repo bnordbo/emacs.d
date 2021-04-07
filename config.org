@@ -579,7 +579,12 @@ perhaps overdoing it since I usually have no more than three buffers.
 #+begin_src emacs-lisp
 (global-set-key (kbd "C-<tab>")   'other-window)
 (global-set-key (kbd "C-S-<tab>") 'bn/other-window-back)
-(global-set-key (kbd "C-c m") 'bn/next-line-and-indent)
+#+end_src
+
+Other window manipulation commands, ~C-c w~ prefix.
+
+#+begin_src emacs-lisp
+(global-set-key (kbd "C-c w s") 'window-swap-states)
 #+end_src
 
 Bind a few useful functions.
