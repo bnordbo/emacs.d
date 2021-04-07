@@ -777,7 +777,9 @@ image, otherwise they sometimes appear very wide.
 
 #+begin_src emacs-lisp
 (use-package org-download
-  :init  (setq org-image-actual-width nil))
+  :init
+  (setq org-image-actual-width nil
+        org-download-image-dir "~/Repository/Org/Images"))
 #+end_src
 
 ** Pomodoro
