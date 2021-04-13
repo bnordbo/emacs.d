@@ -1,4 +1,24 @@
 * Basic initialisation
+** Performance
+
+Time the startup.
+
+#+begin_src emacs-lisp
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            (message "Emacs ready in %s with %d garbage collections."
+                     (format "%.2f seconds"
+                             (float-time
+                              (time-subtract after-init-time before-init-time)))
+                     gcs-done)))
+#+end_src
+
+Increase GC threshold during startup.
+
+#+begin_src emacs-lisp
+(setq gc-cons-threshold (* 50 1000 1000))
+#+end_src
+
 ** Load extra files
 
 Load various add-on functionality.
@@ -22,8 +42,9 @@ used.
 
 #+begin_src emacs-lisp
 (use-package auto-compile
+  :defer t
+  :init (setq load-prefer-newer t)
   :config (auto-compile-on-load-mode))
-(setq load-prefer-newer t)
 #+end_src
 
 ** General setup
@@ -60,18 +81,35 @@ Start emacs-server for integrating neatly with the shell.
 This section is for testing out new configurations.
 
 #+begin_src emacs-lisp
+(use-package dumb-jump
+  :defer 1
+  :config
+  (add-hook 'xref-backend-functions #'dumb-jump-xref-activate))
+
+(use-package org-bookmark-heading
+  :defer t)
+(use-package free-keys
+  :defer t)
 (global-hl-line-mode 1)
 (use-package boon
-  :config (require 'boon-colemak))
+  :defer t
+  :config
+  (require 'boon-colemak)
+  (define-key boon-x-map "x" 'helm-M-x))
 (use-package diminish
+  :defer t
   :config
   (diminish 'auto-fill-mode)
   (diminish 'auto-fill-function))
 (use-package powerline
+  :defer t
   :config (powerline-default-theme))
-(use-package 0xc)
-(use-package swiper)
-(use-package kubel)
+(use-package 0xc
+  :defer t)
+(use-package swiper
+  :defer t)
+(use-package kubel
+   :defer 5)
 #+end_src
 
 * Crux setup
@@ -80,6 +118,7 @@ This adds a lot of nify utilities that I've been missing.
 
 #+begin_src emacs-lisp
 (use-package crux
+  :defer t
   :bind (("C-o" . crux-smart-open-line-above)
          ("C-c C-D" . crux-delete-file-and-buffer)
          ("C-c d" . crux-duplicate-current-line-or-region)
@@ -187,6 +226,7 @@ monitor. It mostly works great.
 
 #+begin_src emacs-lisp
 (use-package zoom
+  :defer t
   :diminish
   :init (setq zoom-size '(100 .  40))
   :config (zoom-mode 1))
@@ -268,12 +308,14 @@ I want to treat CamelCase as separate words more often than not. Perhaps always.
 
 #+begin_src emacs-lisp
 (use-package subword
+  :defer t
   :diminish
   :config (global-subword-mode 1))
 #+end_src
 
 #+begin_src emacs-lisp
-(use-package multiple-cursors)
+(use-package multiple-cursors
+    :defer 5)
 #+end_src
 
 Try to keep the whitespace under control. The whitespace butler seems to work
@@ -310,6 +352,7 @@ In some cases, like YAML, indentation guides is a must.
 
 #+begin_src emacs-lisp
 (use-package highlight-indent-guides
+  :defer t
   :hook (yaml-mode . highlight-indent-guides-mode)
   :init
   (setq highlight-indent-guides-method 'bitmap
@@ -322,6 +365,7 @@ as quick.
 
 #+begin_src emacs-lisp
 (use-package avy
+  :defer t
   :bind ("C-M-j" . 'avy-goto-char))
 #+end_src
 
@@ -330,7 +374,8 @@ as quick.
 I often switch from Emacs to searh  for stuff.  Let's put an end to that!
 
 #+begin_src emacs-lisp
-(use-package ripgrep)
+(use-package ripgrep
+  :defer 5)
 #+end_src
 
 Use projectile. This is quite neat in normal projects, but it's struggling in
@@ -338,6 +383,7 @@ big monorepos. Hmm.
 
 #+begin_src emacs-lisp
 (use-package projectile
+  :defer t
   :bind (("C-c p" . projectile-command-map)))
 #+end_src
 
@@ -345,8 +391,8 @@ It seems I'm practically living inside Emacs these days, so I might as well use
 it as an entry-point for various web searches.
 
 #+begin_src emacs-lisp
-(use-package engine-mode)
-(engine-mode 1)
+(use-package engine-mode
+    :defer t)
 
 (defengine duckduckgo
   "https://www.duckduckgo.com/?q=%s"
@@ -371,6 +417,7 @@ have it pick up all the feeds based on tags, but that seems a bit extreme...
 
 #+begin_src emacs-lisp
 (use-package elfeed-org
+  :defer t
   :init
   (setq rmh-elfeed-org-files (list "~/.emacs.d/elfeed.org"))
   :config
@@ -391,10 +438,11 @@ This sets up Go mode with some basic support.  The jump to definition
 support is extremely limited, unfortunately.
 
 #+begin_src emacs-lisp
-(use-package go-eldoc)
+(use-package go-eldoc
+  :defer t)
 
 (use-package go-mode
-  :bind (("M-." . godef-jump))
+  :defer t
   :hook (before-save . gofmt-before-save)
   :init
   (exec-path-from-shell-copy-env "GOPATH")
@@ -406,12 +454,12 @@ support is extremely limited, unfortunately.
                             (electric-pair-mode 1)
                             (electric-indent-local-mode 1)
                             (subword-mode 1)
-                            (yas-minor-mode 1)
                             (go-eldoc-setup))))
 
-(use-package go-add-tags)
-(use-package go-fill-struct)
-(use-package go-playground)
+(use-package go-fill-struct
+  :defer t)
+(use-package go-playground
+  :defer 5)
 #+end_src
 
 ** Elisp
@@ -421,12 +469,15 @@ support is extremely limited, unfortunately.
 
 #+begin_src emacs-lisp
 (use-package paredit
+  :defer 5
   :diminish)
 #+end_src
 
 #+begin_src emacs-lisp
-(use-package rainbow-delimiters)
+(use-package rainbow-delimiters
+  :defer t)
 (use-package eldoc
+  :defer t
   :diminish)
 
 (add-hook 'emacs-lisp-mode-hook
@@ -438,13 +489,6 @@ support is extremely limited, unfortunately.
 (org-babel-do-load-languages
  'org-babel-load-languages
  '((emacs-lisp . t)))
-#+end_src
-
-** Clojure
-
-#+begin_src emacs-lisp
-(use-package cider
-  :ensure t)
 #+end_src
 
 ** Shell
@@ -462,13 +506,15 @@ support is extremely limited, unfortunately.
 
 #+begin_src emacs-lisp
 (use-package graphviz-dot-mode
+  :defer t
   :init (setq graphviz-dot-view-command "xdot %s"))
 #+end_src
 
 ** Haskell
 
 #+begin_src emacs-lisp
-(use-package haskell-mode)
+(use-package haskell-mode
+  :defer t)
 
 (add-hook 'haskell-mode-hook
           (lambda ()
@@ -480,7 +526,8 @@ support is extremely limited, unfortunately.
 ** Rust
 
 #+begin_src emacs-lisp
-(use-package rust-mode)
+(use-package rust-mode
+  :defer t)
 
 (setq racer-cmd "~/bin/racer"
       racer-rust-src-path "~/src/thirdparty/rust/src"
@@ -501,6 +548,7 @@ support is extremely limited, unfortunately.
 
 #+begin_src emacs-lisp
 (use-package markdown-mode
+  :defer t
   :config
   (setq markdown-open-command "~/bin/mark")
   (set-face-attribute 'markdown-table-face nil :inherit 'fixed-pitch)
@@ -511,11 +559,18 @@ support is extremely limited, unfortunately.
 
 #+begin_src emacs-lisp
 (use-package yaml-mode
+  :defer t
   :config
   (add-hook 'yaml-mode-hook
             (lambda ()
               (variable-pitch-mode -1)
               (electric-indent-local-mode 1))))
+#+end_src
+
+** XML
+
+#+begin_src emacs-lisp
+;;(set-face-attribute 'nxml-element-local-name nil :inherit 'fixed-pitch)
 #+end_src
 
 ** Bazel
@@ -528,6 +583,7 @@ support is extremely limited, unfortunately.
 
 #+begin_src emacs-lisp
 (use-package helm
+  :defer t
   :diminish
   :bind (("C-h" . nil)
          ("M-x" . helm-M-x)
@@ -542,6 +598,7 @@ support is extremely limited, unfortunately.
 
 #+begin_src emacs-lisp
 (use-package helm-descbinds
+  :defer t
   :after helm
   :config
   (helm-descbinds-mode 1))
@@ -551,12 +608,15 @@ Using Helm for projectile is great, but for some reason it barfs if I do not
 bind "C-c" first.
 
 #+begin_src emacs-lisp
-(define-key global-map (kbd "C-c") (make-sparse-keymap))
+(global-set-key (kbd "C-c") (make-sparse-keymap))
 (use-package helm-projectile
+  :defer t
   :bind ("C-c p h" . helm-projectile))
 #+end_src
 
 * Key bindings
+
+** General settings
 
 On Mac, map the command key to meta and keep the normal behaviour of
 option.
@@ -566,12 +626,18 @@ option.
       mac-option-modifier nil)
 #+end_src
 
+This pops up a list of possible next keys in the minibuffer. It's incredibly
+useful.
+
 #+begin_src emacs-lisp
 (use-package which-key
+  :defer t
   :diminish
   :config
   (which-key-mode 1))
 #+end_src
+
+** New bindings
 
 I picked up C-TAB switcing from Eclipse way back.  The reverse one is
 perhaps overdoing it since I usually have no more than three buffers.
@@ -587,38 +653,32 @@ Other window manipulation commands, ~C-c w~ prefix.
 (global-set-key (kbd "C-c w s") 'window-swap-states)
 #+end_src
 
-Bind a few useful functions.
+Text manipulation commants, ~C-c t~ prefix.
 
 #+begin_src emacs-lisp
-(global-set-key (kbd "C-x \\")	    'align-regexp)
-(global-set-key (kbd "C-x C-<SPC>") 'just-one-space)
-#+end_src
-
-I still consider this a bit of an experiment...
-
-#+begin_src emacs-lisp
-(global-set-key (kbd "C-?") 'help-command)
-; Find another key for this.
-;(global-set-key (kbd "M-?") 'mark-paragraph)
-(global-set-key (kbd "C-h") 'delete-backward-char)
-(global-set-key (kbd "M-h") 'backward-kill-word)
+(global-set-key (kbd "C-c t \\") 'align-regexp)
+(global-set-key (kbd "C-c t <SPC>") 'just-one-space)
 #+end_src
 
 The ability  to move to the next/prev occurence of the current symbol
 is something I missed after using IntelliJ for a while.
 
 #+begin_src emacs-lisp
-(load-library "auto-highlight-symbol")
-(define-key auto-highlight-symbol-mode-map (kbd "M-p") 'ahs-backward)
-(define-key auto-highlight-symbol-mode-map (kbd "M-n") 'ahs-forward)
+(use-package auto-highlight-symbol
+  :defer t
+  :diminish
+  :bind (("M-p" . ahs-backward)
+         ("M-n" . 'ahs-forward)))
 #+end_src
 
 Interactive regular expressions because I find it tricky to remember
 the Emacs syntax for these.
 
 #+begin_src emacs-lisp
-(define-key global-map (kbd "C-c C-r") 'vr/replace)
-(define-key global-map (kbd "C-c q") 'vr/query-replace)
+(use-package visual-regexp
+  :defer t
+  :bind (("C-c C-r" . 'vr/replace)
+         ("C-c q" . 'vr/query-replace)))
 #+end_src
 
 I tend to think snippets are kind of silly (why would you keep typing
@@ -628,6 +688,25 @@ the same thing?), but with Go it becomes useful...
 (global-set-key (kbd "C-c y") 'helm-yas-complete)
 #+end_src
 
+** Rebindings
+
+More powerful expansion.
+
+#+begin_src emacs-lisp
+(global-set-key (kbd "M-/") 'hippie-expand)
+#+end_src
+
+Rebind ~C-h~, and use it for deleting backwards. I still consider this a bit of
+an experiment...
+
+#+begin_src emacs-lisp
+(global-set-key (kbd "C-?") 'help-command)
+(global-set-key (kbd "C-h") 'delete-backward-char)
+(global-set-key (kbd "M-h") 'backward-kill-word)
+#+end_src
+
+
+
 * Org mode
 
 Load the org-mode and do basic configuration:
@@ -636,9 +715,9 @@ Load the org-mode and do basic configuration:
 - Clear some local keybindings that gets in the way.
 - Also switch on auto-fill-mode in order to make prose easier to write.
 - Ensure tables and blocks are still in monospace.
-
 #+begin_src emacs-lisp
 (use-package org
+  :defer t
   :after diminish
   :ensure org-plus-contrib
   :bind (("C-c a" . org-agenda)
@@ -670,7 +749,7 @@ Load the org-mode and do basic configuration:
   (add-hook 'org-mode-hook #'electric-indent-local-mode -1)
   :config
   (set-face-attribute 'org-code nil :inherit 'fixed-pitch)
-  (set-face-attribute 'org-block  nil :inherit 'fixed-pitch)
+  (set-face-attribute 'org-block nil :inherit 'fixed-pitch)
   (set-face-attribute 'org-table nil :inherit 'fixed-pitch)
   (diminish 'buffer-face-mode)
   (diminish 'org-indent-mode))
@@ -717,6 +796,7 @@ is that I want /more/, but it's rather slow on big directory trees.
 
 #+begin_src emacs-lisp
 (use-package helm-org-rifle
+  :defer t
   :bind (("C-c r" . helm-org-rifle-agenda-files)
          ("C-c R" . helm-org-rifle-org-directory)))
 #+end_src
@@ -760,11 +840,13 @@ and "E" are taken, it will have to live under "m".
 Exporting to Slack allows me to edit the message in e.g. an org-mode note.
 
 #+begin_src emacs-lisp
-(use-package ox-slack)
+(use-package ox-slack
+  :defer 10)
 #+end_src
 
 #+begin_src emacs-lisp
 (use-package org-superstar
+  :defer t
   :init
   (add-hook 'org-mode-hook 'org-superstar-mode))
 #+end_src
@@ -777,6 +859,7 @@ image, otherwise they sometimes appear very wide.
 
 #+begin_src emacs-lisp
 (use-package org-download
+  :defer 5
   :init
   (setq org-image-actual-width nil
         org-download-image-dir "~/Repository/Org/Images"))
@@ -786,6 +869,7 @@ image, otherwise they sometimes appear very wide.
 
 #+begin_src emacs-lisp
 (use-package org-pomodoro
+  :defer t
   :init (setq org-pomodoro-length 20))
 #+end_src
 
@@ -798,15 +882,16 @@ be thrown into an address book as an afterthought.
 
 #+begin_src emacs-lisp
 (use-package org-contacts
-   :ensure nil
-   :after org
-   :custom (org-contacts-files '("~/Repository/Org/People.org")))
+  :ensure nil
+  :after org
+  :custom (org-contacts-files '("~/Repository/Org/People.org")))
 #+end_src
 
 ** Bookmarks
 
 #+begin_src emacs-lisp
 (use-package org-cliplink
+  :defer t
   :bind (:map org-mode-map
               ("C-c L" . org-cliplink)))
 #+end_src
@@ -857,6 +942,7 @@ to build the nice and useful agenda view I've been dreaming off lately..?
 
 #+begin_src emacs-lisp
 (use-package org-ql
+  :defer t
   :after helm-org)
 #+end_src
 
@@ -919,6 +1005,7 @@ level one.
 
 #+begin_src emacs-lisp
 (use-package org-roam
+  :defer t
   :diminish
   :ensure t
   :bind (("C-c n f" . org-roam-find-file)
@@ -942,6 +1029,7 @@ level one.
 
 #+begin_src emacs-lisp
 (use-package org-journal
+  :defer t
   :bind
   ("C-c n j" . org-journal-new-entry)
   :init
@@ -978,6 +1066,7 @@ notes and so on.
 
 #+begin_src emacs-lisp
 (use-package helm-bibtex
+  :defer t
   :init
   (setq bibtex-completion-bibliography zot-bib
         bibtex-completion-library-path "~/Repository/Bibliography/bibtex-pdfs"
@@ -993,6 +1082,7 @@ behind helm-bibtex and org-roam-bibtex.
 
 #+begin_src emacs-lisp
 (use-package org-ref
+  :defer t
   :init
   (setq org-ref-default-bibliography (list zot-bib)
         org-ref-pdf-directory "~/Repository/Bibliography/bibtex-pdfs/"
@@ -1006,6 +1096,7 @@ notes in the org-roam directory.
 
 #+begin_src emacs-lisp
 (use-package org-roam-bibtex
+  :defer t
   :diminish
   :after org-roam
   :hook (org-roam-mode . org-roam-bibtex-mode)
@@ -1024,6 +1115,7 @@ notes in the org-roam directory.
          (("C-c n a" . orb-note-actions))))
 
 (use-package org-noter
+  :defer t
   :after (org pdf-view nov)
   :bind (:map org-noter-doc-mode-map
          (("M-i" . zp/org-noter-insert-precise-note-dwim)))
@@ -1035,18 +1127,22 @@ notes in the org-roam directory.
 
 ;; Move these to a separate "Media" section
 (use-package pdf-tools
+  :defer t
   :mode ("\\.pdf\\'" . pdf-view-mode)
   :demand
   :config
   (pdf-tools-install :no-query))
 
 (use-package org-pdftools
+  :defer t
   :hook (org-load . org-pdftools-setup-link))
 
 (use-package nov
+  :defer t
   :mode ("\\.\\(epub\\|mobi\\)\\'" . nov-mode))
 
 (use-package org-noter-pdftools
+  :defer t
   :after org-noter
   :config
   (with-eval-after-load 'pdf-annot
@@ -1060,6 +1156,7 @@ buffers.
 
 #+begin_src emacs-lisp
 (use-package magit
+  :defer t
   :bind (("C-x g" . magit)
          :map magit-mode-map
          ("C-<tab>" . nil))
@@ -1071,6 +1168,7 @@ huge monorepo at work, but reducing the topic list limit seems to help.
 
 #+begin_src emacs-lisp
 (use-package forge
+  :defer t
   :after magit
   :init
   (setq forge-topic-list-limit '(30 .  3)))
@@ -1081,7 +1179,14 @@ buffer margin.
 
 #+begin_src emacs-lisp
 (use-package diff-hl
+  :defer t
   :config
   (add-hook 'prog-mode-hook 'turn-on-diff-hl-mode)
   (add-hook 'vc-dir-mode-hook 'turn-on-diff-hl-mode))
+#+end_src
+
+Finally, reduce the GC threshold a bit to make the user experience better.
+
+#+begin_src emacs-lisp
+(setq gc-cons-threshold (* 2 1000 1000))
 #+end_src
