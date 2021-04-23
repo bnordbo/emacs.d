@@ -141,7 +141,15 @@ appearence.
   (mapc #'disable-theme custom-enabled-themes)
   (pcase appearance
     ('light (load-theme default-light-theme t))
-    ('dark (load-theme default-dark-theme t))))
+    ('dark (load-theme default-dark-theme t)))
+  ; Gets reset after loading themes for some reason.
+  (bn/adjust-face-attributes))
+
+(defun bn/adjust-face-attributes ()
+  (set-face-attribute 'markdown-table-face nil :inherit 'fixed-pitch)
+  (set-face-attribute 'org-code nil :inherit 'fixed-pitch)
+  (set-face-attribute 'org-block nil :inherit 'fixed-pitch)
+  (set-face-attribute 'org-table nil :inherit 'fixed-pitch))
 
 (add-hook 'ns-system-appearance-change-functions #'bn/apply-theme)
 #+end_src
@@ -551,7 +559,6 @@ support is extremely limited, unfortunately.
   :defer t
   :config
   (setq markdown-open-command "~/bin/mark")
-  (set-face-attribute 'markdown-table-face nil :inherit 'fixed-pitch)
   (add-hook 'markdown-mode-hook (lambda () (visual-line-mode 1))))
 #+end_src
 
@@ -748,9 +755,6 @@ Load the org-mode and do basic configuration:
   (add-hook 'org-mode-hook #'org-indent-mode 1)
   (add-hook 'org-mode-hook #'electric-indent-local-mode -1)
   :config
-  (set-face-attribute 'org-code nil :inherit 'fixed-pitch)
-  (set-face-attribute 'org-block nil :inherit 'fixed-pitch)
-  (set-face-attribute 'org-table nil :inherit 'fixed-pitch)
   (diminish 'buffer-face-mode)
   (diminish 'org-indent-mode))
 #+end_src
