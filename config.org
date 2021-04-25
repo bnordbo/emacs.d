@@ -441,6 +441,15 @@ Pick up authentication info.
 
 * Programming language support
 
+This works surprisingly well for navigating code, even in big monorepos.
+  
+#+begin_src emacs-lisp
+(use-package dumb-jump
+  :defer 1
+  :config
+  (add-hook 'xref-backend-functions #'dumb-jump-xref-activate))
+#+end_src
+  
 ** Go
 
 This sets up Go mode with some basic support.  The jump to definition
