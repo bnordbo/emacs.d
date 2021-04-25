@@ -82,7 +82,6 @@ This section is for testing out new configurations.
 
 #+begin_src emacs-lisp
 (use-package ox-reveal
-  :ensure t
   :init (setq org-reveal-root "https://cdn.jsdelivr.net/npm/reveal.js"))
 
 (use-package free-keys
@@ -343,7 +342,6 @@ using this for a while, and it seems to work.
 
 #+begin_src emacs-lisp
 (use-package exec-path-from-shell
-  :ensure t
   :config (exec-path-from-shell-initialize))
 #+end_src
 
@@ -441,6 +439,24 @@ Pick up authentication info.
 
 #+begin_src emacs-lisp
 (setq auth-sources '("~/.authinfo"))
+#+end_src
+
+In practice I hardly ever answer anything but yes.
+
+#+begin_src emacs-lisp
+(setq confirm-kill-processes nil)
+#+end_src
+
+** Eshell
+
+I have a somewhat troubled relationship with eshell. On one side it's quite neat
+and convenient, ong the other hand it too frequently falls apart and I have to
+switch to a terminal.
+
+#+begin_src emacs-lisp
+(use-package eshell
+  :defer t
+  :bind (("C-c h" . helm-eshell-prompts)))
 #+end_src
 
 * Programming language support
@@ -629,8 +645,7 @@ Using Helm for projectile is great, but for some reason it barfs if I do not
 bind "C-c" first.
 
 #+begin_src emacs-lisp
-(use-package helm-projectile
-  :ensure t)
+(use-package helm-projectile)
 #+end_src
 
 * Key bindings
@@ -650,7 +665,6 @@ useful.
 
 #+begin_src emacs-lisp
 (use-package which-key
-  :ensure t
   :diminish
   :config
   (which-key-mode 1))
@@ -890,8 +904,7 @@ image, otherwise they sometimes appear very wide.
 This allows bookmarking org headings using ~C-x r m~.
 
 #+begin_src emacs-lisp
-(use-package org-bookmark-heading
-  :ensure t)
+(use-package org-bookmark-heading)
 #+end_src
 
 ** Pomodoro
@@ -911,7 +924,6 @@ be thrown into an address book as an afterthought.
 
 #+begin_src emacs-lisp
 (use-package org-contacts
-  :ensure nil
   :after org
   :custom (org-contacts-files '("~/Repository/Org/People.org")))
 #+end_src
@@ -1055,7 +1067,6 @@ Fleeting notes, i.e. notes that are not connected to a particular project.
 (use-package org-roam
   :defer t
   :diminish
-  :ensure t
   :bind (("C-c n f" . org-roam-find-file)
          :map org-roam-mode-map
          (("C-c n l" . org-roam)
@@ -1209,7 +1220,6 @@ buffer margin.
 
 #+begin_src emacs-lisp
 (use-package diff-hl
-  :ensure t
   :config
   (add-hook 'prog-mode-hook 'turn-on-diff-hl-mode)
   (add-hook 'vc-dir-mode-hook 'turn-on-diff-hl-mode))
