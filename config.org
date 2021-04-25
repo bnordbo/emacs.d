@@ -378,6 +378,12 @@ as quick.
   :bind ("C-M-j" . 'avy-goto-char))
 #+end_src
 
+Seeing the real width  of the cursor is sometimes useful (e.g. tabs).
+
+#+begin_src emacs-lisp
+(setq x-stretch-cursor t)
+#+end_src
+
 * Integrations
 
 I often switch from Emacs to searh  for stuff.  Let's put an end to that!
