@@ -469,7 +469,7 @@ support is extremely limited, unfortunately.
   (add-hook 'go-mode-hook (lambda ()
                             (setq tab-width 4)
                             (auto-highlight-symbol-mode 1)
-                            (electric-pair-mode 1)
+                            (electric-pair-local-mode 1)
                             (electric-indent-local-mode 1)
                             (subword-mode 1)
                             (go-eldoc-setup))))
