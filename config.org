@@ -81,13 +81,10 @@ Start emacs-server for integrating neatly with the shell.
 This section is for testing out new configurations.
 
 #+begin_src emacs-lisp
-(use-package dumb-jump
-  :defer 1
-  :config
-  (add-hook 'xref-backend-functions #'dumb-jump-xref-activate))
+(use-package ox-reveal
+  :ensure t
+  :init (setq org-reveal-root "https://cdn.jsdelivr.net/npm/reveal.js"))
 
-(use-package org-bookmark-heading
-  :defer t)
 (use-package free-keys
   :defer t)
 (global-hl-line-mode 1)
@@ -888,6 +885,13 @@ image, otherwise they sometimes appear very wide.
   :init
   (setq org-image-actual-width nil
         org-download-image-dir "~/Repository/Org/Images"))
+#+end_src
+
+This allows bookmarking org headings using ~C-x r m~.
+
+#+begin_src emacs-lisp
+(use-package org-bookmark-heading
+  :ensure t)
 #+end_src
 
 ** Pomodoro
