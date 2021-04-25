@@ -925,8 +925,8 @@ tasks from:
    
 #+begin_src emacs-lisp
 (setq org-agenda-files
-      (append`("~/Repository/Org"
-               "~/.emacs.d/calendars")))
+      (append `("~/Repository/Org"
+                "~/.emacs.d/calendars")))
 #+end_src
 
 The agenda has views for the inbox, all my next actions, and all my projects.
