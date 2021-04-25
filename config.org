@@ -1016,6 +1016,25 @@ level one.
                            (org-agenda-files :maxlevel . 2)))
 #+end_src
 
+** Journal
+
+Fleeting notes, i.e. notes that are not connected to a particular project.
+
+#+begin_src emacs-lisp
+(use-package org-journal
+  :defer t
+  :bind
+  ("C-c n j" . org-journal-new-entry)
+  :init
+  (setq org-journal-file-type 'weekly
+        org-journal-dir "~/Repository/Journal"
+        org-journal-date-prefix "* "
+        org-journal-file-header "#+title: %Y journal, week %V\n"
+        org-journal-file-format "%Y-%V.org"
+        org-journal-date-format "%A, %d %B %Y"
+        org-journal-carryover-items ""))
+ #+end_src   
+
 ** Roam
 
  Let's try to use the new Repository structure for org-roam. An alternative
@@ -1047,24 +1066,6 @@ level one.
   (make-directory org-roam-directory t)
   :config
   (setq org-roam-completion-system 'helm))
- #+end_src
-
- Also set up org-journal with org-roam for fleeting notes, i.e. notes
- that are not connected to a particular project.
-
-#+begin_src emacs-lisp
-(use-package org-journal
-  :defer t
-  :bind
-  ("C-c n j" . org-journal-new-entry)
-  :init
-  (setq org-journal-file-type 'weekly
-        org-journal-dir org-roam-directory
-        org-journal-date-prefix "* "
-        org-journal-file-header "#+title: %Y journal, week %V\n"
-        org-journal-file-format "%Y-%V.org"
-        org-journal-date-format "%A, %d %B %Y"
-        org-journal-carryover-items ""))
  #+end_src
  
 This is an attempt to set up org-roam-bibtex and friends in a way I understand.
