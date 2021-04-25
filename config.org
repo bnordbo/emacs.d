@@ -325,8 +325,11 @@ Try to keep the whitespace under control. The whitespace butler seems to work
 pretty well, but it needs an extra hook for org-capture for some reason.
 
 #+begin_src emacs-lisp
-(add-hook 'org-capture-mode-hook (lambda () (ws-butler-mode -1)))
-(setq require-final-newline t)
+(use-package ws-butler
+  :init
+  (setq require-final-newline t)
+  :config
+  (add-hook 'org-capture-mode-hook (lambda () (ws-butler-mode -1))))
 #+end_src
 
 Make regular expession alignment always use spaces and not tabs.
