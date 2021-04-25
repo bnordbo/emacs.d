@@ -70,9 +70,10 @@ Set location and time format for sunrise/sunset.
 Start emacs-server for integrating neatly with the shell.
 
 #+begin_src emacs-lisp
-(use-package server)
-(if (not (server-running-p))
-  (server-start))
+(use-package server
+  :config
+  (unless (server-running-p)
+    (server-start)))
 #+end_src
 
 * Experiments
