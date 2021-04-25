@@ -25,7 +25,6 @@ Load various add-on functionality.
 
 #+begin_src emacs-lisp
 (load-file "~/.emacs.d/elisp/bn.el")
-(load-file "~/.emacs.d/elisp/org-tags.el")
 #+end_src
 
 ** Configure package installation
