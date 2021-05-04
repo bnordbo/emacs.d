@@ -1028,9 +1028,10 @@ Fleeting notes, i.e. notes that are not connected to a particular project.
 
 #+begin_src emacs-lisp
 (use-package org-journal
-  :defer t
   :bind
-  ("C-c n j" . org-journal-new-entry)
+  (("C-c n j" . org-journal-new-entry)
+   (:map org-journal-mode-map
+         ("C-x C-s" . 'bn/org-journal-save-entry-and-exit)))
   :init
   (setq org-journal-file-type 'weekly
         org-journal-dir "~/Repository/Journal"
