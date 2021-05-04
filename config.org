@@ -885,11 +885,26 @@ This allows bookmarking org headings using ~C-x r m~.
 (use-package org-bookmark-heading)
 #+end_src
 
+** Exporting
+
+Don't prompt when evaluating ditaa code blocks.
+
+#+begin_src emacs-lisp
+(setq org-confirm-babel-evaluate (lambda (lang body)
+                                   (not (string= lang "ditaa"))))
+#+end_src
+
+Enable more languages.
+
+#+begin_src emacs-lisp
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((ditaa . t)))
+#+end_src
 ** Pomodoro
 
 #+begin_src emacs-lisp
 (use-package org-pomodoro
-  :defer t
   :init (setq org-pomodoro-length 20))
 #+end_src
 
