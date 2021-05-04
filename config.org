@@ -782,10 +782,7 @@ digits for contexts if clashes become a problem..
                       ("hard" . ?h)
                       (:newline)
                       ("@home" . ?H)
-                      ("@jessica" . ?J)
-                      ("@planning" . ?P)
-                      ("@standup" . ?S)
-                      ("@tlf" . ?T)))
+                      ("@standup" . ?S)))
 #+end_src
 
 Properties that should be set across the board.
