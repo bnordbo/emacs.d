@@ -441,11 +441,17 @@ switch to a terminal.
 
 #+begin_src emacs-lisp
 (use-package eshell
-  :defer t
   :bind (("C-c h" . helm-eshell-prompts)))
 #+end_src
 
 * Programming language support
+
+#+begin_src emacs-lisp
+(add-hook 'prog-mode-hook
+          (lambda ()
+            (electric-pair-local-mode 1)
+            (electric-indent-local-mode 1)))
+#+end_src
 
 This works surprisingly well for navigating code, even in big monorepos.
   
@@ -453,20 +459,24 @@ This works surprisingly well for navigating code, even in big monorepos.
 (use-package dumb-jump
   :defer 1
   :config
-  (add-hook 'xref-backend-functions #'dumb-jump-xref-activate))
+  (setq xref-backend-functions #'dumb-jump-xref-activate))
 #+end_src
-  
+
+** Erlang
+
+#+begin_src emacs-lisp
+(use-package erlang)
+#+end_src
+
 ** Go
 
 This sets up Go mode with some basic support.  The jump to definition
 support is extremely limited, unfortunately.
 
 #+begin_src emacs-lisp
-(use-package go-eldoc
-  :defer t)
+(use-package go-eldoc)
 
 (use-package go-mode
-  :defer t
   :hook (before-save . gofmt-before-save)
   :init
   (exec-path-from-shell-copy-env "GOPATH")
