@@ -157,9 +157,7 @@ This saves a lot of space that I can surely find some other use for.
 ;;   (minions-mode 1))
 #+end_src
 
-Run in full screen mode. On Mac this no longer creates a new desktop, but rather
-an undecorated, maximised frame. It's a bit funky, but I have not had time to
-look into it yet.
+Start in full screen mode.
 
 #+begin_src emacs-lisp
 (toggle-frame-fullscreen)
@@ -1209,5 +1207,5 @@ buffer margin.
 Finally, reduce the GC threshold a bit to make the user experience better.
 
 #+begin_src emacs-lisp
-(setq gc-cons-threshold (* 2 1000 1000))
+(setq gc-cons-threshold (* 4 1000 1000))
 #+end_src
