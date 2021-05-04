@@ -596,14 +596,14 @@ support is extremely limited, unfortunately.
 ** Bazel
 
 #+begin_src emacs-lisp
-(add-to-list 'auto-mode-alist '("BUILD\\'" . bazel-build-mode))
+(use-package bazel-mode
+  :init (add-to-list 'auto-mode-alist '("BUILD\\'" . bazel-build-mode)))
 #+end_src
 
 * Helm
 
 #+begin_src emacs-lisp
 (use-package helm
-  :defer t
   :diminish
   :bind (("C-h" . nil)
          ("M-x" . helm-M-x)
