@@ -41,7 +41,6 @@ used.
 
 #+begin_src emacs-lisp
 (use-package auto-compile
-  :defer t
   :init (setq load-prefer-newer t)
   :config (auto-compile-on-load-mode))
 #+end_src
@@ -84,28 +83,24 @@ This section is for testing out new configurations.
 (use-package ox-reveal
   :init (setq org-reveal-root "https://cdn.jsdelivr.net/npm/reveal.js"))
 
-(use-package free-keys
-  :defer t)
+(use-package free-keys)
 (global-hl-line-mode 1)
 (use-package boon
-  :defer t
   :config
-  (require 'boon-colemak)
-  (define-key boon-x-map "x" 'helm-M-x))
+  (require 'boon-colemak))
+;  (define-key boon-x-map "x" 'helm-M-x))
 (use-package diminish
-  :defer t
   :config
   (diminish 'auto-fill-mode)
   (diminish 'auto-fill-function))
 (use-package powerline
-  :defer t
+  :defer nil
   :config (powerline-default-theme))
 (use-package 0xc
-  :defer t)
-(use-package swiper
-  :defer t)
+  :defer 15)
+(use-package swiper)
 (use-package kubel
-   :defer 5)
+   :defer 15)
 #+end_src
 
 * Crux setup
@@ -114,7 +109,6 @@ This adds a lot of nify utilities that I've been missing.
 
 #+begin_src emacs-lisp
 (use-package crux
-  :defer t
   :bind (("C-o" . crux-smart-open-line-above)
          ("C-c C-D" . crux-delete-file-and-buffer)
          ("C-c d" . crux-duplicate-current-line-or-region)
@@ -311,7 +305,6 @@ I want to treat CamelCase as separate words more often than not. Perhaps always.
 
 #+begin_src emacs-lisp
 (use-package subword
-  :defer t
   :diminish
   :config (global-subword-mode 1))
 #+end_src
@@ -359,7 +352,6 @@ In some cases, like YAML, indentation guides is a must.
 
 #+begin_src emacs-lisp
 (use-package highlight-indent-guides
-  :defer t
   :hook (yaml-mode . highlight-indent-guides-mode)
   :init
   (setq highlight-indent-guides-method 'bitmap
@@ -372,7 +364,6 @@ as quick.
 
 #+begin_src emacs-lisp
 (use-package avy
-  :defer t
   :bind ("C-M-j" . 'avy-goto-char))
 #+end_src
 
@@ -388,7 +379,9 @@ I often switch from Emacs to searh  for stuff.  Let's put an end to that!
 
 #+begin_src emacs-lisp
 (use-package ripgrep
-  :defer 5)
+  :defer 15)
+(use-package helm-rg
+  :defer 15)
 #+end_src
 
 Use projectile. This is quite neat in normal projects, but it's struggling in
@@ -396,7 +389,6 @@ big monorepos. Hmm.
 
 #+begin_src emacs-lisp
 (use-package projectile
-  :defer t
   :after helm-projectile
   :bind (("C-c p" . projectile-command-map)))
 #+end_src
@@ -406,7 +398,7 @@ it as an entry-point for various web searches.
 
 #+begin_src emacs-lisp
 (use-package engine-mode
-    :defer t)
+    :defer 15)
 
 (defengine duckduckgo
   "https://www.duckduckgo.com/?q=%s"
@@ -431,7 +423,7 @@ have it pick up all the feeds based on tags, but that seems a bit extreme...
 
 #+begin_src emacs-lisp
 (use-package elfeed-org
-  :defer t
+  :defer 15
   :init
   (setq rmh-elfeed-org-files (list "~/.emacs.d/elfeed.org"))
   :config
@@ -515,10 +507,8 @@ support is extremely limited, unfortunately.
 #+end_src
 
 #+begin_src emacs-lisp
-(use-package rainbow-delimiters
-  :defer t)
+(use-package rainbow-delimiters)
 (use-package eldoc
-  :defer t
   :diminish)
 
 (add-hook 'emacs-lisp-mode-hook
@@ -547,28 +537,24 @@ support is extremely limited, unfortunately.
 
 #+begin_src emacs-lisp
 (use-package graphviz-dot-mode
-  :defer t
   :init (setq graphviz-dot-view-command "xdot %s"))
 #+end_src
 
 ** Haskell
 
 #+begin_src emacs-lisp
-(use-package haskell-mode
-  :defer t)
+(use-package haskell-mode)
 
 (add-hook 'haskell-mode-hook
           (lambda ()
             (subword-mode 1)
-            (electric-pair-local-mode 1)
             (haskell-doc-mode 1)))
 #+end_src
 
 ** Rust
 
 #+begin_src emacs-lisp
-(use-package rust-mode
-  :defer t)
+(use-package rust-mode)
 
 (setq racer-cmd "~/bin/racer"
       racer-rust-src-path "~/src/thirdparty/rust/src"
@@ -589,7 +575,6 @@ support is extremely limited, unfortunately.
 
 #+begin_src emacs-lisp
 (use-package markdown-mode
-  :defer t
   :config
   (setq markdown-open-command "~/bin/mark")
   (add-hook 'markdown-mode-hook (lambda () (visual-line-mode 1))))
@@ -599,12 +584,10 @@ support is extremely limited, unfortunately.
 
 #+begin_src emacs-lisp
 (use-package yaml-mode
-  :defer t
   :config
   (add-hook 'yaml-mode-hook
             (lambda ()
-              (variable-pitch-mode -1)
-              (electric-indent-local-mode 1))))
+              (variable-pitch-mode -1))))
 #+end_src
 
 ** XML
@@ -638,7 +621,6 @@ support is extremely limited, unfortunately.
 
 #+begin_src emacs-lisp
 (use-package helm-descbinds
-  :defer t
   :after helm
   :config
   (helm-descbinds-mode 1))
@@ -701,7 +683,6 @@ is something I missed after using IntelliJ for a while.
 
 #+begin_src emacs-lisp
 (use-package auto-highlight-symbol
-  :defer t
   :diminish
   :bind (("M-p" . ahs-backward)
          ("M-n" . 'ahs-forward)))
@@ -712,7 +693,6 @@ the Emacs syntax for these.
 
 #+begin_src emacs-lisp
 (use-package visual-regexp
-  :defer t
   :bind (("C-c C-r" . 'vr/replace)
          ("C-c q" . 'vr/query-replace)))
 #+end_src
@@ -742,7 +722,6 @@ an experiment...
 #+end_src
 
 
-
 * Org mode
 
 Load the org-mode and do basic configuration:
@@ -753,7 +732,6 @@ Load the org-mode and do basic configuration:
 - Ensure tables and blocks are still in monospace.
 #+begin_src emacs-lisp
 (use-package org
-  :defer t
   :after diminish org-superstar
   :ensure org-plus-contrib
   :bind (("C-c a" . org-agenda)
@@ -829,16 +807,15 @@ is that I want /more/, but it's rather slow on big directory trees.
 
 #+begin_src emacs-lisp
 (use-package helm-org-rifle
-  :defer t
   :bind (("C-c r" . helm-org-rifle-agenda-files)
          ("C-c R" . helm-org-rifle-org-directory)))
 #+end_src
 
 ** Some basic settings.
 
-   I keep most of the stuff in my stuff repository. For now fleeting notes are
-   recorded in an Inbox, which is a relic from an older GTD structure. Items are
-   archived in datetrees per file to retain context..
+I keep most of the stuff in my stuff repository. For now fleeting notes are
+recorded in an Inbox, which is a relic from an older GTD structure. Items are
+archived in datetrees per file to retain context..
 
 #+begin_src emacs-lisp
 (setq org-directory "~/Repository/Org"
@@ -879,7 +856,6 @@ Exporting to Slack allows me to edit the message in e.g. an org-mode note.
 
 #+begin_src emacs-lisp
 (use-package org-superstar
-  :defer t
   :init
   (add-hook 'org-mode-hook 'org-superstar-mode))
 #+end_src
@@ -986,7 +962,6 @@ to build the nice and useful agenda view I've been dreaming off lately..?
 
 #+begin_src emacs-lisp
 (use-package org-ql
-  :defer t
   :after helm-org)
 #+end_src
 
@@ -1068,7 +1043,6 @@ Fleeting notes, i.e. notes that are not connected to a particular project.
 
 #+begin_src emacs-lisp
 (use-package org-roam
-  :defer t
   :diminish
   :bind (("C-c n f" . org-roam-find-file)
          :map org-roam-mode-map
@@ -1110,7 +1084,6 @@ notes and so on.
 
 #+begin_src emacs-lisp
 (use-package helm-bibtex
-  :defer t
   :init
   (setq bibtex-completion-bibliography zot-bib
         bibtex-completion-library-path "~/Repository/Bibliography/bibtex-pdfs"
@@ -1126,7 +1099,6 @@ behind helm-bibtex and org-roam-bibtex.
 
 #+begin_src emacs-lisp
 (use-package org-ref
-  :defer t
   :init
   (setq org-ref-default-bibliography (list zot-bib)
         org-ref-pdf-directory "~/Repository/Bibliography/bibtex-pdfs/"
@@ -1140,7 +1112,6 @@ notes in the org-roam directory.
 
 #+begin_src emacs-lisp
 (use-package org-roam-bibtex
-  :defer t
   :diminish
   :after org-roam
   :hook (org-roam-mode . org-roam-bibtex-mode)
@@ -1159,7 +1130,6 @@ notes in the org-roam directory.
          (("C-c n a" . orb-note-actions))))
 
 (use-package org-noter
-  :defer t
   :after (org pdf-view nov)
   :bind (:map org-noter-doc-mode-map
          (("M-i" . zp/org-noter-insert-precise-note-dwim)))
@@ -1171,22 +1141,18 @@ notes in the org-roam directory.
 
 ;; Move these to a separate "Media" section
 (use-package pdf-tools
-  :defer t
   :mode ("\\.pdf\\'" . pdf-view-mode)
   :demand
   :config
   (pdf-tools-install :no-query))
 
 (use-package org-pdftools
-  :defer t
   :hook (org-load . org-pdftools-setup-link))
 
 (use-package nov
-  :defer t
   :mode ("\\.\\(epub\\|mobi\\)\\'" . nov-mode))
 
 (use-package org-noter-pdftools
-  :defer t
   :after org-noter
   :config
   (with-eval-after-load 'pdf-annot
@@ -1200,7 +1166,6 @@ buffers.
 
 #+begin_src emacs-lisp
 (use-package magit
-  :defer t
   :bind (("C-x g" . magit)
          :map magit-mode-map
          ("C-<tab>" . nil))
@@ -1212,7 +1177,6 @@ huge monorepo at work, but reducing the topic list limit seems to help.
 
 #+begin_src emacs-lisp
 (use-package forge
-  :defer t
   :after magit
   :init
   (setq forge-topic-list-limit '(30 .  3)))
