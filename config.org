@@ -178,7 +178,7 @@ Libre Baskerville is as nice as Baskerville, and easier to read on the screen.
 (custom-theme-set-faces
  'user
  '(variable-pitch ((t (:family "Libre Baskerville" :height 130))))
- '(fixed-pitch ((t (:family "Inconsolata LGC Markup" :height 130)))))
+ '(fixed-pitch ((t (:family "Inconsolata LGC Markup" :height 120)))))
 #+end_src
 
 Why not?
