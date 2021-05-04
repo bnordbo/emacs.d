@@ -30,3 +30,43 @@ false if the file matches a name in this list."
     (let ((parts (split-string (replace-regexp-in-string base-dir "" file) "/" t)))
       (and (not (member (car (last parts)) ignore))
            (<= (length parts) max-depth)))))
+
+(defun bn/project-p ()
+  (string= (nth 2 (org-heading-components)) "PROJ"))
+
+(defun bn/select-projects ()
+  (bn/select-if #'bn/project-p))
+
+(defun bn/select-if (pred)
+  (save-restriction
+    (widen)
+    (let ((next-headline (save-excursion (or (outline-next-heading)
+                                             (point-max)))))
+      (unless (funcall pred) next-headline))))
+
+(defvar bn/org-agenda--active-projects
+  '(tags-todo "-INACTIVE-SOMEDAY-CANCELLED/!"
+              ((org-agenda-overriding-header "Projects")
+               (org-agenda-skip-function 'bn/select-projects))))
+
+(defun bn/bms (tags)
+  (interactive "sTags: ")
+  (org-ql-sparse-tree `(tags ,tags)))
+
+; From org-journal FAQ
+(defun bn/org-journal-save-entry-and-exit ()
+  "Simple convenience function.
+  Saves the buffer of the current day's entry and kills the window
+  Similar to org-capture like behavior"
+  (interactive)
+  (save-buffer)
+  (kill-buffer-and-window))
+
+(defun bn/apply-theme (appearance)
+  "Load theme, taking current system APPEARANCE into consideration."
+  (mapc #'disable-theme custom-enabled-themes)
+  (pcase appearance
+    ('light (load-theme default-light-theme t))
+    ('dark (load-theme default-dark-theme t)))
+  ; Gets reset after loading themes for some reason.
+  (bn/adjust-face-attributes))
