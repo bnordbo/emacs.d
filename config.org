@@ -310,9 +310,11 @@ pretty well, but it needs an extra hook for org-capture for some reason.
 
 #+begin_src emacs-lisp
 (use-package ws-butler
+  :diminish
   :init
   (setq require-final-newline t)
   :config
+  (ws-butler-global-mode 1)
   (add-hook 'org-capture-mode-hook (lambda () (ws-butler-mode -1))))
 #+end_src
 
