@@ -487,15 +487,12 @@ support is extremely limited, unfortunately.
   (add-hook 'go-mode-hook (lambda ()
                             (setq tab-width 4)
                             (auto-highlight-symbol-mode 1)
-                            (electric-pair-local-mode 1)
-                            (electric-indent-local-mode 1)
                             (subword-mode 1)
                             (go-eldoc-setup))))
 
-(use-package go-fill-struct
-  :defer t)
+(use-package go-fill-struct)
 (use-package go-playground
-  :defer 5)
+  :defer 15)
 #+end_src
 
 ** Elisp
@@ -566,7 +563,6 @@ support is extremely limited, unfortunately.
 (add-hook 'rust-mode-hook
           (lambda ()
             (cargo-minor-mode 1)
-            (electric-pair-local-mode 1)
             (racer-mode 1)))
 
 (add-hook 'racer-mode-hook
