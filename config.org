@@ -126,17 +126,8 @@ appearence.
 (defvar default-light-theme 'leuven)
 (defvar default-dark-theme 'leuven-dark)
 
-(defun bn/apply-theme (appearance)
-  "Load theme, taking current system APPEARANCE into consideration."
-  (mapc #'disable-theme custom-enabled-themes)
-  (pcase appearance
-    ('light (load-theme default-light-theme t))
-    ('dark (load-theme default-dark-theme t)))
-  ; Gets reset after loading themes for some reason.
-  (bn/adjust-face-attributes))
-
 (defun bn/adjust-face-attributes ()
-  (set-face-attribute 'markdown-table-face nil :inherit 'fixed-pitch)
+;  (set-face-attribute 'markdown-table-face nil :inherit 'fixed-pitch)
   (set-face-attribute 'org-code nil :inherit 'fixed-pitch)
   (set-face-attribute 'org-block nil :inherit 'fixed-pitch)
   (set-face-attribute 'org-table nil :inherit 'fixed-pitch))
