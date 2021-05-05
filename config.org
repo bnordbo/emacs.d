@@ -668,11 +668,17 @@ Other window manipulation commands, ~C-c w~ prefix.
 (global-set-key (kbd "C-c w s") 'window-swap-states)
 #+end_src
 
-Text manipulation commants, ~C-c t~ prefix.
+Text manipulation commands, ~C-c t~ prefix.
 
 #+begin_src emacs-lisp
 (global-set-key (kbd "C-c t \\") 'align-regexp)
 (global-set-key (kbd "C-c t <SPC>") 'just-one-space)
+#+end_src
+
+Search and navigation commands, ~C-c s~ prefix.
+
+#+begin_src emacs-lisp
+(global-set-key (kbd "C-c s g") 'helm-rg)
 #+end_src
 
 The ability  to move to the next/prev occurence of the current symbol
@@ -741,6 +747,7 @@ Load the org-mode and do basic configuration:
          ("C-c t" . org-todo)
          ("C-c M-p" . org-move-subtree-up)
          ("C-c M-n" . org-move-subtree-down)
+         ("C-x n w" . org-toggle-narrow-to-subtree)
          ("C-<tab>" . nil)
          ("M-h" . nil))
   :init
