@@ -389,7 +389,8 @@ it as an entry-point for various web searches.
 
 #+begin_src emacs-lisp
 (use-package engine-mode
-    :defer 15)
+    :defer 15
+    :config (engine-mode))
 
 (defengine duckduckgo
   "https://www.duckduckgo.com/?q=%s"
