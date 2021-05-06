@@ -485,7 +485,6 @@ support is extremely limited, unfortunately.
   :init
   (exec-path-from-shell-copy-env "GOPATH")
   (setq go-eldoc-gocode "/Users/bn/go/bin/gocode")
-  :config
   (add-hook 'go-mode-hook (lambda ()
                             (setq tab-width 4)
                             (auto-highlight-symbol-mode 1)
@@ -767,9 +766,9 @@ Load the org-mode and do basic configuration:
         org-modules '(ol-w3m ol-bibtex ol-docview ol-info ol-mhe)
         org-use-sub-superscripts "{}"
         org-M-RET-may-split-line nil)
-  (add-hook 'org-mode-hook #'auto-fill-mode 1)
   (add-hook 'org-mode-hook
-            (lambda
+            (lambda ()
+              (auto-fill-mode 1)
               (org-indent-mode 1)
               (diminish 'org-indent-mode)))
   (add-hook 'org-mode-hook #'electric-indent-local-mode -1)
