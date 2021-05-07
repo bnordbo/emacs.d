@@ -1212,6 +1212,13 @@ huge monorepo at work, but reducing the topic list limit seems to help.
   (setq forge-topic-list-limit '(30 .  3)))
 #+end_src
 
+This allows visiting the current file in the remote repo. Very useful when
+referencing code to others.
+
+#+begin_src emacs-lisp
+(use-package browse-at-remote)
+#+end_src
+
 It is neat if not terribly useful to see the changes since last commit in the
 buffer margin.
 
