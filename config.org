@@ -474,7 +474,7 @@ This works surprisingly well for navigating code, even in big monorepos.
 
 #+begin_src emacs-lisp
 (use-package erlang
-  :init
+  :config
   (add-to-list 'erlang-tags-file-list "~/src/bn/loltel/connectivity/erlang/TAGS")
   (add-hook 'erlang-mode-hook #'auto-highlight-symbol-mode))
 #+end_src
