@@ -208,6 +208,13 @@ Prevent horizontal splits for big windows.
 (setq split-height-threshold nil)
 #+end_src
 
+Winner mode allows switching between window configurations. It's a bit
+simplistic, but until I find a better alternative, it's way better than noting.
+
+#+begin_src emacs-lisp
+(winner-mode 1)
+#+end_src
+
 Zoom mode allows me to continue using a three-way split when I disconnect the
 monitor. It mostly works great.
 
