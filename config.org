@@ -92,7 +92,8 @@ This section is for testing out new configurations.
 (use-package diminish
   :config
   (diminish 'auto-fill-mode)
-  (diminish 'auto-fill-function))
+  (diminish 'auto-fill-function)
+  (diminish 'buffer-face-mode))
 (use-package powerline
   :defer nil
   :config (powerline-default-theme))
@@ -778,9 +779,7 @@ Load the org-mode and do basic configuration:
               (auto-fill-mode 1)
               (org-indent-mode 1)
               (diminish 'org-indent-mode)))
-  (add-hook 'org-mode-hook #'electric-indent-local-mode -1)
-  :config
-  (diminish 'buffer-face-mode))
+  (add-hook 'org-mode-hook #'electric-indent-local-mode -1))
 #+end_src
 
 Set up fast selection for tags. Lots of them! Lowercase characters are for
