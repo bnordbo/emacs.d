@@ -1028,7 +1028,7 @@ use for recording the outcome of these, and for tracking the time spent.
          (file+olp+datetree "~/Roles/TechLeadWG2/Recurring.org" "Tech lead syncs")
          "%?\n" :clock-in t :clock-resume t)
         ("b" "Bookmark" entry (file "~/Bookmarks.org")
-         "* %(org-cliplink-capture)\n%?" :empty-lines 1)))
+         "* %(org-cliplink-capture)\n%U\n%?" :empty-lines 1)))
 #+end_src
 
 I've dumbed down the refiling targets to just consider all the agenda files at
