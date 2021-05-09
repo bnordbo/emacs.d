@@ -80,6 +80,9 @@ Start emacs-server for integrating neatly with the shell.
 This section is for testing out new configurations.
 
 #+begin_src emacs-lisp
+; https://depp.brause.cc/shackle/
+;(use-package shackle
+
 (use-package ox-reveal
   :init (setq org-reveal-root "https://cdn.jsdelivr.net/npm/reveal.js"))
 
@@ -276,7 +279,8 @@ hopefully the sole user of my system.
       create-lockfiles nil)
 #+end_src
 
-Unconditionally auto-save all visited files every time Emacs loses focus.
+Unconditionally auto-save all visited files every time Emacs loses focus. This
+is a little dangerous, but so far so good...
 
 #+begin_src emacs-lisp
 (add-hook 'focus-out-hook
