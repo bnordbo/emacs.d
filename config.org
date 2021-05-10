@@ -227,7 +227,6 @@ monitor. It mostly works great.
   :diminish
   :init (setq zoom-size '(100 .  40))
   :config (zoom-mode 1))
-
 #+end_src
 
 No ugly line wrapping.
@@ -442,6 +441,20 @@ switch to a terminal.
 #+begin_src emacs-lisp
 (use-package eshell
   :bind (("C-c h" . helm-eshell-prompts)))
+#+end_src
+
+** PlantUML
+
+PlantUML not as neat as websequencediagrams, but who cares when the Emacs
+support is so great!
+
+#+begin_src emacs-lisp
+(use-package plantuml-mode
+  :init
+  (add-to-list 'auto-mode-alist '("\\.plantuml\\'" . plantuml-mode))
+  (add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
+  (setq plantuml-executable-path "/usr/local/bin/plantuml"
+        plantuml-default-exec-mode 'executable))
 #+end_src
 
 * Programming language support
