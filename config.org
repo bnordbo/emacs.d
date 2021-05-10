@@ -242,19 +242,6 @@ I've never missed the bell, visible or otherwise.
 (setq ring-bell-function 'ignore)
 #+end_src
 
-Auto-highlighting the current symbol can be quite useful, not only when
-programming.
-
-#+begin_src emacs-lisp
-(setq ahs-idle-interval 1.0
-      ahs-default-range 'ahs-range-whole-buffer
-      ahs-inhibit-face-list '(font-lock-comment-delimiter-face
-                              font-lock-comment-face
-                              font-lock-doc-face
-                              font-lock-doc-string-face
-                              font-lock-string-face))
-#+end_src
-
 * General editing setup
 
 As a rule, I don't want to indent with tabs. Spaces are more predicable, and I
@@ -480,8 +467,7 @@ This works surprisingly well for navigating code, even in big monorepos.
 #+begin_src emacs-lisp
 (use-package erlang
   :config
-  (add-to-list 'erlang-tags-file-list "~/src/bn/loltel/connectivity/erlang/TAGS")
-  (add-hook 'erlang-mode-hook #'auto-highlight-symbol-mode))
+  (add-to-list 'erlang-tags-file-list "~/src/bn/loltel/connectivity/erlang/TAGS"))
 #+end_src
 
 ** Go
@@ -499,7 +485,6 @@ support is extremely limited, unfortunately.
   (setq go-eldoc-gocode "/Users/bn/go/bin/gocode")
   (add-hook 'go-mode-hook (lambda ()
                             (setq tab-width 4)
-                            (auto-highlight-symbol-mode 1)
                             (subword-mode 1)
                             (go-eldoc-setup))))
 
@@ -702,8 +687,18 @@ is something I missed after using IntelliJ for a while.
 #+begin_src emacs-lisp
 (use-package auto-highlight-symbol
   :diminish
+  :hook prog-mode
   :bind (("M-p" . ahs-backward)
-         ("M-n" . 'ahs-forward)))
+         ("M-n" . 'ahs-forward))
+  :init (setq ahs-idle-interval 1.0
+              ahs-default-range 'ahs-range-whole-buffer
+              ahs-inhibit-face-list '(font-lock-comment-delimiter-face
+                                      font-lock-comment-face
+                                      font-lock-doc-face
+                                      font-lock-doc-string-face
+                                      font-lock-string-face)))
+#+end_src
+
 #+end_src
 
 Interactive regular expressions because I find it tricky to remember
@@ -1072,7 +1067,7 @@ Fleeting notes, i.e. notes that are not connected to a particular project.
 (setq org-roam-directory "~/Repository/Roam")
 #+end_src
 
- Start org-roam and bind the most useful functions behind the ~C-c n~ prefix.
+Start org-roam and bind the most useful functions behind the ~C-c n~ prefix.
 
 #+begin_src emacs-lisp
 (use-package org-roam
@@ -1086,11 +1081,10 @@ Fleeting notes, i.e. notes that are not connected to a particular project.
          :map org-mode-map
          (("C-c n i" . org-roam-insert)
           ("C-c n I" . org-roam-insert-immediate)))
-  :hook (after-init . org-roam-mode)
+  :hook after-init
   :init
-  (make-directory org-roam-directory t)
-  :config
-  (setq org-roam-completion-system 'helm))
+  (setq org-roam-completion-system 'helm)
+  (make-directory org-roam-directory t))
  #+end_src
  
 This is an attempt to set up org-roam-bibtex and friends in a way I understand.
@@ -1147,7 +1141,7 @@ notes in the org-roam directory.
 (use-package org-roam-bibtex
   :diminish
   :after org-roam
-  :hook (org-roam-mode . org-roam-bibtex-mode)
+  :hook org-roam-mode
   :init
   (setq orb-note-actions-frontend 'helm
         orb-preformat-keywords '("citekey" "date" "type" "pdf?" "note?" "author"
@@ -1228,8 +1222,8 @@ buffer margin.
 #+begin_src emacs-lisp
 (use-package diff-hl
   :config
-  (add-hook 'prog-mode-hook 'turn-on-diff-hl-mode)
-  (add-hook 'vc-dir-mode-hook 'turn-on-diff-hl-mode))
+  :hook '((prog-mode . turn-on-diff-hl-mode)
+          (vc-dir-mode . turn-on-diff-hl-mode)))
 #+end_src
 
 Finally, reduce the GC threshold a bit to make the user experience better.
