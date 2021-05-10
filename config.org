@@ -700,7 +700,7 @@ is something I missed after using IntelliJ for a while.
 #+begin_src emacs-lisp
 (use-package auto-highlight-symbol
   :diminish
-  :hook prog-mode
+  :hook (prog-mode . auto-highligh-symbol-mode)
   :bind (("M-p" . ahs-backward)
          ("M-n" . 'ahs-forward))
   :init (setq ahs-idle-interval 1.0
@@ -710,8 +710,6 @@ is something I missed after using IntelliJ for a while.
                                       font-lock-doc-face
                                       font-lock-doc-string-face
                                       font-lock-string-face)))
-#+end_src
-
 #+end_src
 
 Interactive regular expressions because I find it tricky to remember
@@ -1153,7 +1151,6 @@ notes in the org-roam directory.
 #+begin_src emacs-lisp
 (use-package org-roam-bibtex
   :diminish
-  :after org-roam
   :hook org-roam-mode
   :init
   (setq orb-note-actions-frontend 'helm
