@@ -700,7 +700,8 @@ is something I missed after using IntelliJ for a while.
 #+begin_src emacs-lisp
 (use-package auto-highlight-symbol
   :diminish
-  :hook (prog-mode . auto-highligh-symbol-mode)
+; Does not work since use-package will try to load auto-highlight-symbol too
+;  :hook ((prog-mode . auto-highlight-symbol-mode))
   :bind (("M-p" . ahs-backward)
          ("M-n" . 'ahs-forward))
   :init (setq ahs-idle-interval 1.0
@@ -709,7 +710,8 @@ is something I missed after using IntelliJ for a while.
                                       font-lock-comment-face
                                       font-lock-doc-face
                                       font-lock-doc-string-face
-                                      font-lock-string-face)))
+                                      font-lock-string-face))
+  :config (add-hook 'prog-mode-hook #'auto-highlight-symbol-mode))
 #+end_src
 
 Interactive regular expressions because I find it tricky to remember
