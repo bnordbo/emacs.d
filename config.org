@@ -1153,7 +1153,8 @@ notes in the org-roam directory.
 #+begin_src emacs-lisp
 (use-package org-roam-bibtex
   :diminish
-  :hook org-roam-mode
+  :after org-roam
+  :hook (org-roam-mode . org-roam-bibtex-mode)
   :init
   (setq orb-note-actions-frontend 'helm
         orb-preformat-keywords '("citekey" "date" "type" "pdf?" "note?" "author"
