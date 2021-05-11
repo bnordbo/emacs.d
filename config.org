@@ -451,7 +451,6 @@ support is so great!
 #+begin_src emacs-lisp
 (use-package plantuml-mode
   :init
-  (add-to-list 'auto-mode-alist '("\\.plantuml\\'" . plantuml-mode))
   (add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
   (setq plantuml-executable-path "/usr/local/bin/plantuml"
         plantuml-default-exec-mode 'executable))
@@ -927,6 +926,7 @@ Enable more languages.
  'org-babel-load-languages
  '((ditaa . t)))
 #+end_src
+
 ** Pomodoro
 
 #+begin_src emacs-lisp
