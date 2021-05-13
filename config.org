@@ -356,7 +356,14 @@ Seeing the real width  of the cursor is sometimes useful (e.g. tabs).
 (setq x-stretch-cursor t)
 #+end_src
 
-* Integrations
+* Searching and filtering
+
+Swiper is isearch on steroids.
+
+#+begin_src emacs-lisp
+(use-package swiper-helm
+  :bind ("C-c s s" . swiper-helm))
+#+end_src
 
 I often switch from Emacs to searh  for stuff.  Let's put an end to that!
 
@@ -366,6 +373,9 @@ I often switch from Emacs to searh  for stuff.  Let's put an end to that!
 (use-package helm-rg
   :defer 15)
 #+end_src
+
+
+* Integrations
 
 Use projectile. This is quite neat in normal projects, but it's struggling in
 big monorepos. Hmm.
