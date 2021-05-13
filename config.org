@@ -639,8 +639,7 @@ support is extremely limited, unfortunately.
   (helm-descbinds-mode 1))
 #+end_src
 
-Using Helm for projectile is great, but for some reason it barfs if I do not
-bind "C-c" first.
+Projectile + Helm is an amazing combo!
 
 #+begin_src emacs-lisp
 (use-package helm-projectile)
@@ -664,8 +663,7 @@ useful.
 #+begin_src emacs-lisp
 (use-package which-key
   :diminish
-  :config
-  (which-key-mode 1))
+  :config (which-key-mode 1))
 #+end_src
 
 ** New bindings
@@ -793,8 +791,9 @@ Load the org-mode and do basic configuration:
             (lambda ()
               (auto-fill-mode 1)
               (org-indent-mode 1)
-              (diminish 'org-indent-mode)))
-  (add-hook 'org-mode-hook #'electric-indent-local-mode -1))
+              (electric-indent-local-mode -1)
+              (diminish 'org-indent-mode)
+              (diminish 'buffer-face-mode))))
 #+end_src
 
 Set up fast selection for tags. Lots of them! Lowercase characters are for
