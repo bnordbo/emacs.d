@@ -295,11 +295,6 @@ I want to treat CamelCase as separate words more often than not. Perhaps always.
   :config (global-subword-mode 1))
 #+end_src
 
-#+begin_src emacs-lisp
-(use-package multiple-cursors
-    :defer 5)
-#+end_src
-
 Try to keep the whitespace under control. The whitespace butler seems to work
 pretty well, but it needs an extra hook for org-capture for some reason.
 
