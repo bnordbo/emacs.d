@@ -96,13 +96,12 @@ This section is for testing out new configurations.
   :config
   (diminish 'auto-fill-mode)
   (diminish 'auto-fill-function)
-  (diminish 'buffer-face-mode))
+  (diminish 'helm-mode))
 (use-package powerline
   :defer nil
   :config (powerline-default-theme))
 (use-package 0xc
   :defer 15)
-(use-package swiper)
 (use-package kubel
    :defer 15)
 #+end_src
