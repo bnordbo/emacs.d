@@ -463,10 +463,9 @@ support is so great!
 * Programming language support
 
 #+begin_src emacs-lisp
-(add-hook 'prog-mode-hook
-          (lambda ()
-            (electric-pair-local-mode 1)
-            (electric-indent-local-mode 1)))
+(add-hook 'prog-mode-hook '(electric-pair-local-mode
+                            electric-indent-local-mode
+                            auto-highlight-symbol-mode))
 #+end_src
 
 This works surprisingly well for navigating code, even in big monorepos.
@@ -557,50 +556,36 @@ support is extremely limited, unfortunately.
 ** Haskell
 
 #+begin_src emacs-lisp
-(use-package haskell-mode)
-
-(add-hook 'haskell-mode-hook
-          (lambda ()
-            (subword-mode 1)
-            (haskell-doc-mode 1)))
+(use-package haskell-mode
+  :init (add-hook 'haskell-mode-hook '(subword-mode haskell-doc-mode)))
 #+end_src
 
 ** Rust
 
 #+begin_src emacs-lisp
-(use-package rust-mode)
-
-(setq racer-cmd "~/bin/racer"
-      racer-rust-src-path "~/src/thirdparty/rust/src"
-      company-tooltip-align-annotations t)
-
-(add-hook 'rust-mode-hook
-          (lambda ()
-            (cargo-minor-mode 1)
-            (racer-mode 1)))
-
-(add-hook 'racer-mode-hook
-          (lambda ()
-            (company-mode 1)))
+(use-package rust-mode
+  :init
+  (setq racer-cmd "~/bin/racer"
+        racer-rust-src-path "~/src/thirdparty/rust/src"
+        company-tooltip-align-annotations t)
+  (add-hook 'rust-mode-hook '(cargo-minor-mode racer-mode))
+  (add-hook 'racer-mode-hook 'company-mode))
 #+end_src
 
 ** Markdown
 
 #+begin_src emacs-lisp
 (use-package markdown-mode
-  :config
+  :init
   (setq markdown-open-command "~/bin/mark")
-  (add-hook 'markdown-mode-hook (lambda () (visual-line-mode 1))))
+  (add-hook 'markdown-mode-hook 'visual-line-mode))
 #+end_src
 
 ** Yaml
 
 #+begin_src emacs-lisp
 (use-package yaml-mode
-  :config
-  (add-hook 'yaml-mode-hook
-            (lambda ()
-              (variable-pitch-mode -1))))
+  :init (add-hook 'yaml-mode-hook (lambda () (variable-pitch-mode -1))))
 #+end_src
 
 ** XML
@@ -612,8 +597,7 @@ support is extremely limited, unfortunately.
 ** Bazel
 
 #+begin_src emacs-lisp
-(use-package bazel-mode
-  :init (add-to-list 'auto-mode-alist '("BUILD\\'" . bazel-build-mode)))
+(use-package bazel)
 #+end_src
 
 * Helm
@@ -711,8 +695,7 @@ is something I missed after using IntelliJ for a while.
                                       font-lock-comment-face
                                       font-lock-doc-face
                                       font-lock-doc-string-face
-                                      font-lock-string-face))
-  :config (add-hook 'prog-mode-hook #'auto-highlight-symbol-mode))
+                                      font-lock-string-face)))
 #+end_src
 
 Interactive regular expressions because I find it tricky to remember
