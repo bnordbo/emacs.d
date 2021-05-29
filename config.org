@@ -906,7 +906,7 @@ Don't prompt when evaluating ditaa code blocks.
 
 #+begin_src emacs-lisp
 (setq org-confirm-babel-evaluate (lambda (lang body)
-                                   (not (string= lang "ditaa"))))
+                                   (not (member lang '("ditaa" "plantuml")))))
 #+end_src
 
 Enable more languages.
