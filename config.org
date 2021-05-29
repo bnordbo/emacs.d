@@ -444,6 +444,7 @@ switch to a terminal.
 
 #+begin_src emacs-lisp
 (use-package eshell
+  :init (setq truncate-lines nil)
   :bind (("C-c h" . helm-eshell-prompts)))
 #+end_src
 
