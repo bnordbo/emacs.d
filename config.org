@@ -464,9 +464,9 @@ support is so great!
 * Programming language support
 
 #+begin_src emacs-lisp
-(add-hook 'prog-mode-hook '(electric-pair-local-mode
-                            electric-indent-local-mode
-                            auto-highlight-symbol-mode))
+(add-hook 'prog-mode-hook 'electric-pair-local-mode)
+(add-hook 'prog-mode-hook 'electric-indent-local-mode)
+(add-hook 'prog-mode-hook 'auto-highlight-symbol-mode)
 #+end_src
 
 This works surprisingly well for navigating code, even in big monorepos.
@@ -558,7 +558,9 @@ support is extremely limited, unfortunately.
 
 #+begin_src emacs-lisp
 (use-package haskell-mode
-  :init (add-hook 'haskell-mode-hook '(subword-mode haskell-doc-mode)))
+  :init
+ (add-hook 'haskell-mode-hook 'subword-mode)
+ (add-hook 'haskell-mode-hook 'haskell-doc-mode))
 #+end_src
 
 ** Rust
@@ -569,7 +571,8 @@ support is extremely limited, unfortunately.
   (setq racer-cmd "~/bin/racer"
         racer-rust-src-path "~/src/thirdparty/rust/src"
         company-tooltip-align-annotations t)
-  (add-hook 'rust-mode-hook '(cargo-minor-mode racer-mode))
+  (add-hook 'rust-mode-hook 'cargo-minor-mode)
+  (add-hook 'rust-mode-hook 'racer-mode)
   (add-hook 'racer-mode-hook 'company-mode))
 #+end_src
 
