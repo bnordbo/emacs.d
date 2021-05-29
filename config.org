@@ -747,7 +747,6 @@ Load the org-mode and do basic configuration:
 #+begin_src emacs-lisp
 (use-package org
   :after diminish org-superstar
-  :ensure org-plus-contrib
   :bind (("C-c a" . org-agenda)
          ("C-c c" . org-capture)
          ("C-c l" . org-store-link)
