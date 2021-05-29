@@ -1156,7 +1156,7 @@ behind helm-bibtex and org-roam-bibtex.
 #+end_src
 
 This stitches together helm-bibtex, org-ref, and org-roam, enabling literature
-notes in the org-roam directory.
+notes in the org-roam directory. It's like kayaking – awesome but a bit rickety.
 
 #+begin_src emacs-lisp
 (use-package org-roam-bibtex
@@ -1179,7 +1179,8 @@ notes in the org-roam directory.
 
 (use-package org-noter
   :after (org pdf-view nov)
-  :bind (:map org-noter-doc-mode-map
+  :bind (("C-c n o" . org-noter)
+         :map org-noter-doc-mode-map
          (("M-i" . zp/org-noter-insert-precise-note-dwim)))
   :init
   (setq org-noter-always-create-frame nil
