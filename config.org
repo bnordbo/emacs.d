@@ -1060,7 +1060,7 @@ Fleeting notes, i.e. notes that are not connected to a particular project.
         org-journal-carryover-items ""))
  #+end_src   
 
-** Roam
+** PIM using org-roam
 
  Let's try to use the new Repository structure for org-roam. An alternative
  would have been to store it as a Context, but it's probably more of a cross
@@ -1076,19 +1076,38 @@ Start org-roam and bind the most useful functions behind the ~C-c n~ prefix.
 (use-package org-roam
   :diminish
   :bind (("C-c n f" . org-roam-find-file)
+         ("C-c n j" . org-roam-dailies-map)
          :map org-roam-mode-map
-         (("C-c n l" . org-roam)
-          ("C-c n g" . org-roam-graph)
-          ("C-c n t a" . org-roam-tag-add)
-          ("C-c n t d" . org-roam-tag-delete))
+         ("C-c n l" . org-roam)
+         ("C-c n g" . org-roam-graph)
+         ("C-c n t a" . org-roam-tag-add)
+         ("C-c n t d" . org-roam-tag-delete)
+         :map org-roam-dailies-map
+         ("C-c n j j" . org-roam-dailies-capture-today)
          :map org-mode-map
-         (("C-c n i" . org-roam-insert)
-          ("C-c n I" . org-roam-insert-immediate)))
+         ("C-c n i" . org-roam-insert)
+         ("C-c n I" . org-roam-insert-immediate))
   :init
   (setq org-roam-completion-system 'helm)
   (make-directory org-roam-directory t))
  #+end_src
- 
+
+*** Dailies setup for org-roam
+
+I've been using org-journal for a while now, but it's become a write-only log.
+Maybe org-roam-dailies works better?
+
+#+begin_src emacs-lisp
+(setq org-roam-dailies-capture-templates
+      '(("d" "default" entry
+         #'org-roam-capture--get-point
+         "* %?"
+         :file-name "daily/%<%Y-%m-%d>"
+         :head "#+title: %<%Y-%m-%d>\n#+roam_tags: Daily\n\n")))
+#+end_src
+
+*** Bibtex and org-noter integration for org-roam
+
 This is an attempt to set up org-roam-bibtex and friends in a way I understand.
 The goal is to be able to insert cite-links using helm completion, both in
 org-roam notes and elsewhere. The cited documents should be kept on disk
