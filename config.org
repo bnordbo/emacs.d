@@ -1056,6 +1056,7 @@ Fleeting notes, i.e. notes that are not connected to a particular project.
 
 #+begin_src emacs-lisp
 (use-package org-journal
+  :disabled ; testing org-roam-journal instead
   :bind
   (("C-c n j" . org-journal-new-entry)
    (:map org-journal-mode-map
