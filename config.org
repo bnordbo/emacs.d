@@ -1189,15 +1189,12 @@ notes in the org-roam directory. It's like kayaking – awesome but a bit ricket
          (("C-c n a" . orb-note-actions))))
 
 (use-package org-noter
-  :after (org pdf-view nov)
   :bind (("C-c n o" . org-noter)
          :map org-noter-doc-mode-map
          (("M-i" . zp/org-noter-insert-precise-note-dwim)))
   :init
-  (setq org-noter-always-create-frame nil
-        org-noter-notes-search-path (list org-roam-directory)
-        org-noter-notes-window-location 'horizontal-split
-        org-noter-doc-split-percentage '(0.7 . 0.3)))
+  (setq org-noter-notes-search-path (list org-roam-directory)
+        org-noter-notes-window-location 'horizontal-split))
 
 ;; Move these to a separate "Media" section
 (use-package pdf-tools
