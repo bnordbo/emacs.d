@@ -64,6 +64,13 @@ Set location and time format for sunrise/sunset.
                  (if time-zone " (") time-zone (if time-zone ")")))
 #+end_src
 
+After switcing to native compilation, the warning buffer started to pop up a
+lot. Increasing the log level to ~error~ takes care of that annoyance.
+
+#+begin_src emacs-lisp
+(setq warning-minimum-level :error)
+#+end_src
+
 ** Servers
 
 Start emacs-server for integrating neatly with the shell.
