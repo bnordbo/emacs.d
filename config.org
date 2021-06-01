@@ -458,13 +458,16 @@ switch to a terminal.
 ** PlantUML
 
 PlantUML not as neat as websequencediagrams, but who cares when the Emacs
-support is so great!
+support is so great! I'm a bit confused about how plantuml-mode relates to
+ob-plantuml though. The latter is bundled with Emacs, and requires the fragile
+JAR setting below. But it also seems to be more freqently updated.
 
 #+begin_src emacs-lisp
 (use-package plantuml-mode
   :init
   (add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
   (setq plantuml-executable-path "/usr/local/bin/plantuml"
+        org-plantuml-jar-path "/usr/local/Cellar/plantuml/1.2021.7/libexec/plantuml.jar"
         plantuml-default-exec-mode 'executable))
 #+end_src
 
