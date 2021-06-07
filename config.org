@@ -630,13 +630,6 @@ support is extremely limited, unfortunately.
   :config (helm-mode 1))
 #+end_src
 
-#+begin_src emacs-lisp
-(use-package helm-descbinds
-  :after helm
-  :config
-  (helm-descbinds-mode 1))
-#+end_src
-
 Projectile + Helm is an amazing combo!
 
 #+begin_src emacs-lisp
