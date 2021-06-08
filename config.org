@@ -195,6 +195,12 @@ Why not?
 (global-prettify-symbols-mode t)
 #+end_src
 
+Highligting the line the cursor is on makes it easier to  spot.
+
+#+begin_src emacs-lisp
+(global-hl-line-mode 1)
+#+end_src
+
 Define modes and related hooks used for writing prose.
 
 #+begin_src emacs-lisp
@@ -640,8 +646,7 @@ Projectile + Helm is an amazing combo!
 
 ** General settings
 
-On Mac, map the command key to meta and keep the normal behaviour of
-option.
+On Mac, map the command key to meta and keep the normal behaviour of option.
 
 #+begin_src emacs-lisp
 (setq mac-command-modifier 'meta
