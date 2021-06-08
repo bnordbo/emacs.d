@@ -84,9 +84,12 @@ Start emacs-server for integrating neatly with the shell.
 
 * Experiments
 
+** Various
+
 This section is for testing out new configurations.
 
 #+begin_src emacs-lisp
+; This seems like something I ought to look into to make org-note buffers behave.
 ; https://depp.brause.cc/shackle/
 ;(use-package shackle
 
@@ -94,23 +97,38 @@ This section is for testing out new configurations.
   :init (setq org-reveal-root "https://cdn.jsdelivr.net/npm/reveal.js"))
 
 (use-package free-keys)
-(global-hl-line-mode 1)
 (use-package boon
   :config
   (require 'boon-colemak))
 ;  (define-key boon-x-map "x" 'helm-M-x))
-(use-package diminish
-  :config
-  (diminish 'auto-fill-mode)
-  (diminish 'auto-fill-function)
-  (diminish 'helm-mode))
-(use-package powerline
-  :defer nil
-  :config (powerline-default-theme))
 (use-package 0xc
   :defer 15)
 (use-package kubel
    :defer 15)
+#+end_src
+
+** Kotlin LSP
+
+LSP is awesome, but unfortunately difficult to get working with Bazel. This is
+mostly for playing around to maybe get that working at some point.
+
+#+begin_src emacs-lisp
+(use-package yasnippet)
+(use-package company-box)
+
+(use-package lsp-mode
+  :init (setq lsp-keymap-prefix "C-c v")
+  :hook ((kotlin-mode . lsp-deferred)
+         (lsp-mode . lsp-enable-which-key-integration))
+  :commands lsp lsp-deferred)
+
+(use-package kotlin-mode)
+
+(use-package helm-lsp
+  :commands helm-lsp-workspace-symbol
+  :init (define-key lsp-mode-map [remap xref-find-apropos] #'helm-lsp-workspace-symbol))
+
+(use-package ob-kotlin)
 #+end_src
 
 * Crux setup
@@ -145,6 +163,12 @@ appearence.
 (add-hook 'ns-system-appearance-change-functions #'bn/apply-theme)
 #+end_src
 
+Disable bookmark fontification, at least for now. They tend to spill over...
+
+#+begin_src emacs-lisp
+(setq bookmark-fontify nil)
+#+end_src
+
 Conserve space and reduce clutter.
 
 #+begin_src emacs-lisp
@@ -156,15 +180,23 @@ Conserve space and reduce clutter.
     (scroll-bar-mode -1))
 #+end_src
 
-I don't think I've ever had any use of seeing the minor modes in the mode line.
-This saves a lot of space that I can surely find some other use for.
+This makes for a much prettier modeline.
 
 #+begin_src emacs-lisp
-;; (use-package minions
-;;   :config
-;;   (setq minions-mode-line-lighter ""
-;;         minions-mode-line-delimiters '("" . ""))
-;;   (minions-mode 1))
+(use-package powerline
+  :defer nil
+  :config (powerline-default-theme))
+#+end_src
+
+Mostly eliminate minor modes from the modeline. A better approach may be
+minions-mode, but this is good /enough/ – for now at least.
+
+#+begin_src emacs-lisp
+(use-package diminish
+  :config
+  (diminish 'auto-fill-mode)
+  (diminish 'auto-fill-function)
+  (diminish 'helm-mode))
 #+end_src
 
 Start in full screen mode.
