@@ -1,0 +1,101 @@
+;;;; Emacs Bookmark Format Version 1;;;; -*- coding: utf-8-emacs; mode: lisp-data -*-
+;;; This format is meant to be slightly human-readable;
+;;; nevertheless, you probably don't want to edit it.
+;;; -*- End Of Bookmark File Format Version Stamp -*-
+(("Org/Recipes.org"
+ (filename . "/Users/bn/Repository/Org/Recipes.org")
+ (handler . org-bookmark-jump))
+("Org/Meta.org"
+ (filename . "/Users/bn/Repository/Org/Meta.org")
+ (handler . org-bookmark-jump))
+("Org/MDG.org"
+ (filename . "/Users/bn/Repository/Org/MDG.org")
+ (handler . org-bookmark-jump))
+("https://app.zenhub.com/workspaces/loltel-5cd18276c5fef1637967a9cd/board?labels=terminators&repos=105667909"
+ (front-context-string . "#18204 [pm] Add ")
+ (rear-context-string . "l requests (33)\n")
+ (position . 914)
+ (handler . magit--handle-bookmark)
+ (mode . magit-status-mode)
+ (filename . "/Users/bn/src/loltel/")
+ (magit-hidden-sections
+  (issues)))
+("@Morning checklist"
+ (filename . "/Users/bn/Repository/Org/Lists.org")
+ (handler . org-bookmark-jump)
+ (front-context-string . "B92C8FB2-6215-410A-981A-5627BD40D2F9"))
+("@Before I start working on a new task"
+ (filename . "/Users/bn/Repository/Org/Lists.org")
+ (handler . org-bookmark-jump)
+ (front-context-string . "BAD5B557-5442-445B-9C98-778541404342")
+ (annotation . "Test?"))
+("qq"
+ (filename . "~/src/loltel/voice/chordlet/pkg/controller/diameter/context.go")
+ (front-context-string . "sendDPR(conn); e")
+ (rear-context-string . ")\n		if err := c.")
+ (position . 4805))
+("Org/WG2General"
+ (filename . "~/Repository/Org/WG2General.org")
+ (front-context-string . "* Projects  \n** ")
+ (rear-context-string . "e6e3681c62f767e\n")
+ (position . 528)
+ (annotation . ""))
+("org-capture-last-stored-marker"
+ (filename . "/Users/bn/Repository/Org/Software.org")
+ (handler . org-bookmark-jump)
+ (front-context-string . "70B14EA8-6A5D-41AA-B383-4ECE984A5F14"))
+("bookmarks"
+ (filename . "~/Bookmarks.org")
+ (front-context-string . "\n* [[https://dew")
+ (rear-context-string)
+ (position . 1))
+("cnf"
+ (filename . "~/Repository/Lists.org")
+ (front-context-string . "#+STARTUP: overv")
+ (rear-context-string)
+ (position . 1))
+("Lists.org"
+ (filename . "~/Repository/Lists.org")
+ (front-context-string . "#+STARTUP: overv")
+ (rear-context-string)
+ (position . 1))
+("Lists"
+ (filename . "~/Repository/Lists.org")
+ (front-context-string . "* Lage koblinger")
+ (rear-context-string)
+ (position . 1))
+("go.mod"
+ (filename . "~/src/loltel/3rd/golang/go.mod")
+ (front-context-string . "module github.co")
+ (rear-context-string)
+ (position . 1))
+("Weekly review"
+ (filename . "~/Repository/Lists.org")
+ (front-context-string . "* Weekly review\n")
+ (rear-context-string . "erte nøkkelord.\n")
+ (position . 567))
+("networks.yaml"
+ (filename . "~/src/loltel/networks.yaml")
+ (front-context-string . "---\n10.27.0.0/16")
+ (rear-context-string)
+ (position . 1))
+("org-refile-last-stored"
+ (filename . "/Users/bn/Repository/Org/Software.org")
+ (handler . org-bookmark-jump)
+ (front-context-string . "70B14EA8-6A5D-41AA-B383-4ECE984A5F14"))
+("org-capture-last-stored"
+ (filename . "/Users/bn/Repository/Roam/daily/2021-06-26.org")
+ (handler . org-bookmark-jump)
+ (front-context-string . "08C551F3-8EDC-48FF-9084-5C9308E378B1"))
+("GTD inbox"
+ (filename . "~/Repository/Org/Inbox.org")
+ (front-context-string . "* Tasks\n** TODO ")
+ (rear-context-string . "org::datetree/\n\n")
+ (position . 35)
+ (annotation . ""))
+("config.org"
+ (filename . "~/.emacs.d/config.org")
+ (front-context-string . "* Basic initiali")
+ (rear-context-string)
+ (position . 1))
+)
