@@ -62,11 +62,21 @@ false if the file matches a name in this list."
   (save-buffer)
   (kill-buffer-and-window))
 
+(defun bn/select-theme (name appearence)
+  (cdr (assoc appearence (cadr (assoc name theme-sets)))))
+
 (defun bn/apply-theme (appearance)
   "Load theme, taking current system APPEARANCE into consideration."
   (mapc #'disable-theme custom-enabled-themes)
-  (pcase appearance
-    ('light (load-theme default-light-theme t))
-    ('dark (load-theme default-dark-theme t)))
+  (load-theme (bn/select-theme default-theme appearance) t)
   ; Gets reset after loading themes for some reason.
   (bn/adjust-face-attributes))
+
+; It would be nice to be able to quickly search a document and all level-n
+; links, e.g. using swiper.
+(defun bn/org-buffer-links ()
+  (interactive)
+  (org-element-map (org-element-parse-buffer) 'link
+    (lambda (link)
+      (when (string= (org-element-property :type link) "file")
+        (org-element-property :path link)))))

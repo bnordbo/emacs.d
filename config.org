@@ -50,7 +50,7 @@ used.
 Who wouldn't want sensible defaults?
 
 #+begin_src emacs-lisp
-(load-file "~/.emacs.d/sensible-defaults.el")
+(load-file "~/.emacs.d/elisp/sensible-defaults.el")
 (sensible-defaults/use-all-settings)
 #+end_src
 
