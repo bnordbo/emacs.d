@@ -1260,7 +1260,7 @@ buffers.
   :bind (("C-x g" . magit)
          :map magit-mode-map
          ("C-<tab>" . nil))
-  :init (setq magit-git-executable "/usr/local/bin/git"))
+  :init (setq magit-git-executable "/usr/bin/git"))
 #+end_src
 
 Forge hooks into magit and provides access to GitHub. It's quite slow on our
