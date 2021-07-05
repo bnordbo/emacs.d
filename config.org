@@ -135,6 +135,7 @@ mostly for playing around to maybe get that working at some point.
 (use-package kotlin-mode)
 
 (use-package helm-lsp
+  :after lsp-mode
   :commands helm-lsp-workspace-symbol
   :init (define-key lsp-mode-map [remap xref-find-apropos] #'helm-lsp-workspace-symbol))
 
@@ -433,7 +434,6 @@ I often switch from Emacs to searh  for stuff.  Let's put an end to that!
   :defer 15)
 #+end_src
 
-
 * Integrations
 
 Use projectile. This is quite neat in normal projects, but it's struggling in
@@ -535,7 +535,6 @@ This works surprisingly well for navigating code, even in big monorepos.
   
 #+begin_src emacs-lisp
 (use-package dumb-jump
-  :ensure t
   :config
   (setq xref-backend-functions #'dumb-jump-xref-activate))
 #+end_src
@@ -788,7 +787,6 @@ an experiment...
 (global-set-key (kbd "C-h") 'delete-backward-char)
 (global-set-key (kbd "M-h") 'backward-kill-word)
 #+end_src
-
 
 * Org mode
 
@@ -1100,7 +1098,7 @@ Fleeting notes, i.e. notes that are not connected to a particular project.
 
 #+begin_src emacs-lisp
 (use-package org-journal
-  :disabled ; testing org-roam-journal instead
+  :disabled ; testing org-roam-dailies instead
   :bind
   (("C-c n j" . org-journal-new-entry)
    (:map org-journal-mode-map
