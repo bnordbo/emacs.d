@@ -689,9 +689,7 @@ Projectile + Helm is an amazing combo!
 #+end_src
 
 * Key bindings
-
 ** General settings
-
 On Mac, map the command key to meta and keep the normal behaviour of option.
 
 #+begin_src emacs-lisp
@@ -709,7 +707,6 @@ useful.
 #+end_src
 
 ** New bindings
-
 I picked up C-TAB switcing from Eclipse way back.  The reverse one is
 perhaps overdoing it since I usually have no more than three buffers.
 
@@ -773,7 +770,6 @@ the same thing?), but with Go it becomes useful...
 #+end_src
 
 ** Rebindings
-
 More powerful expansion.
 
 #+begin_src emacs-lisp
