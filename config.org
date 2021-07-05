@@ -97,12 +97,6 @@ This section is for testing out new configurations.
   :config
   (add-to-list 'writegood-weasel-words "actionable"))
 
-(use-package goto-last-change
-    :bind (("C-;" . goto-last-change)))
-
-(use-package expand-region
-  :bind ("C-=" . er/expand-region))
-
 (use-package ox-reveal
   :init (setq org-reveal-root "https://cdn.jsdelivr.net/npm/reveal.js"))
 
@@ -414,6 +408,22 @@ Seeing the real width  of the cursor is sometimes useful (e.g. tabs).
 
 #+begin_src emacs-lisp
 (setq x-stretch-cursor t)
+#+end_src
+
+I quite frequently want to go back to the last edited location. This package
+handles that, and also allows to jump to all past edited locations.
+
+#+begin_src emacs-lisp
+(use-package goto-last-change
+    :bind (("C-;" . goto-last-change)))
+#+end_src
+
+It's common to want to mark the region the cursor is currently in. This package
+allows selecting increasingly wide regions around the cursor.
+
+#+begin_src emacs-lisp
+(use-package expand-region
+  :bind ("C-=" . er/expand-region))
 #+end_src
 
 * Searching and filtering
