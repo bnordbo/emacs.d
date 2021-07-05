@@ -80,13 +80,12 @@
  (rear-context-string)
  (position . 1))
 ("org-refile-last-stored"
- (filename . "/Users/bn/Repository/Org/Software.org")
+ (filename . "/Users/bn/Repository/Org/Projects.org")
  (handler . org-bookmark-jump)
- (front-context-string . "70B14EA8-6A5D-41AA-B383-4ECE984A5F14"))
+ (front-context-string . "366060C1-37B3-4935-9AFA-92F22E3683C2"))
 ("org-capture-last-stored"
- (filename . "/Users/bn/Repository/Roam/daily/2021-06-26.org")
- (handler . org-bookmark-jump)
- (front-context-string . "08C551F3-8EDC-48FF-9084-5C9308E378B1"))
+ (filename . "/Users/bn/Repository/Roam/task_determine_workflow.org")
+ (handler . org-bookmark-jump))
 ("GTD inbox"
  (filename . "~/Repository/Org/Inbox.org")
  (front-context-string . "* Tasks\n** TODO ")
