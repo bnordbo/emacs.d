@@ -1165,6 +1165,9 @@ Set up org-roam v2 using quelpa and use-package, and bind it behind the ~C-c n~ 
   :bind
   (("C-c n f" . org-roam-node-find)
    ("C-c n c" . org-roam-node-capture)
+   ("C-c n j j" . org-roam-dailies-capture-today)
+   ("C-c n j t" . org-roam-dailies-find-today)
+   ("C-c n j y" . org-roam-dailies-find-yesterday)
    :map org-mode-map
    ("C-c n i" . org-roam-node-insert)
    ("C-c n i" . org-roam-node-insert)
@@ -1191,7 +1194,6 @@ Maybe org-roam-dailies works better?
 #+begin_src emacs-lisp
 (setq org-roam-dailies-capture-templates
       '(("d" "default" entry
-         #'org-roam-capture--get-point
          "* %?"
          :if-new (file+head "%<%Y-%m-%d>.org"
                             "#+title: %<%Y-%m-%d>\n"))))
