@@ -1177,11 +1177,12 @@ Set up org-roam v2 using quelpa and use-package, and bind it behind the ~C-c n~ 
    ("C-c n a r" . org-roam-alias-remove)
    ("C-c n r a" . org-roam-ref-add)
    ("C-c n r r" . org-roam-ref-remove))
-  :init
-  (setq org-roam-capture-templates '(("d" "default" plain "%?"
-                                      :if-new (file+head "${slug}.org"
-                                                         "#+TITLE: ${title}\n#+DATE: %T\n")
-                                      :unnarrowed t)))
+  :custom
+  (org-roam-node-display-template "${title:*} ${tags:20}" "Widen the tag column")
+  (org-roam-capture-templates '(("d" "default" plain "%?"
+                                 :if-new (file+head "${slug}.org"
+                                                    "#+TITLE: ${title}\n#+DATE: %T\n")
+                                 :unnarrowed t)))
   :config
   (org-roam-setup))
 #+end_src
