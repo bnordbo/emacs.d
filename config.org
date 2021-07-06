@@ -1110,44 +1110,9 @@ Fleeting notes, i.e. notes that are not connected to a particular project.
         org-journal-carryover-items ""))
  #+end_src   
 
-** PDF notes and annotations using org-noter
-
-This is incredibly useful for research. Currently only works with PDF, but it
-ought to be able to make it work for ePub too.
-
-#+begin_src emacs-lisp
-
-(use-package org-noter
-  :bind (("C-c n o" . org-noter)
-         :map org-noter-doc-mode-map
-         (("M-i" . zp/org-noter-insert-precise-note-dwim)))
-  :init
-  (setq org-noter-notes-search-path (list org-roam-directory)
-        org-noter-notes-window-location 'horizontal-split))
-
-;; Move these to a separate "Media" section
-(use-package pdf-tools
-  :mode ("\\.pdf\\'" . pdf-view-mode)
-  :demand
-  :config
-  (pdf-tools-install :no-query))
-
-(use-package org-pdftools
-  :hook (org-load . org-pdftools-setup-link))
-
-(use-package nov
-  :mode ("\\.\\(epub\\|mobi\\)\\'" . nov-mode))
-
-(use-package org-noter-pdftools
-  :after org-noter
-  :config
-  (with-eval-after-load 'pdf-annot
-    (add-hook 'pdf-annot-activate-handler-functions #'org-noter-pdftools-jump-to-note)))
-#+end_src
-
 ** PIM using org-roam
 
- Let's try to use the new Repository structure for org-roam. An alternative
+Let's try to use the new Repository structure for org-roam. An alternative
  would have been to store it as a Context, but it's probably more of a cross
  context thing.
 
@@ -1275,6 +1240,42 @@ notes in the org-roam directory. It's like kayaking – awesome but a bit ricket
            :unnarrowed t)))
   :bind (:map org-mode-map
          (("C-c n a" . orb-note-actions))))
+#+end_src
+
+** PDF notes and annotations using org-noter
+
+This is incredibly useful for research. Currently only works with PDF, but it
+ought to be able to make it work for ePub too.
+
+#+begin_src emacs-lisp
+
+(use-package org-noter
+  :after org-roam
+  :bind (("C-c n o" . org-noter)
+         :map org-noter-doc-mode-map
+         (("M-i" . zp/org-noter-insert-precise-note-dwim)))
+  :init
+  (setq org-noter-notes-search-path (list org-roam-directory)
+        org-noter-notes-window-location 'horizontal-split))
+
+;; Move these to a separate "Media" section
+(use-package pdf-tools
+  :mode ("\\.pdf\\'" . pdf-view-mode)
+  :demand
+  :config
+  (pdf-tools-install :no-query))
+
+(use-package org-pdftools
+  :hook (org-load . org-pdftools-setup-link))
+
+(use-package nov
+  :mode ("\\.\\(epub\\|mobi\\)\\'" . nov-mode))
+
+(use-package org-noter-pdftools
+  :after org-noter
+  :config
+  (with-eval-after-load 'pdf-annot
+    (add-hook 'pdf-annot-activate-handler-functions #'org-noter-pdftools-jump-to-note)))
 #+end_src
 
 * Version control
