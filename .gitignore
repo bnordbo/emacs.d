@@ -5,3 +5,17 @@ ido.last
 games
 /ac-comphist.dat
 custom.el
+/projectile-bookmarks.eld
+bookmarks
+/eln-cache/
+/forge-database.sqlite
+/.lsp-session-v1
+/.mc-lists.el
+/.org-id-locations
+/.stignore
+/config.el
+/eshell/
+/org-roam.db
+/transient/
+/url
+/projects

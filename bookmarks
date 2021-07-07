@@ -80,11 +80,11 @@
  (rear-context-string)
  (position . 1))
 ("org-refile-last-stored"
- (filename . "/Users/bn/Repository/Org/Projects.org")
+ (filename . "/Users/bn/Repository/Org/Hardware.org")
  (handler . org-bookmark-jump)
- (front-context-string . "366060C1-37B3-4935-9AFA-92F22E3683C2"))
+ (front-context-string . "05EDAD11-DB30-45F4-9C93-CDDD5C0C95B0"))
 ("org-capture-last-stored"
- (filename . "/Users/bn/Repository/Roam/task_determine_workflow.org")
+ (filename . "/Users/bn/Repository/Roam/thinking_fast_and_slow.org")
  (handler . org-bookmark-jump))
 ("GTD inbox"
  (filename . "~/Repository/Org/Inbox.org")
