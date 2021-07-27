@@ -149,12 +149,14 @@ appearence.
 #+begin_src emacs-lisp
 (use-package leuven-theme)
 (use-package gruvbox-theme)
+(use-package material-theme)
 
 (defvar theme-sets
   '((leuven ((light . leuven) (dark . leuven-dark)))
-    (gruvbox ((light . gruvbox-light-medium) (dark . gruvbox-dark-medium )))))
+    (gruvbox ((light . gruvbox-light-medium) (dark . gruvbox-dark-medium )))
+    (material ((light . material-light) (dark . material)))))
 
-(setq default-theme 'gruvbox)
+(setq default-theme 'leuven)
 
 (defun bn/adjust-face-attributes ()
 ;  (set-face-attribute 'markdown-table-face nil :inherit 'fixed-pitch)
