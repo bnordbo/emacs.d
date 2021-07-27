@@ -2,19 +2,25 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("Org/Projects.org"
+((#("Org/Projects.org:Projects" 0 25
+   (face nil))
  (filename . "~/Repository/Org/Projects.org")
  (handler . org-bookmark-jump)
-("Org/Recipes.org"
+ (front-context-string . "9586D21A-6064-40C9-9F8D-19852DD888A0")
+ (annotation . ""))
+(#("Org/Recipes.org" 0 15
+   (face nil))
  (filename . "/Users/bn/Repository/Org/Recipes.org")
  (handler . org-bookmark-jump))
 ("Org/Meta.org"
  (filename . "/Users/bn/Repository/Org/Meta.org")
  (handler . org-bookmark-jump))
-("Org/MDG.org"
+(#("Org/MDG.org" 0 11
+   (face nil))
  (filename . "/Users/bn/Repository/Org/MDG.org")
  (handler . org-bookmark-jump))
-("https://app.zenhub.com/workspaces/loltel-5cd18276c5fef1637967a9cd/board?labels=terminators&repos=105667909"
+(#("https://app.zenhub.com/workspaces/loltel-5cd18276c5fef1637967a9cd/board?labels=terminators&repos=105667909" 0 106
+   (face nil))
  (front-context-string . "#18204 [pm] Add ")
  (rear-context-string . "l requests (33)\n")
  (position . 914)
@@ -47,7 +53,8 @@
  (filename . "/Users/bn/Repository/Org/Software.org")
  (handler . org-bookmark-jump)
  (front-context-string . "70B14EA8-6A5D-41AA-B383-4ECE984A5F14"))
-("bookmarks"
+(#("bookmarks" 0 9
+   (face nil))
  (filename . "~/Bookmarks.org")
  (front-context-string . "\n* [[https://dew")
  (rear-context-string)
@@ -67,7 +74,8 @@
  (front-context-string . "* Lage koblinger")
  (rear-context-string)
  (position . 1))
-("go.mod"
+(#("go.mod" 0 6
+   (face nil))
  (filename . "~/src/loltel/3rd/golang/go.mod")
  (front-context-string . "module github.co")
  (rear-context-string)
@@ -87,16 +95,16 @@
  (handler . org-bookmark-jump)
  (front-context-string . "05EDAD11-DB30-45F4-9C93-CDDD5C0C95B0"))
 ("org-capture-last-stored"
- (filename . "/Users/bn/Repository/Roam/daily/2021-07-12.org")
- (handler . org-bookmark-jump)
- (front-context-string . "43456BC1-3EE7-4ADA-8BF5-E822D83804E6"))
+ (filename . "/Users/bn/Repository/Roam/so_what.org")
+ (handler . org-bookmark-jump))
 ("GTD inbox"
  (filename . "~/Repository/Org/Inbox.org")
  (front-context-string . "* Tasks\n** TODO ")
  (rear-context-string . "org::datetree/\n\n")
  (position . 35)
  (annotation . ""))
-("config.org"
+(#("config.org" 0 10
+   (face nil))
  (filename . "~/.emacs.d/config.org")
  (front-context-string . "* Basic initiali")
  (rear-context-string)
