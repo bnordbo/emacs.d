@@ -184,6 +184,12 @@ Conserve space and reduce clutter.
     (scroll-bar-mode -1))
 #+end_src
 
+Fringes adds some air, and is nice for diff highlights etc.
+
+#+begin_src emacs-lisp
+(fringe-mode '(6 . 2))
+#+end_src
+
 This makes for a much prettier modeline.
 
 #+begin_src emacs-lisp
