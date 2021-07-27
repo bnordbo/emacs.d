@@ -847,8 +847,10 @@ Load the org-mode and do basic configuration:
         org-clock-out-when-done t
         org-pretty-entities t
         org-modules '(ol-w3m ol-bibtex ol-docview ol-info ol-mhe)
+        org-fontify-whole-heading-line t
         org-use-sub-superscripts "{}"
-        org-M-RET-may-split-line nil)
+        org-M-RET-may-split-line nil
+        org-ditaa-jar-path "/Users/bn/.emacs.d/ditaa.jar")
   (add-hook 'org-mode-hook
             (lambda ()
               (auto-fill-mode 1)
