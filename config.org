@@ -98,7 +98,6 @@ This section is for testing out new configurations.
 (use-package boon
   :config
   (require 'boon-colemak))
-;  (define-key boon-x-map "x" 'helm-M-x))
 (use-package 0xc
   :defer 15)
 (use-package kubel
@@ -122,10 +121,10 @@ mostly for playing around to maybe get that working at some point.
 
 (use-package kotlin-mode)
 
-(use-package helm-lsp
-  :after lsp-mode
-  :commands helm-lsp-workspace-symbol
-  :init (define-key lsp-mode-map [remap xref-find-apropos] #'helm-lsp-workspace-symbol))
+;; (use-package helm-lsp
+;;   :after lsp-mode
+;;   :commands helm-lsp-workspace-symbol
+;;   :init (define-key lsp-mode-map [remap xref-find-apropos] #'helm-lsp-workspace-symbol))
 
 (use-package ob-kotlin)
 #+end_src
@@ -198,8 +197,7 @@ minions-mode, but this is good /enough/ – for now at least.
 (use-package diminish
   :config
   (diminish 'auto-fill-mode)
-  (diminish 'auto-fill-function)
-  (diminish 'helm-mode))
+  (diminish 'auto-fill-function))
 #+end_src
 
 Start in full screen mode.
@@ -416,16 +414,14 @@ allows selecting increasingly wide regions around the cursor.
 Swiper is isearch on steroids.
 
 #+begin_src emacs-lisp
-(use-package swiper-helm
-  :bind ("C-c s s" . swiper-helm))
+(use-package swiper
+  :bind ("C-c s s" . swiper))
 #+end_src
 
 I often switch from Emacs to searh  for stuff.  Let's put an end to that!
 
 #+begin_src emacs-lisp
 (use-package ripgrep
-  :defer 15)
-(use-package helm-rg
   :defer 15)
 #+end_src
 
@@ -436,8 +432,9 @@ big monorepos. Hmm.
 
 #+begin_src emacs-lisp
 (use-package projectile
-  :after helm-projectile
-  :bind (("C-c p" . projectile-command-map)))
+; For some reason, this prevents projectile from auto-loading.
+;  :after magit                          ; Ensure projectile-vc will use magit
+  :bind-keymap ("C-c p" . projectile-command-map))
 #+end_src
 
 It seems I'm practically living inside Emacs these days, so I might as well use
@@ -498,8 +495,7 @@ switch to a terminal.
 
 #+begin_src emacs-lisp
 (use-package eshell
-  :init (setq truncate-lines nil)
-  :bind (("C-c h" . helm-eshell-prompts)))
+  :init (setq truncate-lines nil))
 #+end_src
 
 ** PlantUML
@@ -660,26 +656,61 @@ support is extremely limited, unfortunately.
 (use-package bazel)
 #+end_src
 
-* Helm
+* Completion
+
+I used to use Helm, but switched to Vertico because I like it's modular
+approach, and integration with the default completion system. And after all I
+only used a fraction of Helm's functionality...
 
 #+begin_src emacs-lisp
-(use-package helm
-  :diminish
-  :bind (("C-h" . nil)
-         ("M-x" . helm-M-x)
-         ("C-x b" . helm-buffers-list)
-         ("C-x M-b" . helm-recentf)
-         ("C-x r b" . helm-filtered-bookmarks)
-         ("C-x C-f" . helm-find-files)
-         ("C-x 4 f" . find-file-other-window)
-         ("C-c C-w" . org-refile))
-  :config (helm-mode 1))
+(use-package vertico
+  :init (vertico-mode))
 #+end_src
 
-Projectile + Helm is an amazing combo!
+The directory extension makes Vertico behave more like Ido, which I find more
+pleasant.
 
 #+begin_src emacs-lisp
-(use-package helm-projectile)
+(use-package vertico-directory
+  :load-path "~/src/forks/vertico/extensions"
+  :bind (:map vertico-map
+              ("RET" . vertico-directory-enter)
+              ("DEL" . vertico-directory-delete-char)
+              ("M-DEL" . vertico-directory-delete-word))
+  ;; Tidy shadowed file names
+  :hook (rfn-eshadow-update-overlay . vertico-directory-tidy))
+#+end_src
+
+The orderless completion package is snappy and matches just the way I want.
+
+#+begin_src emacs-lisp
+(use-package orderless
+  :init
+  (setq completion-styles '(orderless)
+        completion-category-defaults nil
+        completion-category-overrides '((file (styles partial-completion)))))
+#+end_src
+
+Marginalia decorates the completion listings neatly with additional information
+such as docstrings.
+
+#+begin_src emacs-lisp
+(use-package marginalia
+  :bind (:map minibuffer-local-map
+              ("M-a" . marginalia-cycle))
+  :init (marginalia-mode))
+#+end_src
+
+Embark works a bit like a context menu that can be used anywhere. I kind of like
+the idea, but so far I haven't used it a lot.
+
+#+begin_src emacs-lisp
+(use-package embark
+  :bind
+  (("C-. ." . embark-act)
+   ("C-. ," . embark-dwim))
+  :init
+  (setq prefix-help-command #'embark-prefix-help-commant))
 #+end_src
 
 * Key bindings
@@ -725,7 +756,7 @@ Text manipulation commands, ~C-c t~ prefix.
 Search and navigation commands, ~C-c s~ prefix.
 
 #+begin_src emacs-lisp
-(global-set-key (kbd "C-c s g") 'helm-rg)
+; TODO: Find a replacement for helm-rg
 #+end_src
 
 The ability  to move to the next/prev occurence of the current symbol
@@ -754,13 +785,6 @@ the Emacs syntax for these.
 (use-package visual-regexp
   :bind (("C-c C-r" . 'vr/replace)
          ("C-c q" . 'vr/query-replace)))
-#+end_src
-
-I tend to think snippets are kind of silly (why would you keep typing
-the same thing?), but with Go it becomes useful...
-
-#+begin_src emacs-lisp
-(global-set-key (kbd "C-c y") 'helm-yas-complete)
 #+end_src
 
 ** Rebindings
@@ -857,15 +881,6 @@ For the column view, I'd like to see the basics as compact as possible.
 #+begin_src emacs-lisp
 (setq org-columns-default-format
       "%40ITEM(Task) %9TODO(State) %6Effort(Effort){:} %6CLOCKSUM(Sum) %ALLTAGS(Tags)")
-#+end_src
-
-This allows me to quickly rifle through org files. The only issue I have with it
-is that I want /more/, but it's rather slow on big directory trees.
-
-#+begin_src emacs-lisp
-(use-package helm-org-rifle
-  :bind (("C-c r" . helm-org-rifle-agenda-files)
-         ("C-c R" . helm-org-rifle-org-directory)))
 #+end_src
 
 ** Some basic settings.
@@ -1034,8 +1049,7 @@ into my workflow yet, except for one-off searches. Maybe I could/should use it
 to build the nice and useful agenda view I've been dreaming off lately..?
 
 #+begin_src emacs-lisp
-(use-package org-ql
-  :after helm-org)
+(use-package org-ql)
 #+end_src
 
 ** Capture and refile
