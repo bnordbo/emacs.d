@@ -205,7 +205,8 @@ minions-mode, but this is good /enough/ – for now at least.
 (use-package diminish
   :config
   (diminish 'auto-fill-mode)
-  (diminish 'auto-fill-function))
+  (diminish 'auto-fill-function)
+  (diminish 'which-key-mode))
 #+end_src
 
 Start in full screen mode.
@@ -735,7 +736,6 @@ useful.
 
 #+begin_src emacs-lisp
 (use-package which-key
-  :diminish
   :config (which-key-mode 1))
 #+end_src
 
