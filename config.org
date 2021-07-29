@@ -844,6 +844,8 @@ Load the org-mode and do basic configuration:
         org-clock-in-switch-to-state "NEXT"
         org-clock-out-remove-zero-time-clocks t
         org-clock-out-when-done t
+        org-goto-interface 'outline-path-completion
+        org-outline-path-completion-in-steps nil
         org-pretty-entities t
         org-modules '(ol-w3m ol-bibtex ol-docview ol-info ol-mhe)
         org-fontify-whole-heading-line t
