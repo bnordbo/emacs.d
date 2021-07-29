@@ -895,7 +895,6 @@ For the column view, I'd like to see the basics as compact as possible.
 #+end_src
 
 ** Some basic settings.
-
 I keep most of the stuff in my stuff repository. For now fleeting notes are
 recorded in an Inbox, which is a relic from an older GTD structure. Items are
 archived in datetrees per file to retain context..
@@ -950,7 +949,6 @@ I prefer sparse trees to only show the matched entries. This fixes that in most 
 #+end_src
 
 ** Extras
-
 Support for pasting and dropping images. Setting ~org-image-actual-width~ to
 ~nil~ allows specifying e.g. ~#+org_attr: :width 600~ to limit the width of the
 image, otherwise they sometimes appear very wide.
@@ -970,7 +968,6 @@ This allows bookmarking org headings using ~C-x r m~.
 #+end_src
 
 ** Exporting
-
 Don't prompt when evaluating ditaa code blocks.
 
 #+begin_src emacs-lisp
@@ -987,7 +984,6 @@ Enable more languages.
 #+end_src
 
 ** Pomodoro
-
 #+begin_src emacs-lisp
 (use-package org-pomodoro
   :init (setq org-pomodoro-length 20))
@@ -1008,7 +1004,6 @@ be thrown into an address book as an afterthought.
 #+end_src
 
 ** Bookmarks
-
 #+begin_src emacs-lisp
 (use-package org-cliplink
   :bind (:map org-mode-map
@@ -1016,7 +1011,6 @@ be thrown into an address book as an afterthought.
 #+end_src
 
 ** Agenda setup
-
 This is has been changing a lot, but the current idea is that I want to fetch
 tasks from:
 
@@ -1064,7 +1058,6 @@ to build the nice and useful agenda view I've been dreaming off lately..?
 #+end_src
 
 ** Capture and refile
-
 Capture templates. NEXT is used for tasks I can start working on right away,
 while TODO are effectively blocked. PROJ is for longer lived tasks with
 sub-tasks. These are treated separately in weekly and daily reviews. MEETING is
@@ -1108,29 +1101,7 @@ level one.
                            (org-agenda-files :maxlevel . 2)))
 #+end_src
 
-** Journal
-
-Fleeting notes, i.e. notes that are not connected to a particular project.
-
-#+begin_src emacs-lisp
-(use-package org-journal
-  :disabled ; testing org-roam-dailies instead
-  :bind
-  (("C-c n j" . org-journal-new-entry)
-   (:map org-journal-mode-map
-         ("C-x C-s" . 'bn/org-journal-save-entry-and-exit)))
-  :init
-  (setq org-journal-file-type 'weekly
-        org-journal-dir "~/Repository/Journal"
-        org-journal-date-prefix "* "
-        org-journal-file-header "#+title: %Y journal, week %V\n"
-        org-journal-file-format "%Y-%V.org"
-        org-journal-date-format "%A, %d %B %Y"
-        org-journal-carryover-items ""))
- #+end_src   
-
 ** PIM using org-roam
-
 Let's try to use the new Repository structure for org-roam. An alternative
  would have been to store it as a Context, but it's probably more of a cross
  context thing.
@@ -1171,10 +1142,8 @@ Set up org-roam v2 using quelpa and use-package, and bind it behind the ~C-c n~ 
   (org-roam-setup))
 #+end_src
 
-*** Dailies setup for org-roam
-
-I've been using org-journal for a while now, but it's become a write-only log.
-Maybe org-roam-dailies works better?
+I switched from org-journal to org-roam-dailies as I don't use any of the bells
+and whistles of the former, and this integrates better with org-roam.
 
 #+begin_src emacs-lisp
 (setq org-roam-dailies-capture-templates
@@ -1186,7 +1155,6 @@ Maybe org-roam-dailies works better?
 
 
 ** PDF notes and annotations using org-noter
-
 This is incredibly useful for research. Currently only works with PDF, but it
 ought to be able to make it work for ePub too.
 
