@@ -812,7 +812,6 @@ an experiment...
 #+end_src
 
 * Org mode
-
 Load the org-mode and do basic configuration:
 
 - Set up global keybindings.
@@ -1233,7 +1232,7 @@ buffers.
   :init (setq magit-git-executable "/usr/bin/git"))
 #+end_src
 
-Forge hooks into magit and provides access to GitHub. It's quite slow on our
+Forge hooks into magit and provides access to GitHub. It's quite slow in the
 huge monorepo at work, but reducing the topic list limit seems to help.
 
 #+begin_src emacs-lisp
@@ -1243,8 +1242,8 @@ huge monorepo at work, but reducing the topic list limit seems to help.
   (setq forge-topic-list-limit '(17 .  3)))
 #+end_src
 
-This allows visiting the current file in the remote repo. Very useful when
-referencing code to others.
+This allows visiting the current file in the remote repo. Very useful for
+giving others references to code.
 
 #+begin_src emacs-lisp
 (use-package browse-at-remote)
@@ -1255,7 +1254,6 @@ buffer margin.
 
 #+begin_src emacs-lisp
 (use-package diff-hl
-  :config
   :hook '((prog-mode . turn-on-diff-hl-mode)
           (vc-dir-mode . turn-on-diff-hl-mode)))
 #+end_src
