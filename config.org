@@ -420,11 +420,17 @@ allows selecting increasingly wide regions around the cursor.
 
 * Searching and filtering
 
-Swiper is isearch on steroids.
+Consult is swiper on steroids.
 
 #+begin_src emacs-lisp
-(use-package swiper
-  :bind ("C-c s s" . swiper))
+(use-package consult
+  :bind
+  (("C-c s g" . consult-ripgrep)       ; (g)rep files
+   ("C-c s s" . consult-line)          ; (s)earch for line
+   ("C-c s f" . consult-focus-lines))  ; (f)ilter lines
+  :init
+  (setq xref-show-xrefs-function #'consult-xref
+        xref-show-definitions-function #'consult-xref))
 #+end_src
 
 I often switch from Emacs to searh  for stuff.  Let's put an end to that!
@@ -832,6 +838,7 @@ Load the org-mode and do basic configuration:
          ("C-c M-p" . org-move-subtree-up)
          ("C-c M-n" . org-move-subtree-down)
          ("C-x n w" . org-toggle-narrow-to-subtree)
+         ("C-. h" . consult-org-heading)
          ("C-<tab>" . nil)
          ("M-h" . nil))
   :init
