@@ -2,7 +2,11 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-((#("Org/Projects.org:Projects" 0 25
+((#("Org/Health.org" 0 14
+   (face nil))
+ (filename . "/Users/bn/Repository/Org/Health.org")
+ (handler . org-bookmark-jump))
+(#("Org/Projects.org:Projects" 0 25
    (face nil))
  (filename . "~/Repository/Org/Projects.org")
  (handler . org-bookmark-jump)
@@ -95,7 +99,7 @@
  (handler . org-bookmark-jump)
  (front-context-string . "05EDAD11-DB30-45F4-9C93-CDDD5C0C95B0"))
 ("org-capture-last-stored"
- (filename . "/Users/bn/Repository/Roam/so_what.org")
+ (filename . "/Users/bn/Repository/Roam/etsi_ts_129_219_chordletsy.org")
  (handler . org-bookmark-jump))
 ("GTD inbox"
  (filename . "~/Repository/Org/Inbox.org")
