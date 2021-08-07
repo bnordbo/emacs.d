@@ -137,7 +137,6 @@ This adds a lot of nify utilities that I've been missing.
 #+begin_src emacs-lisp
 (use-package crux
   :bind (("C-o" . crux-smart-open-line-above)
-         ("C-c C-D" . crux-delete-file-and-buffer)
          ("C-c d" . crux-duplicate-current-line-or-region)
          ("C-c M-d" . crux-duplicate-and-comment-current-line-or-region)))
 #+end_src
@@ -809,8 +808,8 @@ the Emacs syntax for these.
 
 #+begin_src emacs-lisp
 (use-package visual-regexp
-  :bind (("C-c C-r" . 'vr/replace)
-         ("C-c q" . 'vr/query-replace)))
+  :bind (("C-c s r" . 'vr/replace)
+         ("C-c s q" . 'vr/query-replace)))
 #+end_src
 
 ** Rebindings
