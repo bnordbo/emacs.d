@@ -511,7 +511,7 @@ switch to a terminal.
 
 #+begin_src emacs-lisp
 (use-package eshell
-  :init (setq truncate-lines nil))
+  :config (toggle-truncate-lines -1))
 #+end_src
 
 ** PlantUML
