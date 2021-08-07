@@ -672,6 +672,17 @@ support is extremely limited, unfortunately.
 (use-package bazel)
 #+end_src
 
+** Rego
+
+Syntax highlighting and REPL support for OPAs Rego configuration language.
+
+#+begin_src emacs-lisp
+(use-package rego-mode
+  :custom
+  (rego-repl-executable "/usr/local/bin/opa")
+  (rego-opa-command "/usr/local/bin/opa"))
+#+end_src
+
 * Completion
 
 I used to use Helm, but switched to Vertico because I like it's modular
