@@ -589,14 +589,14 @@ support is extremely limited, unfortunately.
 #+end_src
 
 #+begin_src emacs-lisp
-(use-package rainbow-delimiters)
+(use-package prism)
 (use-package eldoc
   :diminish)
 
 (add-hook 'emacs-lisp-mode-hook
           (lambda ()
             (paredit-mode 1)
-            (rainbow-delimiters-mode 1)
+            (prism-mode 1)
             (eldoc-mode 1)))
 
 (org-babel-do-load-languages
