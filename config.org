@@ -1138,8 +1138,8 @@ Set up org-roam v2 using quelpa and use-package, and bind it behind the ~C-c n~ 
   (("C-c n f" . org-roam-node-find)
    ("C-c n c" . org-roam-node-capture)
    ("C-c n j j" . org-roam-dailies-capture-today)
-   ("C-c n j t" . org-roam-dailies-find-today)
-   ("C-c n j y" . org-roam-dailies-find-yesterday)
+   ("C-c n j t" . org-roam-dailies-goto-today)
+   ("C-c n j y" . org-roam-dailies-goto-yesterday)
    :map org-mode-map
    ("C-c n i" . org-roam-node-insert)
    ("C-c n l" . org-roam-buffer-toggle)
