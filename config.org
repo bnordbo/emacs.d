@@ -96,6 +96,7 @@ This section is for testing out new configurations.
 
 (use-package free-keys)
 (use-package boon
+  :disabled
   :config
   (require 'boon-colemak))
 (use-package 0xc
