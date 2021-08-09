@@ -1131,7 +1131,7 @@ Let's try to use the new Repository structure for org-roam. An alternative
 (setq org-roam-directory "~/Repository/Roam")
 #+end_src
 
-Set up org-roam v2 using quelpa and use-package, and bind it behind the ~C-c n~ prefix:
+Set up org-roam v2 behind the ~C-c n~ prefix:
 
 #+begin_src emacs-lisp
 (use-package org-roam
@@ -1142,6 +1142,7 @@ Set up org-roam v2 using quelpa and use-package, and bind it behind the ~C-c n~ 
    ("C-c n j j" . org-roam-dailies-capture-today)
    ("C-c n j t" . org-roam-dailies-goto-today)
    ("C-c n j y" . org-roam-dailies-goto-yesterday)
+   ("C-c n j d" . org-roam-dailies-goto-date)
    :map org-mode-map
    ("C-c n i" . org-roam-node-insert)
    ("C-c n l" . org-roam-buffer-toggle)
