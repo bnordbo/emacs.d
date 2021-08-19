@@ -47,7 +47,8 @@
  (front-context-string . "sendDPR(conn); e")
  (rear-context-string . ")\n		if err := c.")
  (position . 4805))
-("Org/WG2General"
+(#("Org/WG2General" 0 14
+   (face nil))
  (filename . "~/Repository/Org/WG2General.org")
  (front-context-string . "* Projects  \n** ")
  (rear-context-string . "e6e3681c62f767e\n")
@@ -99,8 +100,9 @@
  (handler . org-bookmark-jump)
  (front-context-string . "05EDAD11-DB30-45F4-9C93-CDDD5C0C95B0"))
 ("org-capture-last-stored"
- (filename . "/Users/bn/Repository/Roam/etsi_ts_129_219_chordletsy.org")
- (handler . org-bookmark-jump))
+ (filename . "/Users/bn/Bookmarks.org")
+ (handler . org-bookmark-jump)
+ (front-context-string . "BEBA3FD0-CBB3-4120-B967-C899CC1DD701"))
 ("GTD inbox"
  (filename . "~/Repository/Org/Inbox.org")
  (front-context-string . "* Tasks\n** TODO ")
