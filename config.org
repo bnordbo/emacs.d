@@ -689,6 +689,11 @@ Syntax highlighting and REPL support for OPAs Rego configuration language.
   (rego-opa-command "/usr/local/bin/opa"))
 #+end_src
 
+** Protobuf
+#+begin_src emacs-lisp
+(use-package protobuf-mode)
+#+end_src
+
 * Completion
 
 I used to use Helm, but switched to Vertico because I like it's modular
