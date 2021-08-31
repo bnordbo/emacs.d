@@ -1001,8 +1001,9 @@ This allows bookmarking org headings using ~C-x r m~.
 Don't prompt when evaluating ditaa code blocks.
 
 #+begin_src emacs-lisp
-(setq org-confirm-babel-evaluate (lambda (lang body)
-                                   (not (member lang '("ditaa" "plantuml")))))
+(setq org-confirm-babel-evaluate
+      (lambda (lang body)
+        (not (member lang '("ditaa" "plantuml" "bash")))))
 #+end_src
 
 Enable more languages.
