@@ -2,7 +2,14 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-((#("Org/Health.org" 0 14
+(("Org/WG2Terminators.org"
+ (filename . "/Users/bn/Repository/Org/WG2Terminators.org")
+ (handler . org-bookmark-jump))
+("W"
+ (filename . "/Users/bn/Repository/Org/World.org")
+ (handler . org-bookmark-jump)
+ (front-context-string . "C1907A4F-AE90-4A63-A13E-1C44CC832D63"))
+(#("Org/Health.org" 0 14
    (face nil))
  (filename . "/Users/bn/Repository/Org/Health.org")
  (handler . org-bookmark-jump))
@@ -43,10 +50,10 @@
  (front-context-string . "BAD5B557-5442-445B-9C98-778541404342")
  (annotation . "Test?"))
 ("qq"
- (filename . "~/src/loltel/voice/chordlet/pkg/controller/diameter/context.go")
- (front-context-string . "sendDPR(conn); e")
- (rear-context-string . ")\n		if err := c.")
- (position . 4805))
+ (filename . "~/src/loltel/voice/chordlet/pkg/controller/diameter/gx_ra.go")
+ (front-context-string . "ReAuth(evt.Sid, ")
+ (rear-context-string . "m := s.buildBase")
+ (position . 4094))
 (#("Org/WG2General" 0 14
    (face nil))
  (filename . "~/Repository/Org/WG2General.org")
@@ -100,9 +107,9 @@
  (handler . org-bookmark-jump)
  (front-context-string . "05EDAD11-DB30-45F4-9C93-CDDD5C0C95B0"))
 ("org-capture-last-stored"
- (filename . "/Users/bn/Bookmarks.org")
+ (filename . "/Users/bn/Repository/Roam/daily/2021-08-26.org")
  (handler . org-bookmark-jump)
- (front-context-string . "BEBA3FD0-CBB3-4120-B967-C899CC1DD701"))
+ (front-context-string . "37AE5580-7F1F-4615-BCB2-7CF1E104642C"))
 ("GTD inbox"
  (filename . "~/Repository/Org/Inbox.org")
  (front-context-string . "* Tasks\n** TODO ")
