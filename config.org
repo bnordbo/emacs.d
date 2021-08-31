@@ -92,7 +92,8 @@ This section is for testing out new configurations.
   (add-to-list 'writegood-weasel-words "actionable"))
 
 (use-package ox-reveal
-  :init (setq org-reveal-root "https://cdn.jsdelivr.net/npm/reveal.js"))
+  :init (setq org-reveal-root "file:///Users/bn/.emacs.d/emacs-reveal-submodules/reveal.js"))
+(use-package htmlize)
 
 (use-package free-keys)
 (use-package boon
