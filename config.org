@@ -428,7 +428,6 @@ Consult is swiper on steroids.
 (use-package consult
   :bind
   (("M-y" . consult-yank-pop)          ; like yank pop, but also shows preview
-   ("C-s" . consult-line)          ; (s)earch for line
    ("C-c s f" . consult-find)          ; (f)ind file
    ("C-c s g" . consult-ripgrep)       ; (g)rep files
    ("C-c s s" . consult-line)          ; (s)earch for line
