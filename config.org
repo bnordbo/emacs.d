@@ -382,6 +382,12 @@ using this for a while, and it seems to work.
   :config (exec-path-from-shell-initialize))
 #+end_src
 
+While the default LANG setting seems to make sense, it causes locale warnings.
+
+#+begin_src emacs-lisp
+(setenv LANG "")
+#+end_src
+
 I just use ispell for now, but should look into a way of supporting multiple
 dictionaries.
 
