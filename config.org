@@ -434,7 +434,7 @@ Consult is swiper on steroids.
 (use-package consult
   :bind
   (("M-y" . consult-yank-pop)          ; like yank pop, but also shows preview
-   ("C-c s f" . consult-find)          ; (f)ind file
+   ("C-c s n" . consult-find)          ; (f)ind file
    ("C-c s g" . consult-ripgrep)       ; (g)rep files
    ("C-c s s" . consult-line)          ; (s)earch for line
    ("C-c s i" . consult-imenu)         ; (i)menu completions
@@ -542,6 +542,8 @@ JAR setting below. But it also seems to be more freqently updated.
 #+end_src
 
 * Programming language support
+
+Some useful defaults for all programming languages.
 
 #+begin_src emacs-lisp
 (add-hook 'prog-mode-hook 'electric-pair-local-mode)
