@@ -91,10 +91,6 @@ This section is for testing out new configurations.
   :config
   (add-to-list 'writegood-weasel-words "actionable"))
 
-(use-package ox-reveal
-  :init (setq org-reveal-root "file:///Users/bn/.emacs.d/emacs-reveal-submodules/reveal.js"))
-(use-package htmlize)
-
 (use-package free-keys)
 (use-package boon
   :disabled
@@ -512,6 +508,15 @@ In practice I hardly ever answer anything but yes.
 
 #+begin_src emacs-lisp
 (setq confirm-kill-processes nil)
+#+end_src
+
+Integration with reveal.js. Along with org-mode and ditaa, this is a pretty
+powerful way of making presentations.
+
+#+begin_src emacs-lisp
+(use-package ox-reveal
+  :init (setq org-reveal-root "file:///Users/bn/.emacs.d/emacs-reveal-submodules/reveal.js"))
+(use-package htmlize)
 #+end_src
 
 ** Eshell
