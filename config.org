@@ -766,7 +766,7 @@ the idea, but so far I haven't used it a lot.
 #+end_src
 
 * Key bindings
-** General settings
+** Settings
 On Mac, map the command key to meta and keep the normal behaviour of option.
 
 #+begin_src emacs-lisp
@@ -1255,8 +1255,8 @@ buffers.
   :init (setq magit-git-executable "/usr/bin/git"))
 #+end_src
 
-Forge hooks into magit and provides access to GitHub. It's quite slow in the
-huge monorepo at work, but reducing the topic list limit seems to help.
+Forge hooks into magit and provides access to GitHub. It's slow on the monorepo
+at work, but reducing the topic list limit seems to help.
 
 #+begin_src emacs-lisp
 (use-package forge
@@ -1265,8 +1265,8 @@ huge monorepo at work, but reducing the topic list limit seems to help.
   (setq forge-topic-list-limit '(17 .  3)))
 #+end_src
 
-This allows visiting the current file in the remote repo. Very useful for
-giving others references to code.
+This allows visiting the current file in the remote repo. Useful for giving
+others references to code.
 
 #+begin_src emacs-lisp
 (use-package browse-at-remote)
