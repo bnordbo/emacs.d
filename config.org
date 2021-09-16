@@ -492,6 +492,7 @@ have it pick up all the feeds based on tags, but that seems a bit extreme...
 
 #+begin_src emacs-lisp
 (use-package elfeed-org
+  :disabled t
   :defer 15
   :init
   (setq rmh-elfeed-org-files (list "~/.emacs.d/elfeed.org"))
@@ -569,14 +570,15 @@ This works surprisingly well for navigating code, even in big monorepos.
 
 #+begin_src emacs-lisp
 (use-package erlang
+  :disabled t
   :config
   (add-to-list 'erlang-tags-file-list "~/src/bn/loltel/connectivity/erlang/TAGS"))
 #+end_src
 
 ** Go
 
-This sets up Go mode with some basic support.  The jump to definition
-support is extremely limited, unfortunately.
+This sets up Go mode with some basic support. The jump to definition support is
+limited, unfortunately.
 
 #+begin_src emacs-lisp
 (use-package go-eldoc)
@@ -646,15 +648,17 @@ support is extremely limited, unfortunately.
 
 #+begin_src emacs-lisp
 (use-package haskell-mode
+  :disabled t
   :init
- (add-hook 'haskell-mode-hook 'subword-mode)
- (add-hook 'haskell-mode-hook 'haskell-doc-mode))
+  (add-hook 'haskell-mode-hook 'subword-mode)
+  (add-hook 'haskell-mode-hook 'haskell-doc-mode))
 #+end_src
 
 ** Rust
 
 #+begin_src emacs-lisp
 (use-package rust-mode
+  :disabled t
   :init
   (setq racer-cmd "~/bin/racer"
         racer-rust-src-path "~/src/thirdparty/rust/src"
