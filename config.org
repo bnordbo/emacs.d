@@ -429,13 +429,14 @@ Consult is swiper on steroids.
 #+begin_src emacs-lisp
 (use-package consult
   :bind
-  (("M-y" . consult-yank-pop)          ; like yank pop, but also shows preview
-   ("C-c s n" . consult-find)          ; (f)ind file
-   ("C-c s g" . consult-ripgrep)       ; (g)rep files
-   ("C-c s s" . consult-line)          ; (s)earch for line
-   ("C-c s i" . consult-imenu)         ; (i)menu completions
-   ("C-c s j" . consult-mark)          ; (j)ump to mark
-   ("C-c s f" . consult-focus-lines))  ; (f)ilter lines
+  (("M-y" . consult-yank-pop)    ; like yank pop, but also shows preview
+   :map bn/search-map
+   ("n" . consult-find)          ; (f)ind file
+   ("g" . consult-ripgrep)       ; (g)rep files
+   ("s" . consult-line)          ; (s)earch for line
+   ("i" . consult-imenu)         ; (i)menu completions
+   ("j" . consult-mark)          ; (j)ump to mark
+   ("f" . consult-focus-lines))  ; (f)ilter lines
   :init
   (setq xref-show-xrefs-function #'consult-xref
         xref-show-definitions-function #'consult-xref))
@@ -781,32 +782,44 @@ useful.
   :config (which-key-mode 1))
 #+end_src
 
+** Personal keymaps
+
+#+begin_src emacs-lisp
+(define-prefix-command 'bn/search-map)
+(bind-key  "C-c s" 'bn/search-map)
+
+(define-prefix-command 'bn/editing-map)
+(bind-key  "C-c e" 'bn/editing-map)
+
+(define-prefix-command 'bn/window-map)
+(bind-key  "C-c e" 'bn/window-map)
+#+end_src
+
+
 ** New bindings
-I picked up C-TAB switcing from Eclipse way back.  The reverse one is
-perhaps overdoing it since I usually have no more than three buffers.
+
+Global key bindings.
 
 #+begin_src emacs-lisp
-(global-set-key (kbd "C-<tab>")   'other-window)
-(global-set-key (kbd "C-S-<tab>") 'bn/other-window-back)
+(bind-keys :map global-map
+           ("C-<tab>" . other-window)
+           ("C-S-<tab>" bn/other-window-back)
+           ("M-/" . hippie-expand))
 #+end_src
 
-Other window manipulation commands, ~C-c w~ prefix.
+Other window manipulation commands.
 
 #+begin_src emacs-lisp
-(global-set-key (kbd "C-c w s") 'window-swap-states)
+(bind-keys :map bn/window-map
+           ("s" . 'window-swap-states))
 #+end_src
 
-Text manipulation commands, ~C-c t~ prefix.
+Text manipulation commands.
 
 #+begin_src emacs-lisp
-(global-set-key (kbd "C-c t \\") 'align-regexp)
-(global-set-key (kbd "C-c t <SPC>") 'just-one-space)
-#+end_src
-
-Search and navigation commands, ~C-c s~ prefix.
-
-#+begin_src emacs-lisp
-; TODO: Find a replacement for helm-rg
+(bind-keys :map bn/editing-map
+           ("\\" . 'align-regexp)
+           ("<SPC>" 'just-one-space))
 #+end_src
 
 The ability  to move to the next/prev occurence of the current symbol
@@ -833,17 +846,12 @@ the Emacs syntax for these.
 
 #+begin_src emacs-lisp
 (use-package visual-regexp
-  :bind (("C-c s r" . 'vr/replace)
-         ("C-c s q" . 'vr/query-replace)))
+  :bind (:map bn/search-map
+              ("r" . 'vr/replace)
+              ("q" . 'vr/query-replace)))
 #+end_src
 
 ** Rebindings
-More powerful expansion.
-
-#+begin_src emacs-lisp
-(global-set-key (kbd "M-/") 'hippie-expand)
-#+end_src
-
 Rebind ~C-h~, and use it for deleting backwards. I still consider this a bit of
 an experiment...
 
