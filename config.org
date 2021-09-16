@@ -599,26 +599,22 @@ limited, unfortunately.
 #+end_src
 
 ** Elisp
-
-   From what I hear paredit is passé, and Lispy is the new kid on the block, but
-   I gave up and reverted  to paredit.
+From what I hear paredit is passé, and Lispy is the new kid on the block, but
+I gave up and reverted to paredit.
 
 #+begin_src emacs-lisp
 (use-package paredit
   :defer 5
-  :diminish)
-#+end_src
+  :diminish
+  :hook (emacs-lisp-mode . paredit-mode))
 
-#+begin_src emacs-lisp
-(use-package prism)
+(use-package prism
+  :if window-system
+  :hook emacs-lisp-mode)
+
 (use-package eldoc
-  :diminish)
-
-(add-hook 'emacs-lisp-mode-hook
-          (lambda ()
-            (paredit-mode 1)
-            (prism-mode 1)
-            (eldoc-mode 1)))
+  :diminish
+  :hook emacs-lisp-mode)
 
 (org-babel-do-load-languages
  'org-babel-load-languages
