@@ -615,11 +615,6 @@ I gave up and reverted to paredit.
 (use-package eldoc
   :diminish
   :hook emacs-lisp-mode)
-
-(org-babel-do-load-languages
- 'org-babel-load-languages
- '((emacs-lisp . t)
-   (shell . t)))
 #+end_src
 
 ** Shell
@@ -1032,7 +1027,9 @@ Enable more languages.
 #+begin_src emacs-lisp
 (org-babel-do-load-languages
  'org-babel-load-languages
- '((ditaa . t)))
+ '((ditaa . t)
+   (emacs-lisp . t)
+   (shell . t)))
 #+end_src
 
 ** Pomodoro
