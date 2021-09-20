@@ -104,7 +104,7 @@ This section is for testing out new configurations.
 (use-package key-quiz)
 #+end_src
 
-** Kotlin LSP
+** LSP mode
 
 LSP is awesome, but unfortunately difficult to get working with Bazel. This is
 mostly for playing around to maybe get that working at some point.
@@ -610,7 +610,7 @@ I gave up and reverted to paredit.
 
 (use-package prism
   :if window-system
-  :hook emacs-lisp-mode)
+  :hook (emacs-lisp-mode . prism-mode))
 
 (use-package eldoc
   :diminish
