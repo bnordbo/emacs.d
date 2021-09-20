@@ -294,6 +294,102 @@ I've never missed the bell, visible or otherwise.
 (setq ring-bell-function 'ignore)
 #+end_src
 
+* Key bindings
+** Settings
+On Mac, map the command key to meta and keep the normal behaviour of option.
+
+#+begin_src emacs-lisp
+(setq mac-command-modifier 'meta
+      mac-option-modifier nil)
+#+end_src
+
+This pops up a list of possible next keys in the minibuffer. It's incredibly
+useful.
+
+#+begin_src emacs-lisp
+(use-package which-key
+  :config (which-key-mode 1))
+#+end_src
+
+** Personal keymaps
+
+#+begin_src emacs-lisp
+(define-prefix-command 'bn/search-map)
+(bind-key  "C-c s" 'bn/search-map)
+
+(define-prefix-command 'bn/editing-map)
+(bind-key  "C-c e" 'bn/editing-map)
+
+(define-prefix-command 'bn/window-map)
+(bind-key  "C-c w" 'bn/window-map)
+#+end_src
+
+
+** New bindings
+
+Global key bindings.
+
+#+begin_src emacs-lisp
+(bind-keys :map global-map
+           ("C-<tab>" . other-window)
+           ("C-S-<tab>" . bn/other-window-back)
+           ("M-/" . hippie-expand))
+#+end_src
+
+Other window manipulation commands.
+
+#+begin_src emacs-lisp
+(bind-keys :map bn/window-map
+           ("s" . 'window-swap-states))
+#+end_src
+
+Text manipulation commands.
+
+#+begin_src emacs-lisp
+(bind-keys :map bn/editing-map
+           ("\\" . 'align-regexp)
+           ("<SPC>" 'just-one-space))
+#+end_src
+
+The ability  to move to the next/prev occurence of the current symbol
+is something I missed after using IntelliJ for a while.
+
+#+begin_src emacs-lisp
+(use-package auto-highlight-symbol
+  :diminish
+; Does not work since use-package will try to load auto-highlight-symbol too
+;  :hook ((prog-mode . auto-highlight-symbol-mode))
+  :bind (("M-p" . ahs-backward)
+         ("M-n" . 'ahs-forward))
+  :init (setq ahs-idle-interval 1.0
+              ahs-default-range 'ahs-range-whole-buffer
+              ahs-inhibit-face-list '(font-lock-comment-delimiter-face
+                                      font-lock-comment-face
+                                      font-lock-doc-face
+                                      font-lock-doc-string-face
+                                      font-lock-string-face)))
+#+end_src
+
+Interactive regular expressions because I find it tricky to remember
+the Emacs syntax for these.
+
+#+begin_src emacs-lisp
+(use-package visual-regexp
+  :bind (:map bn/search-map
+              ("r" . 'vr/replace)
+              ("q" . 'vr/query-replace)))
+#+end_src
+
+** Rebindings
+Rebind ~C-h~, and use it for deleting backwards. I still consider this a bit of
+an experiment...
+
+#+begin_src emacs-lisp
+(global-set-key (kbd "C-?") 'help-command)
+(global-set-key (kbd "C-h") 'delete-backward-char)
+(global-set-key (kbd "M-h") 'backward-kill-word)
+#+end_src
+
 * General editing setup
 
 As a rule, I don't want to indent with tabs. Spaces are more predicable, and I
@@ -758,102 +854,6 @@ the idea, but so far I haven't used it a lot.
    ("C-. ," . embark-dwim))
   :init
   (setq prefix-help-command #'embark-prefix-help-commant))
-#+end_src
-
-* Key bindings
-** Settings
-On Mac, map the command key to meta and keep the normal behaviour of option.
-
-#+begin_src emacs-lisp
-(setq mac-command-modifier 'meta
-      mac-option-modifier nil)
-#+end_src
-
-This pops up a list of possible next keys in the minibuffer. It's incredibly
-useful.
-
-#+begin_src emacs-lisp
-(use-package which-key
-  :config (which-key-mode 1))
-#+end_src
-
-** Personal keymaps
-
-#+begin_src emacs-lisp
-(define-prefix-command 'bn/search-map)
-(bind-key  "C-c s" 'bn/search-map)
-
-(define-prefix-command 'bn/editing-map)
-(bind-key  "C-c e" 'bn/editing-map)
-
-(define-prefix-command 'bn/window-map)
-(bind-key  "C-c e" 'bn/window-map)
-#+end_src
-
-
-** New bindings
-
-Global key bindings.
-
-#+begin_src emacs-lisp
-(bind-keys :map global-map
-           ("C-<tab>" . other-window)
-           ("C-S-<tab>" bn/other-window-back)
-           ("M-/" . hippie-expand))
-#+end_src
-
-Other window manipulation commands.
-
-#+begin_src emacs-lisp
-(bind-keys :map bn/window-map
-           ("s" . 'window-swap-states))
-#+end_src
-
-Text manipulation commands.
-
-#+begin_src emacs-lisp
-(bind-keys :map bn/editing-map
-           ("\\" . 'align-regexp)
-           ("<SPC>" 'just-one-space))
-#+end_src
-
-The ability  to move to the next/prev occurence of the current symbol
-is something I missed after using IntelliJ for a while.
-
-#+begin_src emacs-lisp
-(use-package auto-highlight-symbol
-  :diminish
-; Does not work since use-package will try to load auto-highlight-symbol too
-;  :hook ((prog-mode . auto-highlight-symbol-mode))
-  :bind (("M-p" . ahs-backward)
-         ("M-n" . 'ahs-forward))
-  :init (setq ahs-idle-interval 1.0
-              ahs-default-range 'ahs-range-whole-buffer
-              ahs-inhibit-face-list '(font-lock-comment-delimiter-face
-                                      font-lock-comment-face
-                                      font-lock-doc-face
-                                      font-lock-doc-string-face
-                                      font-lock-string-face)))
-#+end_src
-
-Interactive regular expressions because I find it tricky to remember
-the Emacs syntax for these.
-
-#+begin_src emacs-lisp
-(use-package visual-regexp
-  :bind (:map bn/search-map
-              ("r" . 'vr/replace)
-              ("q" . 'vr/query-replace)))
-#+end_src
-
-** Rebindings
-Rebind ~C-h~, and use it for deleting backwards. I still consider this a bit of
-an experiment...
-
-#+begin_src emacs-lisp
-(global-set-key (kbd "C-?") 'help-command)
-(global-set-key (kbd "C-h") 'delete-backward-char)
-(global-set-key (kbd "M-h") 'backward-kill-word)
 #+end_src
 
 * Org mode
