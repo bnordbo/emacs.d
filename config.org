@@ -204,8 +204,7 @@ minions-mode, but this is good /enough/ – for now at least.
 (use-package diminish
   :config
   (diminish 'auto-fill-mode)
-  (diminish 'auto-fill-function)
-  (diminish 'which-key-mode))
+  (diminish 'auto-fill-function))
 #+end_src
 
 Start in full screen mode.
@@ -308,6 +307,7 @@ useful.
 
 #+begin_src emacs-lisp
 (use-package which-key
+  :diminish
   :config (which-key-mode 1))
 #+end_src
 
@@ -340,15 +340,15 @@ Other window manipulation commands.
 
 #+begin_src emacs-lisp
 (bind-keys :map bn/window-map
-           ("s" . 'window-swap-states))
+           ("s" . window-swap-states))
 #+end_src
 
 Text manipulation commands.
 
 #+begin_src emacs-lisp
 (bind-keys :map bn/editing-map
-           ("\\" . 'align-regexp)
-           ("<SPC>" 'just-one-space))
+           ("\\" . align-regexp)
+           ("<SPC>" just-one-space))
 #+end_src
 
 The ability  to move to the next/prev occurence of the current symbol
