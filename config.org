@@ -293,6 +293,20 @@ I've never missed the bell, visible or otherwise.
 (setq ring-bell-function 'ignore)
 #+end_src
 
+This improves the stock help mode a lot: Not only does it look better, it also
+includes more information.
+
+#+begin_src emacs-lisp
+(use-package helpful
+  :bind (("C-?"   . help-command)
+         ("C-? f" . helpful-callable)
+         ("C-? v" . helpful-variable)
+         ("C-? k" . helpful-key)
+         :map helpful-mode-map
+         ("Q" . helpful-kill-buffers)
+         ("g" . helpful-update)))
+#+end_src
+
 * Key bindings
 ** Settings
 On Mac, map the command key to meta and keep the normal behaviour of option.
@@ -385,7 +399,6 @@ Rebind ~C-h~, and use it for deleting backwards. I still consider this a bit of
 an experiment...
 
 #+begin_src emacs-lisp
-(global-set-key (kbd "C-?") 'help-command)
 (global-set-key (kbd "C-h") 'delete-backward-char)
 (global-set-key (kbd "M-h") 'backward-kill-word)
 #+end_src
