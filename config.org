@@ -697,10 +697,14 @@ limited, unfortunately.
   :init
   (exec-path-from-shell-copy-env "GOPATH")
   (setq go-eldoc-gocode "/Users/bn/go/bin/gocode")
-  (add-hook 'go-mode-hook (lambda ()
-                            (setq tab-width 4)
-                            (subword-mode 1)
-                            (go-eldoc-setup))))
+  (add-hook 'go-mode-hook
+            (lambda ()
+              (setq tab-width 4)
+              (subword-mode 1)
+              (go-eldoc-setup)
+              (setq imenu-generic-expression
+                    '(("func" "^func +\\(\\(?:([^)]+) \\)?[a-zA-Z][a-zA-Z0-9_]+\\)(" 1)
+                      ("type" "^type +\\([a-zA-Z][a-zA-Z0-9_]+\\)\\s-" 1))))))
 
 (use-package go-fill-struct)
 (use-package go-playground
