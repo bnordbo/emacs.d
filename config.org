@@ -806,6 +806,9 @@ Syntax highlighting and REPL support for OPAs Rego configuration language.
 
 #+begin_src emacs-lisp
 (use-package rego-mode
+  :init
+  (add-hook 'rego-mode-hook (lambda ()
+                              (setq tab-width 4)))
   :custom
   (rego-repl-executable "/usr/local/bin/opa")
   (rego-opa-command "/usr/local/bin/opa"))
