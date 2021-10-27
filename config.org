@@ -803,7 +803,10 @@ I gave up and reverted to paredit.
 ** Bazel
 
 #+begin_src emacs-lisp
-(use-package bazel)
+(use-package bazel
+  :bind
+  (("C-c b f b" . bazel-find-build-file)
+   ("C-c b t p" . bazel-test-at-point)))
 #+end_src
 
 ** Rego
