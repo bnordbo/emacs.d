@@ -1054,11 +1054,14 @@ Don't prompt when evaluating ditaa code blocks.
 Enable more languages.
 
 #+begin_src emacs-lisp
+(use-package ob-go)
+
 (org-babel-do-load-languages
  'org-babel-load-languages
  '((ditaa . t)
    (emacs-lisp . t)
-   (shell . t)))
+   (shell . t)
+   (go . t)))
 #+end_src
 
 ** Pomodoro
