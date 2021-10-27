@@ -41,6 +41,12 @@ used.
 
 ** General setup
 
+Prevent customize from polluting the init files.
+
+#+begin_src emacs-lisp
+(setq custom-file "~/.emacs.d/custom.el")
+#+end_src
+
 Who wouldn't want sensible defaults?
 
 #+begin_src emacs-lisp
