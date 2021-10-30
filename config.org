@@ -1055,7 +1055,7 @@ Don't prompt when evaluating ditaa code blocks.
 #+begin_src emacs-lisp
 (setq org-confirm-babel-evaluate
       (lambda (lang body)
-        (not (member lang '("ditaa" "plantuml" "bash")))))
+        (not (member lang '("ditaa" "plantuml" "bash" "dot")))))
 #+end_src
 
 Enable more languages.
@@ -1068,7 +1068,8 @@ Enable more languages.
  '((ditaa . t)
    (emacs-lisp . t)
    (shell . t)
-   (go . t)))
+   (go . t)
+   (dot . t)))
 #+end_src
 
 ** Pomodoro
