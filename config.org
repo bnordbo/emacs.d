@@ -1167,18 +1167,6 @@ moved to org-roam dailies, and Bullet Journal, respectively.
          "* TODO %i%?")
         ("p" "PROJ" entry (file org-default-notes-file)
          (file "~/.emacs.d/templates/project-capture.txt"))
-        ("m" "Meeting" entry (file+datetree "~/Roles/TechLeadWG2/Meetings.org")
-         "* NEXT %? :meeting:\n%U" :clock-in t :clock-resume t)
-        ("d" "Diary" entry (file+datetree "~/Repository/Timeline/Diary.org")
-         "* %?\n%U\n" :clock-in t :clock-resume t)
-;        ("c" "Contacts" entry (file ,(car (org-contacts-files)))
-;         (file "~/.emacs.d/templates/contacts-capture.txt"))
-        ("s" "Standup" item
-         (file+olp+datetree "~/Roles/TechLeadWG2/Recurring.org" "Standups")
-         "%?\n" :clock-in t :clock-resume t)
-        ("l" "Tech lead sync" item
-         (file+olp+datetree "~/Roles/TechLeadWG2/Recurring.org" "Tech lead syncs")
-         "%?\n" :clock-in t :clock-resume t)
         ("b" "Bookmark" entry (file "~/Bookmarks.org")
          "* %(org-cliplink-capture)\n%U\n%?" :empty-lines 1)))
 #+end_src
