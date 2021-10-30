@@ -1179,10 +1179,10 @@ level one.
                            (org-agenda-files :maxlevel . 2)))
 #+end_src
 
-** PIM using org-roam
-Let's try to use the new Repository structure for org-roam. An alternative
- would have been to store it as a Context, but it's probably more of a cross
- context thing.
+
+* Thinking with org-roam
+I use org-roam in a different way than plain Org, so it makes sense to keep it
+as a separate top-level directory.
 
 #+begin_src emacs-lisp
 (setq org-roam-directory "~/Repository/Roam")
@@ -1233,22 +1233,19 @@ and whistles of the former, and this integrates better with org-roam.
 #+end_src
 
 
-** PDF notes and annotations using org-noter
-This is incredibly useful for research. Currently only works with PDF, but it
-ought to be able to make it work for ePub too.
+* Reading and research
+Allows fetching RFCs by number, or browsing with completion. This is good for
+quickly looking up stuff, while for serious reading pulling the PDF and using
+org-noter is preferrable. Pity it doesn't work with plain text...
 
 #+begin_src emacs-lisp
+(use-package rfc-mode)
+#+end_src
 
-(use-package org-noter
-  :after org-roam
-  :bind (("C-c n o" . org-noter)
-         :map org-noter-doc-mode-map
-         (("M-i" . zp/org-noter-insert-precise-note-dwim)))
-  :init
-  (setq org-noter-notes-search-path (list org-roam-directory)
-        org-noter-notes-window-location 'horizontal-split))
+PDF tools is great for reading, and annotating PDFs. I mostly use it together
+with org-noter.
 
-;; Move these to a separate "Media" section
+#+begin_src emacs-lisp
 (use-package pdf-tools
   :mode ("\\.pdf\\'" . pdf-view-mode)
   :demand
@@ -1257,9 +1254,29 @@ ought to be able to make it work for ePub too.
 
 (use-package org-pdftools
   :hook (org-load . org-pdftools-setup-link))
+#+end_src
 
+This allows reading ebooks too. I could never get it working properly with
+org-noter, but last time I checked it seemed to work. Not something I use a lot
+as most of my reading is PDFs.
+
+#+begin_src emacs-lisp
 (use-package nov
+  :disabled
   :mode ("\\.\\(epub\\|mobi\\)\\'" . nov-mode))
+#+end_src
+
+I find org-noter incredibly useful for research.
+
+#+begin_src emacs-lisp
+(use-package org-noter
+  :after org-roam
+  :bind (("C-c n o" . org-noter)
+         :map org-noter-doc-mode-map
+         (("M-i" . zp/org-noter-insert-precise-note-dwim)))
+  :init
+  (setq org-noter-notes-search-path (list org-roam-directory)
+        org-noter-notes-window-location 'horizontal-split))
 
 (use-package org-noter-pdftools
   :after org-noter
