@@ -1093,10 +1093,14 @@ be thrown into an address book as an afterthought.
 #+end_src
 
 ** Bookmarks
+Cliplink makes it easy to capture URLs with a title. I mostly use it with the
+bookmark capture template, but sometimes it's nice to get a link with the full
+title, e.g. for project references.
+
 #+begin_src emacs-lisp
 (use-package org-cliplink
   :bind (:map org-mode-map
-              ("C-c L" . org-cliplink)))
+              ("C-c M-l" . org-cliplink)))
 #+end_src
 
 ** Agenda setup
