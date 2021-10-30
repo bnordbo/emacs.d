@@ -1011,16 +1011,23 @@ Exporting to Slack allows me to edit the message in e.g. an org-mode note.
   :defer 10)
 #+end_src
 
+I prefer sparse trees to only show the matched entries. This fixes that in most cases.
+
+#+begin_src emacs-lisp
+(add-to-list 'org-show-context-detail '(tags-tree . local))
+#+end_src
+
+** Appearence
+Makes heading and lists somewhat prettier.
+
 #+begin_src emacs-lisp
 (use-package org-superstar
   :init
   (add-hook 'org-mode-hook 'org-superstar-mode))
 #+end_src
 
-I prefer sparse trees to only show the matched entries. This fixes that in most cases.
-
 #+begin_src emacs-lisp
-(add-to-list 'org-show-context-detail '(tags-tree . local))
+(customize-set-value 'org-hide-emphasis-markers t)
 #+end_src
 
 ** Extras
