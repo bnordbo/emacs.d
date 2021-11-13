@@ -516,7 +516,7 @@ In some cases, like YAML, indentation guides is a must.
         highlight-indent-guides-bitmap-function 'highlight-indent-guides--bitmap-line))
 #+end_src
 
-Seeing the real width  of the cursor is sometimes useful (e.g. tabs).
+Seeing the real width of the cursor is sometimes useful (e.g. tabs).
 
 #+begin_src emacs-lisp
 (setq x-stretch-cursor t)
@@ -685,9 +685,8 @@ This works surprisingly well for navigating code, even in big monorepos.
 
 #+begin_src emacs-lisp
 (use-package erlang
-  :disabled t
   :config
-  (add-to-list 'erlang-tags-file-list "~/src/bn/loltel/connectivity/erlang/TAGS"))
+  (add-to-list 'erlang-tags-file-list "~/src/bn/loltel/terminators/erlang/TAGS"))
 #+end_src
 
 ** Go
@@ -723,7 +722,6 @@ I gave up and reverted to paredit.
 
 #+begin_src emacs-lisp
 (use-package paredit
-  :defer 5
   :diminish
   :hook (emacs-lisp-mode . paredit-mode))
 
@@ -905,6 +903,8 @@ Load the org-mode and do basic configuration:
          ("C-c t" . org-todo)
          ("C-c M-p" . org-move-subtree-up)
          ("C-c M-n" . org-move-subtree-down)
+         ("C-c <down>" . org-move-item-down)
+         ("C-c <down>" . org-move-item-up)
          ("C-x n w" . org-toggle-narrow-to-subtree)
          ("C-. h" . consult-org-heading)
          ("C-<tab>" . nil)
@@ -913,7 +913,6 @@ Load the org-mode and do basic configuration:
   (setq org-startup-folded t
         org-edit-src-content-indentation 0
         org-src-fontify-natively t
-        org-src-tab-acts-natively t
         org-src-window-setup 'current-window
         org-clock-idle-time 10
         org-clock-in-switch-to-state "NEXT"
@@ -978,6 +977,7 @@ archived in datetrees per file to retain context..
 (setq org-directory "~/Repository/Org"
       org-default-notes-file "~/Repository/Org/Inbox.org"
       org-archive-location "%s_archive::datetree/"
+      org-cite-global-bibliography "~/Repository/Bibliography/Master.bib"
       org-stuck-projects '("/+PROJ" ("NEXT" "TODO") ("@buy") "")
       org-agenda-restore-windows-after-quit t
       org-agenda-window-setup 'current-window
@@ -1214,8 +1214,8 @@ Set up org-roam v2 behind the ~C-c n~ prefix:
   :custom
   (org-roam-node-display-template "${title:*} ${tags:20}" "Widen the tag column")
   (org-roam-capture-templates '(("d" "default" plain "%?"
-                                 :if-new (file+head "${slug}.org"
-                                                    "#+TITLE: ${title}\n#+DATE: %T\n")
+                                 :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org"
+                                                    "#+date: %T\n#+title: ${title}\n")
                                  :unnarrowed t)))
   :config
   (org-roam-setup))
