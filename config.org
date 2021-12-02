@@ -900,6 +900,7 @@ Load the org-mode and do basic configuration:
          ("C-. o j" . org-clock-goto)
          ("C-. o o" . org-clock-out)
          :map org-mode-map
+         ("C-," . nil)
          ("C-c t" . org-todo)
          ("C-c M-p" . org-move-subtree-up)
          ("C-c M-n" . org-move-subtree-down)
@@ -984,7 +985,7 @@ archived in datetrees per file to retain context..
 (setq org-directory "~/Repository/Org"
       org-default-notes-file "~/Repository/Org/Inbox.org"
       org-archive-location "%s_archive::datetree/"
-      org-cite-global-bibliography "~/Repository/Bibliography/Master.bib"
+      org-cite-global-bibliography '("~/Repository/Bibliography/Master.bib")
       org-stuck-projects '("/+PROJ" ("NEXT" "TODO") ("@buy") "")
       org-agenda-restore-windows-after-quit t
       org-agenda-window-setup 'current-window
@@ -1073,6 +1074,7 @@ Enable more languages.
 (org-babel-do-load-languages
  'org-babel-load-languages
  '((ditaa . t)
+   (plantuml . t)
    (emacs-lisp . t)
    (shell . t)
    (go . t)
