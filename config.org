@@ -935,6 +935,13 @@ Load the org-mode and do basic configuration:
               (diminish 'buffer-face-mode))))
 #+end_src
 
+Automatically save the buffer after clocking in/out:
+
+#+begin_src emacs-lisp
+(advice-add 'org-clock-in :after #'save-buffer)
+(advice-add 'org-clock-out :after #'save-buffer)
+#+end_src
+
 Set up fast selection for tags. Lots of them! Lowercase characters are for
 categories, uppercase for contexts, including people. I could perhaps switch to
 digits for contexts if clashes become a problem..
