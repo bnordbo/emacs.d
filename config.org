@@ -659,7 +659,7 @@ JAR setting below. But it also seems to be more freqently updated.
   :init
   (add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
   (setq plantuml-executable-path "/usr/local/bin/plantuml"
-        org-plantuml-jar-path "/usr/local/Cellar/plantuml/1.2021.9/libexec/plantuml.jar"
+        org-plantuml-jar-path "/usr/local/Cellar/plantuml/1.2021.14/libexec/plantuml.jar"
         plantuml-default-exec-mode 'executable))
 #+end_src
 
