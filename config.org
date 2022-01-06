@@ -732,6 +732,10 @@ I gave up and reverted to paredit.
 (use-package eldoc
   :diminish
   :hook emacs-lisp-mode)
+
+(use-package elisp-def
+  :diminish
+  :hook (emacs-lisp-mode . elisp-def-mode))
 #+end_src
 
 ** Shell
@@ -756,10 +760,11 @@ I gave up and reverted to paredit.
 
 #+begin_src emacs-lisp
 (use-package haskell-mode
-  :disabled t
   :init
   (add-hook 'haskell-mode-hook 'subword-mode)
-  (add-hook 'haskell-mode-hook 'haskell-doc-mode))
+  (add-hook 'haskell-mode-hook 'haskell-doc-mode)
+  (add-hook 'haskell-mode-hook #'lsp)
+  (setq lsp-haskell-server-path (expand-file-name "~/.ghcup/bin/haskell-language-server-wrapper")))
 #+end_src
 
 ** Rust
