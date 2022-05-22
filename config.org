@@ -19,6 +19,7 @@ Load various add-on functionality.
 
 #+begin_src emacs-lisp
 (load-file "~/.emacs.d/elisp/bn.el")
+(load-file "~/.emacs.d/keyboard-macros.el")
 #+end_src
 
 ** Configure package installation
@@ -209,8 +210,9 @@ minions-mode, but this is good /enough/ – for now at least.
 #+begin_src emacs-lisp
 (use-package diminish
   :config
-  (diminish 'auto-fill-mode)
-  (diminish 'auto-fill-function))
+  (diminish 'abbrev-mode)
+  (diminish 'auto-fill-function)
+  (diminish 'auto-fill-mode))
 #+end_src
 
 Start in full screen mode.
@@ -340,10 +342,23 @@ useful.
 (define-prefix-command 'bn/editing-map)
 (bind-key  "C-c e" 'bn/editing-map)
 
+(define-prefix-command 'bn/buffer-map)
+(bind-key  "C-x b" 'bn/buffer-map)
+
 (define-prefix-command 'bn/window-map)
 (bind-key  "C-c w" 'bn/window-map)
 #+end_src
 
+** Remove bindings
+These are useless, or worse:
+
+#+begin_src emacs-lisp
+(mapcar (lambda (k) (global-unset-key (kbd k)))
+        '("C-x C-r"  ; Find file read-only
+          "C-x C-q"  ; Read-only mode
+          "C-x C-d"  ; List directory
+          ))
+#+end_src
 
 ** New bindings
 
@@ -369,6 +384,15 @@ Text manipulation commands.
 (bind-keys :map bn/editing-map
            ("\\" . align-regexp)
            ("<SPC>" just-one-space))
+#+end_src
+
+Buffer manipulation:
+
+#+begin_src emacs-lisp
+(bind-keys :map bn/buffer-map
+           ("b" . switch-to-buffer)
+           ("s" . bn/buffer-same-mode)
+           ("l" . list-buffers))
 #+end_src
 
 The ability  to move to the next/prev occurence of the current symbol
@@ -573,7 +597,11 @@ big monorepos. Hmm.
 (use-package projectile
 ; For some reason, this prevents projectile from auto-loading.
 ;  :after magit                          ; Ensure projectile-vc will use magit
-  :bind-keymap ("C-c p" . projectile-command-map))
+  :init (setq projectile-project-search-path '(("~/Contexts/WG2/src" . 2)
+                                               "/Users/bn/.emacs.d"
+                                               "~/src/forks/qmk_firmware"))
+  :bind-keymap ("C-c p" . projectile-command-map)
+  :config (projectile-mode +1))
 #+end_src
 
 It seems I'm practically living inside Emacs these days, so I might as well use
@@ -632,7 +660,7 @@ powerful way of making presentations.
 
 #+begin_src emacs-lisp
 (use-package ox-reveal
-  :init (setq org-reveal-root "file:///Users/bn/.emacs.d/emacs-reveal-submodules/reveal.js"))
+  :init (setq org-reveal-root "https://cdn.jsdelivr.net/npm/reveal.js"))
 (use-package htmlize)
 #+end_src
 
@@ -659,7 +687,7 @@ JAR setting below. But it also seems to be more freqently updated.
   :init
   (add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
   (setq plantuml-executable-path "/usr/local/bin/plantuml"
-        org-plantuml-jar-path "/usr/local/Cellar/plantuml/1.2021.14/libexec/plantuml.jar"
+        org-plantuml-jar-path "/usr/local/Cellar/plantuml/1.2022.4/libexec/plantuml.jar"
         plantuml-default-exec-mode 'executable))
 #+end_src
 
@@ -781,6 +809,11 @@ I gave up and reverted to paredit.
   (add-hook 'racer-mode-hook 'company-mode))
 #+end_src
 
+** C
+#+begin_src emacs-lisp
+(setq c-basic-offset 4)
+#+end_src
+
 ** Markdown
 
 #+begin_src emacs-lisp
@@ -818,6 +851,7 @@ Syntax highlighting and REPL support for OPAs Rego configuration language.
 
 #+begin_src emacs-lisp
 (use-package rego-mode
+  :disabled  ;; Not working great, and `opa fmt` is very rude wrt comments
   :init
   (add-hook 'rego-mode-hook (lambda ()
                               (setq tab-width 4)))
@@ -827,8 +861,22 @@ Syntax highlighting and REPL support for OPAs Rego configuration language.
 #+end_src
 
 ** Protobuf
+
 #+begin_src emacs-lisp
-(use-package protobuf-mode)
+(use-package protobuf-mode
+  :hook (protobuf-mode . (lambda ()
+                           (setq c-basic-offset 2))))
+#+end_src
+
+** Terraform
+
+#+begin_src emacs-lisp
+(use-package terraform-mode)
+#+end_src
+
+** Java
+#+begin_src elisp
+(add-hook 'java-mode-hook (lambda () (setq c-basic-offset 2)))
 #+end_src
 
 * Completion
@@ -926,7 +974,6 @@ Load the org-mode and do basic configuration:
         org-clock-out-when-done t
         org-goto-interface 'outline-path-completion
         org-outline-path-completion-in-steps nil
-        org-pretty-entities t
         org-modules '(ol-w3m ol-bibtex ol-docview ol-info ol-mhe)
         org-fontify-whole-heading-line t
         org-use-sub-superscripts "{}"
@@ -981,7 +1028,7 @@ For the column view, I'd like to see the basics as compact as possible.
       "%40ITEM(Task) %9TODO(State) %6Effort(Effort){:} %6CLOCKSUM(Sum) %ALLTAGS(Tags)")
 #+end_src
 
-** Some basic settings.
+** Some basic settings
 I keep most of the stuff in my stuff repository. For now fleeting notes are
 recorded in an Inbox, which is a relic from an older GTD structure. Items are
 archived in datetrees per file to retain context..
@@ -1246,6 +1293,12 @@ and whistles of the former, and this integrates better with org-roam.
                             "#+title: %<%Y-%m-%d>\n"))))
 #+end_src
 
+This package enables preview for ripgrep, forward /and/ backwards links – and
+more!
+
+#+begin_src emacs-lisp
+(use-package consult-org-roam)
+#+end_src
 
 * Reading and research
 Allows fetching RFCs by number, or browsing with completion. This is good for
@@ -1322,15 +1375,14 @@ at work, but reducing the topic list limit seems to help.
   (setq forge-topic-list-limit '(17 .  3)))
 #+end_src
 
-This allows visiting the current file in the remote repo. Useful for giving
-others references to code.
+This allows visiting the current file in the remote repo. Useful for giving others references to
+code.
 
 #+begin_src emacs-lisp
-(use-package browse-at-remote)
+(use-package git-link)
 #+end_src
 
-It is neat if not terribly useful to see the changes since last commit in the
-buffer margin.
+It is neat and sometimes quite useful to see the changes since last commit in the buffer margin.
 
 #+begin_src emacs-lisp
 (use-package diff-hl
