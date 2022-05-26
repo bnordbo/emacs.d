@@ -1227,9 +1227,14 @@ moved to org-roam dailies, and Bullet Journal, respectively.
         ("t" "TODO" entry (file org-default-notes-file)
          "* TODO %i%?")
         ("p" "PROJ" entry (file org-default-notes-file)
-         (file "~/.emacs.d/templates/project-capture.txt"))
+         (file "~/.emacs.d/templates/project-capture.org"))
         ("b" "Bookmark" entry (file "~/Bookmarks.org")
-         "* %(org-cliplink-capture)\n%U\n%?" :empty-lines 1)))
+         "* %(org-cliplink-capture)\n%U\n%?" :empty-lines 1)
+        ("s" "Standup" plain (file+olp+datetree "WG2SubscriberState.org" "Standups")
+         (file "~/.emacs.d/templates/standup-capture.org")
+         :tree-type month
+         :immediate-finish t
+         :jump-to-captured t)))
 #+end_src
 
 I've dumbed down the refiling targets to just consider all the agenda files at
