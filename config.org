@@ -433,6 +433,21 @@ an experiment...
 (global-set-key (kbd "M-h") 'backward-kill-word)
 #+end_src
 
+* Navigation
+I used to rely on isearch for quick navigation. In many cases avy is even
+quicker, though it requires more compute.
+
+#+begin_src emacs-lisp
+(use-package avy
+  :bind (("C-," . avy-goto-word-1))
+  :init (setq avy-keys
+              '(?t ?n ?s ?e ?r ?i ?o ?a  ;; Home row fingers
+                ?w ?f ?l ?u ?y ?\; ?d ?h ?x ?c ?v ?m ?, ?. ;; Close to home row; no pinkes
+                ?g ?b ?j ?k ;; Diagonals
+                ?q ?z ?p ?\/ ;; Pinkies away from the home row
+                )))
+#+end_src
+
 * General editing setup
 
 As a rule, I don't want to indent with tabs. Spaces are more predicable, and I
