@@ -1234,7 +1234,9 @@ moved to org-roam dailies, and Bullet Journal, respectively.
          (file "~/.emacs.d/templates/standup-capture.org")
          :tree-type month
          :immediate-finish t
-         :jump-to-captured t)))
+         :jump-to-captured t)
+        ("c" "Contact" entry (file "Contacts.org")
+         (file "~/.emacs.d/templates/contact-capture.org"))))
 #+end_src
 
 I've dumbed down the refiling targets to just consider all the agenda files at
