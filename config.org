@@ -1369,7 +1369,8 @@ buffers.
   :bind (("C-x g" . magit)
          :map magit-mode-map
          ("C-<tab>" . nil))
-  :init (setq magit-git-executable "/usr/bin/git"))
+  :init (setq magit-git-executable "/usr/local/bin/git"
+              magit-log-margin '(t "%+4Y%m%dT%H%m" magit-log-margin-width t 18)))
 #+end_src
 
 Forge hooks into magit and provides access to GitHub. It's slow on the monorepo
