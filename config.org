@@ -1296,9 +1296,13 @@ Set up org-roam v2 behind the ~C-c n~ prefix:
   :init (setq org-roam-v2-ack t)
   :custom
   (org-roam-node-display-template "${title:*} ${tags:20}" "Widen the tag column")
-  (org-roam-capture-templates '(("d" "default" plain "%?"
+  (org-roam-capture-templates '(("d" "Default" plain "%?"
                                  :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org"
                                                     "#+date: %T\n#+title: ${title}\n")
+                                 :unnarrowed t)
+                                ("r" "Read" plain (file "~/.emacs.d/templates/book-capture.org")
+                                 :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org"
+                                                    "#+title: ${title}\n#+date %T\n#+filetags: Lit")
                                  :unnarrowed t)))
   :config
   (org-roam-setup))

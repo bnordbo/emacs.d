@@ -1,0 +1,8 @@
+
+- author :: ${Author}
+- status ::
+- format ::%^{Format|Paperback|Kindle|Hardcover}
+- notebook ::
+- source ::
+
+* Notes
