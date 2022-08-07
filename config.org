@@ -1047,16 +1047,14 @@ For the column view, I'd like to see the basics as compact as possible.
 #+end_src
 
 ** Some basic settings
-I keep most of the stuff in my stuff repository. For now fleeting notes are
+I keep most of the stuff under ~Repository/Org~. For now fleeting notes are
 recorded in an Inbox, which is a relic from an older GTD structure. Items are
 archived in datetrees per file to retain context..
 
 #+begin_src emacs-lisp
 (setq org-directory "~/Repository/Org"
-      org-default-notes-file "~/Repository/Org/Inbox.org"
+      org-default-notes-file "~/Repository/Org/Tasks.org"
       org-archive-location "%s_archive::datetree/"
-      org-cite-global-bibliography '("~/Repository/Bibliography/Master.bib")
-      org-stuck-projects '("/+PROJ" ("NEXT" "TODO") ("@buy") "")
       org-agenda-restore-windows-after-quit t
       org-agenda-window-setup 'current-window
       org-log-done 'time
