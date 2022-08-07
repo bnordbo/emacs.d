@@ -1184,17 +1184,18 @@ title, e.g. for project references.
 #+end_src
 
 ** Agenda setup
-This is has been changing a lot, but the current idea is that I want to fetch
-tasks from:
+The current system is very simple: I have all my tasks in Tasks.org. This file
+has three sections:
 
-- Calendars, to show in the weekly agenda view.
-- My projects repository, which is kind of legacy.
-- Everything inside the interests and roles contexts.
-   
+- Ongoing :: Up to eight tasks I have started working on.
+- Blocked :: Tasks which cannot continue, e.g. because I'm waiting for someone.
+- Incoming :: Tasks I have not started working on (and probably never will).
+
+I might add sections for completed tasks, and perhaps also for tasks I decided
+/not/ to do.
+
 #+begin_src emacs-lisp
-(setq org-agenda-files
-      (append `("~/Repository/Org"
-                "~/.emacs.d/calendars")))
+(setq org-agenda-files '("~/Repository/Org/Tasks.org"))
 #+end_src
 
 The agenda has views for the inbox, all my next actions, and all my projects.
@@ -1202,18 +1203,7 @@ But I'm planning to incorporate all of this information in one view, currently
 dubbed "review".
 
 #+begin_src emacs-lisp
-(setq org-agenda-custom-commands
-      `(("i" "Inbox"
-         ((todo "NEXT"
-                ((org-agenda-files (list "~/Repository/Org/Inbox.org"))))))
-        ("n" "Next actions" todo "NEXT")
-        ("pa" "Projects" todo "PROJ")
-        ("pw" "Projects/WG2" tags-todo "+TODO=\"PROJ\"+wg2")
-         ("r" "Review"
-         ((agenda)
-          (todo "PROJ"
-                ((org-agenda-overriding-header "Active projects:")))
-          ,bn/org-agenda--active-projects))))
+(setq org-agenda-custom-commands nil)
 #+end_src
 
 Start agenda on the current day rather than the first day of the week.
