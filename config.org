@@ -1252,7 +1252,6 @@ Set up org-roam v2 behind the ~C-c n~ prefix:
   :after org
   :bind
   (("C-c n f" . org-roam-node-find)
-   ("C-c n c" . org-roam-node-capture)
    ("C-c n j j" . org-roam-dailies-capture-today)
    ("C-c n j t" . org-roam-dailies-goto-today)
    ("C-c n j y" . org-roam-dailies-goto-yesterday)
