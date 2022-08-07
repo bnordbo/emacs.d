@@ -1001,6 +1001,7 @@ Load the org-mode and do basic configuration:
               (auto-fill-mode 1)
               (org-indent-mode 1)
               (electric-indent-local-mode -1)
+              (electric-pair-local-mode 1)
               (diminish 'org-indent-mode)
               (diminish 'buffer-face-mode))))
 #+end_src
