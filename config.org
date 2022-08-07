@@ -1065,13 +1065,16 @@ archived in datetrees per file to retain context..
       org-read-date-prefer-future 'time)
 #+end_src
 
-Basic GTD-like keywords. I like recording notes, so prompt for an explanation
-when changing to WAITING or CANCELLED. This is also used for sort order.
+I started out with a pretty complex set  of keywords, then added more. In the
+end I used very few, and they can be distilled down to this list.
+
+- TODO for tasks that has not yet been completed.
+- DONE for completed tasks.
+- BLOCKED for tasks where I'm waiting for someone or something.
+- CANCELLED for tasks I gave up doing.
 
 #+begin_src emacs-lisp
-(setq org-todo-keywords '((sequence "NEXT(n)" "TODO(t)" "PROJ(p)" "INACTIVE(i)"
-                                    "SOMEDAY(s)" "WAITING(w@)"
-                                    "|" "DONE(d)" "CANCELLED(c@)")))
+(setq org-todo-keywords '((sequence "TODO(t)" "DONE(d)" "BLOCKED(b@)" "CANCELLED(c@)")))
 #+end_src
 
 Emacs Lisp is a popular source language, so give it  its own key. As both "e"
