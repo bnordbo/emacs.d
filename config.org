@@ -975,9 +975,13 @@ Load the org-mode and do basic configuration:
          ("C-x n w" . org-toggle-narrow-to-subtree)
          ("C-. h" . consult-org-heading)
          ("C-<tab>" . nil)
-         ("M-h" . nil))
+         ("M-h" . nil)
+         ("C-˜" . bn/org-show-next-heading)
+         ("C-∏" . bn/org-show-prev-heading)
+         ("C-c h n" . bn/org-show-next-heading)
+         ("C-c h p" . bn/org-show-prev-heading))
   :init
-  (setq org-startup-folded t
+  (setq org-startup-folded 'show2levels
         org-edit-src-content-indentation 0
         org-src-fontify-natively t
         org-src-window-setup 'current-window
