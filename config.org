@@ -1212,36 +1212,16 @@ Start agenda on the current day rather than the first day of the week.
 (setq org-agenda-start-on-weekday nil)
 #+end_src
 
-While org-ql is really powerful and pleasant to use, I'm not sure how it fits
-into my workflow yet, except for one-off searches. Maybe I could/should use it
-to build the nice and useful agenda view I've been dreaming off lately..?
-
-#+begin_src emacs-lisp
-(use-package org-ql
-  :disabled)
-#+end_src
-
 ** Capture and refile
-Capture templates. NEXT is used for tasks I can start working on right away,
-while TODO are effectively blocked. PROJ is for longer lived tasks with
-sub-tasks. These are treated separately in weekly and daily reviews.
-
-I also used to have templates for diary entries, and standups/meetings, but I've
-moved to org-roam dailies, and Bullet Journal, respectively.
 
 #+begin_src emacs-lisp
 (setq org-capture-templates
-      `(("n" "NEXT" entry (file org-default-notes-file)
-         "* NEXT %i%?")
-        ("t" "TODO" entry (file org-default-notes-file)
-         "* TODO %i%?")
-        ("p" "PROJ" entry (file org-default-notes-file)
-         (file "~/.emacs.d/templates/project-capture.org"))
+      `(("t" "TODO" entry (file+headline org-default-notes-file "Incoming")
+         "** TODO %i%?")
         ("b" "Bookmark" entry (file "~/Bookmarks.org")
          "* %(org-cliplink-capture)\n%U\n%?" :empty-lines 1)
         ("s" "Standup" plain (file+olp+datetree "WG2SubscriberState.org" "Standups")
          (file "~/.emacs.d/templates/standup-capture.org")
-         :tree-type month
          :immediate-finish t
          :jump-to-captured t)
         ("c" "Contact" entry (file "Contacts.org")
