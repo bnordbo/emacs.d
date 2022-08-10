@@ -1175,8 +1175,22 @@ Makes heading and lists somewhat prettier.
   (add-hook 'org-mode-hook 'org-superstar-mode))
 #+end_src
 
+Make it look less like markup. This goes well with a variable pitch font.
+
 #+begin_src emacs-lisp
 (customize-set-value 'org-hide-emphasis-markers t)
+(customize-set-value 'org-pretty-entities t)
+(customize-set-value 'org-ellipsis "…")
+#+end_src
+
+**  Editing and navigation
+
+#+begin_src emacs-lisp
+(customize-set-value 'org-auto-align-tags nil)
+(customize-set-value 'org-tags-column 0)
+(customize-set-value 'org-catch-invisible-edits 'show-and-error)
+(customize-set-value 'org-special-ctrl-a/e t)
+(customize-set-value 'org-insert-heading-respect-content t)
 #+end_src
 
 ** Extras
