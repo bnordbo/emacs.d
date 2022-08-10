@@ -86,10 +86,14 @@ Start emacs-server for integrating neatly with the shell.
 * Experiments
 
 ** Various
-
 This section is for testing out new configurations.
 
 #+begin_src emacs-lisp
+(defun bn/build-chordlet ()
+  (interactive)
+  (bazel-test "//voice/chordlet/..."))
+(global-set-key (kbd "C-c v c") 'bn/build-chordlet)
+
 ; This seems like something I ought to look into to make org-note buffers behave.
 ; https://depp.brause.cc/shackle/
 ;(use-package shackle
