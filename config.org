@@ -486,6 +486,23 @@ an experiment...
 (global-set-key (kbd "M-h") 'backward-kill-word)
 #+end_src
 
+** Hydra
+Hydra allows quickly repeating complex key bindings, as well as easily setting
+up a simple menu beneath a key binding. I find this very useful for complex
+movement commands in org-mode.
+
+#+begin_src elisp
+(use-package hydra)
+(defhydra hydra-org-view-section (org-mode-map "C-c h")
+  "View section under headline"
+  ("n" bn/org-show-next-heading "next")
+  ("p" bn/org-show-prev-heading "previous"))
+(defhydra hydra-move-org-section (org-mode-map "C-c h")
+  "Move section up or down"
+  ("U" org-move-subtree-up "up")
+  ("D" org-move-subtree-down "down"))
+#+end_src
+
 * Navigation
 I used to rely on isearch for quick navigation. In many cases avy is even
 quicker, though it requires more compute.
