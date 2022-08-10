@@ -124,11 +124,30 @@ mostly for playing around to maybe get that working at some point.
 (use-package yasnippet)
 (use-package company-box)
 
-(use-package lsp-mode
-  :init (setq lsp-keymap-prefix "C-c v")
-  :hook ((kotlin-mode . lsp-deferred)
-         (lsp-mode . lsp-enable-which-key-integration))
-  :commands lsp lsp-deferred)
+; hook up later
+(defun lsp-go-install-save-hooks ()
+  (add-hook 'before-save-hook #'lsp-format-buffer t t)
+  (add-hook 'before-save-hook #'lsp-organize-imports t t))
+
+;; (use-package lsp-mode
+;;   :init
+;;   (setq lsp-keymap-prefix "C-c v")
+;;   :hook ((kotlin-mode . lsp-deferred)
+;;          (go-mode . lsp-deferred)
+;;          (lsp-mode . lsp-enable-which-key-integration))
+;;   :commands lsp lsp-deferred
+;;   :config
+;;   (add-to-list 'lsp-file-watch-ignored-directories "/bazel-.*\\'")
+;;   (add-to-list 'lsp-file-watch-ignored-directories "/infra\\'")
+;;   (add-to-list 'lsp-file-watch-ignored-directories "/docs.wgtwo.com\\'")
+;;   (add-to-list 'lsp-file-watch-ignored-directories "/post-mortems\\'")
+;;   (add-to-list 'lsp-file-watch-ignored-directories "/design-docs\\'")
+;;   (lsp-register-custom-settings
+;;    '(("gopls.completeUnimported" t t)
+;;      ("gopls.staticcheck" t t)
+;;      ("gopls.directoryFilters" ("-bazel-bin" "-bazel-out" "-bazel-testlogs" "-bazel-loltel"))
+;;      ("gopls.allowImplicitNetworkAccess" t t)
+;;      ("gopls.usePlaceholders" t t))))
 
 (use-package kotlin-mode)
 
@@ -138,6 +157,36 @@ mostly for playing around to maybe get that working at some point.
 ;;   :init (define-key lsp-mode-map [remap xref-find-apropos] #'helm-lsp-workspace-symbol))
 
 (use-package ob-kotlin)
+#+end_src
+
+
+** Go Eglot
+
+#+begin_src emacs-lisp
+;; (setenv "GOPACKAGESDRIVER" (expand-file-name "~/bin/gopackagesdriver.sh"))
+
+;; (use-package eglot)
+;; (use-package consult-eglot)
+
+;; (defun project-find-go-module (dir)
+;;   (when-let ((root (locate-dominating-file dir "go.mod")))
+;;     (cons 'go-module root)))
+
+;; (cl-defmethod project-root ((project (head go-module)))
+;;   (cdr project))
+
+;; (add-hook 'project-find-functions #'project-find-go-module)
+;; (add-hook 'go-mode-hook 'eglot-ensure)
+
+;; (defun eglot-format-buffer-on-save ()
+;;   (add-hook 'before-save-hook #'eglot-format-buffer -10 t))
+;; (add-hook 'go-mode-hook #'eglot-format-buffer-on-save)
+
+(setq eglot-workspace-configuration
+      '((:gopls .
+                (:directoryFilters ("-bazel-bin" "-bazel-out" "-bazel-testlogs" "-bazel-loltel")
+                 :allowImplicitNetworkAccess t
+                 :usePlaceholders t))))
 #+end_src
 
 * Crux setup
