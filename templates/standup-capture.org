@@ -1,0 +1,6 @@
+***** IOD migration status update
+%?
+***** Go through issues [[https://app.zenhub.com/workspaces/subscriber-state-6287661c57f97c001a7f323f/board?repos=105667909,162574269][on the board]]
+***** Go through [[https://wgtwo.atlassian.net/issues/?filter=10808][JIRA issues]]
+***** Go through spillover issues
+***** Ask if anyone is blocked

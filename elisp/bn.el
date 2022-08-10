@@ -80,3 +80,31 @@ false if the file matches a name in this list."
     (lambda (link)
       (when (string= (org-element-property :type link) "file")
         (org-element-property :path link)))))
+
+;; From https://jao.io/blog/2021-09-08-high-signal-to-noise-emacs-command.html
+(defun bn/buffer-same-mode (&rest modes)
+  "Pop to a buffer with a mode among MODES, or the current one if not given."
+  (interactive)
+  (let* ((modes (or modes (list major-mode)))
+         (pred (lambda (b)
+                 (let ((b (get-buffer (if (consp b) (car b) b))))
+                   (member (buffer-local-value 'major-mode b) modes)))))
+    (pop-to-buffer (read-buffer "Buffer: " nil t pred))))
+
+(defun bn/poke-ci ()
+  (interactive)
+  (magit-commit-create '("-m" "Poke CI" "--allow-empty"))
+  (magit-push-current-to-pushremote nil))
+
+(defun bn/org-show-next-heading ()
+  (interactive)
+  (bn/org-show-other-heading (lambda () (org-next-visible-heading 1))))
+
+(defun bn/org-show-prev-heading ()
+  (interactive)
+  (bn/org-show-other-heading (lambda () (org-previous-visible-heading 1))))
+
+(defun bn/org-show-other-heading (move-fn)
+  (org-hide-entry)
+  (funcall move-fn)
+  (org-show-entry))

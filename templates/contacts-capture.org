@@ -1,0 +1,11 @@
+* %^{Name| }
+ :PROPERTIES:
+ :EMAIL: %^{Email| }
+ :PHONE: %^{Phone| }
+ :END:
+** Bakgrunn
+
+** Relasjoner
+
+** Logg
+*** %u %?

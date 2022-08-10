@@ -1,5 +1,10 @@
 *~
+*.jar
+*.sql
+*.cache
+.cask
 auto-save-list
+early-init.el
 elpa
 ido.last
 games

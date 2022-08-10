@@ -2,17 +2,19 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-((#("Org/WG2Terminators.org" 0 22
+(("Software"
+ (filename . "/Users/bn/Repository/Org/Software.org")
+ (handler . org-bookmark-jump))
+("Org/WG2SubscriberState.org:Standups"
+ (filename . "/Users/bn/Repository/Org/WG2SubscriberState.org")
+ (handler . org-bookmark-jump)
+ (front-context-string . "7725C63F-FCDF-47E1-BF41-345935D47710"))
+("Org/Family.org"
+ (filename . "/Users/bn/Repository/Org/Family.org")
+ (handler . org-bookmark-jump))
+(#("Org/WG2Terminators.org" 0 22
    (face nil))
  (filename . "/Users/bn/Repository/Org/WG2Terminators.org")
- (handler . org-bookmark-jump))
-("W"
- (filename . "/Users/bn/Repository/Org/World.org")
- (handler . org-bookmark-jump)
- (front-context-string . "C1907A4F-AE90-4A63-A13E-1C44CC832D63"))
-(#("Org/Health.org" 0 14
-   (face nil))
- (filename . "/Users/bn/Repository/Org/Health.org")
  (handler . org-bookmark-jump))
 (#("Org/Projects.org:Projects" 0 25
    (face nil))
@@ -51,10 +53,10 @@
  (front-context-string . "BAD5B557-5442-445B-9C98-778541404342")
  (annotation . "Test?"))
 ("qq"
- (filename . "~/src/loltel/voice/chordlet/pkg/controller/diameter/gx_ra.go")
- (front-context-string . "ReAuth(evt.Sid, ")
- (rear-context-string . "m := s.buildBase")
- (position . 4094))
+ (filename . "~/src/loltel/voice/chordlet/cmd/server/tests/setup.go")
+ (front-context-string . "		CCRequestType:")
+ (rear-context-string . "  e.pcrf.realm,\n")
+ (position . 10221))
 (#("Org/WG2General" 0 14
    (face nil))
  (filename . "~/Repository/Org/WG2General.org")
@@ -72,11 +74,6 @@
  (front-context-string . "\n* [[https://dew")
  (rear-context-string)
  (position . 1))
-("cnf"
- (filename . "~/Repository/Lists.org")
- (front-context-string . "#+STARTUP: overv")
- (rear-context-string)
- (position . 1))
 ("Lists.org"
  (filename . "~/Repository/Lists.org")
  (front-context-string . "#+STARTUP: overv")
@@ -85,12 +82,6 @@
 ("Lists"
  (filename . "~/Repository/Lists.org")
  (front-context-string . "* Lage koblinger")
- (rear-context-string)
- (position . 1))
-(#("go.mod" 0 6
-   (face nil))
- (filename . "~/src/loltel/3rd/golang/go.mod")
- (front-context-string . "module github.co")
  (rear-context-string)
  (position . 1))
 ("Weekly review"
@@ -104,14 +95,14 @@
  (rear-context-string)
  (position . 1))
 ("org-refile-last-stored"
- (filename . "/Users/bn/Repository/Org/Hardware.org")
+ (filename . "/Users/bn/Repository/Org/Tasks.org")
  (handler . org-bookmark-jump)
- (front-context-string . "05EDAD11-DB30-45F4-9C93-CDDD5C0C95B0"))
+ (front-context-string . "DEFA67C5-9BB4-4142-8D90-0A25A44DD46F"))
 ("org-capture-last-stored"
- (filename . "/Users/bn/Repository/Roam/tomorrow_bias.org")
+ (filename . "/Users/bn/Repository/Roam/20220802125100-get_apn_profile_for_bss.org")
  (handler . org-bookmark-jump))
-("GTD inbox"
- (filename . "~/Repository/Org/Inbox.org")
+("Tasks"
+ (filename . "~/Repository/Org/Tasks.org")
  (front-context-string . "* Tasks\n** TODO ")
  (rear-context-string . "org::datetree/\n\n")
  (position . 35)
