@@ -962,6 +962,11 @@ Syntax highlighting and REPL support for OPAs Rego configuration language.
 (add-hook 'java-mode-hook (lambda () (setq c-basic-offset 2)))
 #+end_src
 
+** Nix
+#+begin_src elisp
+(use-package nix-mode)
+#+end_src
+
 * Completion
 
 I used to use Helm, but switched to Vertico because I like it's modular
