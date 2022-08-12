@@ -280,14 +280,14 @@ I find transparency neat for about ten minutes...
 (add-to-list 'default-frame-alist '(alpha . (100 . 100)))
 #+end_src
 
-Incosolata LGC Markup as it has more glyphs (like em dash) than InconsolataGo.
-Libre Baskerville is as nice as Baskerville, and easier to read on the screen.
+Set up some nice fonts: Libre Baskerville nicer than Baskerville, and Fira Code
+is neat plus it has a ton of vanity symbols.
 
 #+begin_src emacs-lisp
 (custom-theme-set-faces
  'user
  '(variable-pitch ((t (:family "Libre Baskerville" :height 130))))
- '(fixed-pitch ((t (:family "Inconsolata LGC Markup" :height 120)))))
+ '(fixed-pitch ((t (:family "Fira Code" :height 120)))))
 #+end_src
 
 Why not?
