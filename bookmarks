@@ -96,11 +96,12 @@
  (position . 1))
 ("org-refile-last-stored"
  (filename . "/Users/bn/Repository/Org/Tasks.org")
- (handler . org-bookmark-jump)
- (front-context-string . "DEFA67C5-9BB4-4142-8D90-0A25A44DD46F"))
+ (handler . org-bookmark-heading-jump)
+ (outline-path "Blocked" "Lage panelsystem"))
 ("org-capture-last-stored"
- (filename . "/Users/bn/Repository/Roam/20220802125100-get_apn_profile_for_bss.org")
- (handler . org-bookmark-jump))
+ (filename . "/Users/bn/Repository/Org/Tasks.org")
+ (handler . org-bookmark-heading-jump)
+ (outline-path "Incoming" "Finn programmeringsoppgaver til Jon"))
 ("Tasks"
  (filename . "~/Repository/Org/Tasks.org")
  (front-context-string . "* Tasks\n** TODO ")
