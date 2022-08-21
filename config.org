@@ -934,13 +934,12 @@ Syntax highlighting and REPL support for OPAs Rego configuration language.
 
 #+begin_src emacs-lisp
 (use-package rego-mode
-  :disabled  ;; Not working great, and `opa fmt` is very rude wrt comments
   :init
   (add-hook 'rego-mode-hook (lambda ()
                               (setq tab-width 4)))
   :custom
-  (rego-repl-executable "/usr/local/bin/opa")
-  (rego-opa-command "/usr/local/bin/opa"))
+  (rego-repl-executable "/Users/bn/.nix-profile/bin/opa")
+  (rego-opa-command "/Users/bn/.nix-profile/bin/opa"))
 #+end_src
 
 ** Protobuf
@@ -1450,7 +1449,7 @@ buffers.
   :bind (("C-x g" . magit)
          :map magit-mode-map
          ("C-<tab>" . nil))
-  :init (setq magit-git-executable "/usr/local/bin/git"
+  :init (setq magit-git-executable "/Users/bn/.nix-profile/bin/git"
               magit-log-margin '(t "%+4Y%m%dT%T" magit-log-margin-width t 18)))
 #+end_src
 
