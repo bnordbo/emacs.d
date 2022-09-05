@@ -874,7 +874,7 @@ I gave up and reverted to paredit.
   :init
   (add-hook 'haskell-mode-hook 'subword-mode)
   (add-hook 'haskell-mode-hook 'haskell-doc-mode)
-  (add-hook 'haskell-mode-hook #'lsp)
+  (add-hook 'haskell-mode-hook 'lsp)
   (setq lsp-haskell-server-path (expand-file-name "~/.ghcup/bin/haskell-language-server-wrapper")))
 #+end_src
 
@@ -1074,6 +1074,7 @@ Load the org-mode and do basic configuration:
             (lambda ()
               (auto-fill-mode 1)
               (org-indent-mode 1)
+              (writegood-mode 1)
               (electric-indent-local-mode -1)
               (electric-pair-local-mode 1)
               (diminish 'org-indent-mode)
@@ -1385,6 +1386,13 @@ more!
 
 #+begin_src emacs-lisp
 (use-package consult-org-roam)
+#+end_src
+
+* Writing aids
+#+begin_src emacs-lisp
+(use-package writegood-mode
+  :config
+  (add-to-list 'writegood-weasel-words "actionable"))
 #+end_src
 
 * Reading and research
