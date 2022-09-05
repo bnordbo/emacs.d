@@ -98,10 +98,6 @@ This section is for testing out new configurations.
 ; https://depp.brause.cc/shackle/
 ;(use-package shackle
 
-(use-package writegood-mode
-  :config
-  (add-to-list 'writegood-weasel-words "actionable"))
-
 (use-package free-keys)
 (use-package boon
   :disabled
@@ -923,6 +919,7 @@ I gave up and reverted to paredit.
 
 #+begin_src emacs-lisp
 (use-package bazel
+  :init (setq bazel-command '("/run/current-system/sw/bin/bazelisk"))
   :bind
   (("C-c b f b" . bazel-find-build-file)
    ("C-c b t p" . bazel-test-at-point)))
