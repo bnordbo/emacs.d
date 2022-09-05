@@ -87,7 +87,7 @@
 ("Weekly review"
  (filename . "~/Repository/Lists.org")
  (front-context-string . "* Weekly review\n")
- (rear-context-string . "erte nøkkelord.\n")
+ (rear-context-string . "erte n\303\270kkelord.\n")
  (position . 567))
 ("networks.yaml"
  (filename . "~/src/loltel/networks.yaml")
@@ -97,11 +97,11 @@
 ("org-refile-last-stored"
  (filename . "/Users/bn/Repository/Org/Tasks.org")
  (handler . org-bookmark-heading-jump)
- (outline-path "Blocked" "Lage panelsystem"))
+ (outline-path "Ongoing" "Set up nix-darwin with Flakes" "Make sudo use fingerprint"))
 ("org-capture-last-stored"
  (filename . "/Users/bn/Repository/Org/Tasks.org")
  (handler . org-bookmark-heading-jump)
- (outline-path "Incoming" "Start using direnv for loltel"))
+ (outline-path "Incoming" "Auto-commit Roam etc. daily"))
 ("Tasks"
  (filename . "~/Repository/Org/Tasks.org")
  (front-context-string . "* Tasks\n** TODO ")

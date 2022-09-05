@@ -725,7 +725,7 @@ have it pick up all the feeds based on tags, but that seems a bit extreme...
 Pick up authentication info.
 
 #+begin_src emacs-lisp
-(setq auth-sources '("~/.authinfo"))
+(setq auth-sources '("~/.authinfo.gpg"))
 #+end_src
 
 In practice I hardly ever answer anything but yes.
