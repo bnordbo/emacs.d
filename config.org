@@ -1307,7 +1307,7 @@ Start agenda on the current day rather than the first day of the week.
 (setq org-capture-templates
       `(("t" "TODO" entry (file+headline org-default-notes-file "Incoming")
          "** TODO %i%?")
-        ("b" "Bookmark" entry (file "~/Bookmarks.org")
+        ("b" "Bookmark" entry (file "~/Repository/Org/Bookmarks.org")
          "* %(org-cliplink-capture)\n%U\n%?" :empty-lines 1)
         ("s" "Standup" plain (file+olp+datetree "WG2SubscriberState.org" "Standups")
          (file "~/.emacs.d/templates/standup-capture.org")
