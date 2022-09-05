@@ -1088,25 +1088,6 @@ Automatically save the buffer after clocking in/out:
 (advice-add 'org-clock-out :after #'save-buffer)
 #+end_src
 
-Set up fast selection for tags. Lots of them! Lowercase characters are for
-categories, uppercase for contexts, including people. I could perhaps switch to
-digits for contexts if clashes become a problem..
-
-#+begin_src emacs-lisp
-(setq org-tag-alist '(("admin" . ?a)
-                      ("emacs" . ?e)
-                      ("integrators" . ?i)
-                      ("mdg" . ?m)
-                      ("org" . ?o)
-                      ("read" . ?r)
-                      (:newline)
-                      ("easy" . ?z)
-                      ("hard" . ?h)
-                      (:newline)
-                      ("@home" . ?H)
-                      ("@standup" . ?S)))
-#+end_src
-
 Properties that should be set across the board.
 
 #+begin_src emacs-lisp
