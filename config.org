@@ -608,7 +608,7 @@ I just use ispell for now, but should look into a way of supporting multiple
 dictionaries.
 
 #+begin_src emacs-lisp
-(setq ispell-program-name "/usr/local/bin/ispell")
+(setq ispell-program-name "/run/current-system/sw/bin/ispell")
 #+end_src
 
 In some cases, like YAML, indentation guides is a must.

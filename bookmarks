@@ -97,11 +97,11 @@
 ("org-refile-last-stored"
  (filename . "/Users/bn/Repository/Org/Tasks.org")
  (handler . org-bookmark-heading-jump)
- (outline-path "Ongoing" "Set up nix-darwin with Flakes" "Make sudo use fingerprint"))
+ (outline-path "Ongoing" "Laptop gold-plating" "Auto-commit Roam etc. daily"))
 ("org-capture-last-stored"
  (filename . "/Users/bn/Repository/Org/Tasks.org")
  (handler . org-bookmark-heading-jump)
- (outline-path "Incoming" "Auto-commit Roam etc. daily"))
+ (outline-path "Incoming" "Make fancy cmd history search work in fish"))
 ("Tasks"
  (filename . "~/Repository/Org/Tasks.org")
  (front-context-string . "* Tasks\n** TODO ")
