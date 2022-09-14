@@ -19,6 +19,7 @@ Load various add-on functionality.
 
 #+begin_src emacs-lisp
 (load-file "~/.emacs.d/elisp/bn.el")
+(load-file "~/.emacs.d/elisp/rego-eval.el")
 (load-file "~/.emacs.d/keyboard-macros.el")
 #+end_src
 
@@ -936,6 +937,8 @@ Syntax highlighting and REPL support for OPAs Rego configuration language.
 
 #+begin_src emacs-lisp
 (use-package rego-mode
+  :bind (:map rego-mode-map
+              ("C-c r e" . bn/eval-query))
   :init
   (add-hook 'rego-mode-hook (lambda ()
                               (setq tab-width 4)))
