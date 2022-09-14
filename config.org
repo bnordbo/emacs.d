@@ -684,7 +684,7 @@ big monorepos. Hmm.
 #+end_src
 
 It seems I'm practically living inside Emacs these days, so I might as well use
-it as an entry-point for various web searches.
+it as an entry-point for web searches.
 
 #+begin_src emacs-lisp
 (use-package engine-mode
@@ -854,6 +854,11 @@ I gave up and reverted to paredit.
                   sh-indentation 4)))
 (add-hook 'after-save-hook
           'executable-make-buffer-file-executable-if-script-p)
+#+end_src
+
+** Fish
+#+begin_src emacs-lisp
+(use-package fish-mode)
 #+end_src
 
 ** Graphviz
