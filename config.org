@@ -1124,16 +1124,20 @@ archived in datetrees per file to retain context..
       org-read-date-prefer-future 'time)
 #+end_src
 
-I started out with a pretty complex set  of keywords, then added more. In the
-end I used very few, and they can be distilled down to this list.
+I started out with a complex set of keywords, then added more, then went
+minimalist. The only one I missed was NEXT, so I added it back in.
 
-- TODO for tasks that has not yet been completed.
+very few, and they can be distilled down to this list.
+
+- TODO for tasks that has not yet been completed. If used together with NEXT, it
+  means they are not yet ready to be worked on.
+- NEXT for tasks that are ready to work with.
 - DONE for completed tasks.
 - BLOCKED for tasks where I'm waiting for someone or something.
 - CANCELLED for tasks I gave up doing.
 
 #+begin_src emacs-lisp
-(setq org-todo-keywords '((sequence "TODO(t)" "DONE(d)" "BLOCKED(b@)" "CANCELLED(c@)")))
+(setq org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "DONE(d)" "BLOCKED(b@)" "CANCELLED(c@)")))
 #+end_src
 
 Emacs Lisp is a popular source language, so give it  its own key. As both "e"
