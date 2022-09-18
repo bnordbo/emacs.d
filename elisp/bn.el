@@ -65,6 +65,12 @@ false if the file matches a name in this list."
 (defun bn/select-theme (name appearence)
   (cdr (assoc appearence (cadr (assoc name theme-sets)))))
 
+(defun bn/adjust-face-attributes ()
+;  (set-face-attribute 'markdown-table-face nil :inherit 'fixed-pitch)
+  (set-face-attribute 'org-code nil :inherit 'fixed-pitch)
+  (set-face-attribute 'org-block nil :inherit 'fixed-pitch)
+  (set-face-attribute 'org-table nil :inherit 'fixed-pitch))
+
 (defun bn/apply-theme (appearance)
   "Load theme, taking current system APPEARANCE into consideration."
   (mapc #'disable-theme custom-enabled-themes)
