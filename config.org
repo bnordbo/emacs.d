@@ -965,6 +965,14 @@ Syntax highlighting and REPL support for OPAs Rego configuration language.
 (use-package nix-mode)
 #+end_src
 
+** Just
+Mode for editing justfiles. This is a useful tool for trivial automations, and
+is often quicker/saner than Makefiles or shell scripts.
+
+#+begin_src emacs-lisp
+(use-package just-mode)
+#+end_src
+
 * Completion
 
 I used to use Helm, but switched to Vertico because I like it's modular
