@@ -803,7 +803,7 @@ limited, unfortunately.
   :hook (before-save . gofmt-before-save)
   :init
   (exec-path-from-shell-copy-env "GOPATH")
-  (setq go-eldoc-gocode "/Users/bn/go/bin/gocode")
+  (setq go-eldoc-gocode "/etc/profiles/per-user/bn/bin/gocode")
   (add-hook 'go-mode-hook
             (lambda ()
               (setq tab-width 4)
