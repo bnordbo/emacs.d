@@ -814,7 +814,10 @@ limited, unfortunately.
                       ("type" "^type +\\([a-zA-Z][a-zA-Z0-9_]+\\)\\s-" 1))))))
 
 (use-package go-fill-struct)
+
 (use-package go-playground
+  :init (setq go-playground-basedir "~/.cache/go-playground"
+              go-playground-init-command "go mod init go.playground.bn/m/v2")
   :defer 15)
 #+end_src
 
@@ -1393,7 +1396,8 @@ quickly looking up stuff, while for serious reading pulling the PDF and using
 org-noter is preferrable. Pity it doesn't work with plain text...
 
 #+begin_src emacs-lisp
-(use-package rfc-mode)
+(use-package rfc-mode
+  :init (setq rfc-mode-directory "~/.cache/rfc-mode"))
 #+end_src
 
 PDF tools is great for reading, and annotating PDFs. I mostly use it together
