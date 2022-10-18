@@ -940,8 +940,8 @@ Syntax highlighting and REPL support for OPAs Rego configuration language.
   (add-hook 'rego-mode-hook (lambda ()
                               (setq tab-width 4)))
   :custom
-  (rego-repl-executable "/Users/bn/.nix-profile/bin/opa")
-  (rego-opa-command "/Users/bn/.nix-profile/bin/opa"))
+  (rego-repl-executable "/etc/profiles/per-user/bn/bin/opa")
+  (rego-opa-command "/etc/profiles/per-user/bn/bin/opa"))
 #+end_src
 
 ** Protobuf
