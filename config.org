@@ -212,7 +212,7 @@ appearence.
     (gruvbox ((light . gruvbox-light-medium) (dark . gruvbox-dark-medium )))
     (material ((light . material-light) (dark . material)))))
 
-(setq default-theme 'leuven)
+(setq default-theme 'gruvbox)
 
 (add-hook 'ns-system-appearance-change-functions #'bn/apply-theme)
 #+end_src
