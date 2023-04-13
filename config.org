@@ -1189,7 +1189,20 @@ Make it look less like markup. This goes well with a variable pitch font.
 (customize-set-value 'org-ellipsis "…")
 #+end_src
 
-**  Editing and navigation
+The property drawers can make org files look messy, and this will tidy them up.
+
+#+begin_src emacs-lisp
+(use-package org-tidy
+  :ensure t
+  :config
+  (add-hook 'org-mode-hook 'org-tidy-mode)
+  :custom
+  (org-tidy-top-property-style 'invisible)
+  (org-tidy-properties-style 'fringe))
+
+#+end_src
+
+** Editing and navigation
 
 #+begin_src emacs-lisp
 (customize-set-value 'org-auto-align-tags nil)
