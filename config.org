@@ -1244,6 +1244,8 @@ Enable more languages.
 
 #+begin_src emacs-lisp
 (use-package ob-go)
+(use-package mermaid-mode)
+(use-package ob-mermaid)
 
 (org-babel-do-load-languages
  'org-babel-load-languages
@@ -1252,6 +1254,7 @@ Enable more languages.
    (emacs-lisp . t)
    (shell . t)
    (go . t)
+   (mermaid . t)
    (dot . t)))
 #+end_src
 
