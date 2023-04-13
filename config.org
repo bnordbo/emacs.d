@@ -490,11 +490,11 @@ movement commands in org-mode.
 
 #+begin_src elisp
 (use-package hydra)
-(defhydra hydra-org-view-section (org-mode-map "C-c h")
+(defhydra hydra-org-view-section (org-mode-map "C-z")
   "View section under headline"
   ("n" bn/org-show-next-heading "next")
   ("p" bn/org-show-prev-heading "previous"))
-(defhydra hydra-move-org-section (org-mode-map "C-c h")
+(defhydra hydra-move-org-section (org-mode-map "C-z")
   "Move section up or down"
   ("U" org-move-subtree-up "up")
   ("D" org-move-subtree-down "down"))
