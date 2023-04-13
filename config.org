@@ -73,6 +73,12 @@ lot. Increasing the log level to ~error~ takes care of that annoyance.
 (setq warning-minimum-level :error)
 #+end_src
 
+Allow using the system trashcan instead of deleting files.
+
+#+begin_src emacs-lisp
+(setq delete-by-moving-to-trash t)
+#+end_src
+
 ** Servers
 
 Start emacs-server for integrating neatly with the shell.
