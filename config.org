@@ -1093,6 +1093,7 @@ Load the org-mode and do basic configuration:
               (writegood-mode 1)
               (electric-indent-local-mode -1)
               (electric-pair-local-mode 1)
+              (abbrev-mode 1)
               (diminish 'org-indent-mode)
               (diminish 'buffer-face-mode))))
 #+end_src
@@ -1381,7 +1382,11 @@ Set up org-roam v2 behind the ~C-c n~ prefix:
                                  :unnarrowed t)
                                 ("r" "Read" plain (file "~/.emacs.d/templates/book-capture.org")
                                  :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org"
-                                                    "#+title: ${title}\n#+date %T\n#+filetags: Lit")
+                                                    "#+title: ${title}\n#+date %T\n#+filetags: Lit\n")
+                                 :unnarrowed t)
+                                ("p" "Person" plain (file "~/.emacs.d/templates/person-capture.org")
+                                 :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org"
+                                                    "#+title: ${title}\n#+date %T\n#+filetags: Person\n")
                                  :unnarrowed t)))
   :config
   (org-roam-setup))

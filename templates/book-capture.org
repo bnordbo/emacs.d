@@ -1,7 +1,7 @@
 
 - author :: ${Author}
 - status ::
-- format ::%^{Format|Paperback|Kindle|Hardcover|Web}
+- format :: %^{Format|Paperback|Kindle|Hardcover|Web}
 - notebook ::
 - source ::
 
