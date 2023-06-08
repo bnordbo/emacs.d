@@ -114,3 +114,10 @@ false if the file matches a name in this list."
   (org-hide-entry)
   (funcall move-fn)
   (org-show-entry))
+
+(defun bn/yank-visited-file-name ()
+  "Copy the path of the visited file."
+  (interactive)
+  (let ((path (buffer-file-name)))
+    (kill-new path)
+    (message path)))
