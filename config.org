@@ -634,8 +634,8 @@ Seeing the real width of the cursor is sometimes useful (e.g. tabs).
 (setq x-stretch-cursor t)
 #+end_src
 
-I quite frequently want to go back to the last edited location. This package
-handles that, and also allows to jump to all past edited locations.
+I frequently want to go back to the last edited location. This package handles
+that, and also allows to jump to all past edited locations.
 
 #+begin_src emacs-lisp
 (use-package goto-last-change
@@ -1516,8 +1516,9 @@ Forge hooks into magit and provides access to GitHub. It's slow on the monorepo
 at work, but reducing the topic list limit seems to help.
 
 #+begin_src emacs-lisp
+(use-package sqlite3)
 (use-package forge
-  :after magit
+  :after (magit sqlite3)
   :init
   (setq forge-topic-list-limit '(17 .  3)))
 #+end_src
