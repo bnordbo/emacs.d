@@ -680,8 +680,8 @@ I often switch from Emacs to searh  for stuff.  Let's put an end to that!
 
 * Integrations
 
-Use projectile. This is quite neat in normal projects, but it's struggling in
-big monorepos. Hmm.
+Use projectile. This is neat in normal projects, but it's struggling in big
+monorepos. Hmm.
 
 #+begin_src emacs-lisp
 (use-package projectile
@@ -1542,4 +1542,12 @@ Finally, reduce the GC threshold a bit to make the user experience better.
 
 #+begin_src emacs-lisp
 (setq gc-cons-threshold (* 4 1000 1000))
+#+end_src
+
+* File system manipulation
+
+I can't see any reason for not having directory listing update automatically.
+
+#+begin_src emacs-lisp
+(add-hook 'dired-mode-hook 'auto-revert-mode)
 #+end_src
