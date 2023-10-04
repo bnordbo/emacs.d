@@ -286,7 +286,7 @@ is neat plus it has a ton of vanity symbols.
 (custom-theme-set-faces
  'user
  '(variable-pitch ((t (:family "Libre Baskerville" :height 140))))
- '(fixed-pitch ((t (:family "Fira Mono" :height 130)))))
+ '(fixed-pitch ((t (:family "Fira Code" :height 140)))))
 #+end_src
 
 Why not?
@@ -989,6 +989,9 @@ only used a fraction of Helm's functionality...
 #+begin_src emacs-lisp
 (use-package vertico
   :init (vertico-mode))
+
+(use-package vertico-prescient
+  :init (vertico-prescient-mode))
 #+end_src
 
 The directory extension makes Vertico behave more like Ido, which I find more
@@ -1176,11 +1179,11 @@ and "E" are taken, it will have to live under "m".
              '("?" . "question"))
 #+end_src
 
-Exporting to Slack allows me to edit the message in e.g. an org-mode note.
+Pasting formatted output to the clipboard is useful for when an export would be
+too heavy-weight.
 
 #+begin_src emacs-lisp
-(use-package ox-slack
-  :defer 10)
+(use-package ox-clip)
 #+end_src
 
 I prefer sparse trees to only show the matched entries. This fixes that in most cases.
