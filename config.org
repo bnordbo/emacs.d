@@ -1507,9 +1507,7 @@ buffers.
           magit-insert-unpushed-to-pushremote
           magit-insert-unpushed-to-upstream-or-recent
           magit-insert-unpulled-from-pushremote
-          magit-insert-unpulled-from-upstream
-          forge-insert-pullreqs
-          forge-insert-issues)))
+          magit-insert-unpulled-from-upstream)))
 #+end_src
 
 Forge hooks into magit and provides access to GitHub. It's slow on the monorepo
