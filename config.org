@@ -112,8 +112,6 @@ This section is for testing out new configurations.
   (require 'boon-colemak))
 (use-package 0xc
   :defer 15)
-(use-package kubel
-   :defer 15)
 
 (use-package key-quiz)
 #+end_src
