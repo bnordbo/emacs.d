@@ -3,18 +3,18 @@
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
 (("Software"
- (filename . "/Users/bn/Repository/Org/Software.org")
+ (filename . "/Users/bnordbo/Repository/Org/Software.org")
  (handler . org-bookmark-jump))
 ("Org/WG2SubscriberState.org:Standups"
- (filename . "/Users/bn/Repository/Org/WG2SubscriberState.org")
+ (filename . "/Users/bnordbo/Repository/Org/WG2SubscriberState.org")
  (handler . org-bookmark-jump)
  (front-context-string . "7725C63F-FCDF-47E1-BF41-345935D47710"))
 ("Org/Family.org"
- (filename . "/Users/bn/Repository/Org/Family.org")
+ (filename . "/Users/bnordbo/Repository/Org/Family.org")
  (handler . org-bookmark-jump))
 (#("Org/WG2Terminators.org" 0 22
    (face nil))
- (filename . "/Users/bn/Repository/Org/WG2Terminators.org")
+ (filename . "/Users/bnordbo/Repository/Org/WG2Terminators.org")
  (handler . org-bookmark-jump))
 (#("Org/Projects.org:Projects" 0 25
    (face nil))
@@ -24,14 +24,14 @@
  (annotation . ""))
 (#("Org/Recipes.org" 0 15
    (face nil))
- (filename . "/Users/bn/Repository/Org/Recipes.org")
+ (filename . "/Users/bnordbo/Repository/Org/Recipes.org")
  (handler . org-bookmark-jump))
 ("Org/Meta.org"
- (filename . "/Users/bn/Repository/Org/Meta.org")
+ (filename . "/Users/bnordbo/Repository/Org/Meta.org")
  (handler . org-bookmark-jump))
 (#("Org/MDG.org" 0 11
    (face nil))
- (filename . "/Users/bn/Repository/Org/MDG.org")
+ (filename . "/Users/bnordbo/Repository/Org/MDG.org")
  (handler . org-bookmark-jump))
 (#("https://app.zenhub.com/workspaces/loltel-5cd18276c5fef1637967a9cd/board?labels=terminators&repos=105667909" 0 106
    (face nil))
@@ -40,15 +40,15 @@
  (position . 914)
  (handler . magit--handle-bookmark)
  (mode . magit-status-mode)
- (filename . "/Users/bn/src/loltel/")
+ (filename . "/Users/bnordbo/src/loltel/")
  (magit-hidden-sections
   (issues)))
 ("@Morning checklist"
- (filename . "/Users/bn/Repository/Org/Lists.org")
+ (filename . "/Users/bnordbo/Repository/Org/Lists.org")
  (handler . org-bookmark-jump)
  (front-context-string . "B92C8FB2-6215-410A-981A-5627BD40D2F9"))
 ("@Before I start working on a new task"
- (filename . "/Users/bn/Repository/Org/Lists.org")
+ (filename . "/Users/bnordbo/Repository/Org/Lists.org")
  (handler . org-bookmark-jump)
  (front-context-string . "BAD5B557-5442-445B-9C98-778541404342")
  (annotation . "Test?"))
@@ -65,7 +65,7 @@
  (position . 528)
  (annotation . ""))
 ("org-capture-last-stored-marker"
- (filename . "/Users/bn/Repository/Org/Software.org")
+ (filename . "/Users/bnordbo/Repository/Org/Software.org")
  (handler . org-bookmark-jump)
  (front-context-string . "70B14EA8-6A5D-41AA-B383-4ECE984A5F14"))
 (#("bookmarks" 0 9
@@ -95,11 +95,11 @@
  (rear-context-string)
  (position . 1))
 ("org-refile-last-stored"
- (filename . "/Users/bn/Repository/Org/Tasks.org")
+ (filename . "/Users/bnordbo/Repository/Org/Tasks.org")
  (handler . org-bookmark-heading-jump)
  (outline-path "Ongoing" "Laptop gold-plating" "Auto-commit Roam etc. daily"))
 ("org-capture-last-stored"
- (filename . "/Users/bn/Repository/Org/Tasks.org")
+ (filename . "/Users/bnordbo/Repository/Org/Tasks.org")
  (handler . org-bookmark-heading-jump)
  (outline-path "Incoming" "Make fancy cmd history search work in fish"))
 ("Tasks"
