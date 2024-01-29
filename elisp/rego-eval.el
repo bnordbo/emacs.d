@@ -1,4 +1,4 @@
-(setq bn/chordlet-rego-lib-dir "/Users/bn/Contexts/WG2/src/loltel/voice/chordlet/assets/opa/lib/")
+(setq bn/chordlet-rego-lib-dir "/Users/bnordbo/.local/src/loltel/voice/chordlet/assets/opa/lib/")
 
 (defun bn/eval-query ()
   (interactive)
