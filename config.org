@@ -685,6 +685,7 @@ monorepos. Hmm.
 
 #+begin_src emacs-lisp
 (use-package projectile
+  :diminish
   :init (setq projectile-project-search-path '(("~/Contexts/WG2/src" . 2)
                                                "/Users/bn/.emacs.d"
                                                "~/src/forks/qmk_firmware"))
