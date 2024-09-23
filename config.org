@@ -1238,6 +1238,13 @@ This allows bookmarking org headings using ~C-x r m~.
 (use-package org-bookmark-heading)
 #+end_src
 
+Mode specific scratch buffers are not specific to org-mode, but often used in
+conjunction with it for quick notes.
+
+#+begin_src emacs-lisp
+(use-package scratch)
+#+end_src
+
 ** Exporting
 Don't prompt when evaluating ditaa code blocks.
 
