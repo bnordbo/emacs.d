@@ -1091,14 +1091,15 @@ Load the org-mode and do basic configuration:
         org-ditaa-jar-path "/Users/bn/.emacs.d/ditaa.jar")
   (add-hook 'org-mode-hook
             (lambda ()
-              (auto-fill-mode 1)
+              (auto-fill-mode 0)
               (org-indent-mode 1)
               (writegood-mode 1)
               (electric-indent-local-mode -1)
               (electric-pair-local-mode 1)
               (abbrev-mode 1)
               (diminish 'org-indent-mode)
-              (diminish 'buffer-face-mode))))
+              (diminish 'buffer-face-mode)
+              (visual-line-mode 1))))
 #+end_src
 
 #+begin_src emacs-lisp
