@@ -85,6 +85,8 @@ Start emacs-server for integrating neatly with the shell.
 
 #+begin_src emacs-lisp
 (use-package server
+  :init
+  (setq server-socket-dir "~/.emacs.d/server")
   :config
   (unless (server-running-p)
     (server-start)))
@@ -788,6 +790,12 @@ This works surprisingly well for navigating code, even in big monorepos.
   (add-to-list 'erlang-tags-file-list "~/src/bn/loltel/terminators/erlang/TAGS"))
 #+end_src
 
+** CSV
+
+#+begin_src emacs-lisp
+(use-package csv-mode)
+#+end_src
+
 ** Go
 
 This sets up Go mode with some basic support. The jump to definition support is
@@ -800,7 +808,6 @@ limited, unfortunately.
   :hook (before-save . gofmt-before-save)
   :init
   (exec-path-from-shell-copy-env "GOPATH")
-  (setq go-eldoc-gocode "/etc/profiles/per-user/bn/bin/gocode")
   (add-hook 'go-mode-hook
             (lambda ()
               (setq tab-width 4)
@@ -1067,7 +1074,8 @@ Load the org-mode and do basic configuration:
         org-src-fontify-natively t
         org-src-window-setup 'current-window
         org-clock-idle-time 10
-        org-clock-in-switch-to-state "NEXT"
+        org-clock-in-switch-to-state nil
+        org-clock-out-switch-to-state nil
         org-clock-out-remove-zero-time-clocks t
         org-clock-out-when-done t
         org-goto-interface 'outline-path-completion
@@ -1089,11 +1097,26 @@ Load the org-mode and do basic configuration:
               (diminish 'buffer-face-mode))))
 #+end_src
 
-Automatically save the buffer after clocking in/out:
+#+begin_src emacs-lisp
+(use-package org-faces
+    :ensure nil
+    :custom-face
+    (org-table ((nil (:inherit fixed-pitch))))
+    (org-block ((nil (:inherit fixed-pitch :foreground nil))))
+    (org-code  ((nil (:inherit (shadow fixed-pitch)))))
+    (org-indent ((nil (:inherit (org-hide fixed-pitch)))))
+    (org-special-keyword ((nil (:inherit (font-lock-comment-face fixed-pitch)))))
+    (org-list-dt ((nil (:inherit fixed-pitch)))))
+#+end_src
 
 #+begin_src emacs-lisp
-(advice-add 'org-clock-in :after #'save-buffer)
-(advice-add 'org-clock-out :after #'save-buffer)
+(use-package org-bullets
+    :config
+    (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+
+(font-lock-add-keywords 'org-mode
+                          '(("^ *\\([-]\\) "
+                             (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
 #+end_src
 
 Properties that should be set across the board.
@@ -1149,6 +1172,8 @@ and "E" are taken, it will have to live under "m".
 #+begin_src emacs-lisp
 (add-to-list 'org-structure-template-alist
              '("m" . "src emacs-lisp"))
+(add-to-list 'org-structure-template-alist
+             '("?" . "question"))
 #+end_src
 
 Exporting to Slack allows me to edit the message in e.g. an org-mode note.
@@ -1179,19 +1204,6 @@ Make it look less like markup. This goes well with a variable pitch font.
 (customize-set-value 'org-hide-emphasis-markers t)
 (customize-set-value 'org-pretty-entities t)
 (customize-set-value 'org-ellipsis "…")
-#+end_src
-
-The property drawers can make org files look messy, and this will tidy them up.
-
-#+begin_src emacs-lisp
-(use-package org-tidy
-  :ensure t
-  :config
-  (add-hook 'org-mode-hook 'org-tidy-mode)
-  :custom
-  (org-tidy-top-property-style 'invisible)
-  (org-tidy-properties-style 'fringe))
-
 #+end_src
 
 ** Editing and navigation
@@ -1462,6 +1474,11 @@ I find org-noter incredibly useful for research.
 #+end_src
 
 * Version control
+Skip an annoying pre-commit hooks that tries (and fails) to install Homebrew.
+
+#+begin_src emacs-lisp
+(setenv "SKIP" "dep-downloader")
+#+end_src
 
 Bind magit to ~C-x g~, and unbind ~C-<tab>~ since it's used for switching
 buffers.
