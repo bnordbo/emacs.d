@@ -124,8 +124,8 @@ LSP is awesome, but unfortunately difficult to get working with Bazel. This is
 mostly for playing around to maybe get that working at some point.
 
 #+begin_src emacs-lisp
-(use-package yasnippet)
-(use-package company-box)
+(use-package yasnippet
+  :init (yas-global-mode))
 
 ; hook up later
 (defun lsp-go-install-save-hooks ()
