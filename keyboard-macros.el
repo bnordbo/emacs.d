@@ -6,3 +6,5 @@
    (kmacro-lambda-form [?\C-c ?\C-e ?\C-s ?\C-b ?g ?G ?\C-x ?h ?\M-w ?\C-x ?k return] 0 "%d"))
 (fset 'k/json-replace-and-format
    (kmacro-lambda-form [?\C-x ?h ?\C-y ?\C-x ?h ?\C-u ?\M-| ?j ?q ?  ?. return ?\C-x ?h tab] 0 "%d"))
+(fset 'k/review-issue
+   (kmacro "R e v i e w SPC C-c C-l C-y C-SPC M-b M-w <return> # C-y <return>"))
