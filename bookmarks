@@ -26,7 +26,7 @@
    (face nil))
  (filename . "/Users/bnordbo/Repository/Org/WG2Terminators.org")
  (handler . org-bookmark-jump))
-(#("Org/Projects.org:Projects" 0 25
+(#("Org/Projects.org:Projects" 0 15
    (face nil))
  (filename . "~/Repository/Org/Projects.org")
  (handler . org-bookmark-jump)
