@@ -2,8 +2,18 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("Software"
- (filename . "/Users/bnordbo/Repository/Org/Software.org")
+(("Org/Bicycles.org:Sykler"
+ (filename . "/Users/bn/Repository/Org/Bicycles.org")
+ (handler . org-bookmark-heading-jump)
+ (outline-path "Sykler"))
+("Org/Hardware.org"
+ (filename . "/Users/bn/Repository/Org/Hardware.org")
+ (handler . org-bookmark-heading-jump))
+("Org/Self.org"
+ (filename . "/Users/bn/Repository/Org/Self.org")
+ (handler . org-bookmark-heading-jump))
+("Software"
+ (filename . "/Users/bn/Repository/Org/Software.org")
  (handler . org-bookmark-jump))
 ("Org/WG2SubscriberState.org:Standups"
  (filename . "/Users/bnordbo/Repository/Org/WG2SubscriberState.org")
@@ -70,7 +80,7 @@
  (front-context-string . "70B14EA8-6A5D-41AA-B383-4ECE984A5F14"))
 (#("bookmarks" 0 9
    (face nil))
- (filename . "~/Bookmarks.org")
+ (filename . "~/Repository/Org/Bookmarks.org")
  (front-context-string . "\n* [[https://dew")
  (rear-context-string)
  (position . 1))
@@ -95,13 +105,13 @@
  (rear-context-string)
  (position . 1))
 ("org-refile-last-stored"
- (filename . "/Users/bnordbo/Repository/Org/Tasks.org")
+ (filename . "~/Repository/Org/Bicycles.org")
  (handler . org-bookmark-heading-jump)
- (outline-path "Ongoing" "Laptop gold-plating" "Auto-commit Roam etc. daily"))
+ (outline-path "Sykler" "Scott Addict RC 15 2019" "Oppgraderinger" "Sesong 2025" "Bytte bremseslanger"))
 ("org-capture-last-stored"
- (filename . "/Users/bnordbo/Repository/Org/Tasks.org")
+ (filename . "~/Repository/Roam/20250105105924-personlig_utvikling.org")
  (handler . org-bookmark-heading-jump)
- (outline-path "Incoming" "Make fancy cmd history search work in fish"))
+ (id . "6EC477CA-3FF0-45B1-8F43-048C443FFBFE"))
 ("Tasks"
  (filename . "~/Repository/Org/Tasks.org")
  (front-context-string . "* Tasks\n** TODO ")

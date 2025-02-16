@@ -693,6 +693,15 @@ monorepos. Hmm.
   :config (projectile-mode +1))
 #+end_src
 
+Disproject looks like an interesting "alternative" to projectile:
+
+#+begin_src emacs-lisp
+(use-package disproject
+  ;; Replace `project-prefix-map' with `disproject-dispatch'.
+  :bind ( :map ctl-x-map
+          ("p" . disproject-dispatch)))
+#+end_src
+
 It seems I'm practically living inside Emacs these days, so I might as well use
 it as an entry-point for web searches.
 
@@ -723,6 +732,8 @@ defining the feeds in org! I could probably point it to the roam directory and
 have it pick up all the feeds based on tags, but that seems a bit extreme...
 
 #+begin_src emacs-lisp
+(use-package elfeed)
+
 (use-package elfeed-org
   :disabled t
   :defer 15
@@ -979,6 +990,13 @@ is often quicker/saner than Makefiles or shell scripts.
 
 #+begin_src emacs-lisp
 (use-package just-mode)
+#+end_src
+
+** Nushell
+#+begin_src emacs-lisp
+(use-package nushell-mode
+  :custom
+  (nushell-enable-auto-indent t))
 #+end_src
 
 * Completion
@@ -1422,12 +1440,39 @@ This package enables preview for ripgrep, forward /and/ backwards links – and
 more!
 
 #+begin_src emacs-lisp
-(use-package consult-org-roam)
+(use-package consult-org-roam
+   :ensure t
+   :after org-roam
+   :init
+   (require 'consult-org-roam)
+   ;; Activate the minor mode
+   (consult-org-roam-mode 1)
+   :custom
+   ;; Use `ripgrep' for searching with `consult-org-roam-search'
+   (consult-org-roam-grep-func #'consult-ripgrep)
+   ;; Configure a custom narrow key for `consult-buffer'
+   (consult-org-roam-buffer-narrow-key ?r)
+   ;; Display org-roam buffers right after non-org-roam buffers
+   ;; in consult-buffer (and not down at the bottom)
+   (consult-org-roam-buffer-after-buffers t)
+   :config
+   ;; Eventually suppress previewing for certain functions
+   (consult-customize
+    consult-org-roam-forward-links
+    :preview-key "M-.")
+   :bind
+   ;; Define some convenient keybindings as an addition
+   ("C-c n f" . consult-org-roam-file-find)
+   ("C-c n b" . consult-org-roam-backlinks)
+   ("C-c n B" . consult-org-roam-backlinks-recursive)
+   ("C-c n l" . consult-org-roam-forward-links)
+   ("C-c n r" . consult-org-roam-search))
 #+end_src
 
 * Writing aids
 #+begin_src emacs-lisp
 (use-package writegood-mode
+  :diminish
   :config
   (add-to-list 'writegood-weasel-words "actionable"))
 #+end_src
@@ -1449,6 +1494,8 @@ with org-noter.
 (use-package pdf-tools
   :mode ("\\.pdf\\'" . pdf-view-mode)
   :demand
+  :init
+  (setq pdf-view-use-imagemagick t)
   :config
   (pdf-tools-install :no-query))
 

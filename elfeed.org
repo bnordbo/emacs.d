@@ -4,3 +4,5 @@
 *** [[https://www.emacswiki.org/emacs?action=rss;match=%5E%5Cd%5Cd%5Cd%5Cd-%5Cd%5Cd-%5Cd%5Cd][Emacs news]]
 *** [[https://d12frosted.io/atom.xml][d12frosted]], [[file:../Repository/Roam/20201017180724-boris_buliga.org][Boris Buliga]]
 *** [[https://sachachua.com/blog/feed/][Sascha Chua]]
+** Norge
+*** [[https://api.politiet.no/politiloggen/v1/rss][Politiloggen]]
