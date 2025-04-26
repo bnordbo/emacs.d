@@ -1106,7 +1106,8 @@ Load the org-mode and do basic configuration:
         org-fontify-whole-heading-line t
         org-use-sub-superscripts "{}"
         org-M-RET-may-split-line nil
-        org-ditaa-jar-path "/Users/bn/.emacs.d/ditaa.jar")
+        org-ditaa-jar-path "/Users/bn/.emacs.d/ditaa.jar"
+        org-cycle-emulate-tab 'whitestart)
   (add-hook 'org-mode-hook
             (lambda ()
               (auto-fill-mode 0)
