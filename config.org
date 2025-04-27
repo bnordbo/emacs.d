@@ -1361,12 +1361,16 @@ Start agenda on the current day rather than the first day of the week.
          "** TODO %i%?")
         ("b" "Bookmark" entry (file "~/Repository/Org/Bookmarks.org")
          "* %(org-cliplink-capture)\n%U\n%?" :empty-lines 1)
-        ("s" "Standup" plain (file+olp+datetree "WG2SubscriberState.org" "Standups")
+        ("s" "Standup" plain
+         (file+olp+datetree "WG2SubscriberState.org" "Standups")
          (file "~/.emacs.d/templates/standup-capture.org")
          :immediate-finish t
          :jump-to-captured t)
         ("c" "Contact" entry (file "Contacts.org")
-         (file "~/.emacs.d/templates/contact-capture.org"))))
+         (file "~/.emacs.d/templates/contact-capture.org"))
+        ("p" "Projects")
+        ("pc" "Cisco project" entry (file+headline "Projects.org" "Cisco")
+         "** TODO %i%?\nPause. Write down the problem. List three options. Pick one. Timebox. Reassess.\n")))
 #+end_src
 
 I've dumbed down the refiling targets to just consider all the agenda files at
