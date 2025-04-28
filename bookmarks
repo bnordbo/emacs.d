@@ -2,18 +2,16 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("Org/Bicycles.org:Sykler"
- (filename . "/Users/bn/Repository/Org/Bicycles.org")
+(("Workday"
+ (filename . "~/Repository/Org/Employment.org")
  (handler . org-bookmark-heading-jump)
- (outline-path "Sykler"))
-("Org/Hardware.org"
- (filename . "/Users/bn/Repository/Org/Hardware.org")
- (handler . org-bookmark-heading-jump))
-("Org/Self.org"
- (filename . "/Users/bn/Repository/Org/Self.org")
- (handler . org-bookmark-heading-jump))
+ (outline-path "Cisco" "Workday goals"))
+("Org/Projects.org:Cisco"
+ (filename . "~/Repository/Org/Projects.org")
+ (handler . org-bookmark-heading-jump)
+ (outline-path "Cisco"))
 ("Software"
- (filename . "/Users/bn/Repository/Org/Software.org")
+ (filename . "/Users/bnordbo/Repository/Org/Software.org")
  (handler . org-bookmark-jump))
 ("Org/WG2SubscriberState.org:Standups"
  (filename . "/Users/bnordbo/Repository/Org/WG2SubscriberState.org")
@@ -26,12 +24,6 @@
    (face nil))
  (filename . "/Users/bnordbo/Repository/Org/WG2Terminators.org")
  (handler . org-bookmark-jump))
-(#("Org/Projects.org:Projects" 0 15
-   (face nil))
- (filename . "~/Repository/Org/Projects.org")
- (handler . org-bookmark-jump)
- (front-context-string . "9586D21A-6064-40C9-9F8D-19852DD888A0")
- (annotation . ""))
 (#("Org/Recipes.org" 0 15
    (face nil))
  (filename . "/Users/bnordbo/Repository/Org/Recipes.org")
@@ -80,7 +72,7 @@
  (front-context-string . "70B14EA8-6A5D-41AA-B383-4ECE984A5F14"))
 (#("bookmarks" 0 9
    (face nil))
- (filename . "~/Repository/Org/Bookmarks.org")
+ (filename . "~/Bookmarks.org")
  (front-context-string . "\n* [[https://dew")
  (rear-context-string)
  (position . 1))
@@ -105,13 +97,13 @@
  (rear-context-string)
  (position . 1))
 ("org-refile-last-stored"
- (filename . "~/Repository/Org/Bicycles.org")
+ (filename . "/Users/bnordbo/Repository/Org/Tasks.org")
  (handler . org-bookmark-heading-jump)
- (outline-path "Sykler" "Scott Addict RC 15 2019" "Oppgraderinger" "Sesong 2025" "Bytte bremseslanger"))
+ (outline-path "Ongoing" "Laptop gold-plating" "Auto-commit Roam etc. daily"))
 ("org-capture-last-stored"
- (filename . "~/Repository/Roam/20250105105924-personlig_utvikling.org")
+ (filename . "~/Repository/Roam/20250226142652-kotlin_pitfalls.org")
  (handler . org-bookmark-heading-jump)
- (id . "6EC477CA-3FF0-45B1-8F43-048C443FFBFE"))
+ (id . "A15E8CC4-7428-469F-BCB1-B7EF07E99DD3"))
 ("Tasks"
  (filename . "~/Repository/Org/Tasks.org")
  (front-context-string . "* Tasks\n** TODO ")
