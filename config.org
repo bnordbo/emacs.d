@@ -999,6 +999,17 @@ is often quicker/saner than Makefiles or shell scripts.
   (nushell-enable-auto-indent t))
 #+end_src
 
+** Clojure
+#+begin_src emacs-lisp
+(use-package cider)
+#+end_src
+
+** SQL
+#+begin_src emacs-lisp
+(use-package sql-indent)
+
+(add-hook 'sql-mode-hook (lambda () (sqlind-minor-mode 1)))
+#+end_src
 * Completion
 
 I used to use Helm, but switched to Vertico because I like it's modular
