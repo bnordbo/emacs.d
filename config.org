@@ -1370,7 +1370,12 @@ Start agenda on the current day rather than the first day of the week.
          (file "~/.emacs.d/templates/contact-capture.org"))
         ("p" "Projects")
         ("pc" "Cisco project" entry (file+headline "Projects.org" "Cisco")
-         "** TODO %i%?\nPause. Write down the problem. List three options. Pick one. Timebox. Reassess.\n")))
+         "** TODO %i%?\nPause. Write down the problem. List three options. Pick one. Timebox. Reassess.\n")
+        ("t" "Training")
+	  ("tw" "Weekly status" entry
+         (file+olp+datetree "Training.org" "Ukesstatus")
+         (file "~/.emacs.d/templates/training-weekly-capture.org")
+         :tree-type week)))
 #+end_src
 
 I've dumbed down the refiling targets to just consider all the agenda files at
