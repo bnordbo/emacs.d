@@ -1197,8 +1197,6 @@ archived in datetrees per file to retain context..
 I started out with a complex set of keywords, then added more, then went
 minimalist. The only one I missed was NEXT, so I added it back in.
 
-very few, and they can be distilled down to this list.
-
 - TODO for tasks that has not yet been completed. If used together with NEXT, it
   means they are not yet ready to be worked on.
 - NEXT for tasks that are ready to work with.
