@@ -446,7 +446,7 @@ Buffer manipulation:
 
 #+begin_src emacs-lisp
 (bind-keys :map bn/buffer-map
-           ("b" . switch-to-buffer)
+           ("b" . consult-buffer)
            ("s" . bn/buffer-same-mode)
            ("l" . list-buffers))
 #+end_src
@@ -487,6 +487,12 @@ an experiment...
 #+begin_src emacs-lisp
 (global-set-key (kbd "C-h") 'delete-backward-char)
 (global-set-key (kbd "M-h") 'backward-kill-word)
+#+end_src
+
+Rebind ~C-x r b~ to use Consult for bookmarking.
+
+#+begin_src emacs-lisp
+(global-set-key (kbd "C-x r b") 'consult-bookmark)
 #+end_src
 
 ** Hydra
