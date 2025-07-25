@@ -1124,7 +1124,10 @@ Load the org-mode and do basic configuration:
         org-use-sub-superscripts "{}"
         org-M-RET-may-split-line nil
         org-ditaa-jar-path "/Users/bn/.emacs.d/ditaa.jar"
-        org-cycle-emulate-tab 'whitestart)
+        org-cycle-emulate-tab 'whitestart
+        ; Improve org-hoto by allowing completion on the full outline
+        org-goto-interface 'outline-path-completionp
+        org-outline-path-complete-in-steps nil)
   (add-hook 'org-mode-hook
             (lambda ()
               (auto-fill-mode 0)
