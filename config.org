@@ -672,16 +672,13 @@ Consult is swiper on steroids.
    ("f" . consult-focus-lines))  ; (f)ilter lines
   :init
   (setq xref-show-xrefs-function #'consult-xref
-        xref-show-definitions-function #'consult-xref)
-  :custom
-  (consult-ripgrep-args "/etc/profiles/per-user/bnordbo/bin/rg --null --line-buffered --color=never --max-columns=1000 --path-separator /   --smart-case --no-heading --with-filename --line-number --search-zip"))
+        xref-show-definitions-function #'consult-xref))
 #+end_src
 
 I often switch from Emacs to searh  for stuff.  Let's put an end to that!
 
 #+begin_src emacs-lisp
-(use-package ripgrep
-  :custom (ripgrep-executable "/etc/profiles/per-user/bnordbo/bin/rg"))
+(use-package ripgrep)
 #+end_src
 
 * Integrations
