@@ -911,14 +911,10 @@ I gave up and reverted to paredit.
 
 #+begin_src emacs-lisp
 (use-package rust-mode
-  :disabled t
   :init
   (setq racer-cmd "~/bin/racer"
         racer-rust-src-path "~/src/thirdparty/rust/src"
-        company-tooltip-align-annotations t)
-  (add-hook 'rust-mode-hook 'cargo-minor-mode)
-  (add-hook 'rust-mode-hook 'racer-mode)
-  (add-hook 'racer-mode-hook 'company-mode))
+        company-tooltip-align-annotations t))
 #+end_src
 
 ** C
