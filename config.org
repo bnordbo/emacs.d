@@ -225,6 +225,17 @@ appearence.
 (bn/apply-theme 'light)
 #+end_src
 
+Adjust the theme according to the system mode.
+
+#+begin_src emacs-lisp
+(use-package auto-dark
+  :ensure t
+  :custom
+  (auto-dark-themes '((gruvbox-dark-medium) (gruvbox-light-medium)))
+  (auto-dark-allow-osascript t)
+  :init (auto-dark-mode))
+#+end_src
+
 Disable bookmark fontification, at least for now. They tend to spill over...
 
 #+begin_src emacs-lisp
