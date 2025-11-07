@@ -1349,18 +1349,7 @@ Start agenda on the current day rather than the first day of the week.
          :immediate-finish t
          :jump-to-captured t)
         ("c" "Contact" entry (file "Contacts.org")
-         (file "~/.emacs.d/templates/contact-capture.org"))
-        ("c" "Cisco")
-        ("cp" "Cisco project" entry (file+headline "Projects.org" "Cisco")
-         "** TODO %i%?\nPause. Write down the problem. List three options. Pick one. Timebox. Reassess.\n")
-        ("cc" "Cisco progress checklist" entry
-         (file+olp+datetree "Progress.org")
-         (file "~/.emacs.d/templates/progress-capture.org"))
-        ("t" "Training")
-	  ("tw" "Weekly status" entry
-         (file+olp+datetree "Training.org" "Ukesstatus")
-         (file "~/.emacs.d/templates/training-weekly-capture.org")
-         :tree-type week)))
+         (file "~/.emacs.d/templates/contact-capture.org"))))
 #+end_src
 
 I've dumbed down the refiling targets to just consider all the agenda files at

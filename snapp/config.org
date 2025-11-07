@@ -3,3 +3,15 @@
 (setq bookmarks-default-file
       (file-name-concat (file-name-directory buffer-file-name) "bookmarks"))
 #+end_src
+
+#+begin_src emacs-lisp
+(setq
+ org-capture-templates
+ (append org-capture-templates
+         '(("c" "Cisco")
+           ("cp" "Cisco project" entry (file+headline "Projects.org" "Cisco")
+            "** TODO %i%?\nPause. Write down the problem. List three options. Pick one. Timebox. Reassess.\n")
+           ("cc" "Cisco progress checklist" entry
+            (file+olp+datetree "Progress.org")
+            (file "~/.emacs.d/templates/progress-capture.org")))))
+#+end_src
