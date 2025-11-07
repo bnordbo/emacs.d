@@ -275,6 +275,8 @@ minions-mode, but this is good /enough/ – for now at least.
   :config
   (diminish 'abbrev-mode)
   (diminish 'auto-fill-function)
+  (diminish 'yas-minor-mode)
+  (diminish 'auto-dark-mode)
   (diminish 'auto-fill-mode))
 #+end_src
 
