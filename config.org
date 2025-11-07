@@ -299,7 +299,7 @@ is neat plus it has a ton of vanity symbols.
 (custom-theme-set-faces
  'user
  '(variable-pitch ((t (:family "Libre Baskerville" :height 140))))
- '(fixed-pitch ((t (:family "Fira Code" :height 140)))))
+ '(fixed-pitch ((t (:family "Fira Code" :height 130)))))
 #+end_src
 
 Why not?
