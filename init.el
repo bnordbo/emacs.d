@@ -14,3 +14,8 @@
 
 ;; Finally we load the literate configuration.
 (org-babel-load-file "~/.emacs.d/config.org")
+
+(let ((path (file-name-concat "~/.emacs.d" (system-name) "config.org")))
+  (if (file-exists-p path)
+      (message "Loading %s" path)
+    (message "No host-specific config in '%s' – skipping" path)))
