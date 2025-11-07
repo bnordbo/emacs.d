@@ -121,3 +121,8 @@ false if the file matches a name in this list."
   (let ((path (buffer-file-name)))
     (kill-new path)
     (message path)))
+
+(defun bn/insert-unix-time ()
+  "Insert the number of seconds since epoch at cursor"
+  (interactive)
+  (insert (format-time-string "%s")))
