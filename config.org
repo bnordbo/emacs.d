@@ -1390,9 +1390,12 @@ Start agenda on the current day rather than the first day of the week.
          :jump-to-captured t)
         ("c" "Contact" entry (file "Contacts.org")
          (file "~/.emacs.d/templates/contact-capture.org"))
-        ("p" "Projects")
-        ("pc" "Cisco project" entry (file+headline "Projects.org" "Cisco")
+        ("c" "Cisco")
+        ("cp" "Cisco project" entry (file+headline "Projects.org" "Cisco")
          "** TODO %i%?\nPause. Write down the problem. List three options. Pick one. Timebox. Reassess.\n")
+        ("cc" "Cisco progress checklist" entry
+         (file+olp+datetree "Progress.org")
+         (file "~/.emacs.d/templates/progress-capture.org"))
         ("t" "Training")
 	  ("tw" "Weekly status" entry
          (file+olp+datetree "Training.org" "Ukesstatus")
