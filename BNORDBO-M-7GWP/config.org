@@ -1,0 +1,5 @@
+
+#+begin_src emacs-lisp
+(setq bookmarks-default-file
+      (file-name-concat (file-name-directory buffer-file-name) "bookmarks"))
+#+end_src

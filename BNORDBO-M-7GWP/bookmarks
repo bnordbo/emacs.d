@@ -2,14 +2,14 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("Workday"
+(("Cisco projects"
+ (filename . "~/Repository/Org/Employment.org")
+ (handler . org-bookmark-heading-jump)
+ (outline-path "Cisco" "Projects"))
+("Workday"
  (filename . "~/Repository/Org/Employment.org")
  (handler . org-bookmark-heading-jump)
  (outline-path "Cisco" "Workday goals"))
-("Org/Projects.org:Cisco"
- (filename . "~/Repository/Org/Projects.org")
- (handler . org-bookmark-heading-jump)
- (outline-path "Cisco"))
 ("Software"
  (filename . "/Users/bnordbo/Repository/Org/Software.org")
  (handler . org-bookmark-jump))
@@ -97,13 +97,13 @@
  (rear-context-string)
  (position . 1))
 ("org-refile-last-stored"
- (filename . "/Users/bnordbo/Repository/Org/Tasks.org")
+ (filename . "~/Repository/Org/Employment.org")
  (handler . org-bookmark-heading-jump)
- (outline-path "Ongoing" "Laptop gold-plating" "Auto-commit Roam etc. daily"))
+ (outline-path "Cisco" "Projects" "Completed" "Change to Diameter error instead of empty APN"))
 ("org-capture-last-stored"
- (filename . "~/Repository/Roam/20250226142652-kotlin_pitfalls.org")
+ (filename . "~/Repository/Roam/20251022160356-lederkurs_2012.org")
  (handler . org-bookmark-heading-jump)
- (id . "A15E8CC4-7428-469F-BCB1-B7EF07E99DD3"))
+ (id . "554C5887-7038-4641-BD03-B4CCC853B162"))
 ("Tasks"
  (filename . "~/Repository/Org/Tasks.org")
  (front-context-string . "* Tasks\n** TODO ")
