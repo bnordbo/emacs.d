@@ -1650,9 +1650,23 @@ Finally, reduce the GC threshold a bit to make the user experience better.
 #+end_src
 
 * File system manipulation
-
 I can't see any reason for not having directory listing update automatically.
 
 #+begin_src emacs-lisp
 (add-hook 'dired-mode-hook 'auto-revert-mode)
+#+end_src
+
+* Cisco tools
+
+** CIRCUIT
+#+begin_src emacs-lisp
+;; (use-package chatgpt-shell
+;;   :ensure t
+;;   :custom
+;;   ((chatgpt-shell-api-url-base "https://chat-ai.cisco.com")
+;;    Only exists in documentation
+;;    (chatgpt-shell-api-url-path "/openai/deployments/gpt-4o-mini/chat/completions")
+;;    (chatgpt-shell-openai-key
+;;     (lambda ()
+;;      (auth-source-pick-first-password :host "token.cisco.com")))))
 #+end_src
