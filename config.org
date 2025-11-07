@@ -371,6 +371,17 @@ includes more information.
          ("g" . helpful-update)))
 #+end_src
 
+I can't see why Emacs should not have ultrafine scrolling just like everything else.
+
+#+begin_src emacs-lisp
+(use-package ultra-scroll
+  :init
+  (setq scroll-conservatively 3
+        scroll-margin 0)
+  :config
+  (ultra-scroll-mode 1))
+#+end_src
+
 * Key bindings
 ** Settings
 On Mac, map the command key to meta and keep the normal behaviour of option.
