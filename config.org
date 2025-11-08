@@ -69,8 +69,10 @@ Set location and time format for sunrise/sunset.
 After switcing to native compilation, the warning buffer started to pop up a
 lot. Increasing the log level to ~error~ takes care of that annoyance.
 
+[2025-11-08 Sat] Try turning this off.
+
 #+begin_src emacs-lisp
-(setq warning-minimum-level :error)
+;(setq warning-minimum-level :error)
 #+end_src
 
 Allow using the system trashcan instead of deleting files.
