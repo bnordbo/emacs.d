@@ -126,3 +126,8 @@ false if the file matches a name in this list."
   "Insert the number of seconds since epoch at cursor"
   (interactive)
   (insert (format-time-string "%s")))
+
+(defun bn/host-config-path (file)
+  (let ((path (file-name-concat "~/.emacs.d/hosts/" (system-name) file)))
+    (when (file-exists-p path)
+      path)))
