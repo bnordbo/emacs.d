@@ -1,3 +1,27 @@
+* Programming language support
+
+** Bazel
+I don't do much programming in Emacs anymore, but at some point this was useful.
+
 #+begin_src emacs-lisp
-(setq x t)
+(use-package bazel
+  :init (setq bazel-command '("bazelisk"))
+  :bind
+  (("C-c b f b" . bazel-find-build-file)
+   ("C-c b t p" . bazel-test-at-point)))
+#+end_src
+
+** Rego
+Syntax highlighting and REPL support for OPAs Rego configuration language.
+
+#+begin_src emacs-lisp
+(use-package rego-mode
+  :bind (:map rego-mode-map
+              ("C-c r e" . bn/eval-query))
+  :init
+  (add-hook 'rego-mode-hook (lambda ()
+                              (setq tab-width 4)))
+  :custom
+  (rego-repl-executable "/etc/profiles/per-user/bn/bin/opa")
+  (rego-opa-command "/etc/profiles/per-user/bn/bin/opa"))
 #+end_src

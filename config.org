@@ -15,11 +15,10 @@ Time the startup.
 
 ** Load extra files
 
-Load various add-on functionality.
+Load my local functions and keyboard macros.
 
 #+begin_src emacs-lisp
 (load-file "~/.emacs.d/elisp/bn.el")
-(load-file "~/.emacs.d/elisp/rego-eval.el")
 (load-file "~/.emacs.d/keyboard-macros.el")
 #+end_src
 
@@ -100,99 +99,17 @@ Start emacs-server for integrating neatly with the shell.
 This section is for testing out new configurations.
 
 #+begin_src emacs-lisp
-(defun bn/build-chordlet ()
-  (interactive)
-  (bazel-test "//voice/chordlet/..."))
-(global-set-key (kbd "C-c v c") 'bn/build-chordlet)
-
-; This seems like something I ought to look into to make org-note buffers behave.
-; https://depp.brause.cc/shackle/
-;(use-package shackle
-
-(use-package free-keys)
 (use-package boon
   :disabled
   :config
   (require 'boon-colemak))
+
 (use-package 0xc
   :defer 15)
 
 (use-package key-quiz)
 #+end_src
 
-** LSP mode
-
-LSP is awesome, but unfortunately difficult to get working with Bazel. This is
-mostly for playing around to maybe get that working at some point.
-
-#+begin_src emacs-lisp
-(use-package yasnippet
-  :init (yas-global-mode))
-
-; hook up later
-(defun lsp-go-install-save-hooks ()
-  (add-hook 'before-save-hook #'lsp-format-buffer t t)
-  (add-hook 'before-save-hook #'lsp-organize-imports t t))
-
-;; (use-package lsp-mode
-;;   :init
-;;   (setq lsp-keymap-prefix "C-c v")
-;;   :hook ((kotlin-mode . lsp-deferred)
-;;          (go-mode . lsp-deferred)
-;;          (lsp-mode . lsp-enable-which-key-integration))
-;;   :commands lsp lsp-deferred
-;;   :config
-;;   (add-to-list 'lsp-file-watch-ignored-directories "/bazel-.*\\'")
-;;   (add-to-list 'lsp-file-watch-ignored-directories "/infra\\'")
-;;   (add-to-list 'lsp-file-watch-ignored-directories "/docs.wgtwo.com\\'")
-;;   (add-to-list 'lsp-file-watch-ignored-directories "/post-mortems\\'")
-;;   (add-to-list 'lsp-file-watch-ignored-directories "/design-docs\\'")
-;;   (lsp-register-custom-settings
-;;    '(("gopls.completeUnimported" t t)
-;;      ("gopls.staticcheck" t t)
-;;      ("gopls.directoryFilters" ("-bazel-bin" "-bazel-out" "-bazel-testlogs" "-bazel-loltel"))
-;;      ("gopls.allowImplicitNetworkAccess" t t)
-;;      ("gopls.usePlaceholders" t t))))
-
-(use-package kotlin-mode)
-
-;; (use-package helm-lsp
-;;   :after lsp-mode
-;;   :commands helm-lsp-workspace-symbol
-;;   :init (define-key lsp-mode-map [remap xref-find-apropos] #'helm-lsp-workspace-symbol))
-
-(use-package ob-kotlin)
-#+end_src
-
-
-** Go Eglot
-
-#+begin_src emacs-lisp
-;; (setenv "GOPACKAGESDRIVER" (expand-file-name "~/bin/gopackagesdriver.sh"))
-
-;; (use-package eglot)
-;; (use-package consult-eglot)
-
-;; (defun project-find-go-module (dir)
-;;   (when-let ((root (locate-dominating-file dir "go.mod")))
-;;     (cons 'go-module root)))
-
-;; (cl-defmethod project-root ((project (head go-module)))
-;;   (cdr project))
-
-;; (add-hook 'project-find-functions #'project-find-go-module)
-;; (add-hook 'go-mode-hook 'eglot-ensure)
-
-;; (defun eglot-format-buffer-on-save ()
-;;   (add-hook 'before-save-hook #'eglot-format-buffer -10 t))
-;; (add-hook 'go-mode-hook #'eglot-format-buffer-on-save)
-
-(setq eglot-workspace-configuration
-      '((:gopls .
-                (:directoryFilters ("-bazel-bin" "-bazel-out" "-bazel-testlogs" "-bazel-loltel")
-                 :allowImplicitNetworkAccess t
-                 :usePlaceholders t))))
-#+end_src
 
 * Crux setup
 
@@ -214,17 +131,15 @@ appearence.
 (use-package leuven-theme)
 (use-package gruvbox-theme)
 (use-package material-theme)
+(use-package poet-theme)
 
 (defvar theme-sets
   '((leuven ((light . leuven) (dark . leuven-dark)))
-    (gruvbox ((light . gruvbox-light-medium) (dark . gruvbox-dark-medium )))
+    (gruvbox ((light . gruvbox-light-medium) (dark . gruvbox-dark-medium)))
+    (poet ((light . poet) (dark . poet-dark)))
     (material ((light . material-light) (dark . material)))))
 
-(setq default-theme 'gruvbox)
-
-; This does not work as the hook is not supported in the stock Emacs.
-;(add-hook 'ns-system-appearance-change-functions #'bn/apply-theme)
-(bn/apply-theme 'light)
+(setq default-theme 'gruvbox-light-medium)
 #+end_src
 
 Adjust the theme according to the system mode.
@@ -298,13 +213,14 @@ Set up some nice fonts: Libre Baskerville nicer than Baskerville, and Fira Code
 is neat plus it has a ton of vanity symbols.
 
 #+begin_src emacs-lisp
-(custom-theme-set-faces
- 'user
- '(variable-pitch ((t (:family "Libre Baskerville" :height 140))))
- '(fixed-pitch ((t (:family "Fira Code" :height 130)))))
+(when "Fira Code" (font-family-list)
+  (set-face-attribute 'default nil :font "Fira Code" :height 130)
+  (set-face-attribute 'fixed-pitch nil :font "Fira Code"))
+(when "Libre Baskerville" (font-family-list)
+  (set-face-attribute 'variable-pitch nil :font "Libre Baskerville" :height 140))
 #+end_src
 
-Why not?
+This doesn't work as prettify-symbols-alist becomes buffer local. It may also not be ideal to do this unconditionally for or buffers. I should set this per mode instead.
 
 #+begin_src emacs-lisp
 (setq prettify-symbols-alist
@@ -416,6 +332,14 @@ useful.
 #+end_src
 
 ** Personal keymaps
+
+The free-keys package prints available key bindings. This is invaluable on the rare occasion that it's needed.
+
+#+begin_src emacs-lisp
+(use-package free-keys)
+#+end_src
+
+These are my own key maps.
 
 #+begin_src emacs-lisp
 (define-prefix-command 'bn/search-map)
@@ -959,31 +883,6 @@ I gave up and reverted to paredit.
 ;;(set-face-attribute 'nxml-element-local-name nil :inherit 'fixed-pitch)
 #+end_src
 
-** Bazel
-
-#+begin_src emacs-lisp
-(use-package bazel
-  :init (setq bazel-command '("bazelisk"))
-  :bind
-  (("C-c b f b" . bazel-find-build-file)
-   ("C-c b t p" . bazel-test-at-point)))
-#+end_src
-
-** Rego
-
-Syntax highlighting and REPL support for OPAs Rego configuration language.
-
-#+begin_src emacs-lisp
-(use-package rego-mode
-  :bind (:map rego-mode-map
-              ("C-c r e" . bn/eval-query))
-  :init
-  (add-hook 'rego-mode-hook (lambda ()
-                              (setq tab-width 4)))
-  :custom
-  (rego-repl-executable "/etc/profiles/per-user/bn/bin/opa")
-  (rego-opa-command "/etc/profiles/per-user/bn/bin/opa"))
-#+end_src
 
 ** Protobuf
 
@@ -1104,7 +1003,6 @@ Load the org-mode and do basic configuration:
 - Ensure tables and blocks are still in monospace.
 #+begin_src emacs-lisp
 (use-package org
-  :after diminish org-superstar
   :bind (("C-c a" . org-agenda)
          ("C-c c" . org-capture)
          ("C-c l" . org-store-link)
@@ -1129,7 +1027,9 @@ Load the org-mode and do basic configuration:
   :init
   (setq org-startup-folded 'show2levels
         org-edit-src-content-indentation 0
+        org-hide-leading-stars t
         org-src-fontify-natively t
+        org-src-tabs-act-natively t
         org-src-window-setup 'current-window
         org-clock-idle-time 10
         org-clock-in-switch-to-state nil
@@ -1157,7 +1057,8 @@ Load the org-mode and do basic configuration:
               (abbrev-mode 1)
               (diminish 'org-indent-mode)
               (diminish 'buffer-face-mode)
-              (visual-line-mode 1))))
+              (visual-line-mode 1)
+              (org-modern-indent-mode 1))))
 #+end_src
 
 #+begin_src emacs-lisp
@@ -1173,13 +1074,14 @@ Load the org-mode and do basic configuration:
 #+end_src
 
 #+begin_src emacs-lisp
-(use-package org-bullets
-    :config
-    (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+;; (use-package org-bullets
+;;     :config
+;;     (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 
-(font-lock-add-keywords 'org-mode
-                          '(("^ *\\([-]\\) "
-                             (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
+;; (font-lock-add-keywords 'org-mode
+;;                           '(("^ *\\([-]\\) "
+;;                              (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
+
 #+end_src
 
 Properties that should be set across the board.
@@ -1216,9 +1118,8 @@ archived in datetrees per file to retain context..
 I started out with a complex set of keywords, then added more, then went
 minimalist. The only one I missed was NEXT, so I added it back in.
 
-- TODO for tasks that has not yet been completed. If used together with NEXT, it
-  means they are not yet ready to be worked on.
-- NEXT for tasks that are ready to work with.
+- TODO for incomplete tasks. If used together with NEXT, it means they are not yet ready.
+- NEXT for tasks that are ready to start.
 - DONE for completed tasks.
 - BLOCKED for tasks where I'm waiting for someone or something.
 - CANCELLED for tasks I gave up doing.
@@ -1251,12 +1152,34 @@ I prefer sparse trees to only show the matched entries. This fixes that in most 
 #+end_src
 
 ** Appearence
-Makes heading and lists somewhat prettier.
+Resize headings.
 
 #+begin_src emacs-lisp
-(use-package org-superstar
-  :init
-  (add-hook 'org-mode-hook 'org-superstar-mode))
+(dolist (face '((org-level-1 . 1.35)
+                (org-level-2 . 1.3)
+                (org-level-3 . 1.2)
+                (org-level-4 . 1.1)
+                (org-level-5 . 1.1)
+                (org-level-6 . 1.1)
+                (org-level-7 . 1.1)
+                (org-level-8 . 1.1)))
+  (set-face-attribute (car face) nil :font "Source Sans Pro" :weight 'regular :height (cdr face)))
+(set-face-attribute 'org-document-title nil :font "Source Sans Pro" :weight 'bold :height 1.8)
+#+end_src
+
+This replaces ~org-superstar~ and adds lots of niceties.
+
+#+begin_src emacs-lisp
+(use-package org-modern
+  :config
+  (set-face-attribute 'org-modern-symbol nil :family "Iosevka")
+  (global-org-modern-mode))
+#+end_src
+
+Also use ~org-modern-indent~ form a local clone. I should start using straight...
+
+#+begin_src emacs-lisp
+(load-file "~/.local/src/org-modern-indent/org-modern-indent.el")
 #+end_src
 
 Make it look less like markup. This goes well with a variable pitch font.
@@ -1267,10 +1190,29 @@ Make it look less like markup. This goes well with a variable pitch font.
 (customize-set-value 'org-ellipsis "…")
 #+end_src
 
+Override the variable pitch font as appropriate.
+
+#+begin_src emacs-lisp
+(set-face-attribute 'org-block nil           :foreground nil :inherit 'fixed-pitch)
+(set-face-attribute 'org-code nil            :inherit '(shadow fixed-pitch))
+(set-face-attribute 'org-indent nil          :inherit '(org-hide fixed-pitch))
+(set-face-attribute 'org-verbatim nil        :inherit '(shadow fixed-pitch))
+(set-face-attribute 'org-special-keyword nil :inherit '(font-lock-comment-face fixed-pitch))
+(set-face-attribute 'org-meta-line nil       :inherit '(font-lock-comment-face fixed-pitch))
+(set-face-attribute 'org-checkbox nil        :inherit 'fixed-pitch)
+#+end_src
+
+Use olivetti-mode to make the content centered and not overly wide.
+
+#+begin_src emacs-lisp
+(use-package olivetti
+  :init (add-hook 'org-mode-hook 'olivetti-mode))
+#+end_src
+
 ** Editing and navigation
 
 #+begin_src emacs-lisp
-(customize-set-value 'org-auto-align-tags nil)
+(customize-set-value 'org-auto-align-tags t)
 (customize-set-value 'org-tags-column 0)
 (customize-set-value 'org-catch-invisible-edits 'show-and-error)
 (customize-set-value 'org-special-ctrl-a/e t)
@@ -1278,9 +1220,7 @@ Make it look less like markup. This goes well with a variable pitch font.
 #+end_src
 
 ** Extras
-Support for pasting and dropping images. Setting ~org-image-actual-width~ to
-~nil~ allows specifying e.g. ~#+org_attr: :width 600~ to limit the width of the
-image, otherwise they sometimes appear very wide.
+Support for pasting and dropping images. Setting ~org-image-actual-width~ to ~nil~ allows specifying e.g. ~#+org_attr: :width 600~ to limit the width of the image, otherwise they sometimes appear too wide.
 
 #+begin_src emacs-lisp
 (use-package org-download
@@ -1296,11 +1236,16 @@ This allows bookmarking org headings using ~C-x r m~.
 (use-package org-bookmark-heading)
 #+end_src
 
-Mode specific scratch buffers are not specific to org-mode, but often used in
-conjunction with it for quick notes.
+Mode specific scratch buffers are not specific to org-mode, but often used in conjunction with it for quick notes.
 
 #+begin_src emacs-lisp
 (use-package scratch)
+#+end_src
+
+It's sometimes convenient to place tasks inside the text body. By ~org-inlinetask~ adds support for this, bound to ~C-c C-x t~.
+
+#+begin_src emacs-lisp
+(require 'org-inlinetask)
 #+end_src
 
 ** Exporting
@@ -1491,32 +1436,34 @@ more!
 
 #+begin_src emacs-lisp
 (use-package consult-org-roam
-   :ensure t
-   :after org-roam
-   :init
-   (require 'consult-org-roam)
-   ;; Activate the minor mode
-   (consult-org-roam-mode 1)
-   :custom
-   ;; Use `ripgrep' for searching with `consult-org-roam-search'
-   (consult-org-roam-grep-func #'consult-ripgrep)
-   ;; Configure a custom narrow key for `consult-buffer'
-   (consult-org-roam-buffer-narrow-key ?r)
-   ;; Display org-roam buffers right after non-org-roam buffers
-   ;; in consult-buffer (and not down at the bottom)
-   (consult-org-roam-buffer-after-buffers t)
-   :config
-   ;; Eventually suppress previewing for certain functions
-   (consult-customize
-    consult-org-roam-forward-links
-    :preview-key "M-.")
-   :bind
-   ;; Define some convenient keybindings as an addition
-   ("C-c n f" . consult-org-roam-file-find)
-   ("C-c n b" . consult-org-roam-backlinks)
-   ("C-c n B" . consult-org-roam-backlinks-recursive)
-   ("C-c n l" . consult-org-roam-forward-links)
-   ("C-c n r" . consult-org-roam-search))
+  :disabled
+  :load-path "~/.local/src/consult-org-roam"
+  :ensure t
+  :after org-roam
+  :init
+  (require 'consult-org-roam)
+  ;; Activate the minor mode
+  (consult-org-roam-mode 1)
+  :custom
+  ;; Use `ripgrep' for searching with `consult-org-roam-search'
+  (consult-org-roam-grep-func #'consult-ripgrep)
+  ;; Configure a custom narrow key for `consult-buffer'
+  (consult-org-roam-buffer-narrow-key ?r)
+  ;; Display org-roam buffers right after non-org-roam buffers
+  ;; in consult-buffer (and not down at the bottom)
+  (consult-org-roam-buffer-after-buffers t)
+  :config
+  ;; Eventually suppress previewing for certain functions
+  (consult-customize
+   consult-org-roam-forward-links
+   :preview-key "M-.")
+  :bind
+  ;; Define some convenient keybindings as an addition
+  ("C-c n f" . consult-org-roam-file-find)
+  ("C-c n b" . consult-org-roam-backlinks)
+  ("C-c n B" . consult-org-roam-backlinks-recursive)
+  ("C-c n l" . consult-org-roam-forward-links)
+  ("C-c n r" . consult-org-roam-search))
 #+end_src
 
 * Writing aids

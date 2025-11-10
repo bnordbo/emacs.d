@@ -1,0 +1,6 @@
+
+Load crude rego support that I made.
+
+#+begin_src emacs-lisp
+(load-file "~/.emacs.d/elisp/rego-eval.el")
+#+end_src

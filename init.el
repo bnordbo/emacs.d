@@ -18,4 +18,4 @@
 (if-let (config (bn/host-config-path "config.org"))
     (org-babel-load-file config))
 (if-let (bookmarks (bn/host-config-path "bookmarks"))
-    (setq bookmarks-default-file bookmarks))
+    (setq bookmark-default-file bookmarks))
