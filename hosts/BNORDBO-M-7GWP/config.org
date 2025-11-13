@@ -11,12 +11,13 @@ Add capture templates.
 (setq org-capture-templates
       (append org-capture-templates
               '(("c" "Cisco")
-                ("cp" "Cisco project" entry (file+headline "Projects.org" "Cisco")
+                ("cp" "Cisco project" entry
+                 (file+headline "Projects.org" "Cisco")
                  "** TODO %i%?\nPause. Write down the problem. List three options. Pick one. Timebox. Reassess.\n")
                 ("cc" "Cisco progress checklist" entry
                  (file+olp+datetree "Progress.org")
                  (file "~/.emacs.d/templates/progress-capture.org"))
-                ("cc" "Cisco team lead diary" entry
+                ("cd" "Cisco team lead diary" entry
                  (file+olp+datetree "Diary.org")
                  (file "~/.emacs.d/templates/work-journal-capture.org")))))
 #+end_src

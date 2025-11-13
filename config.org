@@ -1312,7 +1312,8 @@ I haven't used org-agenda for a while. Back then I had a plan (that maybe sorta 
 #+begin_src emacs-lisp
 (setq org-agenda-files
       '("~/Repository/Org/Employment.org"
-        "~/Repository/Org/CiscoSubnators.org"))
+        "~/Repository/Org/CiscoSubnators.org"
+        "~/Repository/Org/Progress.org"))
 #+end_src
 
 ** Capture and refile
