@@ -1307,32 +1307,12 @@ title, e.g. for project references.
 #+end_src
 
 ** Agenda setup
-The current system is very simple: I have all my tasks in Tasks.org. This file
-has three sections:
-
-- Ongoing :: Up to eight tasks I have started working on.
-- Blocked :: Tasks which cannot continue, e.g. because I'm waiting for someone.
-- Incoming :: Tasks I have not started working on (and probably never will).
-
-I might add sections for completed tasks, and perhaps also for tasks I decided
-/not/ to do.
+I haven't used org-agenda for a while. Back then I had a plan (that maybe sorta worked). Now I need to adapt it to whatever I have.
 
 #+begin_src emacs-lisp
-(setq org-agenda-files '("~/Repository/Org/Tasks.org"))
-#+end_src
-
-The agenda has views for the inbox, all my next actions, and all my projects.
-But I'm planning to incorporate all of this information in one view, currently
-dubbed "review".
-
-#+begin_src emacs-lisp
-(setq org-agenda-custom-commands nil)
-#+end_src
-
-Start agenda on the current day rather than the first day of the week.
-
-#+begin_src emacs-lisp
-(setq org-agenda-start-on-weekday nil)
+(setq org-agenda-files
+      '("~/Repository/Org/Employment.org"
+        "~/Repository/Org/CiscoSubnators.org"))
 #+end_src
 
 ** Capture and refile
@@ -1348,7 +1328,7 @@ Start agenda on the current day rather than the first day of the week.
          (file "~/.emacs.d/templates/standup-capture.org")
          :immediate-finish t
          :jump-to-captured t)
-        ("c" "Contact" entry (file "Contacts.org")
+        ("C" "Contact" entry (file "Contacts.org")
          (file "~/.emacs.d/templates/contact-capture.org"))))
 #+end_src
 
