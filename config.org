@@ -1329,7 +1329,12 @@ I haven't used org-agenda for a while. Back then I had a plan (that maybe sorta 
          :immediate-finish t
          :jump-to-captured t)
         ("C" "Contact" entry (file "Contacts.org")
-         (file "~/.emacs.d/templates/contact-capture.org"))))
+         (file "~/.emacs.d/templates/contact-capture.org"))
+        ("t" "Training")
+	("tw" "Weekly status" entry
+         (file+olp+datetree "Training.org" "Ukesstatus")
+         (file "~/.emacs.d/templates/training-weekly-capture.org")
+         :tree-type week)))
 #+end_src
 
 I've dumbed down the refiling targets to just consider all the agenda files at
