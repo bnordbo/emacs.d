@@ -8,3 +8,5 @@
    (kmacro-lambda-form [?\C-x ?h ?\C-y ?\C-x ?h ?\C-u ?\M-| ?j ?q ?  ?. return ?\C-x ?h tab] 0 "%d"))
 (fset 'k/review-issue
    (kmacro "R e v i e w SPC C-c C-l C-y C-SPC M-b M-w <return> # C-y <return>"))
+(fset 'k/link-jira
+   (kmacro "C-c C-l C-y C-SPC M-b M-b M-w <return> C-y <return> SPC"))
