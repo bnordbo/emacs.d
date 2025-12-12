@@ -461,6 +461,15 @@ movement commands in org-mode.
   ("D" org-move-subtree-down "down"))
 #+end_src
 
+** Casual
+Transient is nice, so use it for org-agenda and bookmarks as well.
+
+#+begin_src emacs-lisp
+(use-package casual
+  :bind (:map org-agenda-keymap ("C-o" . casual-agenda-tmenu)
+         :map bookmark-bmenu-mode-map ("C-o" . casual-bookmarks-tmenu)))
+#+end_src
+
 * Navigation
 I used to rely on isearch for quick navigation. In many cases avy is even
 quicker, though it requires more compute.
@@ -726,7 +735,6 @@ switch to a terminal.
 (use-package eshell
   :config (toggle-truncate-lines -1))
 #+end_src
-
 
 * Programming language support
 
