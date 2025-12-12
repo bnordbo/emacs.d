@@ -19,6 +19,7 @@ custom.el
 /.org-id-locations
 /.stignore
 /config.el
+/hosts/*/config.el
 /eshell/
 /org-roam.db
 /transient/
