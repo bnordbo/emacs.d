@@ -110,7 +110,6 @@ This section is for testing out new configurations.
 (use-package key-quiz)
 #+end_src
 
-
 * Crux setup
 
 This adds a lot of nify utilities that I've been missing.
@@ -153,10 +152,10 @@ Adjust the theme according to the system mode.
   :init (auto-dark-mode))
 #+end_src
 
-Disable bookmark fontification, at least for now. They tend to spill over...
+Automatically save boookmarks.
 
 #+begin_src emacs-lisp
-(setq bookmark-fontify nil)
+(setq bookmark-save-flag 1)
 #+end_src
 
 Conserve space and reduce clutter.
