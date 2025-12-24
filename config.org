@@ -890,17 +890,17 @@ I gave up and reverted to paredit.
 ;;(set-face-attribute 'nxml-element-local-name nil :inherit 'fixed-pitch)
 #+end_src
 
-** Prometheus
-#+begin_src emacs-lisp
-(use-package prometheus-mode)
-#+end_src
-
 ** Protobuf
 
 #+begin_src emacs-lisp
 (use-package protobuf-mode
   :hook (protobuf-mode . (lambda ()
                            (setq c-basic-offset 2))))
+#+end_src
+
+** Python
+#+begin_src emacs-lisp
+(use-package anaconda-mode)
 #+end_src
 
 ** Terraform
