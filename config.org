@@ -630,10 +630,11 @@ Consult is swiper on steroids.
         xref-show-definitions-function #'consult-xref))
 #+end_src
 
-I often switch from Emacs to searh  for stuff.  Let's put an end to that!
+This allows undoing keyboard macro invocations atomically.
 
 #+begin_src emacs-lisp
-(use-package ripgrep)
+(use-package kmacro-x
+  :init (kmacro-x-atomic-undo-mode 1))
 #+end_src
 
 * Integrations
