@@ -1000,7 +1000,8 @@ the idea, but so far I haven't used it a lot.
 (use-package embark
   :bind
   (("C-. ." . embark-act)
-   ("C-. ," . embark-dwim))
+   ("C-. ," . embark-dwim)
+   ("C-. >" . embark-export))
   :init
   (setq prefix-help-command #'embark-prefix-help-commant))
 #+end_src
