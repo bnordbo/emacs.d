@@ -128,6 +128,7 @@ appearence.
 (use-package gruvbox-theme)
 (use-package material-theme)
 (use-package poet-theme)
+(use-package alabaster-themes)
 
 (defvar theme-sets
   '((leuven ((light . leuven) (dark . leuven-dark)))
@@ -144,7 +145,7 @@ Adjust the theme according to the system mode.
 (use-package auto-dark
   :ensure t
   :custom
-  (auto-dark-themes '((gruvbox-dark-medium) (gruvbox-light-medium)))
+  (auto-dark-themes '((alabaster-themes-dark) (alabaster-themes-light)))
   (auto-dark-allow-osascript t)
   :init (auto-dark-mode))
 #+end_src
