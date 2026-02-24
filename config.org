@@ -191,7 +191,8 @@ minions-mode, but this is good /enough/ – for now at least.
   (diminish 'auto-fill-function)
   (diminish 'yas-minor-mode)
   (diminish 'auto-dark-mode)
-  (diminish 'auto-fill-mode))
+  (diminish 'auto-fill-mode)
+  (diminish 'kmacro-x-atomic-undo-mode))
 #+end_src
 
 Start in full screen mode.
@@ -1216,6 +1217,7 @@ Use olivetti-mode to make the content centered and not overly wide.
 
 #+begin_src emacs-lisp
 (use-package olivetti
+  :diminish
   :init (add-hook 'org-mode-hook 'olivetti-mode))
 #+end_src
 
