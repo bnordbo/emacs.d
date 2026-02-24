@@ -1070,7 +1070,7 @@ Load the org-mode and do basic configuration:
               (diminish 'org-indent-mode)
               (diminish 'buffer-face-mode)
               (visual-line-mode 1)
-              (org-modern-indent-mode 1))))
+              (org-modern-mode 1))))
 #+end_src
 
 #+begin_src emacs-lisp
