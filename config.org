@@ -890,6 +890,10 @@ I gave up and reverted to paredit.
 ;;(set-face-attribute 'nxml-element-local-name nil :inherit 'fixed-pitch)
 #+end_src
 
+** Prometheus
+#+begin_src emacs-lisp
+(use-package prometheus-mode)
+#+end_src
 
 ** Protobuf
 
