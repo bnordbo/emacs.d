@@ -1017,12 +1017,12 @@ Load the org-mode and do basic configuration:
 (use-package org
   :bind (("C-c a" . org-agenda)
          ("C-c c" . org-capture)
-         ("C-c l" . org-store-link)
          ("C-c C-x C-j" . org-clock-goto)
          ("C-. o j" . org-clock-goto)
          ("C-. o o" . org-clock-out)
          :map org-mode-map
          ("C-," . nil)
+         ("C-c l" . org-store-link)
          ("C-c t" . org-todo)
          ("C-c M-p" . org-move-subtree-up)
          ("C-c M-n" . org-move-subtree-down)
