@@ -19,3 +19,6 @@
     (org-babel-load-file config))
 (if-let (bookmarks (bn/host-config-path "bookmarks"))
     (setq bookmark-default-file bookmarks))
+
+(setq read-process-output-max (* 10 1024 1024))
+(provide 'init)
