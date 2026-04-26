@@ -725,19 +725,69 @@ powerful way of making presentations.
 (use-package htmlize)
 #+end_src
 
-** Eshell
+* Completion
 
-I have a somewhat troubled relationship with eshell. On one side it's quite neat
-and convenient, ong the other hand it too frequently falls apart and I have to
-switch to a terminal.
+I used to use Helm, but switched to Vertico because I like it's modular
+approach, and integration with the default completion system. And after all I
+only used a fraction of Helm's functionality...
 
 #+begin_src emacs-lisp
-(use-package eshell
-  :config (toggle-truncate-lines -1))
+(use-package vertico
+  :init (vertico-mode))
+
+(use-package vertico-prescient
+  :init (vertico-prescient-mode))
+#+end_src
+
+The directory extension makes Vertico behave more like Ido, which I find more
+pleasant.
+
+#+begin_src emacs-lisp
+(use-package vertico-directory
+  :load-path "~/src/forks/vertico/extensions"
+  :bind (:map vertico-map
+              ("RET" . vertico-directory-enter)
+              ("DEL" . vertico-directory-delete-char)
+              ("M-DEL" . vertico-directory-delete-word))
+  ;; Tidy shadowed file names
+  :hook (rfn-eshadow-update-overlay . vertico-directory-tidy))
+#+end_src
+
+The orderless completion package is snappy and matches just the way I want.
+
+#+begin_src emacs-lisp
+(use-package orderless
+  :init
+  (setq completion-styles '(orderless)
+        completion-category-defaults nil
+        completion-category-overrides '((file (styles partial-completion)))))
+#+end_src
+
+Marginalia decorates the completion listings neatly with additional information
+such as docstrings.
+
+#+begin_src emacs-lisp
+(use-package marginalia
+  :bind (:map minibuffer-local-map
+              ("M-a" . marginalia-cycle))
+  :init (marginalia-mode))
+#+end_src
+
+Embark works a bit like a context menu that can be used anywhere. I kind of like
+the idea, but so far I haven't used it a lot.
+
+#+begin_src emacs-lisp
+(use-package embark
+  :bind
+  (("C-. ." . embark-act)
+   ("C-. ," . embark-dwim))
+  :init
+  (setq prefix-help-command #'embark-prefix-help-commant))
+
+(use-package embark-consult)
 #+end_src
 
 * Programming language support
-
 Some useful defaults for all programming languages.
 
 #+begin_src emacs-lisp
@@ -753,7 +803,6 @@ This works surprisingly well for navigating code, even in big monorepos.
   :config
   (setq xref-backend-functions #'dumb-jump-xref-activate))
 #+end_src
-
 
 ** CSV
 
@@ -905,11 +954,6 @@ I gave up and reverted to paredit.
 (add-hook 'java-mode-hook (lambda () (setq c-basic-offset 2)))
 #+end_src
 
-** Nix
-#+begin_src elisp
-(use-package nix-mode)
-#+end_src
-
 ** Just
 Mode for editing justfiles. This is a useful tool for trivial automations, and
 is often quicker/saner than Makefiles or shell scripts.
@@ -918,85 +962,11 @@ is often quicker/saner than Makefiles or shell scripts.
 (use-package just-mode)
 #+end_src
 
-** Nushell
-#+begin_src emacs-lisp
-(use-package nushell-mode
-  :custom
-  (nushell-enable-auto-indent t))
-#+end_src
-
-** Clojure
-#+begin_src emacs-lisp
-(use-package cider)
-#+end_src
-
 ** SQL
 #+begin_src emacs-lisp
 (use-package sql-indent)
 
 (add-hook 'sql-mode-hook (lambda () (sqlind-minor-mode 1)))
-#+end_src
-* Completion
-
-I used to use Helm, but switched to Vertico because I like it's modular
-approach, and integration with the default completion system. And after all I
-only used a fraction of Helm's functionality...
-
-#+begin_src emacs-lisp
-(use-package vertico
-  :init (vertico-mode))
-
-(use-package vertico-prescient
-  :init (vertico-prescient-mode))
-#+end_src
-
-The directory extension makes Vertico behave more like Ido, which I find more
-pleasant.
-
-#+begin_src emacs-lisp
-(use-package vertico-directory
-  :load-path "~/src/forks/vertico/extensions"
-  :bind (:map vertico-map
-              ("RET" . vertico-directory-enter)
-              ("DEL" . vertico-directory-delete-char)
-              ("M-DEL" . vertico-directory-delete-word))
-  ;; Tidy shadowed file names
-  :hook (rfn-eshadow-update-overlay . vertico-directory-tidy))
-#+end_src
-
-The orderless completion package is snappy and matches just the way I want.
-
-#+begin_src emacs-lisp
-(use-package orderless
-  :init
-  (setq completion-styles '(orderless)
-        completion-category-defaults nil
-        completion-category-overrides '((file (styles partial-completion)))))
-#+end_src
-
-Marginalia decorates the completion listings neatly with additional information
-such as docstrings.
-
-#+begin_src emacs-lisp
-(use-package marginalia
-  :bind (:map minibuffer-local-map
-              ("M-a" . marginalia-cycle))
-  :init (marginalia-mode))
-#+end_src
-
-Embark works a bit like a context menu that can be used anywhere. I kind of like
-the idea, but so far I haven't used it a lot.
-
-#+begin_src emacs-lisp
-(use-package embark
-  :bind
-  (("C-. ." . embark-act)
-   ("C-. ," . embark-dwim)
-   ("C-. >" . embark-export))
-  :init
-  (setq prefix-help-command #'embark-prefix-help-commant))
-
-(use-package embark-consult)
 #+end_src
 
 * Org mode
@@ -1367,7 +1337,6 @@ level one.
 (setq org-refile-targets '((nil :maxlevel . 5)
                            (org-agenda-files :maxlevel . 2)))
 #+end_src
-
 
 * Thinking with org-roam
 I use org-roam in a different way than plain Org, so it makes sense to keep it
