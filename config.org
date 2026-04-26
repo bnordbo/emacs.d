@@ -747,20 +747,13 @@ Some useful defaults for all programming languages.
 #+end_src
 
 This works surprisingly well for navigating code, even in big monorepos.
-  
+
 #+begin_src emacs-lisp
 (use-package dumb-jump
   :config
   (setq xref-backend-functions #'dumb-jump-xref-activate))
 #+end_src
 
-** Erlang
-
-#+begin_src emacs-lisp
-(use-package erlang
-  :config
-  (add-to-list 'erlang-tags-file-list "~/src/bn/loltel/terminators/erlang/TAGS"))
-#+end_src
 
 ** CSV
 
@@ -774,8 +767,6 @@ This sets up Go mode with some basic support. The jump to definition support is
 limited, unfortunately.
 
 #+begin_src emacs-lisp
-(use-package go-eldoc)
-
 (use-package go-mode
   :hook (before-save . gofmt-before-save)
   :init
