@@ -1005,6 +1005,8 @@ the idea, but so far I haven't used it a lot.
    ("C-. >" . embark-export))
   :init
   (setq prefix-help-command #'embark-prefix-help-commant))
+
+(use-package embark-consult)
 #+end_src
 
 * Org mode
@@ -1419,6 +1421,7 @@ Set up org-roam v2 behind the ~C-c n~ prefix:
                                                     "#+title: ${title}\n#+date %T\n#+filetags: Person\n")
                                  :unnarrowed t)))
   :config
+  (org-roam-db-autosync-mode)
   (org-roam-setup))
 #+end_src
 
@@ -1596,7 +1599,7 @@ It is neat and sometimes quite useful to see the changes since last commit in th
 Finally, reduce the GC threshold a bit to make the user experience better.
 
 #+begin_src emacs-lisp
-(setq gc-cons-threshold (* 4 1000 1000))
+(setq gc-cons-threshold (* 20 1024 1024))
 #+end_src
 
 * File system manipulation
