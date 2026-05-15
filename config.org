@@ -805,10 +805,13 @@ This works surprisingly well for navigating code, even in big monorepos.
   (setq xref-backend-functions #'dumb-jump-xref-activate))
 #+end_src
 
-** CSV
 
+** CSS
 #+begin_src emacs-lisp
-(use-package csv-mode)
+(use-package css-mode
+  :init
+  (setq css-indent-offset 1
+        indent-line-function 'insert-tab))
 #+end_src
 
 ** Go
