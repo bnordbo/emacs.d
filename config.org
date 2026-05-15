@@ -18,8 +18,8 @@ Time the startup.
 Load my local functions and keyboard macros.
 
 #+begin_src emacs-lisp
-(load-file "~/.emacs.d/elisp/bn.el")
-(load-file "~/.emacs.d/keyboard-macros.el")
+(load-file "~/.config/emacs/elisp/bn.el")
+(load-file "~/.config/emacs/keyboard-macros.el")
 #+end_src
 
 ** Configure package installation
@@ -42,16 +42,16 @@ used.
 
 ** General setup
 
-Prevent customize from polluting the init files.
+Prevent customise from polluting the init files.
 
 #+begin_src emacs-lisp
-(setq custom-file "~/.emacs.d/custom.el")
+(setq custom-file "~/.config/emacs/custom.el")
 #+end_src
 
 Who wouldn't want sensible defaults?
 
 #+begin_src emacs-lisp
-(load-file "~/.emacs.d/elisp/sensible-defaults.el")
+(load-file "~/.config/emacs/elisp/sensible-defaults.el")
 (sensible-defaults/use-all-settings)
 #+end_src
 
@@ -65,13 +65,13 @@ Set location and time format for sunrise/sunset.
                  (if time-zone " (") time-zone (if time-zone ")")))
 #+end_src
 
-After switcing to native compilation, the warning buffer started to pop up a lot. Increasing the log level to ~error~ takes care of that annoyance.
+After switching to native compilation, the warning buffer started to pop up a lot. Increasing the log level to ~error~ takes care of that annoyance.
 
 #+begin_src emacs-lisp
 (setq warning-minimum-level :error)
 #+end_src
 
-Allow using the system trashcan instead of deleting files.
+Allow using the system trash can instead of deleting files.
 
 #+begin_src emacs-lisp
 (setq delete-by-moving-to-trash t)
@@ -109,7 +109,7 @@ This section is for testing out new configurations.
 
 * Crux setup
 
-This adds a lot of nify utilities that I've been missing.
+This adds a lot of nifty utilities that I've been missing.
 
 #+begin_src emacs-lisp
 (use-package crux
@@ -121,7 +121,7 @@ This adds a lot of nify utilities that I've been missing.
 * Look and feel
 
 Set up the themes to use, and make it switch automatically to the system
-appearence.
+appearance.
 
 #+begin_src emacs-lisp
 (use-package leuven-theme)
@@ -167,7 +167,7 @@ Conserve space and reduce clutter.
     (scroll-bar-mode -1))
 #+end_src
 
-Fringes adds some air, and is nice for diff highlights etc.
+Fringes adds some air, and is nice for diff highlights etc..
 
 #+begin_src emacs-lisp
 (fringe-mode '(6 . 2))
@@ -574,11 +574,12 @@ While the default LANG setting seems to make sense, it causes locale warnings.
 (setenv "LANG" "")
 #+end_src
 
-I just use ispell for now, but should look into a way of supporting multiple
-dictionaries.
+I just use ispell with Hunspell for now, but should look into a way of supporting multiple dictionaries.
 
 #+begin_src emacs-lisp
-(setq ispell-program-name "aspell")
+(setenv "DICTIONARY" "en_GB")
+(setq ispell-program-name "hunspell")
+(add-to-list 'ispell-skip-region-alist '("#\\+begin_src". "#\\+end_src"))
 #+end_src
 
 In some cases, like YAML, indentation guides is a must.
