@@ -84,7 +84,7 @@ Start emacs-server for integrating neatly with the shell.
 #+begin_src emacs-lisp
 (use-package server
   :init
-  (setq server-socket-dir "~/.emacs.d/server")
+  (setq server-socket-dir "~/.config/emacs/server")
   :config
   (unless (server-running-p)
     (server-start)))
@@ -649,7 +649,7 @@ monorepos. Hmm.
 (use-package projectile
   :diminish
   :init (setq projectile-project-search-path '(("~/Contexts/WG2/src" . 2)
-                                               "/Users/bn/.emacs.d"
+                                               "/Users/bn/.config/emacs"
                                                "~/src/forks/qmk_firmware"))
   :bind-keymap ("C-c p" . projectile-command-map)
   :config (projectile-mode +1))
@@ -700,7 +700,7 @@ have it pick up all the feeds based on tags, but that seems a bit extreme...
   :disabled t
   :defer 15
   :init
-  (setq rmh-elfeed-org-files (list "~/.emacs.d/elfeed.org"))
+  (setq rmh-elfeed-org-files (list "~/.config/emacs/elfeed.org"))
   :config
   (elfeed-org))
 #+end_src
@@ -1018,7 +1018,7 @@ Load the org-mode and do basic configuration:
         org-fontify-whole-heading-line t
         org-use-sub-superscripts "{}"
         org-M-RET-may-split-line nil
-        org-ditaa-jar-path "/Users/bn/.emacs.d/ditaa.jar"
+        org-ditaa-jar-path "/Users/bn/.config/emacs/ditaa.jar"
         org-cycle-emulate-tab 'whitestart
         ; Improve org-hoto by allowing completion on the full outline
         org-goto-interface 'outline-path-completionp
@@ -1319,15 +1319,15 @@ Configure the agenda window setup. I prefer that it doesn't change it a lot.
          "* %(org-cliplink-capture)\n%U\n%?" :empty-lines 1)
         ("s" "Standup" plain
          (file+olp+datetree "WG2SubscriberState.org" "Standups")
-         (file "~/.emacs.d/templates/standup-capture.org")
+         (file "~/.config/emacs/templates/standup-capture.org")
          :immediate-finish t
          :jump-to-captured t)
         ("C" "Contact" entry (file "Contacts.org")
-         (file "~/.emacs.d/templates/contact-capture.org"))
+         (file "~/.config/emacs/templates/contact-capture.org"))
         ("t" "Training")
 	("tw" "Weekly status" entry
          (file+olp+datetree "Training.org" "Ukesstatus")
-         (file "~/.emacs.d/templates/training-weekly-capture.org")
+         (file "~/.config/emacs/templates/training-weekly-capture.org")
          :tree-type week)))
 #+end_src
 
@@ -1372,11 +1372,11 @@ Set up org-roam v2 behind the ~C-c n~ prefix:
                                  :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org"
                                                     "#+date: %T\n#+title: ${title}\n")
                                  :unnarrowed t)
-                                ("r" "Read" plain (file "~/.emacs.d/templates/book-capture.org")
+                                ("r" "Read" plain (file "~/.config/emacs/templates/book-capture.org")
                                  :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org"
                                                     "#+title: ${title}\n#+date %T\n#+filetags: Lit\n")
                                  :unnarrowed t)
-                                ("p" "Person" plain (file "~/.emacs.d/templates/person-capture.org")
+                                ("p" "Person" plain (file "~/.config/emacs/templates/person-capture.org")
                                  :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org"
                                                     "#+title: ${title}\n#+date %T\n#+filetags: Person\n")
                                  :unnarrowed t)))
