@@ -27,3 +27,5 @@ custom.el
 /projects
 /history
 bookmarks
+/.lsp-session
+/tree-sitter/
