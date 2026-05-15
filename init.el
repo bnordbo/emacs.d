@@ -13,7 +13,7 @@
   (package-install 'use-package))
 
 ;; Finally we load the literate configuration.
-(org-babel-load-file "~/.emacs.d/config.org")
+(org-babel-load-file "~/.config/emacs/config.org")
 
 (if-let (config (bn/host-config-path "config.org"))
     (org-babel-load-file config))
